@@ -53,3 +53,15 @@ def test_natural_language_query():
     assert "grounded_summary" in data
     assert "matched_events" in data
     assert "parsed_filters" in data
+
+
+def test_frontend_ui():
+    # Test /ui endpoint
+    response = client.get("/ui/")
+    assert response.status_code == 200
+    assert "SurveillanceLens" in response.text
+
+    # Test browser navigation to /
+    response_html = client.get("/", headers={"accept": "text/html"})
+    assert response_html.status_code == 200
+    assert "SurveillanceLens" in response_html.text

@@ -52,18 +52,31 @@ app.include_router(query_router, prefix="/api")
 app.include_router(evidence_router, prefix="/api")
 app.include_router(stats_router, prefix="/api")
 
-# Mount static file directories for direct media serving
+from fastapi import Request
+from fastapi.responses import FileResponse
+
+# Mount static file directories for direct media and UI serving
 paths.ensure_directories()
+frontend_dir = paths.root_dir / "frontend"
+frontend_dir.mkdir(parents=True, exist_ok=True)
+
 app.mount("/static/uploads", StaticFiles(directory=str(paths.uploads_dir)), name="uploads")
 app.mount("/static/clips", StaticFiles(directory=str(paths.clips_dir)), name="clips")
+app.mount("/ui", StaticFiles(directory=str(frontend_dir), html=True), name="ui")
 
 
 @app.get("/")
-def root():
-    """Root status endpoint."""
+def root(request: Request):
+    """Root status endpoint; serves frontend interface for browser requests."""
+    accept = request.headers.get("accept", "")
+    index_file = frontend_dir / "index.html"
+    if "text/html" in accept and index_file.exists():
+        return FileResponse(index_file)
+
     return {
         "service": "Vision-Language Surveillance Event Understanding API",
         "status": "online",
+        "ui": "/ui",
         "documentation": "/docs",
         "version": "1.0.0",
     }
