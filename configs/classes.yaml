@@ -1,1 +1,83 @@
-# Phase 0 configuration placeholder.
+# Surveillance Detection, Anomaly, and Event Ontology Definitions
+
+detection_classes:
+  - id: 0
+    name: "Person"
+  - id: 1
+    name: "Car"
+  - id: 2
+    name: "Bicycle"
+  - id: 3
+    name: "Motorcycle"
+  - id: 4
+    name: "Bus"
+  - id: 5
+    name: "Truck"
+  - id: 6
+    name: "Backpack"
+  - id: 7
+    name: "Handbag"
+  - id: 8
+    name: "Suitcase"
+
+anomaly_categories:
+  - id: 0
+    name: "Normal"
+    is_anomaly: false
+  - id: 1
+    name: "Abuse"
+    is_anomaly: true
+  - id: 2
+    name: "Arrest"
+    is_anomaly: true
+  - id: 3
+    name: "Arson"
+    is_anomaly: true
+  - id: 4
+    name: "Assault"
+    is_anomaly: true
+  - id: 5
+    name: "Burglary"
+    is_anomaly: true
+  - id: 6
+    name: "Explosion"
+    is_anomaly: true
+  - id: 7
+    name: "Fighting"
+    is_anomaly: true
+  - id: 8
+    name: "RoadAccidents"
+    is_anomaly: true
+  - id: 9
+    name: "Robbery"
+    is_anomaly: true
+  - id: 10
+    name: "Shooting"
+    is_anomaly: true
+  - id: 11
+    name: "Shoplifting"
+    is_anomaly: true
+  - id: 12
+    name: "Stealing"
+    is_anomaly: true
+  - id: 13
+    name: "Vandalism"
+    is_anomaly: true
+
+event_ontology:
+  - name: "enter"
+    description: "An entity enters the camera field of view or monitored zone"
+  - name: "exit"
+    description: "An entity departs from the camera field of view or monitored zone"
+  - name: "loiter"
+    description: "An entity remains within a localized spatial area for an extended duration exceeding dwell threshold"
+  - name: "carry"
+    description: "A person moves with an object maintaining spatial proximity and co-motion"
+  - name: "place"
+    description: "A person brings an object into a location and separates from it"
+  - name: "leave"
+    description: "An object is left unattended by the person who brought or carried it"
+  - name: "stationary"
+    description: "An entity remains stationary without moving beyond displacement threshold"
+  - name: "interaction"
+    description: "Two or more entities interact within close spatial proximity"

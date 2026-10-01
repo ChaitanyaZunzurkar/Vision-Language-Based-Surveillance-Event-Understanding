@@ -1,0 +1,87 @@
+"""FastAPI entrypoint for Vision-Language Surveillance Event Understanding."""
+
+from pathlib import Path
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from src.utils.paths import paths
+from src.utils.logger import logger
+from src.config.loader import config_loader
+from app.api.routes_videos import router as videos_router
+from app.api.routes_pipeline import router as pipeline_router
+from app.api.routes_events import router as events_router
+from app.api.routes_query import router as query_router
+from app.api.routes_evidence import router as evidence_router
+from app.api.routes_stats import router as stats_router
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Application startup and shutdown hooks."""
+    logger.info("Initializing Surveillance Event Understanding API...")
+    paths.ensure_directories()
+    yield
+    logger.info("Surveillance Event Understanding API shut down.")
+
+
+app = FastAPI(
+    title="Vision-Language Surveillance Event Understanding API",
+    description="Backend API integrating YOLO detection, ByteTrack tracking, temporal windowing, "
+                "Qwen2.5-VL vision-language understanding, UCF-Crime anomaly detection, and "
+                "evidence-based video retrieval.",
+    version="1.0.0",
+    lifespan=lifespan,
+)
+
+# CORS Middleware for frontend integration (React, Vite, Next.js)
+cors_origins = config_loader.get("server.cors_origins", ["*"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins if cors_origins else ["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register API Routers under /api
+app.include_router(videos_router, prefix="/api")
+app.include_router(pipeline_router, prefix="/api")
+app.include_router(events_router, prefix="/api")
+app.include_router(query_router, prefix="/api")
+app.include_router(evidence_router, prefix="/api")
+app.include_router(stats_router, prefix="/api")
+
+# Mount static file directories for direct media serving
+paths.ensure_directories()
+app.mount("/static/uploads", StaticFiles(directory=str(paths.uploads_dir)), name="uploads")
+app.mount("/static/clips", StaticFiles(directory=str(paths.clips_dir)), name="clips")
+
+
+@app.get("/")
+def root():
+    """Root status endpoint."""
+    return {
+        "service": "Vision-Language Surveillance Event Understanding API",
+        "status": "online",
+        "documentation": "/docs",
+        "version": "1.0.0",
+    }
+
+
+@app.get("/api/health")
+def health_check():
+    """Health check endpoint."""
+    return {
+        "status": "healthy",
+        "database": paths.db_path.exists(),
+        "vector_store": paths.vectors_dir.exists(),
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    host = config_loader.get("server.host", "0.0.0.0")
+    port = config_loader.get("server.port", 8000)
+    uvicorn.run("app.main:app", host=host, port=port, reload=True)
