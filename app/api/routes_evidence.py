@@ -3,6 +3,7 @@
 from pathlib import Path
 from typing import Optional
 import os
+import mimetypes
 from fastapi import APIRouter, HTTPException, Header, Response, status
 from fastapi.responses import FileResponse, StreamingResponse
 from src.utils.paths import paths
@@ -17,7 +18,7 @@ def stream_video_file(file_path: Path, range_header: Optional[str] = None):
         raise HTTPException(status_code=404, detail="Requested media file not found")
 
     file_size = file_path.stat().st_size
-    content_type = "video/mp4"
+    content_type = mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
 
     if range_header:
         # Parse range header: "bytes=start-end"

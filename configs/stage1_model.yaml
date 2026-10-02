@@ -1,0 +1,13 @@
+weights: yolo11x_surv_v1.pt
+conf_threshold: 0.2
+imgsz: 640
+names:
+  0: Person
+  1: Car
+  2: Carrying_object
+  3: Bike
+  4: Gun
+  5: Knife
+nc: 6
+val_map50: 0.6950273710349442
+val_map50_95: 0.497443264293518

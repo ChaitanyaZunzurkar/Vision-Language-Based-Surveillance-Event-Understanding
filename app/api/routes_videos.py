@@ -3,6 +3,7 @@
 from pathlib import Path
 from typing import List, Optional
 import shutil
+import uuid
 import aiofiles
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks, Depends
 from pydantic import BaseModel
@@ -70,14 +71,15 @@ async def upload_video(
         )
 
     # Save uploaded file temporarily to disk
-    temp_path = paths.uploads_dir / f"tmp_{file.filename}"
+    safe_filename = Path(file.filename).name
+    temp_path = paths.uploads_dir / f"tmp_{uuid.uuid4().hex}{Path(safe_filename).suffix.lower()}"
     try:
         async with aiofiles.open(temp_path, "wb") as f:
             while chunk := await file.read(1024 * 1024):  # 1MB chunks
                 await f.write(chunk)
 
         # Ingest into store
-        record = ingestor.ingest_video(temp_path, original_filename=file.filename)
+        record = ingestor.ingest_video(temp_path, original_filename=safe_filename)
 
         # Clean up temp file
         if temp_path.exists() and temp_path.resolve() != Path(record.file_path).resolve():

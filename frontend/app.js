@@ -28,7 +28,6 @@ const elements = {
   fileInfoBar: document.getElementById("file-info-bar"),
   fileName: document.getElementById("selected-file-name"),
   fileSize: document.getElementById("selected-file-size"),
-  autoRunCheckbox: document.getElementById("auto-run-checkbox"),
   btnUpload: document.getElementById("btn-upload"),
   progressContainer: document.getElementById("upload-progress-container"),
   progressBar: document.getElementById("upload-progress-bar"),
@@ -49,6 +48,13 @@ const elements = {
   // Video Archive
   videoArchiveList: document.getElementById("video-archive-list"),
   btnRefreshVideos: document.getElementById("btn-refresh-videos"),
+  stage4JsonInput: document.getElementById("stage4-json-input"),
+  btnImportStage4: document.getElementById("btn-import-stage4"),
+  stage4ImportStatus: document.getElementById("stage4-import-status"),
+  workflowSelectedVideo: document.getElementById("workflow-selected-video"),
+  pipelineStatusTitle: document.getElementById("pipeline-status-title"),
+  pipelineStatusMessage: document.getElementById("pipeline-status-message"),
+  pipelineSpinner: document.getElementById("pipeline-spinner"),
 
   // Events & Feed
   eventsFeed: document.getElementById("events-feed"),
@@ -116,6 +122,14 @@ function initEventListeners() {
   });
 
   elements.btnRefreshVideos.addEventListener("click", fetchVideoArchive);
+  elements.btnImportStage4.addEventListener("click", importStage4Events);
+  elements.stage4JsonInput.addEventListener("change", () => {
+    const file = elements.stage4JsonInput.files[0];
+    elements.btnImportStage4.disabled = !state.currentVideo || !file;
+    elements.stage4ImportStatus.textContent = file
+      ? `Selected: ${file.name}. This must be the final Stage 4 events.json.`
+      : "Waiting for a video and events.json.";
+  });
 
   // Filters & Query
   elements.eventTypeFilter.addEventListener("change", (e) => {
@@ -154,12 +168,12 @@ async function uploadSelectedVideo() {
 
   const formData = new FormData();
   formData.append("file", state.selectedFile);
-  formData.append("auto_run", elements.autoRunCheckbox.checked ? "true" : "false");
+  formData.append("auto_run", "false");
 
   elements.btnUpload.disabled = true;
   elements.progressContainer.classList.remove("hidden");
   elements.progressBar.style.width = "40%";
-  elements.progressText.textContent = "Uploading surveillance footage...";
+  elements.progressText.textContent = "Adding source video to the archive…";
 
   try {
     const response = await fetch(`${API_BASE}/api/videos/upload`, {
@@ -190,9 +204,7 @@ async function uploadSelectedVideo() {
     await fetchVideoArchive();
     selectVideo(videoRecord);
 
-    if (elements.autoRunCheckbox.checked) {
-      startPipelineProgressTracking(videoRecord.video_id);
-    }
+    elements.workflowSelectedVideo.textContent = `Selected source video: ${videoRecord.filename}. Now choose Path A or Path B below.`;
   } catch (error) {
     alert(`Upload error: ${error.message}`);
     elements.btnUpload.disabled = false;
@@ -205,7 +217,15 @@ async function uploadSelectedVideo() {
 // ==========================================================================
 
 function selectVideo(video) {
+  const selectionChanged = state.currentVideo?.video_id !== video.video_id;
+  if (selectionChanged) {
+    elements.stage4JsonInput.value = "";
+    elements.stage4ImportStatus.textContent = "Choose the final Stage 4 events.json for this video.";
+    elements.pipelineTracker.classList.add("hidden");
+  }
   state.currentVideo = video;
+  elements.workflowSelectedVideo.textContent = `Selected source video: ${video.filename}. Now choose Path A or Path B below.`;
+  elements.btnImportStage4.disabled = !elements.stage4JsonInput.files.length;
 
   // Update UI Elements
   elements.playerPlaceholder.classList.add("hidden");
@@ -220,7 +240,7 @@ function selectVideo(video) {
   elements.metaDuration.textContent = `${video.duration_sec.toFixed(1)}s`;
   elements.metaFps.textContent = video.fps.toFixed(1);
   elements.metaResolution.textContent = video.resolution;
-  elements.metaAnomaly.textContent = "Assessing...";
+  elements.metaAnomaly.textContent = "Not assessed";
   elements.videoMetaStrip.classList.remove("hidden");
 
   // Run Button state
@@ -245,6 +265,7 @@ function selectVideo(video) {
 
 async function triggerPipeline(videoId) {
   elements.btnRunPipeline.disabled = true;
+  elements.btnRunPipeline.textContent = "Starting local processing…";
   startPipelineProgressTracking(videoId);
 
   try {
@@ -255,29 +276,16 @@ async function triggerPipeline(videoId) {
   } catch (e) {
     alert(`Pipeline execution error: ${e.message}`);
     stopPipelineProgressTracking();
+  } finally {
+    elements.btnRunPipeline.textContent = "Run local tracking + windows";
   }
 }
 
 function startPipelineProgressTracking(videoId) {
   elements.pipelineTracker.classList.remove("hidden");
-  let step = 1;
-
-  // Animate steps visually while polling
-  const animateSteps = () => {
-    document.querySelectorAll(".step-item").forEach((el, idx) => {
-      if (idx + 1 < step) {
-        el.className = "step-item done";
-      } else if (idx + 1 === step) {
-        el.className = "step-item active";
-      } else {
-        el.className = "step-item";
-      }
-    });
-    step = Math.min(step + 1, 5);
-  };
-
-  animateSteps();
-  const stepTimer = setInterval(animateSteps, 1800);
+  elements.pipelineStatusTitle.textContent = "YOLO + ByteTrack + Stage 2 running";
+  elements.pipelineStatusMessage.textContent = "This can take several minutes. The app is processing the video locally; keep this page open.";
+  elements.pipelineSpinner.classList.remove("hidden");
 
   if (state.pollingInterval) clearInterval(state.pollingInterval);
 
@@ -287,20 +295,17 @@ function startPipelineProgressTracking(videoId) {
       if (!res.ok) return;
 
       const data = await res.json();
-      if (data.status === "completed" || data.status === "failed") {
+      if (["completed", "awaiting_events", "failed"].includes(data.status)) {
         clearInterval(state.pollingInterval);
-        clearInterval(stepTimer);
         state.pollingInterval = null;
-
-        // Finish steps
-        document.querySelectorAll(".step-item").forEach((el) => {
-          el.className = data.status === "completed" ? "step-item done" : "step-item";
-        });
-
-        setTimeout(() => {
-          elements.pipelineTracker.classList.add("hidden");
-          elements.btnRunPipeline.disabled = false;
-        }, 1500);
+        elements.pipelineSpinner.classList.add("hidden");
+        elements.btnRunPipeline.disabled = false;
+        elements.pipelineStatusTitle.textContent = data.status === "awaiting_events" ? "Stages 1b–2 complete" : data.status === "failed" ? "Processing failed" : "Complete";
+        elements.pipelineStatusMessage.textContent = data.status === "awaiting_events"
+          ? "tracks.csv and windows.json are ready. Run the Kaggle Stage 4 notebook with this video and windows.json, then import its events.json in Path B."
+          : data.status === "failed"
+            ? (data.error_message || "Check the server terminal for details.")
+            : `Processing finished with ${data.total_events} event(s).`;
 
         // Refresh details
         const videoRes = await fetch(`${API_BASE}/api/videos/${videoId}`);
@@ -323,7 +328,9 @@ function stopPipelineProgressTracking() {
     state.pollingInterval = null;
   }
   elements.pipelineTracker.classList.add("hidden");
+  elements.pipelineSpinner.classList.add("hidden");
   elements.btnRunPipeline.disabled = false;
+  elements.btnRunPipeline.textContent = "Run local tracking + windows";
 }
 
 // ==========================================================================
@@ -339,6 +346,40 @@ async function fetchEventsForVideo(videoId) {
     renderEvents();
   } catch (err) {
     console.error("Failed to fetch events:", err);
+  }
+}
+
+async function importStage4Events() {
+  if (!state.currentVideo) {
+    elements.stage4ImportStatus.textContent = "Add or select the matching source video above first.";
+    return;
+  }
+  const file = elements.stage4JsonInput.files[0];
+  if (!file) {
+    elements.stage4ImportStatus.textContent = "Choose the final Stage 4 events.json file first.";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("video_id", state.currentVideo.video_id);
+  formData.append("file", file);
+  elements.btnImportStage4.disabled = true;
+  elements.stage4ImportStatus.textContent = "Importing events and creating evidence clips…";
+  try {
+    const response = await fetch(`${API_BASE}/api/events/import`, { method: "POST", body: formData });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.detail || "Event import failed");
+    elements.stage4ImportStatus.textContent = `Imported ${result.imported_events} events for ${state.currentVideo.filename}.`;
+    await fetchEventsForVideo(state.currentVideo.video_id);
+    await fetchSystemStats();
+    const selectedId = state.currentVideo.video_id;
+    const updated = await fetch(`${API_BASE}/api/videos/${selectedId}`);
+    if (updated.ok) selectVideo(await updated.json());
+    await fetchVideoArchive();
+  } catch (error) {
+    elements.stage4ImportStatus.textContent = error.message;
+  } finally {
+    elements.btnImportStage4.disabled = false;
   }
 }
 
@@ -362,13 +403,13 @@ function renderEvents() {
   elements.eventsEmptyState.classList.add("hidden");
 
   // Determine anomaly status for active video metadata
-  const hasAnomaly = filtered.some((e) => e.anomaly_category && e.anomaly_category !== "Normal");
+  const hasAnomaly = filtered.some((e) => e.anomaly_category && !["Normal", "Unassessed"].includes(e.anomaly_category));
   if (hasAnomaly) {
-    const topAnom = filtered.find((e) => e.anomaly_category !== "Normal");
+    const topAnom = filtered.find((e) => !["Normal", "Unassessed"].includes(e.anomaly_category));
     elements.metaAnomaly.textContent = topAnom.anomaly_category;
     elements.metaAnomaly.className = "meta-val alert-tag is-anom";
   } else {
-    elements.metaAnomaly.textContent = "Normal (No Critical Anomaly)";
+    elements.metaAnomaly.textContent = filtered.some((e) => e.anomaly_category === "Unassessed") ? "Not assessed" : "Normal";
     elements.metaAnomaly.className = "meta-val alert-tag";
   }
 
@@ -377,7 +418,7 @@ function renderEvents() {
     card.className = "event-card";
     card.dataset.type = ev.event_type.toLowerCase();
 
-    const isAnomalous = ev.anomaly_category && ev.anomaly_category !== "Normal";
+    const isAnomalous = ev.anomaly_category && !["Normal", "Unassessed"].includes(ev.anomaly_category);
 
     card.innerHTML = `
       <div class="event-card-top">

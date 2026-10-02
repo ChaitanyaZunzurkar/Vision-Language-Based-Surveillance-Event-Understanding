@@ -1,19 +1,17 @@
 """End-to-end master pipeline orchestrator for surveillance video understanding."""
 
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 import json
+import importlib.util
+import yaml
 from src.utils.paths import paths
 from src.utils.logger import logger
-from src.storage.schemas import VideoRecord, EventRecord, AnomalyRecord
 from src.storage.metadata_store import MetadataStore, metadata_store
 from src.storage.vector_store import VectorStore, vector_store
-from src.detection.detector import SurveillanceDetector
-from src.tracking.tracker import SurveillanceTracker
+from src.tracking.schemas import Track, TrackObservation, TrackingResult
+from src.detection.schemas import BoundingBox
 from src.event_understanding.event_generator import TemporalWindower
-from src.event_understanding.qwen import VLMEventUnderstanding
-from src.anomaly.detector import AnomalyDetector
-from src.evidence.clip_generator import ClipGenerator
 from src.config.loader import config_loader
 
 
@@ -29,41 +27,78 @@ class SurveillancePipeline:
         self.vec_store = vec_store or vector_store
 
         # Pipeline submodules
-        self.detector = SurveillanceDetector(
-            weights_path=config_loader.get("detection.model_weights"),
-            conf_threshold=config_loader.get("detection.conf_threshold", 0.20),
-        )
-        self.tracker = SurveillanceTracker(
-            track_high_thresh=config_loader.get("tracking.track_high_thresh", 0.50),
-            track_low_thresh=config_loader.get("tracking.track_low_thresh", 0.20),
-            new_track_thresh=config_loader.get("tracking.new_track_thresh", 0.60),
-        )
         self.windower = TemporalWindower(
             window_duration_sec=config_loader.get("temporal.window_duration_sec", 10.0),
             window_stride_sec=config_loader.get("temporal.window_stride_sec", 5.0),
             loiter_dwell_sec=config_loader.get("temporal.loiter_dwell_sec", 4.0),
         )
-        self.vlm = VLMEventUnderstanding()
-        self.anomaly_detector = AnomalyDetector(
-            model_path=config_loader.get("anomaly.model_weights"),
-            scaler_path=config_loader.get("anomaly.scaler_weights"),
+
+    def _run_stage1b(self, video_path: Path, video_id: str) -> TrackingResult:
+        """Run the project's actual VISTA YOLO+ByteTrack implementation."""
+        tracker_script = (paths.root_dir / config_loader.get(
+            "stage1b.tracker_script", "src/tracking/surveillance_tracker.py"
+        )).resolve()
+        weights_path = (paths.root_dir / config_loader.get(
+            "stage1b.weights_path", "models/stage1b/yolo11x_surv_v1.pt"
+        )).resolve()
+        bytetrack_yaml = (paths.root_dir / config_loader.get(
+            "stage1b.bytetrack_yaml", "configs/bytetrack_custom.yaml"
+        )).resolve()
+        stage1_config = (paths.root_dir / config_loader.get(
+            "stage1b.class_config", "configs/stage1_model.yaml"
+        )).resolve()
+        required = [tracker_script, weights_path, bytetrack_yaml, stage1_config]
+        missing = [str(path) for path in required if not path.exists()]
+        if missing:
+            raise FileNotFoundError("Stage 1b resources are missing: " + ", ".join(missing))
+
+        with stage1_config.open("r", encoding="utf-8") as config_file:
+            model_config = yaml.safe_load(config_file) or {}
+        names = model_config.get("names", {})
+        class_names = {int(key): str(value) for key, value in names.items()}
+        if not class_names:
+            raise ValueError(f"No class names are defined in {stage1_config}")
+
+        spec = importlib.util.spec_from_file_location("vista_surveillance_tracker", tracker_script)
+        if spec is None or spec.loader is None:
+            raise ImportError(f"Could not load Stage 1b tracker from {tracker_script}")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        tracker = module.SurveillanceTracker(
+            weights_path=str(weights_path),
+            class_names=class_names,
+            bytetrack_yaml=str(bytetrack_yaml),
+            detect_conf=float(config_loader.get("detection.conf_threshold", 0.20)),
+            imgsz=int(model_config.get("imgsz", 640)),
+            frame_stride=int(config_loader.get("stage1b.frame_stride", 1)),
         )
-        self.clip_generator = ClipGenerator(
-            output_dir=paths.clips_dir,
-            padding_before_sec=config_loader.get("evidence.padding_before_sec", 1.5),
-            padding_after_sec=config_loader.get("evidence.padding_after_sec", 1.5),
-        )
+        tracks_df = tracker.process_video(str(video_path), video_id=video_id, camera_id=video_id)
+        tracks_path = paths.tracks_dir / f"{video_id}_tracks.csv"
+        tracks_df.to_csv(tracks_path, index=False)
+
+        tracks = []
+        if not tracks_df.empty:
+            for track_id, group in tracks_df.groupby("track_id", sort=True):
+                observations = [TrackObservation(
+                    frame_idx=int(row.frame_id),
+                    timestamp_sec=float(row.timestamp_sec),
+                    bbox=BoundingBox(x1=float(row.x1), y1=float(row.y1), x2=float(row.x2), y2=float(row.y2)),
+                    confidence=float(row.confidence),
+                ) for row in group.itertuples(index=False)]
+                tracks.append(Track(
+                    track_id=int(track_id),
+                    class_name=str(group.iloc[0].class_name),
+                    start_sec=observations[0].timestamp_sec,
+                    end_sec=observations[-1].timestamp_sec,
+                    observations=observations,
+                ))
+        return TrackingResult(video_id=video_id, total_tracks=len(tracks), tracks=tracks)
 
     def process_video(self, video_id: str) -> Dict[str, Any]:
         """Run complete understanding pipeline on an ingested video.
 
-        Stages:
-            1. Detection & Tracking (YOLO + ByteTrack)
-            2. Temporal Windowing (Rule-based candidate extraction)
-            3. Vision-Language Understanding (Qwen2.5-VL verification)
-            4. Anomaly Detection (UCF-Crime 14-category classification)
-            5. Evidence Clip Generation (OpenCV / FFmpeg cutter)
-            6. Metadata & Vector Store Ingestion
+        Available stages: Stage 1b YOLO+ByteTrack and Stage 2 temporal windowing.
+        Stage 4 events can be imported from the VISTA-generated JSON endpoint.
         """
         video = self.store.get_video(video_id)
         if not video:
@@ -77,15 +112,12 @@ class SurveillancePipeline:
         self.store.update_video_status(video_id, "processing")
 
         try:
-            # Stage 1: Detection & Tracking
-            logger.info("Stage 1/5: Running Entity Detection & Tracking...")
-            detection_result = self.detector.detect_video(video_path, video_id)
-            tracking_result = self.tracker.track_video(detection_result)
+            # Stage 1b: use the real VISTA detector+ByteTrack code, not a heuristic fallback.
+            logger.info("Stage 1b: Running YOLO + ByteTrack...")
+            tracking_result = self._run_stage1b(video_path, video_id)
 
-            # Export tracks CSV
-            tracks_df = self.tracker.export_tracks_dataframe(tracking_result)
+            # Stage 1b writes the per-video CSV as part of _run_stage1b.
             tracks_csv_path = paths.tracks_dir / f"{video_id}_tracks.csv"
-            tracks_df.to_csv(tracks_csv_path, index=False)
 
             # Stage 2: Temporal Windowing
             logger.info("Stage 2/5: Generating Temporal Windows & Candidate Events...")
@@ -93,103 +125,55 @@ class SurveillancePipeline:
 
             # Export windows JSON
             windows_json_path = paths.windows_dir / f"{video_id}_windows.json"
-            windows_data = [w.model_dump() for w in windows]
+            windows_data = []
+            for window in windows:
+                start_sec, end_sec = window.start_sec, window.end_sec
+                window_tracks = []
+                for track in tracking_result.tracks:
+                    if track.track_id not in window.track_ids:
+                        continue
+                    observations = [
+                        obs for obs in track.observations
+                        if start_sec <= obs.timestamp_sec <= end_sec
+                    ]
+                    if len(observations) > 1:
+                        first, last = observations[0].bbox, observations[-1].bbox
+                        displacement = ((last.center_x - first.center_x) ** 2 + (last.center_y - first.center_y) ** 2) ** 0.5
+                        dwell = observations[-1].timestamp_sec - observations[0].timestamp_sec
+                    else:
+                        displacement, dwell = 0.0, 0.0
+                    candidates = [
+                        event.event_type for event in window.candidate_events
+                        if track.track_id in event.entity_ids
+                    ]
+                    window_tracks.append({
+                        "track_id": int(track.track_id),
+                        "class": track.class_name,
+                        "dwell_sec": round(float(dwell), 3),
+                        "displacement_px": round(float(displacement), 2),
+                        "mean_speed": round(float(displacement / dwell), 2) if dwell > 0 else 0.0,
+                        "zones": [],
+                        "near": [],
+                        "candidate_events": candidates,
+                    })
+                windows_data.append({
+                    "video_id": video_id,
+                    "camera_id": video_id,
+                    "window": [float(start_sec), float(end_sec)],
+                    "tracks": window_tracks,
+                })
             with open(windows_json_path, "w", encoding="utf-8") as f:
-                json.dump(windows_data, f, indent=2)
+                json.dump({"windows": windows_data}, f, indent=2)
 
-            # Stage 3: Vision-Language Understanding (Qwen2.5-VL)
-            logger.info("Stage 3/5: VLM Event Understanding & Grounding...")
-            vlm_result = self.vlm.enrich_and_verify_events(
-                video_id=video_id,
-                windows=windows,
-                tracking_result=tracking_result,
-                video_path=video_path,
-            )
-
-            # Stage 4: Video Anomaly Detection
-            logger.info("Stage 4/5: Running Anomaly Detection...")
-            anomaly_summary = self.anomaly_detector.detect_anomalies(
-                video_path=video_path,
-                video_id=video_id,
-                video_duration_sec=video.duration_sec,
-                tracking_result=tracking_result,
-            )
-
-            # Cross-reference anomaly category with events
-            for event in vlm_result.events:
-                # Find matching anomaly clip
-                for anom_clip in anomaly_summary.anomaly_segments:
-                    if (
-                        anom_clip.is_anomaly
-                        and not (anom_clip.end_sec < event.start_sec or anom_clip.start_sec > event.end_sec)
-                    ):
-                        event.anomaly_category = anom_clip.category
-                        event.anomaly_confidence = anom_clip.confidence
-                        break
-                else:
-                    event.anomaly_category = anomaly_summary.overall_category
-                    event.anomaly_confidence = anomaly_summary.overall_confidence
-
-            # Stage 5: Evidence Clip Extraction
-            logger.info("Stage 5/5: Cutting Evidence Video Clips for Playback...")
-            event_records: List[EventRecord] = []
-            for ev in vlm_result.events:
-                clip_path = self.clip_generator.cut_evidence_clip(
-                    video_path=video_path,
-                    start_sec=ev.start_sec,
-                    end_sec=ev.end_sec,
-                    clip_name=ev.event_id,
-                    video_duration_sec=video.duration_sec,
-                )
-                rec = EventRecord(
-                    event_id=ev.event_id,
-                    video_id=ev.video_id,
-                    event_type=ev.event_type,
-                    start_sec=ev.start_sec,
-                    end_sec=ev.end_sec,
-                    entity_ids=ev.entity_ids,
-                    description=ev.description,
-                    confidence=ev.confidence,
-                    anomaly_category=ev.anomaly_category,
-                    anomaly_confidence=ev.anomaly_confidence,
-                    clip_path=clip_path,
-                    metadata=ev.metadata,
-                )
-                event_records.append(rec)
-
-            # Stage 6: Database & Vector Index Ingestion
-            logger.info("Ingesting records into SQLite store and Vector index...")
-            self.store.insert_events(event_records)
-
-            anomaly_records = [
-                AnomalyRecord(
-                    anomaly_id=c.clip_id,
-                    video_id=video_id,
-                    category=c.category,
-                    confidence=c.confidence,
-                    is_anomaly=c.is_anomaly,
-                    start_sec=c.start_sec,
-                    end_sec=c.end_sec,
-                )
-                for c in anomaly_summary.anomaly_segments
-            ]
-            self.store.insert_anomalies(anomaly_records)
-
-            # Add to vector store for natural language queries
-            self.vec_store.add_events(event_records)
-
-            self.store.update_video_status(video_id, "completed")
-            logger.info(f"=== Pipeline completed successfully for video {video_id} ===")
+            self.store.update_video_status(video_id, "awaiting_events")
+            logger.info(f"Stages 1b and 2 completed for {video_id}; waiting for Stage 4 JSON import")
 
             return {
                 "video_id": video_id,
-                "status": "completed",
-                "total_detections": detection_result.total_detections,
+                "status": "awaiting_events",
+                "message": "Stages 1b and 2 completed. Import the Stage 4 events.json output to enable event search and evidence playback.",
                 "total_tracks": tracking_result.total_tracks,
                 "total_windows": len(windows),
-                "total_events": len(event_records),
-                "overall_anomaly": anomaly_summary.overall_category,
-                "is_anomalous": anomaly_summary.is_anomalous,
                 "tracks_csv": str(tracks_csv_path),
                 "windows_json": str(windows_json_path),
             }

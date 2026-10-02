@@ -6,6 +6,7 @@ __pycache__/
 data/
 weights/
 models/**/*.pt
+!models/stage1b/yolo11x_surv_v1.pt
 models/**/*.pth
 models/**/*.onnx
 logs/*
@@ -15,3 +16,4 @@ outputs/*
 .vscode/
 .idea/
 chat_history.md
+VISTA/

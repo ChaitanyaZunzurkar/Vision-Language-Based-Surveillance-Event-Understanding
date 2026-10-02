@@ -2,12 +2,15 @@
 
 from pathlib import Path
 from contextlib import asynccontextmanager
+import shutil
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from src.utils.paths import paths
 from src.utils.logger import logger
 from src.config.loader import config_loader
+from src.storage.metadata_store import metadata_store
+from src.storage.vector_store import vector_store
 from app.api.routes_videos import router as videos_router
 from app.api.routes_pipeline import router as pipeline_router
 from app.api.routes_events import router as events_router
@@ -16,11 +19,31 @@ from app.api.routes_evidence import router as evidence_router
 from app.api.routes_stats import router as stats_router
 
 
+def clear_local_app_state() -> None:
+    """Clear only app-managed runtime data; never touch model/source directories."""
+    data_root = paths.data_dir.resolve()
+    for managed_dir in (paths.uploads_dir, paths.outputs_dir, paths.vectors_dir):
+        target = managed_dir.resolve()
+        if not target.is_relative_to(data_root):
+            raise RuntimeError(f"Refusing to clear path outside app data directory: {target}")
+        for child in target.iterdir():
+            if child.is_symlink() or child.is_file():
+                child.unlink()
+            elif child.is_dir():
+                shutil.rmtree(child)
+        target.mkdir(parents=True, exist_ok=True)
+    metadata_store.clear_all()
+    vector_store.clear()
+    logger.info("Cleared previous local videos, events, clips, pipeline outputs, and search index.")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application startup and shutdown hooks."""
     logger.info("Initializing Surveillance Event Understanding API...")
     paths.ensure_directories()
+    if config_loader.get("server.reset_data_on_startup", True):
+        clear_local_app_state()
     yield
     logger.info("Surveillance Event Understanding API shut down.")
 
@@ -71,6 +94,8 @@ def root(request: Request):
     accept = request.headers.get("accept", "")
     index_file = frontend_dir / "index.html"
     if "text/html" in accept and index_file.exists():
+        if config_loader.get("server.reset_data_on_dashboard_open", True):
+            clear_local_app_state()
         return FileResponse(index_file)
 
     return {

@@ -3,6 +3,8 @@
 server:
   host: "0.0.0.0"
   port: 8000
+  reset_data_on_startup: true
+  reset_data_on_dashboard_open: true
   cors_origins:
     - "http://localhost:3000"
     - "http://localhost:5173"
@@ -28,6 +30,14 @@ detection:
   conf_threshold: 0.20
   iou_threshold: 0.45
   device: "auto"
+
+# Project-owned Stage 1b resources. Paths are relative to the repository root.
+stage1b:
+  tracker_script: "src/tracking/surveillance_tracker.py"
+  weights_path: "models/stage1b/yolo11x_surv_v1.pt"
+  class_config: "configs/stage1_model.yaml"
+  bytetrack_yaml: "configs/bytetrack_custom.yaml"
+  frame_stride: 1
 
 tracking:
   track_high_thresh: 0.50

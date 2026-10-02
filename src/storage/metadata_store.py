@@ -103,6 +103,16 @@ class MetadataStore:
             conn.commit()
             logger.info(f"Initialized SQLite database at {self.db_path}")
 
+    def clear_all(self) -> None:
+        """Remove persisted app records while preserving the database schema."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM events")
+            cursor.execute("DELETE FROM anomalies")
+            cursor.execute("DELETE FROM tracks")
+            cursor.execute("DELETE FROM videos")
+            conn.commit()
+
     def save_video(self, record: VideoRecord) -> None:
         """Insert or replace a video record."""
         with self._get_connection() as conn:
@@ -335,7 +345,7 @@ class MetadataStore:
             event_type_counts = {r["event_type"]: r["cnt"] for r in cursor.fetchall()}
 
             cursor.execute(
-                "SELECT anomaly_category, COUNT(*) as cnt FROM events WHERE anomaly_category != 'Normal' GROUP BY anomaly_category"
+                "SELECT anomaly_category, COUNT(*) as cnt FROM events WHERE anomaly_category NOT IN ('Normal', 'Unassessed') GROUP BY anomaly_category"
             )
             anomaly_counts = {
                 r["anomaly_category"]: r["cnt"] for r in cursor.fetchall()

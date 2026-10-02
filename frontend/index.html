@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SurveillanceLens — Vision-Language Event Understanding</title>
+  <title>VISTA — Vision-Language Event Understanding</title>
   <meta name="description" content="AI surveillance intelligence platform integrating YOLO detection, ByteTrack tracking, Qwen2.5-VL vision-language understanding, and evidence retrieval." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +21,7 @@
         </svg>
       </div>
       <div>
-        <h1 class="brand-title">SurveillanceLens</h1>
+        <h1 class="brand-title">VISTA</h1>
         <p class="brand-subtitle">Vision-Language Surveillance Event Understanding</p>
       </div>
     </div>
@@ -61,7 +61,7 @@
               <polyline points="17 8 12 3 7 8" />
               <line x1="12" y1="3" x2="12" y2="15" />
             </svg>
-            Ingest Surveillance Footage
+            1. Add the source video
           </h2>
         </div>
 
@@ -85,16 +85,12 @@
             <span class="file-name" id="selected-file-name">filename.mp4</span>
             <span class="file-size" id="selected-file-size">0 MB</span>
           </div>
-          <label class="auto-run-label">
-            <input type="checkbox" id="auto-run-checkbox" checked />
-            <span>Auto-run understanding pipeline</span>
-          </label>
           <button class="btn btn-primary" id="btn-upload">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
-            Upload & Process
+            Add video to app
           </button>
         </div>
 
@@ -102,6 +98,40 @@
         <div class="progress-bar-container hidden" id="upload-progress-container">
           <div class="progress-bar-fill" id="upload-progress-bar"></div>
           <span class="progress-text" id="upload-progress-text">Uploading...</span>
+        </div>
+      </div>
+
+      <div class="card workflow-card">
+        <div class="card-header">
+          <h2 class="card-title">2. Choose how to get event descriptions</h2>
+        </div>
+        <p class="workflow-selected" id="workflow-selected-video">Add or select a video first.</p>
+        <div class="workflow-grid">
+          <section class="workflow-option">
+            <span class="workflow-step">PATH A · RUN LOCALLY</span>
+            <h3>Run YOLO + ByteTrack here</h3>
+            <p>This runs object detection and tracking on your computer, then builds Stage 2 windows. It can take several minutes. It does <strong>not</strong> run Qwen or create descriptions yet.</p>
+            <button class="btn btn-secondary w-full" id="btn-run-pipeline" disabled>Run local tracking + windows</button>
+            <div class="pipeline-tracker hidden" id="pipeline-tracker">
+              <div class="tracker-header">
+                <span class="tracker-title" id="pipeline-status-title">Processing</span>
+                <span class="spinner" id="pipeline-spinner"></span>
+              </div>
+              <p class="pipeline-status-message" id="pipeline-status-message">Running YOLO + ByteTrack and building temporal windows…</p>
+            </div>
+            <p class="workflow-note">After this finishes, use the Kaggle Stage 4 notebook with the same video and the generated <code>windows.json</code>. Then import its final <code>events.json</code> using Path B.</p>
+          </section>
+
+          <section class="workflow-option workflow-option-import">
+            <span class="workflow-step">PATH B · SKIP LOCAL YOLO</span>
+            <h3>Import descriptions from Kaggle</h3>
+            <p>Choose this if Stage 4 has already produced the final <code>events.json</code> for this video. The app will attach events and make evidence clips; no local YOLO run is needed. If you only have a video or <code>windows.json</code>, run the Kaggle Stage 4 notebook first.</p>
+            <label class="file-picker-label" for="stage4-json-input">Select the final Stage 4 events.json</label>
+            <input type="file" id="stage4-json-input" accept="application/json,.json" />
+            <p class="workflow-note">Upload/select the matching source video above first. Do not choose <code>tracks.csv</code> or <code>windows.json</code> here.</p>
+            <button class="btn btn-primary w-full" id="btn-import-stage4" type="button" disabled>Import events.json</button>
+            <p class="workflow-status" id="stage4-import-status">Waiting for a video and events.json.</p>
+          </section>
         </div>
       </div>
 
@@ -150,31 +180,6 @@
           </div>
         </div>
 
-        <!-- Pipeline Execution Trigger -->
-        <div class="pipeline-actions" id="pipeline-actions">
-          <button class="btn btn-secondary w-full" id="btn-run-pipeline" disabled>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="23 4 23 10 17 10" />
-              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
-            </svg>
-            Generate Descriptions (Run Pipeline)
-          </button>
-        </div>
-
-        <!-- Processing Steps Tracker -->
-        <div class="pipeline-tracker hidden" id="pipeline-tracker">
-          <div class="tracker-header">
-            <span class="tracker-title">Pipeline Execution in Progress</span>
-            <span class="spinner" id="pipeline-spinner"></span>
-          </div>
-          <ul class="steps-list">
-            <li class="step-item" id="step-1"><span class="step-dot"></span> 1. Sampling & Frame Ingestion</li>
-            <li class="step-item" id="step-2"><span class="step-dot"></span> 2. YOLOv11 Detection & ByteTrack</li>
-            <li class="step-item" id="step-3"><span class="step-dot"></span> 3. Temporal Windowing (Candidate Rules)</li>
-            <li class="step-item" id="step-4"><span class="step-dot"></span> 4. Qwen2.5-VL Semantic Grounding</li>
-            <li class="step-item" id="step-5"><span class="step-dot"></span> 5. UCF-Crime Anomaly & Evidence Clipping</li>
-          </ul>
-        </div>
       </div>
 
       <!-- Footage Archive Card -->
@@ -237,7 +242,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
               </svg>
-              Grounded AI Response
+              Evidence-grounded summary
             </span>
             <span class="rag-matches-count" id="rag-match-count">0 matched</span>
           </div>
@@ -286,7 +291,7 @@
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
-            <p>No semantic descriptions generated yet.<br />Upload a surveillance video and click <strong>Generate Descriptions</strong>.</p>
+            <p>No event descriptions have been imported yet.<br />Upload or select a video, then choose a workflow above.</p>
           </div>
         </div>
       </div>

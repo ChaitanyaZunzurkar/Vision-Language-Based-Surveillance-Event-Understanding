@@ -53,6 +53,15 @@ class VectorStore:
                 f"Updated VectorStore with {len(events)} events (total indexed: {len(self.event_ids)})"
             )
 
+    def clear(self) -> None:
+        """Clear the in-memory and persisted event search index."""
+        self.event_ids = []
+        self.corpus = []
+        self.vectorizer = None
+        self.tfidf_matrix = None
+        if self.index_path.exists():
+            self.index_path.unlink()
+
     def search(
         self, query_text: str, top_k: int = 5, min_score: float = 0.10
     ) -> List[Tuple[str, float]]:
