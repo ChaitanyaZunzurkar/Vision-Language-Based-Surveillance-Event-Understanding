@@ -8,11 +8,13 @@ import yaml
 from src.utils.paths import paths
 from src.utils.logger import logger
 from src.storage.metadata_store import MetadataStore, metadata_store
+from src.storage.schemas import TrackRecord
 from src.storage.vector_store import VectorStore, vector_store
 from src.tracking.schemas import Track, TrackObservation, TrackingResult
 from src.detection.schemas import BoundingBox
 from src.event_understanding.event_generator import TemporalWindower
 from src.config.loader import config_loader
+from src.evidence.clip_generator import ClipGenerator
 
 
 class SurveillancePipeline:
@@ -25,6 +27,7 @@ class SurveillancePipeline:
     ):
         self.store = store or metadata_store
         self.vec_store = vec_store or vector_store
+        self.clip_generator = ClipGenerator()
 
         # Pipeline submodules
         self.windower = TemporalWindower(
@@ -115,6 +118,17 @@ class SurveillancePipeline:
             # Stage 1b: use the real VISTA detector+ByteTrack code, not a heuristic fallback.
             logger.info("Stage 1b: Running YOLO + ByteTrack...")
             tracking_result = self._run_stage1b(video_path, video_id)
+            self.store.insert_tracks([
+                TrackRecord(
+                    track_id=track.track_id,
+                    video_id=video_id,
+                    class_name=track.class_name,
+                    start_sec=track.start_sec,
+                    end_sec=track.end_sec,
+                    total_observations=len(track.observations),
+                )
+                for track in tracking_result.tracks
+            ])
 
             # Stage 1b writes the per-video CSV as part of _run_stage1b.
             tracks_csv_path = paths.tracks_dir / f"{video_id}_tracks.csv"

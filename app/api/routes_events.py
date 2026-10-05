@@ -85,6 +85,26 @@ def get_event(event_id: str, store: MetadataStore = Depends(get_metadata_store))
     return to_event_response(ev)
 
 
+@router.get("/{event_id}/evidence")
+def get_event_evidence(event_id: str, store: MetadataStore = Depends(get_metadata_store)):
+    """Return playback references for an event without rerunning processing."""
+    ev = store.get_event(event_id)
+    if not ev:
+        raise HTTPException(status_code=404, detail=f"Event {event_id} not found")
+    video = store.get_video(ev.video_id)
+    return {
+        "event_id": ev.event_id,
+        "clip_url": f"/api/media/clip/{Path(ev.clip_path).name}" if ev.clip_path else None,
+        "source_video_url": f"/api/media/video/{Path(video.file_path).name}" if video else None,
+        "start_sec": ev.start_sec,
+        "end_sec": ev.end_sec,
+        "description": ev.description,
+        "confidence": ev.confidence,
+        "anomaly_category": ev.anomaly_category,
+        "anomaly_confidence": ev.anomaly_confidence,
+    }
+
+
 @router.post("/import")
 async def import_stage4_events(
     video_id: str = Form(...),

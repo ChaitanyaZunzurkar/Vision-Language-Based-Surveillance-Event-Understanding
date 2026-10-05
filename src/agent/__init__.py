@@ -1,0 +1,1 @@
+"""Grounded conversational surveillance agent."""

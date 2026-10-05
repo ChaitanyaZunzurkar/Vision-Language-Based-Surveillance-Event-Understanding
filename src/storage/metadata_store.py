@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 import json
 import sqlite3
+from datetime import datetime
 from src.utils.paths import paths
 from src.utils.logger import logger
 from src.storage.schemas import VideoRecord, EventRecord, AnomalyRecord, TrackRecord
@@ -96,6 +97,41 @@ class MetadataStore:
                     end_sec REAL NOT NULL,
                     total_observations INTEGER NOT NULL,
                     FOREIGN KEY (video_id) REFERENCES videos (video_id) ON DELETE CASCADE
+                )
+                """
+            )
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS conversations (
+                    id TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    video_id TEXT,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    FOREIGN KEY (video_id) REFERENCES videos (video_id) ON DELETE SET NULL
+                )
+                """
+            )
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS messages (
+                    id TEXT PRIMARY KEY,
+                    conversation_id TEXT NOT NULL,
+                    role TEXT NOT NULL CHECK (role IN ('user', 'assistant', 'system')),
+                    content TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    FOREIGN KEY (conversation_id) REFERENCES conversations (id) ON DELETE CASCADE
+                )
+                """
+            )
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS message_evidence (
+                    message_id TEXT NOT NULL,
+                    event_id TEXT NOT NULL,
+                    PRIMARY KEY (message_id, event_id),
+                    FOREIGN KEY (message_id) REFERENCES messages (id) ON DELETE CASCADE,
+                    FOREIGN KEY (event_id) REFERENCES events (event_id) ON DELETE CASCADE
                 )
                 """
             )
@@ -302,6 +338,118 @@ class MetadataStore:
                 metadata=json.loads(r["metadata_json"] or "{}"),
                 created_at=r["created_at"],
             )
+
+    def insert_tracks(self, tracks: List[TrackRecord]) -> None:
+        """Persist the track summaries emitted by the processing pipeline."""
+        if not tracks:
+            return
+        with self._get_connection() as conn:
+            conn.executemany(
+                """
+                INSERT INTO tracks (video_id, track_id, class_name, start_sec, end_sec, total_observations)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                [(t.video_id, t.track_id, t.class_name, t.start_sec, t.end_sec, t.total_observations) for t in tracks],
+            )
+            conn.commit()
+
+    def search_tracks(self, video_id: Optional[str] = None, class_name: Optional[str] = None) -> List[Dict[str, Any]]:
+        query = "SELECT video_id, track_id, class_name, start_sec, end_sec, total_observations FROM tracks WHERE 1=1"
+        params: List[Any] = []
+        if video_id:
+            query += " AND video_id = ?"
+            params.append(video_id)
+        if class_name:
+            query += " AND lower(class_name) = lower(?)"
+            params.append(class_name)
+        query += " ORDER BY start_sec"
+        with self._get_connection() as conn:
+            return [dict(row) for row in conn.execute(query, params).fetchall()]
+
+    def search_anomalies(self, video_id: Optional[str] = None) -> List[Dict[str, Any]]:
+        query = "SELECT * FROM anomalies WHERE is_anomaly = 1"
+        params: List[Any] = []
+        if video_id:
+            query += " AND video_id = ?"
+            params.append(video_id)
+        with self._get_connection() as conn:
+            return [dict(row) for row in conn.execute(query, params).fetchall()]
+
+    def create_conversation(self, conversation_id: str, title: str, video_id: Optional[str] = None) -> Dict[str, Any]:
+        now = datetime.utcnow().isoformat()
+        with self._get_connection() as conn:
+            conn.execute(
+                "INSERT INTO conversations (id, title, video_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+                (conversation_id, title, video_id, now, now),
+            )
+            conn.commit()
+        return self.get_conversation(conversation_id)
+
+    def list_conversations(self, search: Optional[str] = None) -> List[Dict[str, Any]]:
+        query = "SELECT * FROM conversations"
+        params: List[Any] = []
+        if search:
+            query += " WHERE title LIKE ?"
+            params.append(f"%{search}%")
+        query += " ORDER BY updated_at DESC"
+        with self._get_connection() as conn:
+            return [dict(row) for row in conn.execute(query, params).fetchall()]
+
+    def get_conversation(self, conversation_id: str) -> Optional[Dict[str, Any]]:
+        with self._get_connection() as conn:
+            row = conn.execute("SELECT * FROM conversations WHERE id = ?", (conversation_id,)).fetchone()
+            return dict(row) if row else None
+
+    def delete_conversation(self, conversation_id: str) -> bool:
+        with self._get_connection() as conn:
+            cursor = conn.execute("DELETE FROM conversations WHERE id = ?", (conversation_id,))
+            conn.commit()
+            return cursor.rowcount > 0
+
+    def add_message(self, message_id: str, conversation_id: str, role: str, content: str,
+                    event_ids: Optional[List[str]] = None) -> Dict[str, Any]:
+        now = datetime.utcnow().isoformat()
+        with self._get_connection() as conn:
+            conn.execute(
+                "INSERT INTO messages (id, conversation_id, role, content, created_at) VALUES (?, ?, ?, ?, ?)",
+                (message_id, conversation_id, role, content, now),
+            )
+            for event_id in event_ids or []:
+                conn.execute(
+                    "INSERT OR IGNORE INTO message_evidence (message_id, event_id) VALUES (?, ?)",
+                    (message_id, event_id),
+                )
+            conn.execute("UPDATE conversations SET updated_at = ? WHERE id = ?", (now, conversation_id))
+            conn.commit()
+        return self.get_message(message_id)
+
+    def get_message(self, message_id: str) -> Optional[Dict[str, Any]]:
+        with self._get_connection() as conn:
+            row = conn.execute(
+                """SELECT m.*, COALESCE(json_group_array(me.event_id) FILTER (WHERE me.event_id IS NOT NULL), '[]') AS evidence_ids
+                   FROM messages m LEFT JOIN message_evidence me ON me.message_id = m.id
+                   WHERE m.id = ? GROUP BY m.id""", (message_id,)
+            ).fetchone()
+            if not row:
+                return None
+            result = dict(row)
+            result["evidence_ids"] = json.loads(result["evidence_ids"])
+            return result
+
+    def list_messages(self, conversation_id: str) -> List[Dict[str, Any]]:
+        with self._get_connection() as conn:
+            rows = conn.execute(
+                """SELECT m.*, COALESCE(json_group_array(me.event_id) FILTER (WHERE me.event_id IS NOT NULL), '[]') AS evidence_ids
+                   FROM messages m LEFT JOIN message_evidence me ON me.message_id = m.id
+                   WHERE m.conversation_id = ? GROUP BY m.id ORDER BY m.created_at""",
+                (conversation_id,),
+            ).fetchall()
+            result = []
+            for row in rows:
+                item = dict(row)
+                item["evidence_ids"] = json.loads(item["evidence_ids"])
+                result.append(item)
+            return result
 
     def insert_anomalies(self, anomalies: List[AnomalyRecord]) -> None:
         """Insert batch of video anomaly segments."""

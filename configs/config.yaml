@@ -3,8 +3,8 @@
 server:
   host: "0.0.0.0"
   port: 8000
-  reset_data_on_startup: true
-  reset_data_on_dashboard_open: true
+  reset_data_on_startup: false
+  reset_data_on_dashboard_open: false
   cors_origins:
     - "http://localhost:3000"
     - "http://localhost:5173"
