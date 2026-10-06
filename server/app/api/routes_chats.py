@@ -5,8 +5,8 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from server.app.api.deps import get_metadata_store
-from server.src.agent.grounded_agent import GroundedAgent, grounded_agent
-from server.src.storage.metadata_store import MetadataStore
+from server.app.agent.grounded_agent import GroundedAgent, grounded_agent
+from server.app.storage.metadata_store import MetadataStore
 
 router = APIRouter(prefix="/chats", tags=["Chats"])
 
