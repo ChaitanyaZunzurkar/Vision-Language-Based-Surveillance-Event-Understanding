@@ -1,5 +1,9 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
 .venv/
 venv/
+<<<<<<< HEAD
 frontend/node_modules/
 frontend/dist/
 __pycache__/
@@ -14,8 +18,31 @@ models/**/*.onnx
 logs/*
 outputs/*
 *.db
+=======
+env/
+
+node_modules/
+dist/
+
+>>>>>>> db838f6 (Refactor project into production monorepo structure)
 .ipynb_checkpoints/
+
+server/data/uploads/
+server/data/outputs/
+server/data/clips/
+server/data/vectors/
+server/*.db
+server/*.sqlite
+server/*.sqlite3
+
+*.log
+
+.DS_Store
+Thumbs.db
+.env
+.env.*
 .vscode/
 .idea/
-chat_history.md
+
+# Local-only research assets
 VISTA/
