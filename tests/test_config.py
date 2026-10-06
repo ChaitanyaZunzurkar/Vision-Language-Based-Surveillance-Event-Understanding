@@ -1,6 +1,6 @@
-"""Tests for configuration loader."""
+﻿"""Tests for configuration loader."""
 
-from src.config.loader import config_loader
+from server.app.config.loader import config_loader
 
 
 def test_config_loads_values():
@@ -18,3 +18,4 @@ def test_classes_definition():
     assert len(anomalies) == 14
     assert any(a["name"] == "Burglary" for a in anomalies)
     assert any(a["name"] == "Normal" for a in anomalies)
+

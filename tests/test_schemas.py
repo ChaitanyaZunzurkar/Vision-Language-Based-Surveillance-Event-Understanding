@@ -1,9 +1,9 @@
-"""Tests for data schemas across modules."""
+﻿"""Tests for data schemas across modules."""
 
-from src.detection.schemas import BoundingBox, Detection
-from src.tracking.schemas import Track, TrackObservation
-from src.event_understanding.schemas import CandidateEvent, SemanticEvent
-from src.anomaly.schemas import ClipAnomalyScore
+from server.app.detection.schemas import BoundingBox, Detection
+from server.app.tracking.schemas import Track, TrackObservation
+from server.app.event_understanding.schemas import CandidateEvent, SemanticEvent
+from server.app.anomaly.schemas import ClipAnomalyScore
 
 
 def test_bounding_box_geometry():
@@ -56,3 +56,4 @@ def test_candidate_and_semantic_event_schemas():
         confidence=0.85,
     )
     assert sem.anomaly_category == "Normal"
+

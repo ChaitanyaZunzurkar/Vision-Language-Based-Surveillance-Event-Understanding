@@ -1,8 +1,8 @@
-"""Tests for FastAPI backend endpoints."""
+﻿"""Tests for FastAPI backend endpoints."""
 
 import io
 from fastapi.testclient import TestClient
-from app.main import app
+from server.app.main import app
 
 client = TestClient(app)
 
@@ -65,3 +65,4 @@ def test_frontend_ui():
     response_html = client.get("/", headers={"accept": "text/html"})
     assert response_html.status_code == 200
     assert "SurveillanceLens" in response_html.text
+

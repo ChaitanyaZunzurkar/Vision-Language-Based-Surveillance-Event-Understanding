@@ -1,14 +1,14 @@
-"""End-to-end integration test for the full surveillance understanding pipeline."""
+﻿"""End-to-end integration test for the full surveillance understanding pipeline."""
 
 import tempfile
 from pathlib import Path
 import cv2
 import numpy as np
-from src.pipeline.ingestion import VideoIngestor
-from src.pipeline.pipeline import SurveillancePipeline
-from src.storage.metadata_store import MetadataStore
-from src.storage.vector_store import VectorStore
-from src.retrieval.retriever import SurveillanceRetriever
+from server.app.pipeline.ingestion import VideoIngestor
+from server.app.pipeline.pipeline import SurveillancePipeline
+from server.app.storage.metadata_store import MetadataStore
+from server.app.storage.vector_store import VectorStore
+from server.app.retrieval.retriever import SurveillanceRetriever
 
 
 def generate_test_video(path: Path):
@@ -76,3 +76,4 @@ def test_full_pipeline_and_retrieval():
         assert query_result.total_matches > 0
         assert len(query_result.matched_events) > 0
         assert "Retrieved" in query_result.grounded_summary
+

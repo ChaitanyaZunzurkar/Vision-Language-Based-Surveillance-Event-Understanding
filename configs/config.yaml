@@ -33,7 +33,7 @@ detection:
 
 # Project-owned Stage 1b resources. Paths are relative to the repository root.
 stage1b:
-  tracker_script: "src/tracking/surveillance_tracker.py"
+  tracker_script: "server/app/tracking/surveillance_tracker.py"
   weights_path: "models/stage1b/yolo11x_surv_v1.pt"
   class_config: "configs/stage1_model.yaml"
   bytetrack_yaml: "configs/bytetrack_custom.yaml"

@@ -1,12 +1,12 @@
-"""Tests for video utilities and frame sampling."""
+﻿"""Tests for video utilities and frame sampling."""
 
 import tempfile
 from pathlib import Path
 import cv2
 import numpy as np
-from src.utils.video_utils import get_video_info
-from src.video.sampler import VideoSampler
-from src.evidence.clip_generator import ClipGenerator
+from server.app.utils.video_utils import get_video_info
+from server.app.detection.sampler import VideoSampler
+from server.app.evidence.clip_generator import ClipGenerator
 
 
 def create_synthetic_video(file_path: Path, num_frames: int = 30, fps: float = 10.0):
