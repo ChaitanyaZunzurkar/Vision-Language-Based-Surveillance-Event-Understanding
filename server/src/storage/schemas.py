@@ -33,6 +33,7 @@ class EventRecord(BaseModel):
     confidence: float
     anomaly_category: str = "Normal"
     anomaly_confidence: float = 0.0
+    vlm_verified: bool = False
     clip_path: Optional[str] = None
     metadata: Dict[str, Any] = Field(default_factory=dict)
     created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
@@ -48,6 +49,7 @@ class AnomalyRecord(BaseModel):
     is_anomaly: bool
     start_sec: float
     end_sec: float
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class TrackRecord(BaseModel):
@@ -59,4 +61,3 @@ class TrackRecord(BaseModel):
     start_sec: float
     end_sec: float
     total_observations: int
-

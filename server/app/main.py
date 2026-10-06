@@ -15,7 +15,7 @@ from server.app.api.routes_videos import router as videos_router
 from server.app.api.routes_pipeline import router as pipeline_router
 from server.app.api.routes_events import router as events_router
 from server.app.api.routes_query import router as query_router
-from server.app.api.routes_evidence import router as evidence_router
+from server.app.api.routes_evidence import router as evidence_router, records_router as evidence_records_router
 from server.app.api.routes_stats import router as stats_router
 from server.app.api.routes_chats import router as chats_router, search_router
 
@@ -43,7 +43,7 @@ async def lifespan(app: FastAPI):
     """Application startup and shutdown hooks."""
     logger.info("Initializing Surveillance Event Understanding API...")
     paths.ensure_directories()
-    if config_loader.get("server.reset_data_on_startup", True):
+    if config_loader.get("server.reset_data_on_startup", False):
         clear_local_app_state()
     yield
     logger.info("Surveillance Event Understanding API shut down.")
@@ -74,6 +74,7 @@ app.include_router(pipeline_router, prefix="/api")
 app.include_router(events_router, prefix="/api")
 app.include_router(query_router, prefix="/api")
 app.include_router(evidence_router, prefix="/api")
+app.include_router(evidence_records_router, prefix="/api")
 app.include_router(stats_router, prefix="/api")
 app.include_router(chats_router, prefix="/api")
 app.include_router(search_router, prefix="/api")
@@ -97,7 +98,7 @@ def root(request: Request):
     accept = request.headers.get("accept", "")
     index_file = frontend_dir / "index.html"
     if "text/html" in accept and index_file.exists():
-        if config_loader.get("server.reset_data_on_dashboard_open", True):
+        if config_loader.get("server.reset_data_on_dashboard_open", False):
             clear_local_app_state()
         return FileResponse(index_file)
 
@@ -126,4 +127,3 @@ if __name__ == "__main__":
     host = config_loader.get("server.host", "0.0.0.0")
     port = config_loader.get("server.port", 8000)
     uvicorn.run("server.app.main:app", host=host, port=port, reload=True)
-

@@ -63,6 +63,7 @@ class MetadataStore:
                     confidence REAL NOT NULL,
                     anomaly_category TEXT NOT NULL DEFAULT 'Normal',
                     anomaly_confidence REAL NOT NULL DEFAULT 0.0,
+                    vlm_verified INTEGER NOT NULL DEFAULT 0,
                     clip_path TEXT,
                     metadata_json TEXT,
                     created_at TEXT NOT NULL,
@@ -70,6 +71,7 @@ class MetadataStore:
                 )
                 """
             )
+            self._ensure_column(cursor, "events", "vlm_verified", "INTEGER NOT NULL DEFAULT 0")
 
             cursor.execute(
                 """
@@ -81,10 +83,12 @@ class MetadataStore:
                     is_anomaly INTEGER NOT NULL,
                     start_sec REAL NOT NULL,
                     end_sec REAL NOT NULL,
+                    metadata_json TEXT,
                     FOREIGN KEY (video_id) REFERENCES videos (video_id) ON DELETE CASCADE
                 )
                 """
             )
+            self._ensure_column(cursor, "anomalies", "metadata_json", "TEXT")
 
             cursor.execute(
                 """
@@ -138,6 +142,12 @@ class MetadataStore:
 
             conn.commit()
             logger.info(f"Initialized SQLite database at {self.db_path}")
+
+    @staticmethod
+    def _ensure_column(cursor: sqlite3.Cursor, table: str, column: str, definition: str) -> None:
+        columns = {row[1] for row in cursor.execute(f"PRAGMA table_info({table})").fetchall()}
+        if column not in columns:
+            cursor.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
 
     def clear_all(self) -> None:
         """Remove persisted app records while preserving the database schema."""
@@ -252,8 +262,8 @@ class MetadataStore:
                     """
                     INSERT OR REPLACE INTO events (
                         event_id, video_id, event_type, start_sec, end_sec, entity_ids_json, description,
-                        confidence, anomaly_category, anomaly_confidence, clip_path, metadata_json, created_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        confidence, anomaly_category, anomaly_confidence, vlm_verified, clip_path, metadata_json, created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         ev.event_id,
@@ -266,6 +276,7 @@ class MetadataStore:
                         ev.confidence,
                         ev.anomaly_category,
                         ev.anomaly_confidence,
+                        int(ev.vlm_verified),
                         ev.clip_path,
                         json.dumps(ev.metadata),
                         ev.created_at,
@@ -320,6 +331,7 @@ class MetadataStore:
                     confidence=r["confidence"],
                     anomaly_category=r["anomaly_category"],
                     anomaly_confidence=r["anomaly_confidence"],
+                    vlm_verified=bool(r["vlm_verified"]),
                     clip_path=r["clip_path"],
                     metadata=json.loads(r["metadata_json"] or "{}"),
                     created_at=r["created_at"],
@@ -346,6 +358,7 @@ class MetadataStore:
                 confidence=r["confidence"],
                 anomaly_category=r["anomaly_category"],
                 anomaly_confidence=r["anomaly_confidence"],
+                vlm_verified=bool(r["vlm_verified"]),
                 clip_path=r["clip_path"],
                 metadata=json.loads(r["metadata_json"] or "{}"),
                 created_at=r["created_at"],
@@ -364,6 +377,56 @@ class MetadataStore:
                 [(t.video_id, t.track_id, t.class_name, t.start_sec, t.end_sec, t.total_observations) for t in tracks],
             )
             conn.commit()
+
+    def insert_anomalies(self, anomalies: List[AnomalyRecord]) -> None:
+        if not anomalies:
+            return
+        with self._get_connection() as conn:
+            conn.executemany(
+                """
+                INSERT OR REPLACE INTO anomalies (
+                    anomaly_id, video_id, category, confidence, is_anomaly,
+                    start_sec, end_sec, metadata_json
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                [
+                    (
+                        item.anomaly_id,
+                        item.video_id,
+                        item.category,
+                        item.confidence,
+                        int(item.is_anomaly),
+                        item.start_sec,
+                        item.end_sec,
+                        json.dumps(item.metadata),
+                    )
+                    for item in anomalies
+                ],
+            )
+            conn.commit()
+
+    def get_anomalies(self, video_id: Optional[str] = None) -> List[AnomalyRecord]:
+        query = "SELECT * FROM anomalies"
+        params: List[Any] = []
+        if video_id:
+            query += " WHERE video_id = ?"
+            params.append(video_id)
+        query += " ORDER BY start_sec ASC"
+        with self._get_connection() as conn:
+            rows = conn.execute(query, params).fetchall()
+        return [
+            AnomalyRecord(
+                anomaly_id=row["anomaly_id"],
+                video_id=row["video_id"],
+                category=row["category"],
+                confidence=row["confidence"],
+                is_anomaly=bool(row["is_anomaly"]),
+                start_sec=row["start_sec"],
+                end_sec=row["end_sec"],
+                metadata=json.loads(row["metadata_json"] or "{}"),
+            )
+            for row in rows
+        ]
 
     def search_tracks(self, video_id: Optional[str] = None, class_name: Optional[str] = None) -> List[Dict[str, Any]]:
         query = "SELECT video_id, track_id, class_name, start_sec, end_sec, total_observations FROM tracks WHERE 1=1"
@@ -521,5 +584,3 @@ class MetadataStore:
 
 # Global metadata store instance
 metadata_store = MetadataStore()
-
-

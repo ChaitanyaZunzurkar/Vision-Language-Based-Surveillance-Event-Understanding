@@ -65,12 +65,14 @@ def get_pipeline_status(
         raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
 
     events = store.get_events(video_id=video_id)
+    anomalies = store.get_anomalies(video_id=video_id)
     return {
         "video_id": video.video_id,
         "filename": video.filename,
         "status": video.status,
         "error_message": video.error_message,
         "total_events": len(events),
+        "total_anomalies": len(anomalies),
+        "evidence_clips": sum(1 for event in events if event.clip_path),
     }
-
 

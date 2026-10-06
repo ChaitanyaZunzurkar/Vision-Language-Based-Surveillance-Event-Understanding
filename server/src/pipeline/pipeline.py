@@ -10,9 +10,16 @@ from server.src.utils.logger import logger
 from server.src.storage.metadata_store import MetadataStore, metadata_store
 from server.src.storage.vector_store import VectorStore, vector_store
 from server.src.tracking.schemas import Track, TrackObservation, TrackingResult
+from server.src.tracking.tracker import SurveillanceTracker as LocalByteTrack
+from server.src.detection.detector import SurveillanceDetector
 from server.src.detection.schemas import BoundingBox
 from server.src.event_understanding.event_generator import TemporalWindower
 from server.src.config.loader import config_loader
+from server.src.anomaly.detector import AnomalyDetector
+from server.src.anomaly.schemas import VideoAnomalySummary
+from server.src.event_understanding.qwen import VLMEventUnderstanding
+from server.src.storage.schemas import EventRecord, AnomalyRecord, TrackRecord
+from server.src.evidence.clip_generator import ClipGenerator
 
 
 class SurveillancePipeline:
@@ -32,6 +39,22 @@ class SurveillancePipeline:
             window_stride_sec=config_loader.get("temporal.window_stride_sec", 5.0),
             loiter_dwell_sec=config_loader.get("temporal.loiter_dwell_sec", 4.0),
         )
+        self.anomaly_detector = AnomalyDetector(
+            model_path=paths.root_dir / config_loader.get("anomaly.model_weights", "weights/best_model.pkl"),
+            scaler_path=paths.root_dir / config_loader.get("anomaly.scaler_weights", "weights/scaler.pkl"),
+            clip_duration_sec=float(config_loader.get("anomaly.clip_duration_sec", 4.0)),
+            clip_stride_sec=float(config_loader.get("anomaly.clip_stride_sec", 2.0)),
+            anomaly_threshold=float(config_loader.get("anomaly.anomaly_threshold", 0.5)),
+        )
+        self.vlm = VLMEventUnderstanding(
+            model_name=config_loader.get("vlm.model_name", "Qwen/Qwen2.5-VL-7B-Instruct"),
+            device=config_loader.get("vlm.device", "auto"),
+            temperature=float(config_loader.get("vlm.temperature", 0.2)),
+        )
+        self.clip_generator = ClipGenerator(
+            padding_before_sec=float(config_loader.get("evidence.padding_before_sec", 1.5)),
+            padding_after_sec=float(config_loader.get("evidence.padding_after_sec", 1.5)),
+        )
 
     def _run_stage1b(self, video_path: Path, video_id: str) -> TrackingResult:
         """Run the project's actual VISTA YOLO+ByteTrack implementation."""
@@ -50,6 +73,12 @@ class SurveillancePipeline:
         required = [tracker_script, weights_path, bytetrack_yaml, stage1_config]
         missing = [str(path) for path in required if not path.exists()]
         if missing:
+            if config_loader.get("stage1b.allow_detector_fallback", True):
+                logger.warning(
+                    "Stage 1b resources are missing; using the configured lightweight "
+                    "detector and local ByteTrack fallback: " + ", ".join(missing)
+                )
+                return self._run_detector_fallback(video_path, video_id)
             raise FileNotFoundError("Stage 1b resources are missing: " + ", ".join(missing))
 
         with stage1_config.open("r", encoding="utf-8") as config_file:
@@ -73,6 +102,43 @@ class SurveillancePipeline:
             frame_stride=int(config_loader.get("stage1b.frame_stride", 1)),
         )
         tracks_df = tracker.process_video(str(video_path), video_id=video_id, camera_id=video_id)
+        if tracks_df.empty and config_loader.get("stage1b.allow_detector_fallback", True):
+            logger.warning(
+                "Stage 1b returned no tracks; using the existing OpenCV-compatible "
+                "detector with the local ByteTrack association implementation."
+            )
+            detector = SurveillanceDetector(
+                # The fallback is intentionally independent of YOLO so that a
+                # detector checkpoint with no matching classes cannot suppress
+                # the existing lightweight motion path.
+                weights_path=None,
+                conf_threshold=float(config_loader.get("detection.conf_threshold", 0.20)),
+                device=config_loader.get("detection.device", "auto"),
+            )
+            fallback_result = LocalByteTrack(
+                track_high_thresh=float(config_loader.get("tracking.track_high_thresh", 0.50)),
+                track_low_thresh=float(config_loader.get("tracking.track_low_thresh", 0.20)),
+                new_track_thresh=float(config_loader.get("tracking.new_track_thresh", 0.60)),
+                max_lost_frames=int(config_loader.get("tracking.track_buffer", 30)),
+                match_thresh=min(float(config_loader.get("tracking.match_thresh", 0.30)), 0.30),
+            ).track_video(detector.detect_video(video_path, video_id))
+            tracks = []
+            for track in fallback_result.tracks:
+                for observation in track.observations:
+                    tracks.append({
+                        "video_id": video_id,
+                        "frame_id": observation.frame_idx,
+                        "timestamp_sec": observation.timestamp_sec,
+                        "track_id": track.track_id,
+                        "class_name": track.class_name,
+                        "x1": observation.bbox.x1,
+                        "y1": observation.bbox.y1,
+                        "x2": observation.bbox.x2,
+                        "y2": observation.bbox.y2,
+                        "confidence": observation.confidence,
+                    })
+            import pandas as pd
+            tracks_df = pd.DataFrame(tracks)
         tracks_path = paths.tracks_dir / f"{video_id}_tracks.csv"
         tracks_df.to_csv(tracks_path, index=False)
 
@@ -92,7 +158,42 @@ class SurveillancePipeline:
                     end_sec=observations[-1].timestamp_sec,
                     observations=observations,
                 ))
+        if not tracks and config_loader.get("stage1b.allow_detector_fallback", True):
+            return self._run_detector_fallback(video_path, video_id)
         return TrackingResult(video_id=video_id, total_tracks=len(tracks), tracks=tracks)
+
+    def _run_detector_fallback(self, video_path: Path, video_id: str) -> TrackingResult:
+        """Use the repository's lightweight detector when Stage 1b emits no usable tracks."""
+        detector = SurveillanceDetector(
+            weights_path=None,
+            conf_threshold=float(config_loader.get("detection.conf_threshold", 0.20)),
+            device=config_loader.get("detection.device", "auto"),
+        )
+        result = LocalByteTrack(
+            track_high_thresh=float(config_loader.get("tracking.track_high_thresh", 0.50)),
+            track_low_thresh=float(config_loader.get("tracking.track_low_thresh", 0.20)),
+            new_track_thresh=float(config_loader.get("tracking.new_track_thresh", 0.60)),
+            max_lost_frames=int(config_loader.get("tracking.track_buffer", 30)),
+            match_thresh=min(float(config_loader.get("tracking.match_thresh", 0.30)), 0.30),
+        ).track_video(detector.detect_video(video_path, video_id))
+        rows = []
+        for track in result.tracks:
+            for observation in track.observations:
+                rows.append({
+                    "video_id": video_id,
+                    "frame_id": observation.frame_idx,
+                    "timestamp_sec": observation.timestamp_sec,
+                    "track_id": track.track_id,
+                    "class_name": track.class_name,
+                    "x1": observation.bbox.x1,
+                    "y1": observation.bbox.y1,
+                    "x2": observation.bbox.x2,
+                    "y2": observation.bbox.y2,
+                    "confidence": observation.confidence,
+                })
+        import pandas as pd
+        pd.DataFrame(rows).to_csv(paths.tracks_dir / f"{video_id}_tracks.csv", index=False)
+        return result
 
     def process_video(self, video_id: str) -> Dict[str, Any]:
         """Run complete understanding pipeline on an ingested video.
@@ -115,6 +216,19 @@ class SurveillancePipeline:
             # Stage 1b: use the real VISTA detector+ByteTrack code, not a heuristic fallback.
             logger.info("Stage 1b: Running YOLO + ByteTrack...")
             tracking_result = self._run_stage1b(video_path, video_id)
+            self.store.insert_tracks(
+                [
+                    TrackRecord(
+                        video_id=video_id,
+                        track_id=track.track_id,
+                        class_name=track.class_name,
+                        start_sec=track.start_sec,
+                        end_sec=track.end_sec,
+                        total_observations=len(track.observations),
+                    )
+                    for track in tracking_result.tracks
+                ],
+            )
 
             # Stage 1b writes the per-video CSV as part of _run_stage1b.
             tracks_csv_path = paths.tracks_dir / f"{video_id}_tracks.csv"
@@ -165,15 +279,75 @@ class SurveillancePipeline:
             with open(windows_json_path, "w", encoding="utf-8") as f:
                 json.dump({"windows": windows_data}, f, indent=2)
 
-            self.store.update_video_status(video_id, "awaiting_events")
-            logger.info(f"Stages 1b and 2 completed for {video_id}; waiting for Stage 4 JSON import")
+            logger.info("Stage 3: Running AnomalyCLIP feature classifier...")
+            anomaly_summary: VideoAnomalySummary = self.anomaly_detector.detect_anomalies(
+                video_path, video_id, video.duration_sec, tracking_result
+            )
+            self.store.insert_anomalies([
+                AnomalyRecord(
+                    anomaly_id=segment.clip_id,
+                    video_id=video_id,
+                    category=segment.category,
+                    confidence=segment.confidence,
+                    is_anomaly=segment.is_anomaly,
+                    start_sec=segment.start_sec,
+                    end_sec=segment.end_sec,
+                    metadata=segment.metadata,
+                )
+                for segment in anomaly_summary.anomaly_segments
+            ])
+
+            logger.info("Stage 4: Grounding candidate events with Qwen2.5-VL...")
+            understanding = self.vlm.enrich_and_verify_events(
+                video_id, windows, tracking_result, video_path
+            )
+            records = []
+            for semantic in understanding.events:
+                overlapping = [
+                    segment for segment in anomaly_summary.anomaly_segments
+                    if segment.end_sec >= semantic.start_sec and segment.start_sec <= semantic.end_sec
+                ]
+                anomaly = max(overlapping, key=lambda item: item.confidence, default=None)
+                clip_path = self.clip_generator.cut_evidence_clip(
+                    video_path,
+                    semantic.start_sec,
+                    semantic.end_sec,
+                    semantic.event_id,
+                    video.duration_sec,
+                )
+                records.append(EventRecord(
+                    event_id=semantic.event_id,
+                    video_id=video_id,
+                    event_type=semantic.event_type,
+                    start_sec=semantic.start_sec,
+                    end_sec=semantic.end_sec,
+                    entity_ids=semantic.entity_ids,
+                    description=semantic.description,
+                    confidence=semantic.confidence,
+                    anomaly_category=anomaly.category if anomaly else "Unassessed",
+                    anomaly_confidence=anomaly.confidence if anomaly else 0.0,
+                    vlm_verified=semantic.vlm_verified,
+                    clip_path=clip_path,
+                    metadata={
+                        **semantic.metadata,
+                        "anomaly_model_available": anomaly_summary.model_available,
+                        "anomaly_model": anomaly_summary.model_name,
+                    },
+                ))
+            self.store.insert_events(records)
+
+            self.store.update_video_status(video_id, "completed")
+            logger.info(f"Complete pipeline finished for {video_id}: {len(records)} events")
 
             return {
                 "video_id": video_id,
-                "status": "awaiting_events",
-                "message": "Stages 1b and 2 completed. Import the Stage 4 events.json output to enable event search and evidence playback.",
+                "status": "completed",
+                "message": "Detection, tracking, temporal events, anomaly assessment, VLM grounding, persistence, and evidence generation completed.",
                 "total_tracks": tracking_result.total_tracks,
                 "total_windows": len(windows),
+                "total_events": len(records),
+                "total_anomalies": len(anomaly_summary.anomaly_segments),
+                "anomaly_model_available": anomaly_summary.model_available,
                 "tracks_csv": str(tracks_csv_path),
                 "windows_json": str(windows_json_path),
             }

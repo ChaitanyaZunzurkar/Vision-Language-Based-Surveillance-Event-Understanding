@@ -38,6 +38,7 @@ class SemanticEvent(BaseModel):
     confidence: float
     anomaly_category: str = "Normal"
     anomaly_confidence: float = 0.0
+    vlm_verified: bool = False
     evidence_clip_path: Optional[str] = None
     metadata: Dict[str, Any] = Field(default_factory=dict)
 
@@ -50,4 +51,3 @@ class EventUnderstandingResult(BaseModel):
     total_events: int
     windows: List[TemporalWindow] = Field(default_factory=list)
     events: List[SemanticEvent] = Field(default_factory=list)
-

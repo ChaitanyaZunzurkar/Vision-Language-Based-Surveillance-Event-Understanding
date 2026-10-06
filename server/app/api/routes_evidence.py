@@ -4,12 +4,15 @@ from pathlib import Path
 from typing import Optional
 import os
 import mimetypes
-from fastapi import APIRouter, HTTPException, Header, Response, status
+from fastapi import APIRouter, HTTPException, Header, Response, status, Depends
 from fastapi.responses import FileResponse, StreamingResponse
+from server.src.storage.metadata_store import MetadataStore
+from server.app.api.deps import get_metadata_store
 from server.src.utils.paths import paths
 from server.src.utils.logger import logger
 
 router = APIRouter(prefix="/media", tags=["Media"])
+records_router = APIRouter(tags=["Evidence"])
 
 
 def stream_video_file(file_path: Path, range_header: Optional[str] = None):
@@ -75,4 +78,24 @@ def get_evidence_clip(filename: str, range: Optional[str] = Header(None)):
     file_path = paths.clips_dir / safe_name
     return stream_video_file(file_path, range)
 
+
+@records_router.get("/anomalies")
+def get_anomalies(video_id: Optional[str] = None, store: MetadataStore = Depends(get_metadata_store)):
+    return [item.model_dump() for item in store.get_anomalies(video_id)]
+
+
+@records_router.get("/evidence")
+def get_evidence(video_id: Optional[str] = None, store: MetadataStore = Depends(get_metadata_store)):
+    events = store.get_events(video_id=video_id)
+    return [
+        {
+            "event_id": event.event_id,
+            "video_id": event.video_id,
+            "start_sec": event.start_sec,
+            "end_sec": event.end_sec,
+            "clip_path": event.clip_path,
+            "clip_url": f"/api/media/clip/{Path(event.clip_path).name}" if event.clip_path else None,
+        }
+        for event in events if event.clip_path
+    ]
 

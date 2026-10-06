@@ -28,6 +28,7 @@ class EventDetailResponse(BaseModel):
     confidence: float
     anomaly_category: str
     anomaly_confidence: float
+    vlm_verified: bool
     clip_url: Optional[str] = None
     created_at: str
 
@@ -49,6 +50,7 @@ def to_event_response(ev: EventRecord) -> EventDetailResponse:
         confidence=ev.confidence,
         anomaly_category=ev.anomaly_category,
         anomaly_confidence=ev.anomaly_confidence,
+        vlm_verified=ev.vlm_verified,
         clip_url=clip_url,
         created_at=ev.created_at,
     )
@@ -210,5 +212,4 @@ async def import_stage4_events(
     if records:
         store.update_video_status(video_id, "completed")
     return {"video_id": video_id, "imported_events": len(records), "status": "completed" if records else video.status}
-
 
