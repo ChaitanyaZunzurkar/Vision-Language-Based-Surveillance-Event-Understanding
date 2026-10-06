@@ -4,6 +4,17 @@ FastAPI and browser dashboard for the available surveillance pipeline stages. Th
 
 ## Run locally (PowerShell)
 
+Build the React interface before starting the API server:
+
+```powershell
+cd frontend
+npm install
+npm run build
+cd ..
+```
+
+For frontend development with hot reload, keep the API running on port 8000 and run `npm run dev` from `frontend/`. Vite serves the interface on port 5173 and proxies API requests to FastAPI.
+
 The 114 MB YOLO checkpoint is stored with Git LFS. On a fresh clone, install/initialize Git LFS and fetch the model before running the app:
 
 ```powershell

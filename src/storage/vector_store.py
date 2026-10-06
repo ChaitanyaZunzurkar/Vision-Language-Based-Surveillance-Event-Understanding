@@ -62,6 +62,21 @@ class VectorStore:
         if self.index_path.exists():
             self.index_path.unlink()
 
+    def remove_events(self, event_ids: List[str]) -> None:
+        """Remove event descriptions from the semantic index and persist the result."""
+        removed = set(event_ids)
+        if not removed:
+            return
+        retained = [(event_id, text) for event_id, text in zip(self.event_ids, self.corpus) if event_id not in removed]
+        if not retained:
+            self.clear()
+            return
+        self.event_ids = [event_id for event_id, _ in retained]
+        self.corpus = [text for _, text in retained]
+        self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), stop_words="english", lowercase=True)
+        self.tfidf_matrix = self.vectorizer.fit_transform(self.corpus)
+        self.save()
+
     def search(
         self, query_text: str, top_k: int = 5, min_score: float = 0.10
     ) -> List[Tuple[str, float]]:

@@ -13,7 +13,8 @@ from src.pipeline.ingestion import VideoIngestor
 from src.pipeline.pipeline import SurveillancePipeline
 from src.utils.paths import paths
 from src.utils.logger import logger
-from app.api.deps import get_metadata_store, get_ingestor, get_pipeline
+from src.storage.vector_store import VectorStore
+from app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
 
 router = APIRouter(prefix="/videos", tags=["Videos"])
 
@@ -112,3 +113,39 @@ def get_video(video_id: str, store: MetadataStore = Depends(get_metadata_store))
     if not video:
         raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
     return to_response(video)
+
+
+@router.delete("/{video_id}")
+def delete_video(
+    video_id: str,
+    store: MetadataStore = Depends(get_metadata_store),
+    vec_store: VectorStore = Depends(get_vector_store),
+):
+    """Delete a video and its derived app-managed data."""
+    video = store.get_video(video_id)
+    if not video:
+        raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
+    if video.status == "processing":
+        raise HTTPException(status_code=409, detail="Wait for video processing to finish before deleting it")
+
+    events = store.get_events(video_id=video_id)
+    vec_store.remove_events([event.event_id for event in events])
+
+    managed_files = [
+        (Path(video.file_path), paths.uploads_dir),
+        *((Path(event.clip_path), paths.clips_dir) for event in events if event.clip_path),
+        (paths.tracks_dir / f"{video_id}_tracks.csv", paths.tracks_dir),
+        (paths.windows_dir / f"{video_id}_windows.json", paths.windows_dir),
+    ]
+    for file_path, managed_dir in managed_files:
+        try:
+            resolved_path = file_path.resolve()
+            resolved_root = managed_dir.resolve()
+            if resolved_path.is_relative_to(resolved_root) and resolved_path.is_file():
+                resolved_path.unlink()
+        except OSError as exc:
+            logger.warning(f"Could not remove managed file {file_path}: {exc}")
+
+    if not store.delete_video(video_id):
+        raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
+    return {"video_id": video_id, "status": "deleted"}

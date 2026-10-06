@@ -14,6 +14,7 @@ class QueryRequest(BaseModel):
     query: str = Field(..., description="Natural language search query")
     top_k: int = Field(default=5, ge=1, le=50)
     min_score: float = Field(default=0.15, ge=0.0, le=1.0)
+    video_id: Optional[str] = Field(default=None, description="Limit the search to one video")
 
 
 @router.post("", response_model=QueryResult)
@@ -30,6 +31,7 @@ def natural_language_query(
         query_text=request.query,
         top_k=request.top_k,
         min_score=request.min_score,
+        video_id=request.video_id,
     )
 
     # Attach browser-accessible streaming URLs for evidence clips
