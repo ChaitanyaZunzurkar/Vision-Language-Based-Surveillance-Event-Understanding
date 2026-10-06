@@ -36,7 +36,8 @@ class SurveillanceRetriever:
         self.ranker = HybridRanker()
 
     def query(
-        self, query_text: str, top_k: int = 5, min_score: float = 0.20
+        self, query_text: str, top_k: int = 5, min_score: float = 0.20,
+        video_id: Optional[str] = None,
     ) -> QueryResult:
         """Execute hybrid natural-language retrieval and produce grounded report."""
         # 1. Parse natural language query
@@ -51,6 +52,7 @@ class SurveillanceRetriever:
         # 3. Retrieve candidates from SQLite
         # If metadata filters matched, retrieve filtered candidates, else get all recent events
         candidates = self.meta_store.get_events(
+            video_id=video_id,
             event_type=parsed.event_type,
             anomaly_category=parsed.anomaly_category,
             time_start=parsed.time_min_sec,
@@ -58,7 +60,7 @@ class SurveillanceRetriever:
         )
 
         # If candidates are empty (e.g. strict filters yielded 0), fallback to all events for semantic ranking
-        if not candidates:
+        if not candidates and video_id is None:
             candidates = self.meta_store.get_events()
 
         # 4. Rank candidates using HybridRanker
