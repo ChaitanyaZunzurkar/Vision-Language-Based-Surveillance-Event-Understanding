@@ -60,8 +60,7 @@ class SurveillanceRetriever:
         )
 
         # If candidates are empty (e.g. strict filters yielded 0), fallback to all events for semantic ranking
-        if not candidates and not any((video_id, parsed.event_type, parsed.anomaly_category,
-                                       parsed.time_min_sec is not None, parsed.time_max_sec is not None)):
+        if not candidates:
             candidates = self.meta_store.get_events()
 
         # 4. Rank candidates using HybridRanker

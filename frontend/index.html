@@ -1,22 +1,14 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SurveillanceLens · VISTA Conversations</title><link rel="stylesheet" href="/ui/index.css">
-</head>
-<body>
-  <aside class="sidebar">
-    <button id="new-chat" class="new-chat">＋ New Chat</button>
-    <input id="chat-filter" placeholder="Search chats">
-    <h4>Conversations</h4><div id="chat-list"></div>
-    <div class="scope"><label>Video scope</label><select id="video-scope"><option value="">All processed videos</option></select></div>
-  </aside>
-  <main class="chat-shell">
-    <header><strong>VISTA</strong><span>Grounded surveillance intelligence</span></header>
-    <section id="messages" class="messages"><div class="welcome"><h1>Ask about your processed videos</h1><p>Answers use verified events, timestamps, tracks, anomalies, and evidence clips.</p></div></section>
-    <form id="composer"><textarea id="prompt" rows="1" placeholder="Ask about suspicious activity, objects, or what happened next…"></textarea><button>Send</button></form>
-  </main>
-  <aside id="evidence" class="evidence hidden"><button id="close-evidence">×</button><video id="evidence-video" controls></video><h3 id="evidence-title"></h3><p id="evidence-description"></p><dl><dt>Time</dt><dd id="evidence-time"></dd><dt>Confidence</dt><dd id="evidence-confidence"></dd><dt>Anomaly</dt><dd id="evidence-anomaly"></dd></dl><a id="clip-link" target="_blank">Open evidence clip</a></aside>
-  <script src="/ui/app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7f8" />
+    <meta name="description" content="Grounded surveillance intelligence for your video archive." />
+    <title>VISTA — Surveillance intelligence</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

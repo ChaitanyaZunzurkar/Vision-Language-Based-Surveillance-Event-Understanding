@@ -149,6 +149,18 @@ class MetadataStore:
             cursor.execute("DELETE FROM videos")
             conn.commit()
 
+    def delete_video(self, video_id: str) -> bool:
+        """Delete a video and all associated events, tracks, and anomaly records."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM events WHERE video_id = ?", (video_id,))
+            cursor.execute("DELETE FROM anomalies WHERE video_id = ?", (video_id,))
+            cursor.execute("DELETE FROM tracks WHERE video_id = ?", (video_id,))
+            cursor.execute("DELETE FROM videos WHERE video_id = ?", (video_id,))
+            deleted = cursor.rowcount > 0
+            conn.commit()
+            return deleted
+
     def save_video(self, record: VideoRecord) -> None:
         """Insert or replace a video record."""
         with self._get_connection() as conn:

@@ -83,7 +83,7 @@ from fastapi.responses import FileResponse
 
 # Mount static file directories for direct media and UI serving
 paths.ensure_directories()
-frontend_dir = paths.root_dir / "frontend"
+frontend_dir = paths.root_dir / "frontend" / "dist"
 frontend_dir.mkdir(parents=True, exist_ok=True)
 
 app.mount("/static/uploads", StaticFiles(directory=str(paths.uploads_dir)), name="uploads")

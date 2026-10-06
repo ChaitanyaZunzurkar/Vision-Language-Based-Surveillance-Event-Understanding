@@ -79,11 +79,42 @@ class VectorStore:
 
     def clear(self) -> None:
         self.event_ids = []
-        self._descriptions = []
-        self.index = None
-        for path in (self.index_path, self.mapping_path):
-            if path.exists():
-                path.unlink()
+        self.corpus = []
+        self.vectorizer = None
+        self.tfidf_matrix = None
+        if self.index_path.exists():
+            self.index_path.unlink()
+
+    def search(
+        self, query_text: str, top_k: int = 5, min_score: float = 0.10
+    ) -> List[Tuple[str, float]]:
+        """Perform semantic cosine similarity search for a natural-language query.
+
+        Args:
+            query_text: Natural language user query.
+            top_k: Max results to return.
+            min_score: Minimum cosine similarity threshold.
+
+        Returns:
+            List of (event_id, similarity_score) tuples, sorted descending by score.
+        """
+        if not self.vectorizer or self.tfidf_matrix is None or not self.corpus:
+            return []
+
+        try:
+            query_vec = self.vectorizer.transform([query_text])
+            similarities = cosine_similarity(query_vec, self.tfidf_matrix).flatten()
+
+            results: List[Tuple[str, float]] = []
+            for idx, score in enumerate(similarities):
+                if score >= min_score:
+                    results.append((self.event_ids[idx], float(score)))
+
+            results.sort(key=lambda x: x[1], reverse=True)
+            return results[:top_k]
+        except Exception as e:
+            logger.error(f"Vector search failed: {e}")
+            return []
 
     def save(self) -> None:
         if self.index is None:
