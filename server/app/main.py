@@ -1,4 +1,4 @@
-"""FastAPI entrypoint for Vision-Language Surveillance Event Understanding."""
+﻿"""FastAPI entrypoint for Vision-Language Surveillance Event Understanding."""
 
 from pathlib import Path
 from contextlib import asynccontextmanager
@@ -6,18 +6,17 @@ import shutil
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from server.src.utils.paths import paths
-from server.src.utils.logger import logger
-from server.src.config.loader import config_loader
-from server.src.storage.metadata_store import metadata_store
-from server.src.storage.vector_store import vector_store
+from server.app.utils.paths import paths
+from server.app.utils.logger import logger
+from server.app.config.loader import config_loader
+from server.app.storage.metadata_store import metadata_store
+from server.app.storage.vector_store import vector_store
 from server.app.api.routes_videos import router as videos_router
 from server.app.api.routes_pipeline import router as pipeline_router
 from server.app.api.routes_events import router as events_router
 from server.app.api.routes_query import router as query_router
 from server.app.api.routes_evidence import router as evidence_router
 from server.app.api.routes_stats import router as stats_router
-from server.app.api.routes_chats import router as chats_router, search_router
 
 
 def clear_local_app_state() -> None:
@@ -43,7 +42,7 @@ async def lifespan(app: FastAPI):
     """Application startup and shutdown hooks."""
     logger.info("Initializing Surveillance Event Understanding API...")
     paths.ensure_directories()
-    if config_loader.get("server.reset_data_on_startup", False):
+    if config_loader.get("server.reset_data_on_startup", True):
         clear_local_app_state()
     yield
     logger.info("Surveillance Event Understanding API shut down.")
@@ -75,8 +74,6 @@ app.include_router(events_router, prefix="/api")
 app.include_router(query_router, prefix="/api")
 app.include_router(evidence_router, prefix="/api")
 app.include_router(stats_router, prefix="/api")
-app.include_router(chats_router, prefix="/api")
-app.include_router(search_router, prefix="/api")
 
 from fastapi import Request
 from fastapi.responses import FileResponse
@@ -97,7 +94,7 @@ def root(request: Request):
     accept = request.headers.get("accept", "")
     index_file = frontend_dir / "index.html"
     if "text/html" in accept and index_file.exists():
-        if config_loader.get("server.reset_data_on_dashboard_open", False):
+        if config_loader.get("server.reset_data_on_dashboard_open", True):
             clear_local_app_state()
         return FileResponse(index_file)
 
@@ -126,3 +123,4 @@ if __name__ == "__main__":
     host = config_loader.get("server.host", "0.0.0.0")
     port = config_loader.get("server.port", 8000)
     uvicorn.run("server.app.main:app", host=host, port=port, reload=True)
+

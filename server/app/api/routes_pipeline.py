@@ -1,12 +1,12 @@
-"""Pipeline execution and status management API endpoints."""
+﻿"""Pipeline execution and status management API endpoints."""
 
 from typing import Dict, Any
 from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends, Query
 from pydantic import BaseModel
-from server.src.storage.metadata_store import MetadataStore
-from server.src.pipeline.pipeline import SurveillancePipeline
+from server.app.storage.metadata_store import MetadataStore
+from server.app.pipeline.pipeline import SurveillancePipeline
 from server.app.api.deps import get_metadata_store, get_pipeline
-from server.src.utils.logger import logger
+from server.app.utils.logger import logger
 
 router = APIRouter(prefix="/pipeline", tags=["Pipeline"])
 
@@ -72,3 +72,4 @@ def get_pipeline_status(
         "error_message": video.error_message,
         "total_events": len(events),
     }
+

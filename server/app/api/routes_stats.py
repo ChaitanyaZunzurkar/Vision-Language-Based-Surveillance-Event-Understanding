@@ -1,8 +1,8 @@
-"""Surveillance dashboard metrics and statistics API endpoint."""
+﻿"""Surveillance dashboard metrics and statistics API endpoint."""
 
 from typing import Dict, Any
 from fastapi import APIRouter, Depends
-from server.src.storage.metadata_store import MetadataStore
+from server.app.storage.metadata_store import MetadataStore
 from server.app.api.deps import get_metadata_store
 
 router = APIRouter(prefix="/stats", tags=["Statistics"])
@@ -16,3 +16,4 @@ def get_dashboard_metrics(store: MetadataStore = Depends(get_metadata_store)) ->
         "status": "healthy",
         **stats,
     }
+

@@ -1,4 +1,4 @@
-"""Surveillance events query and inspection API endpoints."""
+﻿"""Surveillance events query and inspection API endpoints."""
 
 from pathlib import Path
 from typing import List, Dict, Any, Optional
@@ -7,11 +7,11 @@ import uuid
 import math
 from fastapi import APIRouter, HTTPException, Depends, Query, UploadFile, File, Form
 from pydantic import BaseModel
-from server.src.storage.schemas import EventRecord
-from server.src.storage.metadata_store import MetadataStore
+from server.app.storage.schemas import EventRecord
+from server.app.storage.metadata_store import MetadataStore
 from server.app.api.deps import get_metadata_store
-from server.src.storage.vector_store import vector_store
-from server.src.evidence.clip_generator import ClipGenerator
+from server.app.storage.vector_store import vector_store
+from server.app.evidence.clip_generator import ClipGenerator
 
 router = APIRouter(prefix="/events", tags=["Events"])
 clip_generator = ClipGenerator()
@@ -83,26 +83,6 @@ def get_event(event_id: str, store: MetadataStore = Depends(get_metadata_store))
     if not ev:
         raise HTTPException(status_code=404, detail=f"Event {event_id} not found")
     return to_event_response(ev)
-
-
-@router.get("/{event_id}/evidence")
-def get_event_evidence(event_id: str, store: MetadataStore = Depends(get_metadata_store)):
-    """Return playback references for an event without rerunning processing."""
-    ev = store.get_event(event_id)
-    if not ev:
-        raise HTTPException(status_code=404, detail=f"Event {event_id} not found")
-    video = store.get_video(ev.video_id)
-    return {
-        "event_id": ev.event_id,
-        "clip_url": f"/api/media/clip/{Path(ev.clip_path).name}" if ev.clip_path else None,
-        "source_video_url": f"/api/media/video/{Path(video.file_path).name}" if video else None,
-        "start_sec": ev.start_sec,
-        "end_sec": ev.end_sec,
-        "description": ev.description,
-        "confidence": ev.confidence,
-        "anomaly_category": ev.anomaly_category,
-        "anomaly_confidence": ev.anomaly_confidence,
-    }
 
 
 @router.post("/import")
@@ -230,3 +210,4 @@ async def import_stage4_events(
     if records:
         store.update_video_status(video_id, "completed")
     return {"video_id": video_id, "imported_events": len(records), "status": "completed" if records else video.status}
+

@@ -1,4 +1,4 @@
-"""Video upload, retrieval, and management API endpoints."""
+﻿"""Video upload, retrieval, and management API endpoints."""
 
 from pathlib import Path
 from typing import List, Optional
@@ -7,24 +7,14 @@ import uuid
 import aiofiles
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks, Depends
 from pydantic import BaseModel
-<<<<<<< HEAD:app/api/routes_videos.py
-from src.storage.schemas import VideoRecord
-from src.storage.metadata_store import MetadataStore
-from src.pipeline.ingestion import VideoIngestor
-from src.pipeline.pipeline import SurveillancePipeline
-from src.utils.paths import paths
-from src.utils.logger import logger
-from src.storage.vector_store import VectorStore
-from app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
-=======
-from server.src.storage.schemas import VideoRecord
-from server.src.storage.metadata_store import MetadataStore
-from server.src.pipeline.ingestion import VideoIngestor
-from server.src.pipeline.pipeline import SurveillancePipeline
-from server.src.utils.paths import paths
-from server.src.utils.logger import logger
-from server.app.api.deps import get_metadata_store, get_ingestor, get_pipeline
->>>>>>> db838f6 (Refactor project into production monorepo structure):server/app/api/routes_videos.py
+from server.app.storage.schemas import VideoRecord
+from server.app.storage.metadata_store import MetadataStore
+from server.app.pipeline.ingestion import VideoIngestor
+from server.app.pipeline.pipeline import SurveillancePipeline
+from server.app.utils.paths import paths
+from server.app.utils.logger import logger
+from server.app.storage.vector_store import VectorStore
+from server.app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
 
 router = APIRouter(prefix="/videos", tags=["Videos"])
 
@@ -159,3 +149,4 @@ def delete_video(
     if not store.delete_video(video_id):
         raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
     return {"video_id": video_id, "status": "deleted"}
+
