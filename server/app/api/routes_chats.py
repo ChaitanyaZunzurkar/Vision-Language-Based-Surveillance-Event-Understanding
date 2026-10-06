@@ -1,12 +1,12 @@
-"""Persistent ChatGPT-style conversation API."""
+﻿"""Persistent ChatGPT-style conversation API."""
 
 from typing import Any, Dict, List, Optional
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from server.app.api.deps import get_metadata_store
-from server.app.agent.grounded_agent import GroundedAgent, grounded_agent
-from server.app.storage.metadata_store import MetadataStore
+from server.src.agent.grounded_agent import GroundedAgent, grounded_agent
+from server.src.storage.metadata_store import MetadataStore
 
 router = APIRouter(prefix="/chats", tags=["Chats"])
 
@@ -97,3 +97,4 @@ def search(request: SearchRequest, store: MetadataStore = Depends(get_metadata_s
         result["matched_events"] = [event for event in result["matched_events"] if event["event_id"] in {item.event_id for item in filtered}]
     result["total_matches"] = len(result["matched_events"])
     return result
+

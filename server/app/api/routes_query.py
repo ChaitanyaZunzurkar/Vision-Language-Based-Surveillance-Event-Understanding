@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
-from server.app.retrieval.retriever import SurveillanceRetriever, QueryResult
+from server.src.retrieval.retriever import SurveillanceRetriever, QueryResult
 from server.app.api.deps import get_retriever
 
 router = APIRouter(prefix="/query", tags=["Query & Retrieval"])
@@ -44,4 +44,5 @@ def natural_language_query(
             match["clip_url"] = None
 
     return result
+
 

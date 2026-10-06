@@ -1,10 +1,10 @@
 ﻿"""FastAPI dependency injection utilities."""
 
-from server.app.storage.metadata_store import MetadataStore, metadata_store
-from server.app.storage.vector_store import VectorStore, vector_store
-from server.app.pipeline.pipeline import SurveillancePipeline, surveillance_pipeline
-from server.app.retrieval.retriever import SurveillanceRetriever, retriever
-from server.app.pipeline.ingestion import VideoIngestor, video_ingestor
+from server.src.storage.metadata_store import MetadataStore, metadata_store
+from server.src.storage.vector_store import VectorStore, vector_store
+from server.src.pipeline.pipeline import SurveillancePipeline, surveillance_pipeline
+from server.src.retrieval.retriever import SurveillanceRetriever, retriever
+from server.src.pipeline.ingestion import VideoIngestor, video_ingestor
 
 
 def get_metadata_store() -> MetadataStore:
@@ -25,4 +25,5 @@ def get_retriever() -> SurveillanceRetriever:
 
 def get_ingestor() -> VideoIngestor:
     return video_ingestor
+
 

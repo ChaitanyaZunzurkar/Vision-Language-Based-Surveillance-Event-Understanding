@@ -6,11 +6,11 @@ import shutil
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from server.app.utils.paths import paths
-from server.app.utils.logger import logger
-from server.app.config.loader import config_loader
-from server.app.storage.metadata_store import metadata_store
-from server.app.storage.vector_store import vector_store
+from server.src.utils.paths import paths
+from server.src.utils.logger import logger
+from server.src.config.loader import config_loader
+from server.src.storage.metadata_store import metadata_store
+from server.src.storage.vector_store import vector_store
 from server.app.api.routes_videos import router as videos_router
 from server.app.api.routes_pipeline import router as pipeline_router
 from server.app.api.routes_events import router as events_router
@@ -126,3 +126,4 @@ if __name__ == "__main__":
     host = config_loader.get("server.host", "0.0.0.0")
     port = config_loader.get("server.port", 8000)
     uvicorn.run("server.app.main:app", host=host, port=port, reload=True)
+

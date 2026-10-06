@@ -7,11 +7,11 @@ import uuid
 import math
 from fastapi import APIRouter, HTTPException, Depends, Query, UploadFile, File, Form
 from pydantic import BaseModel
-from server.app.storage.schemas import EventRecord
-from server.app.storage.metadata_store import MetadataStore
+from server.src.storage.schemas import EventRecord
+from server.src.storage.metadata_store import MetadataStore
 from server.app.api.deps import get_metadata_store
-from server.app.storage.vector_store import vector_store
-from server.app.evidence.clip_generator import ClipGenerator
+from server.src.storage.vector_store import vector_store
+from server.src.evidence.clip_generator import ClipGenerator
 
 router = APIRouter(prefix="/events", tags=["Events"])
 clip_generator = ClipGenerator()
@@ -210,4 +210,5 @@ async def import_stage4_events(
     if records:
         store.update_video_status(video_id, "completed")
     return {"video_id": video_id, "imported_events": len(records), "status": "completed" if records else video.status}
+
 

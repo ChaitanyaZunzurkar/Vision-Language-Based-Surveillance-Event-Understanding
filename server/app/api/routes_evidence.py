@@ -6,8 +6,8 @@ import os
 import mimetypes
 from fastapi import APIRouter, HTTPException, Header, Response, status
 from fastapi.responses import FileResponse, StreamingResponse
-from server.app.utils.paths import paths
-from server.app.utils.logger import logger
+from server.src.utils.paths import paths
+from server.src.utils.logger import logger
 
 router = APIRouter(prefix="/media", tags=["Media"])
 
@@ -74,4 +74,5 @@ def get_evidence_clip(filename: str, range: Optional[str] = Header(None)):
     safe_name = Path(filename).name
     file_path = paths.clips_dir / safe_name
     return stream_video_file(file_path, range)
+
 
