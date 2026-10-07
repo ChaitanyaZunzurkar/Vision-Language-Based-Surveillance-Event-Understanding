@@ -1,1 +1,2 @@
 models/stage1b/yolo11x_surv_v1.pt filter=lfs diff=lfs merge=lfs -text
+models/anomaly/nn_models_fixed.pt filter=lfs diff=lfs merge=lfs -text

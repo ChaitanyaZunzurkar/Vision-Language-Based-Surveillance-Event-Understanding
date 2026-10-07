@@ -8,10 +8,6 @@ frontend/dist/
 .env
 data/
 weights/
-models/**/*.pt
-!models/stage1b/yolo11x_surv_v1.pt
-models/**/*.pth
-models/**/*.onnx
 logs/*
 outputs/*
 *.db
