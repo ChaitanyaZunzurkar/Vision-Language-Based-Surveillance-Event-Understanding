@@ -13,6 +13,8 @@ from pathlib import Path
 import cv2
 import pandas as pd
 from ultralytics import YOLO
+from server.src.config.loader import config_loader
+from server.src.utils.device import DEVICE_INFO
 
 
 def resolve_video_camera_id(video_path: str):
@@ -36,8 +38,16 @@ class SurveillanceTracker:
     ]
 
     def __init__(self, weights_path, class_names, bytetrack_yaml,
-                 detect_conf=0.10, imgsz=640, frame_stride=1):
+                 detect_conf=0.10, imgsz=640, frame_stride=1, device="auto"):
         self.model = YOLO(weights_path)
+        self.device = DEVICE_INFO.device if device == "auto" else device
+        self.model.to(self.device)
+        self.half = bool(
+            self.device.startswith("cuda")
+            and config_loader.get("runtime.half_precision", True)
+        )
+        if self.half:
+            self.model.half()
         self.class_names = class_names
         self.bytetrack_yaml = bytetrack_yaml
         self.detect_conf = detect_conf
@@ -62,6 +72,7 @@ class SurveillanceTracker:
             conf=self.detect_conf, imgsz=self.imgsz,
             vid_stride=self.frame_stride, persist=False,
             stream=True, verbose=False,
+            device=self.device, half=self.half,
         )
 
         for frame_idx, result in enumerate(results_gen):
@@ -96,4 +107,3 @@ class SurveillanceTracker:
         if not all_dfs:
             return pd.DataFrame(columns=self.SCHEMA_COLUMNS)
         return pd.concat(all_dfs, ignore_index=True)
-

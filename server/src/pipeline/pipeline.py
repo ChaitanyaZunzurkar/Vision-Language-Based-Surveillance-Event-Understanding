@@ -20,6 +20,8 @@ from server.src.anomaly.schemas import VideoAnomalySummary
 from server.src.event_understanding.qwen import VLMEventUnderstanding
 from server.src.storage.schemas import EventRecord, AnomalyRecord, TrackRecord
 from server.src.evidence.clip_generator import ClipGenerator
+from server.src.utils.timing import StageTimings
+from server.src.utils.device import log_device_diagnostics
 
 
 class SurveillancePipeline:
@@ -99,7 +101,8 @@ class SurveillancePipeline:
             bytetrack_yaml=str(bytetrack_yaml),
             detect_conf=float(config_loader.get("detection.conf_threshold", 0.20)),
             imgsz=int(model_config.get("imgsz", 640)),
-            frame_stride=int(config_loader.get("stage1b.frame_stride", 1)),
+            frame_stride=int(config_loader.get("tracking.frame_stride", 1)),
+            device=config_loader.get("runtime.device", "auto"),
         )
         tracks_df = tracker.process_video(str(video_path), video_id=video_id, camera_id=video_id)
         if tracks_df.empty and config_loader.get("stage1b.allow_detector_fallback", True):
@@ -210,12 +213,15 @@ class SurveillancePipeline:
             raise FileNotFoundError(f"Video file missing on disk: {video_path}")
 
         logger.info(f"=== Starting Surveillance Pipeline for {video_id} ({video.filename}) ===")
+        log_device_diagnostics()
+        timings = StageTimings()
         self.store.update_video_status(video_id, "processing")
 
         try:
             # Stage 1b: use the real VISTA detector+ByteTrack code, not a heuristic fallback.
             logger.info("Stage 1b: Running YOLO + ByteTrack...")
-            tracking_result = self._run_stage1b(video_path, video_id)
+            with timings.measure("detection_tracking"):
+                tracking_result = self._run_stage1b(video_path, video_id)
             self.store.insert_tracks(
                 [
                     TrackRecord(
@@ -235,7 +241,8 @@ class SurveillancePipeline:
 
             # Stage 2: Temporal Windowing
             logger.info("Stage 2/5: Generating Temporal Windows & Candidate Events...")
-            windows = self.windower.generate_windows(tracking_result, video.duration_sec)
+            with timings.measure("temporal_events"):
+                windows = self.windower.generate_windows(tracking_result, video.duration_sec)
 
             # Export windows JSON
             windows_json_path = paths.windows_dir / f"{video_id}_windows.json"
@@ -280,9 +287,10 @@ class SurveillancePipeline:
                 json.dump({"windows": windows_data}, f, indent=2)
 
             logger.info("Stage 3: Running AnomalyCLIP feature classifier...")
-            anomaly_summary: VideoAnomalySummary = self.anomaly_detector.detect_anomalies(
-                video_path, video_id, video.duration_sec, tracking_result
-            )
+            with timings.measure("anomaly"):
+                anomaly_summary = self.anomaly_detector.detect_anomalies(
+                    video_path, video_id, video.duration_sec, tracking_result
+                )
             self.store.insert_anomalies([
                 AnomalyRecord(
                     anomaly_id=segment.clip_id,
@@ -298,9 +306,10 @@ class SurveillancePipeline:
             ])
 
             logger.info("Stage 4: Grounding candidate events with Qwen2.5-VL...")
-            understanding = self.vlm.enrich_and_verify_events(
-                video_id, windows, tracking_result, video_path
-            )
+            with timings.measure("vlm"):
+                understanding = self.vlm.enrich_and_verify_events(
+                    video_id, windows, tracking_result, video_path
+                )
             records = []
             for semantic in understanding.events:
                 overlapping = [
@@ -334,7 +343,8 @@ class SurveillancePipeline:
                         "anomaly_model": anomaly_summary.model_name,
                     },
                 ))
-            self.store.insert_events(records)
+            with timings.measure("persistence_evidence"):
+                self.store.insert_events(records)
 
             self.store.update_video_status(video_id, "completed")
             logger.info(f"Complete pipeline finished for {video_id}: {len(records)} events")
@@ -350,6 +360,8 @@ class SurveillancePipeline:
                 "anomaly_model_available": anomaly_summary.model_available,
                 "tracks_csv": str(tracks_csv_path),
                 "windows_json": str(windows_json_path),
+                "stage_timings_sec": timings.values,
+                "processing_time_sec": timings.total_sec,
             }
 
         except Exception as e:

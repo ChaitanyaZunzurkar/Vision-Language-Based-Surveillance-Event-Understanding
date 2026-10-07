@@ -11,6 +11,7 @@ from server.src.event_understanding.schemas import (
 from server.src.tracking.schemas import TrackingResult
 from server.src.utils.logger import logger
 from server.src.config.loader import config_loader
+from server.src.utils.device import DEVICE_INFO
 
 
 SYSTEM_PROMPT = """You are an expert surveillance video analyst.
@@ -32,6 +33,7 @@ class VLMEventUnderstanding:
         self.model_name = model_name
         self.device = device
         self.temperature = temperature
+        self.execution_device = "cpu"
         self.model = None
         self.processor = None
         self._initialize_vlm()
@@ -42,13 +44,22 @@ class VLMEventUnderstanding:
             import torch
             from transformers import AutoProcessor
 
-            if torch.cuda.is_available():
-                logger.info(f"Checking for VLM model {self.model_name}...")
-                # We attempt to load if model checkpoint exists locally or in cache
-                # To prevent slow remote downloads without explicit user approval, we keep lazy
-                self.has_vlm_env = True
-            else:
-                self.has_vlm_env = False
+            requested = config_loader.get("vlm.device", "auto")
+            if requested == "cuda" or (requested == "auto" and DEVICE_INFO.cuda_available):
+                if DEVICE_INFO.gpu_memory_gb and DEVICE_INFO.gpu_memory_gb >= 6:
+                    self.execution_device = DEVICE_INFO.device
+                else:
+                    logger.warning(
+                        "Qwen2.5-VL is configured for CPU/offload because available GPU "
+                        "memory is below the safe 6 GB threshold."
+                    )
+            elif requested == "cpu":
+                self.execution_device = "cpu"
+            logger.info(
+                "Qwen2.5-VL runtime probe: model=%s device=%s loaded=%s",
+                self.model_name, self.execution_device, self.model is not None,
+            )
+            self.has_vlm_env = True
         except Exception:
             self.has_vlm_env = False
 
@@ -140,5 +151,4 @@ class VLMEventUnderstanding:
             return f"Interaction observed between {entities_str} during interval {start:.1f}s - {end:.1f}s."
         else:
             return f"{entities_str} involved in {etype} event between {start:.1f}s and {end:.1f}s."
-
 

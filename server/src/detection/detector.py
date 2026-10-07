@@ -8,6 +8,7 @@ from server.src.detection.schemas import BoundingBox, Detection, DetectionResult
 from server.src.detection.sampler import VideoSampler
 from server.src.utils.logger import logger
 from server.src.config.loader import config_loader
+from server.src.utils.device import DEVICE_INFO
 
 
 class SurveillanceDetector:
@@ -21,6 +22,7 @@ class SurveillanceDetector:
     ):
         self.conf_threshold = conf_threshold
         self.device = device
+        self.runtime_device = DEVICE_INFO.device if device == "auto" else device
         self.weights_path = Path(weights_path) if weights_path else None
         self.model = None
         self.use_yolo = False
@@ -35,8 +37,14 @@ class SurveillanceDetector:
 
                 logger.info(f"Loading YOLO model from {self.weights_path}")
                 self.model = YOLO(str(self.weights_path))
+                self.model.to(self.runtime_device)
+                if (
+                    self.runtime_device.startswith("cuda")
+                    and config_loader.get("runtime.half_precision", True)
+                ):
+                    self.model.half()
                 self.use_yolo = True
-                logger.info("YOLO detector initialized successfully.")
+                logger.info("YOLO detector initialized on %s.", self.runtime_device)
                 return
             except Exception as e:
                 logger.warning(f"Could not load YOLO from {self.weights_path}: {e}")
@@ -64,12 +72,22 @@ class SurveillanceDetector:
         detections: List[Detection] = []
 
         if self.use_yolo and self.model is not None:
-            results = self.model.predict(
-                frame_rgb,
-                conf=self.conf_threshold,
-                verbose=False,
-                device=self.device if self.device != "auto" else None,
-            )
+            try:
+                import torch
+                inference_context = torch.inference_mode()
+            except ImportError:
+                inference_context = None
+            if inference_context is None:
+                results = self.model.predict(
+                    frame_rgb, conf=self.conf_threshold, verbose=False,
+                    device=self.runtime_device,
+                )
+            else:
+                with inference_context:
+                    results = self.model.predict(
+                        frame_rgb, conf=self.conf_threshold, verbose=False,
+                        device=self.runtime_device,
+                    )
             for r in results:
                 boxes = r.boxes
                 for box in boxes:
@@ -167,4 +185,3 @@ class SurveillanceDetector:
             total_detections=len(all_detections),
             detections=all_detections,
         )
-

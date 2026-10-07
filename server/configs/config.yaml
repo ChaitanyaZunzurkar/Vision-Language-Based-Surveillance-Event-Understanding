@@ -11,6 +11,12 @@ server:
     - "http://127.0.0.1:3000"
     - "http://127.0.0.1:5173"
 
+runtime:
+  device: "auto"
+  use_cuda: true
+  half_precision: true
+  gpu_id: 0
+
 paths:
   uploads_dir: "server/data/uploads"
   outputs_dir: "server/data/outputs"
@@ -46,6 +52,11 @@ tracking:
   new_track_thresh: 0.60
   track_buffer: 30
   match_thresh: 0.80
+  frame_stride: 1
+
+performance:
+  profile: "accuracy"
+  inference_batch_size: 1
 
 temporal:
   window_duration_sec: 10.0
