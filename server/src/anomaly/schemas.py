@@ -1,6 +1,6 @@
 ﻿"""Schemas for video anomaly detection and categorization."""
 
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 
 
@@ -13,7 +13,7 @@ class ClipAnomalyScore(BaseModel):
     category: str  # Normal or one of 13 UCF-Crime anomalies
     confidence: float
     is_anomaly: bool
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    model_metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class VideoAnomalySummary(BaseModel):
@@ -26,3 +26,4 @@ class VideoAnomalySummary(BaseModel):
     model_available: bool = False
     model_name: Optional[str] = None
     anomaly_segments: List[ClipAnomalyScore] = Field(default_factory=list)
+    model_metadata: Dict[str, Any] = Field(default_factory=dict)

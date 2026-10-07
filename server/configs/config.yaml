@@ -40,7 +40,7 @@ detection:
 # Project-owned Stage 1b resources. Paths are relative to the repository root.
 stage1b:
   tracker_script: "server/src/tracking/surveillance_tracker.py"
-  weights_path: "models/stage1b/yolo11x_surv_v1.pt"
+  weights_path: "models/detection/yolo11x_surv_v1.pt"
   class_config: "server/configs/stage1_model.yaml"
   bytetrack_yaml: "server/configs/bytetrack_custom.yaml"
   frame_stride: 1
@@ -70,14 +70,17 @@ vlm:
   device: "auto"
   max_tokens: 1024
   temperature: 0.2
+  local_files_only: false
 
 anomaly:
-  model_weights: "weights/best_model.pkl"
-  scaler_weights: "weights/scaler.pkl"
-  feature_extractor: "AnomalyCLIP"
+  checkpoint_path: "models/anomaly/nn_models_fixed.pt"
+  feature_model: "openai/clip-vit-base-patch16"
+  feature_device: "auto"
   clip_duration_sec: 4.0
   clip_stride_sec: 2.0
   num_frames: 16
+  num_segments: 64
+  frame_stride: 1
   anomaly_threshold: 0.50
 
 evidence:
@@ -88,5 +91,3 @@ evidence:
 retrieval:
   top_k: 5
   min_similarity: 0.20
-  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
-  index_path: "server/data/vectors/events.faiss"

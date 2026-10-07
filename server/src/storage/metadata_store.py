@@ -83,12 +83,15 @@ class MetadataStore:
                     is_anomaly INTEGER NOT NULL,
                     start_sec REAL NOT NULL,
                     end_sec REAL NOT NULL,
-                    metadata_json TEXT,
+                    metadata_json TEXT NOT NULL DEFAULT '{}',
                     FOREIGN KEY (video_id) REFERENCES videos (video_id) ON DELETE CASCADE
                 )
                 """
             )
-            self._ensure_column(cursor, "anomalies", "metadata_json", "TEXT")
+            try:
+                cursor.execute("ALTER TABLE anomalies ADD COLUMN metadata_json TEXT NOT NULL DEFAULT '{}'")
+            except sqlite3.OperationalError:
+                pass
 
             cursor.execute(
                 """
@@ -448,7 +451,12 @@ class MetadataStore:
             query += " AND video_id = ?"
             params.append(video_id)
         with self._get_connection() as conn:
-            return [dict(row) for row in conn.execute(query, params).fetchall()]
+            results = []
+            for row in conn.execute(query, params).fetchall():
+                result = dict(row)
+                result["metadata"] = json.loads(result.pop("metadata_json", "{}") or "{}")
+                results.append(result)
+            return results
 
     def create_conversation(self, conversation_id: str, title: str, video_id: Optional[str] = None) -> Dict[str, Any]:
         now = datetime.utcnow().isoformat()
@@ -537,7 +545,8 @@ class MetadataStore:
                     """
                     INSERT OR REPLACE INTO anomalies (
                         anomaly_id, video_id, category, confidence, is_anomaly, start_sec, end_sec
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+                        , metadata_json
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         anom.anomaly_id,
@@ -547,6 +556,7 @@ class MetadataStore:
                         1 if anom.is_anomaly else 0,
                         anom.start_sec,
                         anom.end_sec,
+                        json.dumps(anom.model_metadata),
                     ),
                 )
             conn.commit()
@@ -568,7 +578,7 @@ class MetadataStore:
             event_type_counts = {r["event_type"]: r["cnt"] for r in cursor.fetchall()}
 
             cursor.execute(
-                "SELECT anomaly_category, COUNT(*) as cnt FROM events WHERE anomaly_category NOT IN ('Normal', 'Unassessed') GROUP BY anomaly_category"
+                "SELECT anomaly_category, COUNT(*) as cnt FROM events WHERE anomaly_category != 'Normal' GROUP BY anomaly_category"
             )
             anomaly_counts = {
                 r["anomaly_category"]: r["cnt"] for r in cursor.fetchall()

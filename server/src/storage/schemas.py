@@ -49,7 +49,7 @@ class AnomalyRecord(BaseModel):
     is_anomaly: bool
     start_sec: float
     end_sec: float
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    model_metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class TrackRecord(BaseModel):
