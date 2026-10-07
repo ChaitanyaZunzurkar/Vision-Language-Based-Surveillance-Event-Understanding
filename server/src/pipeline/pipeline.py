@@ -5,6 +5,7 @@ from typing import Dict, Any, Optional
 import json
 import importlib.util
 import yaml
+from time import perf_counter
 from server.src.utils.paths import paths
 from server.src.utils.logger import logger
 from server.src.storage.metadata_store import MetadataStore, metadata_store
@@ -213,6 +214,7 @@ class SurveillancePipeline:
             raise FileNotFoundError(f"Video file missing on disk: {video_path}")
 
         logger.info(f"=== Starting Surveillance Pipeline for {video_id} ({video.filename}) ===")
+        processing_started = perf_counter()
         log_device_diagnostics()
         timings = StageTimings()
         self.store.update_video_status(video_id, "processing")
@@ -361,7 +363,7 @@ class SurveillancePipeline:
                 "tracks_csv": str(tracks_csv_path),
                 "windows_json": str(windows_json_path),
                 "stage_timings_sec": timings.values,
-                "processing_time_sec": timings.total_sec,
+                "processing_time_sec": round(perf_counter() - processing_started, 4),
             }
 
         except Exception as e:

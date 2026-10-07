@@ -7,16 +7,11 @@ Usage:
 import argparse
 import json
 import sys
+import os
 from pathlib import Path
 from time import perf_counter
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
-from server.src.pipeline.ingestion import VideoIngestor
-from server.src.pipeline.pipeline import SurveillancePipeline
-from server.src.storage.metadata_store import metadata_store
-from server.src.utils.device import get_device_info
-
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -24,9 +19,11 @@ def main() -> None:
     parser.add_argument("--device", choices=["auto", "cpu", "cuda"])
     args = parser.parse_args()
     if args.device:
-        # The runtime resolver reads configuration at import time; this option
-        # is intended for comparing already configured environments.
-        raise SystemExit("Set runtime.device in server/configs/config.yaml before running.")
+        os.environ["SURVEILLANCE_DEVICE"] = args.device
+
+    from server.src.pipeline.ingestion import VideoIngestor
+    from server.src.pipeline.pipeline import SurveillancePipeline
+    from server.src.utils.device import get_device_info
 
     started = perf_counter()
     info = get_device_info()

@@ -1,6 +1,7 @@
 """Central runtime device and CUDA diagnostics."""
 
 from dataclasses import dataclass
+import os
 from typing import Optional
 
 from server.src.config.loader import config_loader
@@ -19,7 +20,9 @@ class DeviceInfo:
 
 def get_device_info() -> DeviceInfo:
     """Resolve the configured device once and fail clearly for invalid CUDA requests."""
-    requested = str(config_loader.get("runtime.device", "auto")).lower()
+    requested = str(
+        os.environ.get("SURVEILLANCE_DEVICE", config_loader.get("runtime.device", "auto"))
+    ).lower()
     if requested not in {"auto", "cuda", "cpu"}:
         raise ValueError("runtime.device must be one of: auto, cuda, cpu")
 
@@ -36,11 +39,14 @@ def get_device_info() -> DeviceInfo:
     use_cuda = cuda_available and requested != "cpu" and bool(
         config_loader.get("runtime.use_cuda", True)
     )
-    device = f"cuda:{int(config_loader.get('runtime.gpu_id', 0))}" if use_cuda else "cpu"
-    gpu_name = torch.cuda.get_device_name(0) if use_cuda else None
+    gpu_id = int(config_loader.get("runtime.gpu_id", 0))
+    if use_cuda and gpu_id >= torch.cuda.device_count():
+        raise RuntimeError(f"Configured GPU {gpu_id} is not available")
+    device = f"cuda:{gpu_id}" if use_cuda else "cpu"
+    gpu_name = torch.cuda.get_device_name(gpu_id) if use_cuda else None
     memory = None
     if use_cuda:
-        memory = round(torch.cuda.get_device_properties(0).total_memory / 1024**3, 2)
+        memory = round(torch.cuda.get_device_properties(gpu_id).total_memory / 1024**3, 2)
     return DeviceInfo(
         device=device,
         cuda_available=cuda_available,
