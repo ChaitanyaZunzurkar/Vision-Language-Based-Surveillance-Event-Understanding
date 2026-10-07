@@ -347,6 +347,7 @@ class SurveillancePipeline:
                 ))
             with timings.measure("persistence_evidence"):
                 self.store.insert_events(records)
+                self.vec_store.add_events(records)
 
             self.store.update_video_status(video_id, "completed")
             logger.info(f"Complete pipeline finished for {video_id}: {len(records)} events")

@@ -31,3 +31,28 @@ python scripts/benchmark_pipeline.py path\to\video.mp4
 The pipeline response and logs include stage timings, total processing time,
 device, and real-time factor. No CPU/CUDA speedup is reported unless both
 runs are actually measured.
+## Phase 2 semantic retrieval
+
+Event descriptions are embedded locally with
+`sentence-transformers/all-MiniLM-L6-v2` and stored in a FAISS inner-product
+index. The index is only a semantic accelerator; event records and all
+filtering remain in SQLite. The model is downloaded by Sentence Transformers
+to its normal local Hugging Face cache on first use.
+
+The default index files are:
+
+```text
+server/data/vectors/events.faiss
+server/data/vectors/events.mapping.json
+```
+
+New pipeline/import events are indexed automatically. Deleting a video rebuilds
+the index from the remaining SQLite events. To repair or rebuild it manually:
+
+```powershell
+Invoke-RestMethod -Method Post http://127.0.0.1:8000/api/query/rebuild-index
+```
+
+Search through `POST /api/query` with `query`, `top_k`, `min_score`, and
+optional `video_id`. Natural-language event, anomaly, entity, and time filters
+are parsed and applied against SQLite before hybrid ranking.

@@ -88,3 +88,5 @@ evidence:
 retrieval:
   top_k: 5
   min_similarity: 0.20
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  index_path: "server/data/vectors/events.faiss"

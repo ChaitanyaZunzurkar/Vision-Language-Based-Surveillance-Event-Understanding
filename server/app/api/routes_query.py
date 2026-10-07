@@ -6,6 +6,9 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 from server.src.retrieval.retriever import SurveillanceRetriever, QueryResult
 from server.app.api.deps import get_retriever
+from server.src.storage.metadata_store import MetadataStore
+from server.src.storage.vector_store import VectorStore
+from server.app.api.deps import get_metadata_store, get_vector_store
 
 router = APIRouter(prefix="/query", tags=["Query & Retrieval"])
 
@@ -45,4 +48,14 @@ def natural_language_query(
 
     return result
 
+
+@router.post("/rebuild-index")
+def rebuild_index(
+    store: MetadataStore = Depends(get_metadata_store),
+    vec_store: VectorStore = Depends(get_vector_store),
+):
+    """Rebuild FAISS exclusively from current SQLite event records."""
+    events = store.get_events()
+    vec_store.rebuild(events)
+    return {"status": "rebuilt", "indexed_events": len(events)}
 

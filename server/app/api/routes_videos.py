@@ -129,7 +129,9 @@ def delete_video(
         raise HTTPException(status_code=409, detail="Wait for video processing to finish before deleting it")
 
     events = store.get_events(video_id=video_id)
-    vec_store.remove_events([event.event_id for event in events])
+    remaining_events = [
+        event for event in store.get_events() if event.video_id != video_id
+    ]
 
     managed_files = [
         (Path(video.file_path), paths.uploads_dir),
@@ -148,6 +150,5 @@ def delete_video(
 
     if not store.delete_video(video_id):
         raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
+    vec_store.rebuild(remaining_events)
     return {"video_id": video_id, "status": "deleted"}
-
-

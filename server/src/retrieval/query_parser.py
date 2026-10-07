@@ -41,6 +41,10 @@ ENTITY_KEYWORDS = {
 class QueryParser:
     """Extracts structured filters and semantic intent from natural language surveillance queries."""
 
+    @staticmethod
+    def _contains(text: str, phrase: str) -> bool:
+        return re.search(rf"\b{re.escape(phrase)}\b", text) is not None
+
     def parse(self, query: str) -> ParsedQuery:
         """Parse natural language query into structured metadata constraints."""
         q_lower = query.lower()
@@ -48,21 +52,21 @@ class QueryParser:
         # 1. Match event type
         matched_event = None
         for etype, synonyms in EVENT_KEYWORDS.items():
-            if any(syn in q_lower for syn in synonyms):
+            if any(self._contains(q_lower, syn) for syn in synonyms):
                 matched_event = etype
                 break
 
         # 2. Match anomaly category
         matched_anomaly = None
         for cat in ANOMALY_CATEGORIES:
-            if cat.lower() != "normal" and cat.lower() in q_lower:
+            if cat.lower() != "normal" and self._contains(q_lower, cat.lower()):
                 matched_anomaly = cat
                 break
 
         # 3. Match entities
         matched_entities = []
         for ent, synonyms in ENTITY_KEYWORDS.items():
-            if any(syn in q_lower for syn in synonyms):
+            if any(self._contains(q_lower, syn) for syn in synonyms):
                 matched_entities.append(ent)
 
         # 4. Match time constraints (e.g., "after 10s", "between 5 and 20s")
@@ -74,6 +78,11 @@ class QueryParser:
             time_min = float(m_between.group(1))
             time_max = float(m_between.group(2))
         else:
+            m_around = re.search(r"(?:around|at)\s+(\d+(?:\.\d+)?)", q_lower)
+            if m_around:
+                center = float(m_around.group(1))
+                time_min = max(0.0, center - 5.0)
+                time_max = center + 5.0
             m_after = re.search(r"(?:after|from)\s+(\d+(?:\.\d+)?)", q_lower)
             if m_after:
                 time_min = float(m_after.group(1))
@@ -94,5 +103,3 @@ class QueryParser:
 
 # Global query parser instance
 query_parser = QueryParser()
-
-

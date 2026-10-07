@@ -44,12 +44,7 @@ class SurveillanceRetriever:
         parsed = self.parser.parse(query_text)
 
         # 2. Vector search over semantic corpus
-        vector_results = self.vec_store.search(
-            parsed.cleaned_query, top_k=top_k * 2, min_score=0.05
-        )
-        vector_scores = dict(vector_results)
-
-        # 3. Retrieve candidates from SQLite
+        # 2. Retrieve authoritative candidates from SQLite first.
         # If metadata filters matched, retrieve filtered candidates, else get all recent events
         candidates = self.meta_store.get_events(
             video_id=video_id,
@@ -59,9 +54,14 @@ class SurveillanceRetriever:
             time_end=parsed.time_max_sec,
         )
 
-        # If candidates are empty (e.g. strict filters yielded 0), fallback to all events for semantic ranking
-        if not candidates and video_id is None:
-            candidates = self.meta_store.get_events()
+        # 3. Search enough of FAISS to score every SQLite candidate. SQLite
+        # remains authoritative; FAISS only supplies semantic similarity.
+        vector_results = self.vec_store.search(
+            parsed.cleaned_query,
+            top_k=max(len(self.vec_store.event_ids), 1),
+            min_score=0.05,
+        )
+        vector_scores = dict(vector_results)
 
         # 4. Rank candidates using HybridRanker
         ranked_pairs = self.ranker.rank(candidates, vector_scores, parsed)
@@ -138,5 +138,3 @@ class SurveillanceRetriever:
 
 # Global retriever instance
 retriever = SurveillanceRetriever()
-
-
