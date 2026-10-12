@@ -67,6 +67,10 @@ export default function App() {
   const [eventsTargetVideoId, setEventsTargetVideoId] = useState("");
   const [eventsImporting, setEventsImporting] = useState(false);
   const [eventsReviewError, setEventsReviewError] = useState("");
+  const [directUploadOpen, setDirectUploadOpen] = useState(false);
+  const [directVideoFile, setDirectVideoFile] = useState(null);
+  const [directJsonFile, setDirectJsonFile] = useState(null);
+  const [directUploading, setDirectUploading] = useState(false);
   const [notice, setNotice] = useState("");
   const videoInput = useRef(null);
   const bottomRef = useRef(null);
@@ -245,6 +249,28 @@ export default function App() {
     }
   }
 
+  async function uploadDirectPair() {
+    if (!directVideoFile || !directJsonFile || directUploading) return;
+    setDirectUploading(true);
+    setError("");
+    try {
+      const body = new FormData();
+      body.append("file", directVideoFile);
+      body.append("json_file", directJsonFile);
+      const video = await request("/api/videos/upload-direct", { method: "POST", body });
+      setVideos((items) => [video, ...items.filter((item) => item.video_id !== video.video_id)]);
+      setScope(video.video_id);
+      setDirectUploadOpen(false);
+      setDirectVideoFile(null);
+      setDirectJsonFile(null);
+      setNotice("Direct video + windows JSON pipeline started. YOLO and ByteTrack are skipped.");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setDirectUploading(false);
+    }
+  }
+
   async function deleteVideo(videoId) {
     const video = videos.find((item) => item.video_id === videoId);
     if (!video || video.status === "processing") return;
@@ -395,6 +421,7 @@ export default function App() {
           <div className="topbar-right">
             <button className={`view-switch ${activeView === "events" ? "active" : ""}`} onClick={() => { setActiveView(activeView === "events" ? "chat" : "events"); setSidebarOpen(false); }}><Film size={15} /><span>{activeView === "events" ? "Chat" : "Events"}</span></button>
             <button className="check-json-button" onClick={() => openEventsReview()}><FileJson2 size={15} /><span>Check events.json</span></button>
+            <button className="check-json-button" onClick={() => setDirectUploadOpen(true)}><Video size={15} /><span>Video + JSON</span></button>
             <button className="upload-top-button" onClick={() => videoInput.current?.click()} disabled={uploading}><Upload size={15} /><span>{uploading ? "Adding footage…" : "Add footage"}</span></button>
           </div>
         </header>
@@ -444,6 +471,15 @@ export default function App() {
         onSelectVideo={setEventsTargetVideoId}
         onClose={() => setEventsReviewOpen(false)}
         onImport={importCheckedEvents}
+      />}
+      {directUploadOpen && <DirectUploadModal
+        videoFile={directVideoFile}
+        jsonFile={directJsonFile}
+        uploading={directUploading}
+        onVideoFile={setDirectVideoFile}
+        onJsonFile={setDirectJsonFile}
+        onClose={() => setDirectUploadOpen(false)}
+        onUpload={uploadDirectPair}
       />}
     </div>
   );
@@ -550,6 +586,33 @@ function EventsReviewModal({ videos, file, preview, selectedVideoId, error, impo
   </div>;
 }
 
+function DirectUploadModal({ videoFile, jsonFile, uploading, onVideoFile, onJsonFile, onClose, onUpload }) {
+  return <div className="modal-scrim" onMouseDown={(event) => { if (event.target === event.currentTarget && !uploading) onClose(); }}>
+    <section className="events-modal direct-upload-modal" role="dialog" aria-modal="true" aria-labelledby="direct-upload-title">
+      <header className="events-modal-header">
+        <div><h2 id="direct-upload-title">Video + precomputed windows</h2><p>Uses notebook windows JSON; skips YOLO and ByteTrack, then runs missing VLM work and anomaly scoring.</p></div>
+        <button className="icon-button modal-close" onClick={onClose} aria-label="Close" disabled={uploading}><X size={18} /></button>
+      </header>
+      <label className="direct-file-label">Video file
+        <input type="file" accept="video/mp4,video/avi,video/quicktime,video/x-matroska,.mp4,.avi,.mov,.mkv" onChange={(event) => onVideoFile(event.target.files?.[0] || null)} />
+        <span>{videoFile?.name || "Choose .mp4, .avi, .mov, or .mkv"}</span>
+      </label>
+      <label className="direct-file-label">Notebook windows JSON
+        <input type="file" accept="application/json,.json" onChange={(event) => onJsonFile(event.target.files?.[0] || null)} />
+        <span>{jsonFile?.name || 'Choose {"windows":[...]} JSON'}</span>
+      </label>
+      <p className="direct-upload-note">The JSON video_id must match the uploaded video filename stem.</p>
+      <footer className="events-modal-footer">
+        <button className="modal-cancel" onClick={onClose} disabled={uploading}>Cancel</button>
+        <button className="modal-import" onClick={onUpload} disabled={!videoFile || !jsonFile || uploading}>
+          {uploading ? <LoaderCircle size={15} className="spin" /> : <Upload size={15} />}
+          {uploading ? "Uploading…" : "Run direct pipeline"}
+        </button>
+      </footer>
+    </section>
+  </div>;
+}
+
 function Message({ message, videos, onProcess, onImport, activeClip, onPlay }) {
   const video = videos.find((item) => item.video_id === message.videoId);
   if (message.role === "user") return <div className="user-row"><div className="user-bubble">{message.text}</div></div>;
@@ -570,15 +633,14 @@ function Message({ message, videos, onProcess, onImport, activeClip, onPlay }) {
 
 function VideoWorkflow({ video, onProcess, onImport }) {
   const processing = video.status === "processing";
-  const waiting = video.status === "awaiting_events";
   const failed = video.status === "failed";
   return <div className="video-workflow-card">
-    <div className="video-workflow-head"><div className="workflow-video-icon"><Clapperboard size={17} /></div><div className="workflow-video-info"><strong>{video.filename}</strong><span>{video.resolution} · {formatTime(video.duration_sec)} · {video.fps?.toFixed(1) || "—"} fps</span></div><span className={`video-state ${video.status}`}>{processing && <LoaderCircle size={12} className="spin" />}{waiting ? "READY FOR EVENTS" : processing ? "PROCESSING" : failed ? "NEEDS ATTENTION" : "ADDED"}</span></div>
-    <div className="workflow-progress"><span className={processing ? "active" : waiting || video.status === "completed" ? "done" : ""}>1</span><i className={waiting || video.status === "completed" ? "done" : ""} /><span className={waiting ? "active" : video.status === "completed" ? "done" : ""}>2</span><i className={video.status === "completed" ? "done" : ""} /><span className={video.status === "completed" ? "active" : ""}>3</span><div><strong>Run tracking</strong><strong>Import descriptions</strong><strong>Search evidence</strong></div></div>
+    <div className="video-workflow-head"><div className="workflow-video-icon"><Clapperboard size={17} /></div><div className="workflow-video-info"><strong>{video.filename}</strong><span>{video.resolution} · {formatTime(video.duration_sec)} · {video.fps?.toFixed(1) || "—"} fps</span></div><span className={`video-state ${video.status}`}>{processing && <LoaderCircle size={12} className="spin" />}{processing ? "PROCESSING" : failed ? "NEEDS ATTENTION" : video.status === "completed" ? "ANALYZED" : "ADDED"}</span></div>
+    <div className="workflow-progress"><span className={processing ? "active" : video.status === "completed" ? "done" : ""}>1</span><i className={video.status === "completed" ? "done" : ""} /><span className={video.status === "completed" ? "done" : ""}>2</span><i className={video.status === "completed" ? "done" : ""} /><span className={video.status === "completed" ? "active" : ""}>3</span><div><strong>YOLO + ByteTrack</strong><strong>Qwen + anomaly</strong><strong>Search evidence</strong></div></div>
     {failed && <div className="workflow-error">{video.error_message || "Processing failed. You can try again."}</div>}
     <div className="workflow-footer">
-      <span>{video.status === "completed" ? "Descriptions are imported and ready to search." : waiting ? "Tracking windows are ready. Import the final Stage 4 events.json." : processing ? "Tracking is running in the background. You can keep chatting." : "Run tracking, then import the final Stage 4 events.json."}</span>
-      {waiting ? <button className="workflow-primary" onClick={onImport}><FileJson2 size={14} />Import events.json</button> : !processing && video.status !== "completed" && <button className="workflow-primary" onClick={() => onProcess(video.video_id)}><Activity size={14} />{failed ? "Try again" : "Run tracking"}</button>}
+      <span>{video.status === "completed" ? "Analysis is ready to search and download." : processing ? "The surveillance pipeline is running in the background." : "Run the complete video understanding pipeline."}</span>
+      {video.status === "completed" ? <a className="workflow-primary" href={video.analysis_url}><FileJson2 size={14} />Download analysis JSON</a> : !processing && <button className="workflow-primary" onClick={() => onProcess(video.video_id)}><Activity size={14} />{failed ? "Try again" : "Run full pipeline"}</button>}
     </div>
   </div>;
 }

@@ -60,6 +60,6 @@ class TrackingResult(BaseModel):
 
     video_id: str
     total_tracks: int
+    backend: str = "byte_track"
     tracks: List[Track] = Field(default_factory=list)
-
 

@@ -4,6 +4,11 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 import json
 import importlib.util
+import math
+import os
+import tempfile
+from threading import Lock
+import uuid
 import yaml
 from time import perf_counter
 from server.src.utils.paths import paths
@@ -23,6 +28,8 @@ from server.src.storage.schemas import EventRecord, AnomalyRecord, TrackRecord
 from server.src.evidence.clip_generator import ClipGenerator
 from server.src.utils.timing import StageTimings
 from server.src.utils.device import log_device_diagnostics
+from server.src.utils.video_utils import get_video_info
+from server.src.pipeline.json_input import matching_video_names, validate_windows_payload
 
 
 class SurveillancePipeline:
@@ -35,6 +42,9 @@ class SurveillancePipeline:
     ):
         self.store = store or metadata_store
         self.vec_store = vec_store or vector_store
+        self._stage1b_lock = Lock()
+        self._stage1b_tracker = None
+        self._stage1b_tracker_signature = None
 
         # Pipeline submodules
         self.windower = TemporalWindower(
@@ -75,6 +85,10 @@ class SurveillancePipeline:
         )).resolve()
         required = [tracker_script, weights_path, bytetrack_yaml, stage1_config]
         missing = [str(path) for path in required if not path.exists()]
+        if weights_path.exists() and weights_path.stat().st_size < 1024:
+            missing.append(f"{weights_path} (Git LFS pointer; model weights are not hydrated)")
+        if importlib.util.find_spec("ultralytics") is None:
+            missing.append("ultralytics package")
         if missing:
             if config_loader.get("stage1b.allow_detector_fallback", True):
                 logger.warning(
@@ -96,17 +110,55 @@ class SurveillancePipeline:
             raise ImportError(f"Could not load Stage 1b tracker from {tracker_script}")
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        tracker = module.SurveillanceTracker(
-            weights_path=str(weights_path),
-            class_names=class_names,
-            bytetrack_yaml=str(bytetrack_yaml),
-            detect_conf=float(config_loader.get("detection.conf_threshold", 0.20)),
-            imgsz=int(model_config.get("imgsz", 640)),
-            frame_stride=int(config_loader.get("tracking.frame_stride", 1)),
-            device=config_loader.get("runtime.device", "auto"),
+        frame_stride = self._frame_stride(video_path)
+        tracker_signature = (
+            str(weights_path),
+            tuple(sorted(class_names.items())),
+            float(config_loader.get("stage1b.track_conf_threshold", 0.10)),
+            int(model_config.get("imgsz", 640)),
+            config_loader.get("runtime.device", "auto"),
         )
-        tracks_df = tracker.process_video(str(video_path), video_id=video_id, camera_id=video_id)
+        tracker_config = yaml.safe_load(bytetrack_yaml.read_text(encoding="utf-8")) or {}
+        original_buffer = int(tracker_config.get("track_buffer", 30))
+        tracker_config["track_buffer"] = max(1, math.ceil(original_buffer / frame_stride))
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            suffix=".yaml",
+            prefix=f"{video_id}_bytetrack_",
+            dir=paths.outputs_dir,
+            delete=False,
+            encoding="utf-8",
+        ) as tracker_config_file:
+            yaml.safe_dump(tracker_config, tracker_config_file, sort_keys=False)
+            tracker_config_path = Path(tracker_config_file.name)
+        try:
+            with self._stage1b_lock:
+                if (
+                    self._stage1b_tracker is None
+                    or self._stage1b_tracker_signature != tracker_signature
+                ):
+                    self._stage1b_tracker = module.SurveillanceTracker(
+                        weights_path=str(weights_path),
+                        class_names=class_names,
+                        bytetrack_yaml=str(tracker_config_path),
+                        detect_conf=tracker_signature[2],
+                        imgsz=tracker_signature[3],
+                        frame_stride=frame_stride,
+                        device=tracker_signature[4],
+                    )
+                    self._stage1b_tracker_signature = tracker_signature
+                tracker = self._stage1b_tracker
+                tracker.frame_stride = frame_stride
+                tracker.bytetrack_yaml = str(tracker_config_path)
+                tracker.model.predictor = None
+                tracks_df = tracker.process_video(
+                    str(video_path), video_id=video_id, camera_id=video_id
+                )
+        finally:
+            tracker_config_path.unlink(missing_ok=True)
+        tracking_backend = "yolo_bytetrack"
         if tracks_df.empty and config_loader.get("stage1b.allow_detector_fallback", True):
+            tracking_backend = "opencv_motion_byte_track"
             logger.warning(
                 "Stage 1b returned no tracks; using the existing OpenCV-compatible "
                 "detector with the local ByteTrack association implementation."
@@ -164,7 +216,24 @@ class SurveillancePipeline:
                 ))
         if not tracks and config_loader.get("stage1b.allow_detector_fallback", True):
             return self._run_detector_fallback(video_path, video_id)
-        return TrackingResult(video_id=video_id, total_tracks=len(tracks), tracks=tracks)
+        return TrackingResult(
+            video_id=video_id,
+            total_tracks=len(tracks),
+            backend=tracking_backend,
+            tracks=tracks,
+        )
+
+    @staticmethod
+    def _frame_stride(video_path: Path) -> int:
+        """Resolve a configured source-frame stride or derive one from sample_fps."""
+        configured = int(config_loader.get("stage1b.frame_stride", 0))
+        if configured > 0:
+            return configured
+        video_fps = get_video_info(video_path)["fps"]
+        target_fps = float(config_loader.get("video.sample_fps", 4.0))
+        if target_fps <= 0:
+            raise ValueError("video.sample_fps must be greater than zero")
+        return max(1, math.ceil(video_fps / target_fps))
 
     def _run_detector_fallback(self, video_path: Path, video_id: str) -> TrackingResult:
         """Use the repository's lightweight detector when Stage 1b emits no usable tracks."""
@@ -197,14 +266,16 @@ class SurveillancePipeline:
                 })
         import pandas as pd
         pd.DataFrame(rows).to_csv(paths.tracks_dir / f"{video_id}_tracks.csv", index=False)
+        result.backend = "opencv_motion_byte_track"
         return result
 
-    def process_video(self, video_id: str) -> Dict[str, Any]:
-        """Run complete understanding pipeline on an ingested video.
-
-        Available stages: Stage 1b YOLO+ByteTrack and Stage 2 temporal windowing.
-        Stage 4 events can be imported from the VISTA-generated JSON endpoint.
-        """
+    def process_video(
+        self,
+        video_id: str,
+        precomputed_windows: Optional[list[Dict[str, Any]]] = None,
+        pipeline_mode: str = "full",
+    ) -> Dict[str, Any]:
+        """Run the video-only pipeline or continue from notebook temporal-window JSON."""
         video = self.store.get_video(video_id)
         if not video:
             raise ValueError(f"Video {video_id} not found in metadata store")
@@ -220,12 +291,15 @@ class SurveillancePipeline:
         self.store.update_video_status(video_id, "processing")
 
         try:
-            # Stage 1b: use the real VISTA detector+ByteTrack code, not a heuristic fallback.
-            logger.info("Stage 1b: Running YOLO + ByteTrack...")
-            with timings.measure("detection_tracking"):
-                tracking_result = self._run_stage1b(video_path, video_id)
-            self.store.insert_tracks(
-                [
+            video_info = get_video_info(video_path)
+            tracking_result = None
+            tracks_csv_path = paths.tracks_dir / f"{video_id}_tracks.csv"
+            windows_json_path = paths.windows_dir / f"{video_id}_windows.json"
+            if precomputed_windows is None:
+                logger.info("Stage 1: Running sampled YOLO + ByteTrack...")
+                with timings.measure("detection_tracking"):
+                    tracking_result = self._run_stage1b(video_path, video_id)
+                self.store.insert_tracks([
                     TrackRecord(
                         video_id=video_id,
                         track_id=track.track_id,
@@ -235,60 +309,36 @@ class SurveillancePipeline:
                         total_observations=len(track.observations),
                     )
                     for track in tracking_result.tracks
-                ],
-            )
+                ])
+                with timings.measure("temporal_events"):
+                    temporal_windows = self.windower.generate_windows(
+                        tracking_result, video.duration_sec
+                    )
+                windows_data = self._serialize_windows(
+                    video_id, temporal_windows, tracking_result,
+                    video_info["width"], video_info["height"],
+                )
+                self._write_json(windows_json_path, {"windows": windows_data})
+            else:
+                logger.info("Direct JSON mode: validating supplied temporal windows...")
+                with timings.measure("temporal_events"):
+                    windows_data = validate_windows_payload(
+                        {"windows": precomputed_windows},
+                        matching_video_names(video.filename, video_id),
+                        video.duration_sec,
+                    )
+                for window in windows_data:
+                    window["video_id"] = video_id
+                    window.setdefault("camera_id", video_id)
+                self._write_json(windows_json_path, {"windows": windows_data})
 
-            # Stage 1b writes the per-video CSV as part of _run_stage1b.
-            tracks_csv_path = paths.tracks_dir / f"{video_id}_tracks.csv"
+            logger.info("Stage 3: Running Qwen2.5-VL event understanding...")
+            with timings.measure("vlm"):
+                windows_data, vlm_model_available = self.vlm.process_windows(
+                    video_id, windows_data, video_path
+                )
 
-            # Stage 2: Temporal Windowing
-            logger.info("Stage 2/5: Generating Temporal Windows & Candidate Events...")
-            with timings.measure("temporal_events"):
-                windows = self.windower.generate_windows(tracking_result, video.duration_sec)
-
-            # Export windows JSON
-            windows_json_path = paths.windows_dir / f"{video_id}_windows.json"
-            windows_data = []
-            for window in windows:
-                start_sec, end_sec = window.start_sec, window.end_sec
-                window_tracks = []
-                for track in tracking_result.tracks:
-                    if track.track_id not in window.track_ids:
-                        continue
-                    observations = [
-                        obs for obs in track.observations
-                        if start_sec <= obs.timestamp_sec <= end_sec
-                    ]
-                    if len(observations) > 1:
-                        first, last = observations[0].bbox, observations[-1].bbox
-                        displacement = ((last.center_x - first.center_x) ** 2 + (last.center_y - first.center_y) ** 2) ** 0.5
-                        dwell = observations[-1].timestamp_sec - observations[0].timestamp_sec
-                    else:
-                        displacement, dwell = 0.0, 0.0
-                    candidates = [
-                        event.event_type for event in window.candidate_events
-                        if track.track_id in event.entity_ids
-                    ]
-                    window_tracks.append({
-                        "track_id": int(track.track_id),
-                        "class": track.class_name,
-                        "dwell_sec": round(float(dwell), 3),
-                        "displacement_px": round(float(displacement), 2),
-                        "mean_speed": round(float(displacement / dwell), 2) if dwell > 0 else 0.0,
-                        "zones": [],
-                        "near": [],
-                        "candidate_events": candidates,
-                    })
-                windows_data.append({
-                    "video_id": video_id,
-                    "camera_id": video_id,
-                    "window": [float(start_sec), float(end_sec)],
-                    "tracks": window_tracks,
-                })
-            with open(windows_json_path, "w", encoding="utf-8") as f:
-                json.dump({"windows": windows_data}, f, indent=2)
-
-            logger.info("Stage 3: Running AnomalyCLIP feature classifier...")
+            logger.info("Stage 4: Running video anomaly detection...")
             with timings.measure("anomaly"):
                 anomaly_summary = self.anomaly_detector.detect_anomalies(
                     video_path, video_id, video.duration_sec, tracking_result
@@ -307,62 +357,114 @@ class SurveillancePipeline:
                 for segment in anomaly_summary.anomaly_segments
             ])
 
-            logger.info("Stage 4: Grounding candidate events with Qwen2.5-VL...")
-            with timings.measure("vlm"):
-                understanding = self.vlm.enrich_and_verify_events(
-                    video_id, windows, tracking_result, video_path
-                )
             records = []
-            for semantic in understanding.events:
-                overlapping = [
-                    segment for segment in anomaly_summary.anomaly_segments
-                    if segment.end_sec >= semantic.start_sec and segment.start_sec <= semantic.end_sec
-                ]
-                anomaly = max(overlapping, key=lambda item: item.confidence, default=None)
-                clip_path = self.clip_generator.cut_evidence_clip(
-                    video_path,
-                    semantic.start_sec,
-                    semantic.end_sec,
-                    semantic.event_id,
-                    video.duration_sec,
-                )
-                records.append(EventRecord(
-                    event_id=semantic.event_id,
-                    video_id=video_id,
-                    event_type=semantic.event_type,
-                    start_sec=semantic.start_sec,
-                    end_sec=semantic.end_sec,
-                    entity_ids=semantic.entity_ids,
-                    description=semantic.description,
-                    confidence=semantic.confidence,
-                    anomaly_category=anomaly.category if anomaly else "Unassessed",
-                    anomaly_confidence=anomaly.confidence if anomaly else 0.0,
-                    vlm_verified=semantic.vlm_verified,
-                    clip_path=clip_path,
-                    metadata={
-                        **semantic.metadata,
-                        "anomaly_model_available": anomaly_summary.model_available,
-                        "anomaly_model": anomaly_summary.model_name,
-                    },
-                ))
+            event_index = 0
+            for window_index, window in enumerate(windows_data):
+                for event in window.get("events", []):
+                    start_sec = float(event.get("abs_start", window["window"][0] + event["start"]))
+                    end_sec = float(event.get("abs_end", window["window"][0] + event["end"]))
+                    overlapping = [
+                        segment for segment in anomaly_summary.anomaly_segments
+                        if segment.end_sec >= start_sec and segment.start_sec <= end_sec
+                    ]
+                    anomaly = max(overlapping, key=lambda item: item.confidence, default=None)
+                    event_id = event.get("event_id") or (
+                        "ev_" + uuid.uuid5(
+                            uuid.NAMESPACE_URL,
+                            f"{video_id}:{window_index}:{event_index}:{event['event_type']}:{start_sec}",
+                        ).hex[:20]
+                    )
+                    event_index += 1
+                    event["abs_start"] = start_sec
+                    event["abs_end"] = end_sec
+                    event["anomaly_category"] = anomaly.category if anomaly else "Unassessed"
+                    event["anomaly_confidence"] = anomaly.confidence if anomaly else 0.0
+                    event["event_id"] = event_id
+                    clip_path = self.clip_generator.cut_evidence_clip(
+                        video_path, start_sec, end_sec, event_id, video.duration_sec
+                    )
+                    entity_ids = [
+                        int(track_id)
+                        for track_id in (
+                            event.get("subject_track"), event.get("object_track")
+                        )
+                        if track_id is not None
+                    ]
+                    records.append(EventRecord(
+                        event_id=event_id,
+                        video_id=video_id,
+                        event_type=str(event["event_type"]).lower(),
+                        start_sec=start_sec,
+                        end_sec=end_sec,
+                        entity_ids=entity_ids,
+                        description=event["description"],
+                        confidence=float(event.get("confidence", 0.5)),
+                        anomaly_category=anomaly.category if anomaly else "Unassessed",
+                        anomaly_confidence=anomaly.confidence if anomaly else 0.0,
+                        vlm_verified=bool(event.get("vlm_verified", False)),
+                        clip_path=clip_path,
+                        metadata={
+                            "window_id": window_index + 1,
+                            "camera_id": window.get("camera_id"),
+                            "zone": event.get("zone"),
+                            "pipeline_mode": pipeline_mode,
+                            "anomaly_model_available": anomaly_summary.model_available,
+                            "anomaly_model": anomaly_summary.model_name,
+                        },
+                    ))
+
             with timings.measure("persistence_evidence"):
                 self.store.insert_events(records)
                 self.vec_store.add_events(records)
 
+            analysis_path = paths.outputs_dir / f"{video_id}_analysis.json"
+            summary = {
+                "video_id": video_id,
+                "pipeline_mode": pipeline_mode,
+                "status": "completed",
+                "tracking_backend": (
+                    tracking_result.backend if tracking_result else "precomputed_json"
+                ),
+                "total_tracks": tracking_result.total_tracks if tracking_result else
+                    len({int(track["track_id"]) for window in windows_data for track in window["tracks"]}),
+                "total_windows": len(windows_data),
+                "total_events": len(records),
+                "total_anomalies": sum(
+                    1 for segment in anomaly_summary.anomaly_segments if segment.is_anomaly
+                ),
+                "total_anomaly_segments": len(anomaly_summary.anomaly_segments),
+                "vlm_model_available": vlm_model_available,
+                "anomaly_model_available": anomaly_summary.model_available,
+                "processing_time_sec": round(perf_counter() - processing_started, 4),
+                "stage_timings_sec": timings.values,
+            }
+            output_payload = {
+                "video_id": video_id,
+                "filename": video.filename,
+                "pipeline_mode": pipeline_mode,
+                "summary": summary,
+                "anomaly_summary": anomaly_summary.model_dump(mode="json"),
+                "windows": windows_data,
+            }
+            self._write_json(analysis_path, output_payload)
             self.store.update_video_status(video_id, "completed")
             logger.info(f"Complete pipeline finished for {video_id}: {len(records)} events")
 
             return {
                 "video_id": video_id,
                 "status": "completed",
-                "message": "Detection, tracking, temporal events, anomaly assessment, VLM grounding, persistence, and evidence generation completed.",
-                "total_tracks": tracking_result.total_tracks,
-                "total_windows": len(windows),
+                "message": "Temporal windows, Qwen event understanding, anomaly assessment, persistence, and final JSON export completed.",
+                "total_tracks": summary["total_tracks"],
+                "tracking_backend": summary["tracking_backend"],
+                "total_windows": len(windows_data),
                 "total_events": len(records),
-                "total_anomalies": len(anomaly_summary.anomaly_segments),
+                "total_anomalies": summary["total_anomalies"],
+                "total_anomaly_segments": summary["total_anomaly_segments"],
                 "anomaly_model_available": anomaly_summary.model_available,
-                "tracks_csv": str(tracks_csv_path),
+                "tracks_csv": str(tracks_csv_path) if tracking_result else None,
                 "windows_json": str(windows_json_path),
+                "analysis_json": str(analysis_path),
+                "vlm_model_available": vlm_model_available,
                 "stage_timings_sec": timings.values,
                 "processing_time_sec": round(perf_counter() - processing_started, 4),
             }
@@ -370,7 +472,118 @@ class SurveillancePipeline:
         except Exception as e:
             logger.exception(f"Pipeline failed for {video_id}: {e}")
             self.store.update_video_status(video_id, "failed", error_message=str(e))
-            raise e
+            raise
+
+    @staticmethod
+    def _serialize_windows(video_id, windows, tracking_result, frame_width, frame_height):
+        """Serialize track summaries using the Stage 2/4 notebook window schema."""
+        grid_names = [
+            "top_left", "top_mid", "top_right", "mid_left", "center", "mid_right",
+            "bottom_left", "bottom_mid", "bottom_right",
+        ]
+        output = []
+        for window in windows:
+            start_sec, end_sec = window.start_sec, window.end_sec
+            tracks = []
+            active_tracks = []
+            for track in tracking_result.tracks:
+                observations = [
+                    item for item in track.observations
+                    if start_sec <= item.timestamp_sec <= end_sec
+                ]
+                if not observations:
+                    continue
+                active_tracks.append((track, observations))
+                centers = [(item.bbox.center_x, item.bbox.center_y) for item in observations]
+                displacement = math.hypot(
+                    centers[-1][0] - centers[0][0], centers[-1][1] - centers[0][1]
+                )
+                path_length = sum(
+                    math.hypot(current[0] - previous[0], current[1] - previous[1])
+                    for previous, current in zip(centers, centers[1:])
+                )
+                dwell = observations[-1].timestamp_sec - observations[0].timestamp_sec
+                zones = sorted({
+                    grid_names[
+                        min(int(center_y / max(frame_height, 1) * 3), 2) * 3
+                        + min(int(center_x / max(frame_width, 1) * 3), 2)
+                    ]
+                    for center_x, center_y in centers
+                })
+                candidates = sorted({
+                    event.event_type
+                    for event in window.candidate_events
+                    if track.track_id in event.entity_ids
+                })
+                tracks.append({
+                    "track_id": int(track.track_id),
+                    "class": track.class_name,
+                    "dwell_sec": round(float(dwell), 2),
+                    "displacement_px": round(float(displacement), 1),
+                    "mean_speed": round(float(path_length / dwell), 1) if dwell > 0 else 0.0,
+                    "zones": zones,
+                    "near": [],
+                    "candidate_events": candidates,
+                })
+
+            track_summary = {item["track_id"]: item for item in tracks}
+            median_person_height = sorted(
+                track.median_height for track, _ in active_tracks
+                if track.class_name.lower() == "person"
+            )
+            proximity_px = median_person_height[len(median_person_height) // 2] if median_person_height else 100.0
+            observations_by_track = {
+                track.track_id: {item.frame_idx: item for item in observations}
+                for track, observations in active_tracks
+            }
+            for track, observations in active_tracks:
+                for other, other_observations in active_tracks:
+                    if track.track_id >= other.track_id:
+                        continue
+                    other_by_frame = observations_by_track[other.track_id]
+                    shared_observations = [
+                        (item, other_by_frame[item.frame_idx])
+                        for item in observations
+                        if item.frame_idx in other_by_frame
+                    ]
+                    distances = [
+                        math.hypot(
+                            item.bbox.center_x - other_item.bbox.center_x,
+                            item.bbox.center_y - other_item.bbox.center_y,
+                        )
+                        for item, other_item in shared_observations
+                    ]
+                    if distances and min(distances) <= proximity_px:
+                        shared_timestamps = [
+                            item.timestamp_sec for item, _ in shared_observations
+                        ]
+                        overlap_sec = max(shared_timestamps) - min(shared_timestamps)
+                        track_summary[track.track_id]["near"].append({
+                            "track_id": int(other.track_id),
+                            "class": other.class_name,
+                            "overlap_sec": round(overlap_sec, 1),
+                        })
+                        track_summary[other.track_id]["near"].append({
+                            "track_id": int(track.track_id),
+                            "class": track.class_name,
+                            "overlap_sec": round(overlap_sec, 1),
+                        })
+
+            output.append({
+                "video_id": video_id,
+                "camera_id": video_id,
+                "window": [float(start_sec), float(end_sec)],
+                "tracks": tracks,
+            })
+        return output
+
+    @staticmethod
+    def _write_json(path: Path, payload: Dict[str, Any]) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary_path = path.with_suffix(path.suffix + ".tmp")
+        with temporary_path.open("w", encoding="utf-8") as output_file:
+            json.dump(payload, output_file, indent=2, ensure_ascii=False, allow_nan=False)
+        os.replace(temporary_path, path)
 
 
 # Global pipeline instance

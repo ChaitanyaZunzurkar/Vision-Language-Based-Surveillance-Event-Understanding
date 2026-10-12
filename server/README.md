@@ -1,6 +1,6 @@
 ﻿# FastAPI application
 
-See the repository [README](../README.md) for setup, the Stage 1b/Stage 2 workflow, and Stage 4 JSON import instructions.
+See the repository [README](../README.md) for setup. The service provides both a complete video-only pipeline and a direct video + notebook windows JSON workflow.
 
 The API is started from the repository root with `python -m uvicorn server.app.main:app --reload`. Interactive endpoint documentation is available at `/docs`.
 
@@ -38,6 +38,37 @@ Event descriptions are embedded locally with
 index. The index is only a semantic accelerator; event records and all
 filtering remain in SQLite. The model is downloaded by Sentence Transformers
 to its normal local Hugging Face cache on first use.
+
+## Video understanding workflows
+
+Install `server/requirements.txt` before running the API. The full workflow
+samples video at `video.sample_fps` (4 fps by default), passes those frames
+through the configured YOLO checkpoint and ByteTrack, builds sliding temporal
+windows, runs Qwen2.5-VL on five evenly spaced frames per window, then runs the
+configured anomaly detector. `stage1b.frame_stride: 0` derives the YOLO stride
+from the video's native FPS and `video.sample_fps`; set a positive stride to
+override it. Track-buffer length is adjusted for the sampled cadence.
+The YOLO model and the lazily loaded Qwen model are reused across videos; YOLO
+tracking is serialized so tracker state cannot leak between concurrent videos.
+When the YOLO checkpoint is missing or is only a Git LFS pointer, the configured
+OpenCV motion + local ByteTrack fallback is used and identified in the analysis
+JSON's `tracking_backend`.
+
+In the UI, **Add footage** adds a video, then **Run full pipeline** starts all
+stages. **Video + JSON** accepts a video and a matching Stage 2/Stage 4
+notebook JSON (`{"windows":[...]}`), skips YOLO and ByteTrack, and reuses any
+events already present in each window. Windows without events are sent through
+Qwen before anomaly scoring. The JSON `video_id` must match the video filename
+stem; event track IDs and relative/absolute timestamps are validated.
+
+Both workflows write `server/data/outputs/<video_id>_analysis.json` with the
+notebook-compatible `windows` records plus a video-level `anomaly_summary`.
+Download it from `GET /api/pipeline/output/{video_id}` or the completed video
+card. If Qwen's Python dependencies are unavailable, only grounded
+motion-rule candidates are retained and marked unverified. The anomaly module
+reports `Unassessed` when its configured classifier and feature extractor are
+not available; the JSON records model availability rather than inventing a
+score.
 
 The default index files are:
 

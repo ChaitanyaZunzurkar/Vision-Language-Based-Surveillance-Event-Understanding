@@ -8,6 +8,7 @@ detection+tracking (Stage 2 temporal windowing, the testing notebook, etc.).
 import os
 import glob
 import re
+import math
 from pathlib import Path
 
 import cv2
@@ -64,6 +65,8 @@ class SurveillanceTracker:
 
         cap = cv2.VideoCapture(video_path)
         fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+        if not math.isfinite(fps) or fps <= 0 or fps > 240:
+            fps = 25.0
         cap.release()
 
         rows = []
@@ -81,19 +84,24 @@ class SurveillanceTracker:
             if result.boxes is None or result.boxes.id is None:
                 continue
             boxes = result.boxes
-            for i in range(len(boxes)):
-                cls_id = int(boxes.cls[i])
+            coordinates = boxes.xyxy.cpu().numpy()
+            confidences = boxes.conf.cpu().numpy()
+            class_ids = boxes.cls.cpu().numpy().astype(int)
+            track_ids = boxes.id.cpu().numpy().astype(int)
+            for coords, confidence, cls_id, track_id in zip(
+                coordinates, confidences, class_ids, track_ids
+            ):
                 rows.append({
                     "video_id": video_id, "camera_id": camera_id,
                     "frame_id": true_frame, "timestamp_sec": round(timestamp, 3),
-                    "x1": round(float(boxes.xyxy[i][0]), 1),
-                    "y1": round(float(boxes.xyxy[i][1]), 1),
-                    "x2": round(float(boxes.xyxy[i][2]), 1),
-                    "y2": round(float(boxes.xyxy[i][3]), 1),
-                    "confidence": round(float(boxes.conf[i]), 3),
+                    "x1": round(float(coords[0]), 1),
+                    "y1": round(float(coords[1]), 1),
+                    "x2": round(float(coords[2]), 1),
+                    "y2": round(float(coords[3]), 1),
+                    "confidence": round(float(confidence), 3),
                     "class_id": cls_id,
                     "class_name": self.class_names.get(cls_id, str(cls_id)),
-                    "track_id": int(boxes.id[i]),
+                    "track_id": int(track_id),
                 })
         return pd.DataFrame(rows, columns=self.SCHEMA_COLUMNS)
 

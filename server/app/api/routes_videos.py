@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Optional
 import shutil
 import uuid
+import json
 import aiofiles
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks, Depends
 from pydantic import BaseModel
@@ -13,6 +14,8 @@ from server.src.pipeline.ingestion import VideoIngestor
 from server.src.pipeline.pipeline import SurveillancePipeline
 from server.src.utils.paths import paths
 from server.src.utils.logger import logger
+from server.src.utils.video_utils import get_video_info
+from server.src.pipeline.json_input import validate_windows_payload
 from server.src.storage.vector_store import VectorStore
 from server.app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
 
@@ -30,6 +33,7 @@ class VideoResponse(BaseModel):
     error_message: Optional[str] = None
     created_at: str
     stream_url: str
+    analysis_url: str
 
 
 def to_response(v: VideoRecord) -> VideoResponse:
@@ -46,6 +50,7 @@ def to_response(v: VideoRecord) -> VideoResponse:
         error_message=v.error_message,
         created_at=v.created_at,
         stream_url=stream_url,
+        analysis_url=f"/api/pipeline/output/{v.video_id}",
     )
 
 
@@ -99,6 +104,73 @@ async def upload_video(
         raise HTTPException(status_code=500, detail=f"Failed to process video: {str(e)}")
 
 
+@router.post("/upload-direct", response_model=VideoResponse)
+async def upload_video_with_windows(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    json_file: UploadFile = File(...),
+    store: MetadataStore = Depends(get_metadata_store),
+    ingestor: VideoIngestor = Depends(get_ingestor),
+    pipeline: SurveillancePipeline = Depends(get_pipeline),
+):
+    """Ingest a video plus notebook-format windows JSON and skip detection/tracking."""
+    if not file.filename or not json_file.filename:
+        raise HTTPException(status_code=400, detail="Select both a video and a windows JSON file")
+    if Path(file.filename).suffix.lower() not in {".mp4", ".avi", ".mov", ".mkv"}:
+        raise HTTPException(status_code=400, detail="Unsupported video format")
+    if Path(json_file.filename).suffix.lower() != ".json":
+        raise HTTPException(status_code=400, detail="The accompanying file must be .json")
+
+    try:
+        json_bytes = await json_file.read(50 * 1024 * 1024 + 1)
+        if len(json_bytes) > 50 * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="Windows JSON exceeds the 50 MB upload limit")
+        try:
+            payload = json.loads(json_bytes.decode("utf-8-sig"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise HTTPException(status_code=400, detail=f"Invalid JSON file: {exc}") from exc
+
+        safe_filename = Path(file.filename).name
+        temp_path = paths.uploads_dir / (
+            f"tmp_{uuid.uuid4().hex}{Path(safe_filename).suffix.lower()}"
+        )
+        async with aiofiles.open(temp_path, "wb") as output:
+            while chunk := await file.read(1024 * 1024):
+                await output.write(chunk)
+
+        video_info = get_video_info(temp_path)
+        try:
+            windows = validate_windows_payload(
+                payload, {Path(safe_filename).stem}, video_info["duration_sec"]
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+        record = ingestor.ingest_video(temp_path, original_filename=safe_filename)
+        if temp_path.exists() and temp_path.resolve() != Path(record.file_path).resolve():
+            temp_path.unlink()
+        if record.status == "processing":
+            raise HTTPException(status_code=409, detail="This video is already being processed")
+        store.update_video_status(record.video_id, "processing")
+        record.status = "processing"
+        background_tasks.add_task(
+            pipeline.process_video,
+            record.video_id,
+            windows,
+            "direct_json",
+        )
+        return to_response(record)
+    except HTTPException:
+        if "temp_path" in locals() and temp_path.exists():
+            temp_path.unlink()
+        raise
+    except Exception as exc:
+        logger.exception("Error handling direct video + JSON upload: %s", exc)
+        if "temp_path" in locals() and temp_path.exists():
+            temp_path.unlink()
+        raise HTTPException(status_code=500, detail=f"Failed to process direct upload: {exc}") from exc
+
+
 @router.get("", response_model=List[VideoResponse])
 def list_videos(store: MetadataStore = Depends(get_metadata_store)):
     """List all registered surveillance videos."""
@@ -138,6 +210,7 @@ def delete_video(
         *((Path(event.clip_path), paths.clips_dir) for event in events if event.clip_path),
         (paths.tracks_dir / f"{video_id}_tracks.csv", paths.tracks_dir),
         (paths.windows_dir / f"{video_id}_windows.json", paths.windows_dir),
+        (paths.outputs_dir / f"{video_id}_analysis.json", paths.outputs_dir),
     ]
     for file_path, managed_dir in managed_files:
         try:

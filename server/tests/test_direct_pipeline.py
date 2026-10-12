@@ -1,0 +1,293 @@
+import json
+from pathlib import Path
+
+import cv2
+import numpy as np
+import pytest
+import shutil
+from fastapi.testclient import TestClient
+from server.src.anomaly.schemas import ClipAnomalyScore, VideoAnomalySummary
+from server.app.main import app
+from server.app.api.deps import get_ingestor, get_metadata_store, get_pipeline
+from server.src.detection.schemas import BoundingBox
+from server.src.event_understanding.qwen import VLMEventUnderstanding
+from server.src.event_understanding.schemas import TemporalWindow
+from server.src.pipeline.json_input import validate_windows_payload
+from server.src.pipeline.pipeline import SurveillancePipeline
+from server.src.config.loader import config_loader
+from server.src.storage.metadata_store import MetadataStore
+from server.src.storage.schemas import VideoRecord
+from server.src.tracking.schemas import Track, TrackObservation, TrackingResult
+
+
+def _make_video(path: Path, duration_sec: int = 4) -> None:
+    writer = cv2.VideoWriter(
+        str(path), cv2.VideoWriter_fourcc(*"mp4v"), 10.0, (96, 64)
+    )
+    for frame_index in range(duration_sec * 10):
+        frame = np.zeros((64, 96, 3), dtype=np.uint8)
+        cv2.rectangle(frame, (10 + frame_index, 10), (25 + frame_index, 50), (255, 255, 255), -1)
+        writer.write(frame)
+    writer.release()
+
+
+def _windows(video_id: str):
+    return [{
+        "video_id": video_id,
+        "camera_id": video_id,
+        "window": [0.0, 4.0],
+        "tracks": [{
+            "track_id": 3,
+            "class": "Person",
+            "dwell_sec": 2.0,
+            "displacement_px": 20.0,
+            "mean_speed": 10.0,
+            "zones": ["center"],
+            "near": [],
+            "candidate_events": ["walk"],
+        }],
+        "events": [{
+            "event_type": "walk",
+            "subject_track": 3,
+            "object_track": None,
+            "start": 1.0,
+            "end": 2.0,
+            "abs_start": 1.0,
+            "abs_end": 2.0,
+            "zone": "center",
+            "confidence": 0.9,
+            "description": "Person #3 walks across the center of the frame.",
+        }],
+    }]
+
+
+def test_windows_json_validation_checks_video_and_track_references():
+    valid = _windows("sample")
+    assert validate_windows_payload({"windows": valid}, {"sample"}, 4.0) == valid
+
+    invalid = _windows("other")
+    with pytest.raises(ValueError, match="do not match"):
+        validate_windows_payload({"windows": invalid}, {"sample"}, 4.0)
+
+    invalid = _windows("sample")
+    invalid[0]["events"][0]["subject_track"] = 99
+    with pytest.raises(ValueError, match="unknown subject_track"):
+        validate_windows_payload({"windows": invalid}, {"sample"}, 4.0)
+
+
+def test_existing_notebook_events_are_normalized_without_model_loading(tmp_path):
+    vlm = VLMEventUnderstanding()
+    enriched, model_available = vlm.process_windows(
+        "sample", _windows("sample"), tmp_path / "unused.mp4"
+    )
+    event = enriched[0]["events"][0]
+    assert model_available is False
+    assert (event["start"], event["end"]) == (1.0, 2.0)
+    assert (event["abs_start"], event["abs_end"]) == (1.0, 2.0)
+    assert event["vlm_verified"] is False
+
+
+def test_qwen_event_output_is_track_grounded_and_gets_absolute_times():
+    window = _windows("sample")[0]
+    window.pop("events")
+    events = VLMEventUnderstanding._validate_response(
+        json.dumps({
+            "events": [{
+                "event_type": "walk",
+                "subject_track": 3,
+                "object_track": None,
+                "start": 1.0,
+                "end": 2.0,
+                "confidence": 0.9,
+                "description": "Person #3 walks through the frame.",
+            }]
+        }),
+        window,
+        0,
+    )
+    assert events[0]["abs_start"] == 1.0
+    assert events[0]["abs_end"] == 2.0
+    assert events[0]["vlm_verified"] is True
+
+    with pytest.raises(ValueError, match="not present"):
+        VLMEventUnderstanding._validate_response(
+            '{"events":[{"event_type":"walk","subject_track":99,"start":0,"end":1,"description":"Walk"}]}',
+            window,
+            0,
+        )
+
+
+def test_frame_stride_respects_sample_rate_and_manual_override(tmp_path, monkeypatch):
+    config = {"stage1b.frame_stride": 0, "video.sample_fps": 4.0}
+    monkeypatch.setattr(config_loader, "get", lambda key, default=None: config.get(key, default))
+    monkeypatch.setattr(
+        "server.src.pipeline.pipeline.get_video_info", lambda _: {"fps": 29.97}
+    )
+    assert SurveillancePipeline._frame_stride(tmp_path / "source.mp4") == 8
+
+    config["stage1b.frame_stride"] = 3
+    assert SurveillancePipeline._frame_stride(tmp_path / "source.mp4") == 3
+
+
+def test_window_track_proximity_uses_shared_frames_and_timestamps():
+    def make_track(track_id, offset):
+        return Track(
+            track_id=track_id,
+            class_name="Person",
+            start_sec=0.0,
+            end_sec=1.0,
+            observations=[
+                TrackObservation(
+                    frame_idx=frame_idx,
+                    timestamp_sec=timestamp,
+                    bbox=BoundingBox(
+                        x1=offset, y1=0, x2=offset + 20, y2=40
+                    ),
+                    confidence=0.9,
+                )
+                for frame_idx, timestamp in [(0, 0.0), (5, 0.5), (10, 1.0)]
+            ],
+        )
+
+    serialized = SurveillancePipeline._serialize_windows(
+        "sample",
+        [TemporalWindow(window_id=1, start_sec=0.0, end_sec=1.0)],
+        TrackingResult(
+            video_id="sample",
+            total_tracks=2,
+            tracks=[make_track(1, 0), make_track(2, 10)],
+        ),
+        frame_width=100,
+        frame_height=100,
+    )
+
+    assert serialized[0]["tracks"][0]["near"][0]["overlap_sec"] == 1.0
+    assert serialized[0]["tracks"][1]["near"][0]["overlap_sec"] == 1.0
+
+
+def test_direct_json_pipeline_skips_tracking_and_writes_analysis_json(tmp_path, monkeypatch):
+    video_path = tmp_path / "sample.mp4"
+    _make_video(video_path)
+    store = MetadataStore(db_path=tmp_path / "events.db")
+    record = VideoRecord(
+        video_id="video-test",
+        filename=video_path.name,
+        file_path=str(video_path),
+        duration_sec=4.0,
+        fps=10.0,
+        frame_count=40,
+        resolution="96x64",
+    )
+    store.save_video(record)
+
+    class VectorStoreStub:
+        def add_events(self, events):
+            self.events = events
+
+    pipeline = SurveillancePipeline(store=store, vec_store=VectorStoreStub())
+    pipeline.clip_generator.output_dir = tmp_path / "clips"
+
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("Direct JSON mode must not run YOLO or ByteTrack")
+
+    pipeline._run_stage1b = fail_if_called
+    pipeline.anomaly_detector.detect_anomalies = lambda *args, **kwargs: VideoAnomalySummary(
+        video_id="video-test",
+        overall_category="Unassessed",
+        overall_confidence=0.0,
+        is_anomalous=False,
+        model_available=False,
+        anomaly_segments=[
+            ClipAnomalyScore(
+                clip_id="video-test_c001",
+                start_sec=0.0,
+                end_sec=4.0,
+                category="Unassessed",
+                confidence=0.0,
+                is_anomaly=False,
+            )
+        ],
+    )
+    monkeypatch.setattr("server.src.pipeline.pipeline.paths.outputs_dir", tmp_path / "outputs")
+    monkeypatch.setattr("server.src.pipeline.pipeline.paths.windows_dir", tmp_path / "windows")
+    monkeypatch.setattr("server.src.pipeline.pipeline.paths.tracks_dir", tmp_path / "tracks")
+
+    result = pipeline.process_video(
+        "video-test",
+        precomputed_windows=_windows("sample"),
+        pipeline_mode="direct_json",
+    )
+
+    output_path = Path(result["analysis_json"])
+    assert output_path.is_file()
+    output = json.loads(output_path.read_text(encoding="utf-8"))
+    assert output["pipeline_mode"] == "direct_json"
+    assert output["summary"]["total_windows"] == 1
+    assert output["summary"]["tracking_backend"] == "precomputed_json"
+    assert output["summary"]["total_anomalies"] == 0
+    assert output["summary"]["total_anomaly_segments"] == 1
+    assert output["windows"][0]["events"][0]["abs_start"] == 1.0
+    assert output["windows"][0]["events"][0]["anomaly_category"] == "Unassessed"
+    assert store.get_events(video_id="video-test")[0].start_sec == 1.0
+
+
+def test_direct_upload_api_validates_pair_and_starts_direct_mode(tmp_path, monkeypatch):
+    video_path = tmp_path / "sample.mp4"
+    _make_video(video_path)
+    saved_video_path = tmp_path / "stored" / video_path.name
+    saved_video_path.parent.mkdir()
+
+    class StoreStub:
+        def __init__(self):
+            self.status_updates = []
+
+        def update_video_status(self, video_id, status):
+            self.status_updates.append((video_id, status))
+
+    class IngestorStub:
+        def ingest_video(self, source_path, original_filename):
+            shutil.copy2(source_path, saved_video_path)
+            return VideoRecord(
+                video_id="video-test",
+                filename=original_filename,
+                file_path=str(saved_video_path),
+                duration_sec=4.0,
+                fps=10.0,
+                frame_count=40,
+                resolution="96x64",
+            )
+
+    class PipelineStub:
+        def __init__(self):
+            self.calls = []
+
+        def process_video(self, *args):
+            self.calls.append(args)
+
+    store = StoreStub()
+    pipeline = PipelineStub()
+    app.dependency_overrides[get_metadata_store] = lambda: store
+    app.dependency_overrides[get_ingestor] = IngestorStub
+    app.dependency_overrides[get_pipeline] = lambda: pipeline
+    try:
+        response = TestClient(app).post(
+            "/api/videos/upload-direct",
+            files={
+                "file": (video_path.name, video_path.read_bytes(), "video/mp4"),
+                "json_file": (
+                    "sample.json",
+                    json.dumps({"windows": _windows("sample")}).encode(),
+                    "application/json",
+                ),
+            },
+        )
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json()["analysis_url"] == "/api/pipeline/output/video-test"
+    assert response.json()["status"] == "processing"
+    assert store.status_updates == [("video-test", "processing")]
+    assert pipeline.calls[0][0] == "video-test"
+    assert pipeline.calls[0][1][0]["video_id"] == "sample"
+    assert pipeline.calls[0][2] == "direct_json"
