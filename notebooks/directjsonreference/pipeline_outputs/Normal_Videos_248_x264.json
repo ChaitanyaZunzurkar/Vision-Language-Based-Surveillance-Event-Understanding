@@ -1,0 +1,3075 @@
+{
+  "windows": [
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        2.43,
+        12.43
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 17.0,
+          "mean_speed": 9.9,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 2,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Person",
+          "dwell_sec": 0.5,
+          "displacement_px": 3.8,
+          "mean_speed": 14.1,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 4.9,
+          "displacement_px": 5.8,
+          "mean_speed": 6.7,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 0.5,
+          "mean_speed": 7.4,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.5
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.7,
+          "displacement_px": 6.6,
+          "mean_speed": 13.7,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.6,
+          "displacement_px": 1.7,
+          "mean_speed": 15.6,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 1,
+          "object_track": null,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 2.43,
+          "abs_end": 3.83,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #1 enters the scene through the entrance."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 2,
+          "object_track": 1,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 3.83,
+          "abs_end": 5.33,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #2 approaches Person #1 near the entrance."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 3,
+          "object_track": 1,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 5.33,
+          "abs_end": 6.73,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #3 approaches Person #1 near the entrance."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 4,
+          "object_track": 1,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 6.73,
+          "abs_end": 8.13,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #4 approaches Person #1 near the entrance."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 5,
+          "object_track": 1,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 8.13,
+          "abs_end": 9.53,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #5 approaches Person #1 near the entrance."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 6,
+          "object_track": 1,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 9.53,
+          "abs_end": 11.03,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #6 approaches Person #1 near the entrance."
+        }
+      ]
+    },
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        7.43,
+        17.43
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 68.4,
+          "mean_speed": 14.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 9.2
+            },
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.1
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 9.9,
+          "displacement_px": 40.5,
+          "mean_speed": 10.3,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 9.2
+            },
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.7
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 0.5,
+          "mean_speed": 7.4,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.5
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 5.7,
+          "displacement_px": 62.3,
+          "mean_speed": 19.4,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.7
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.6,
+          "displacement_px": 1.7,
+          "mean_speed": 15.6,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 7,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 0.6,
+          "mean_speed": 3.6,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 4.53,
+          "displacement_px": 31.2,
+          "mean_speed": 14.5,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 3.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.7
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 3.77,
+          "displacement_px": 24.0,
+          "mean_speed": 13.9,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 3.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.7
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 2.5,
+          "displacement_px": 2.8,
+          "mean_speed": 10.3,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.7
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 2.0,
+          "displacement_px": 40.1,
+          "mean_speed": 26.8,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.2
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 1.57,
+          "displacement_px": 9.9,
+          "mean_speed": 10.9,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 1.1
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 1.7
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 1.7
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 1.7
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 1.7
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 1.7
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.2
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 1,
+          "object_track": null,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 7.43,
+          "abs_end": 8.83,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #1 enters the scene from the entrance."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 3,
+          "object_track": null,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 8.83,
+          "abs_end": 10.33,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #3 enters the scene from the entrance."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 4,
+          "object_track": null,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 11.73,
+          "abs_end": 13.13,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #4 enters the scene from the entrance."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 5,
+          "object_track": null,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 13.13,
+          "abs_end": 14.53,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #5 enters the scene from the entrance."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 6,
+          "object_track": null,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 14.53,
+          "abs_end": 16.03,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #6 enters the scene from the entrance."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 7,
+          "object_track": null,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 16.03,
+          "abs_end": 17.43,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "Person #7 enters the scene from the entrance."
+        }
+      ]
+    },
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        12.43,
+        22.43
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Person",
+          "dwell_sec": 9.03,
+          "displacement_px": 126.0,
+          "mean_speed": 29.6,
+          "zones": [
+            "bottom_mid",
+            "bottom_right",
+            "center",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 8.2
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 8.8
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 4.3
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 4.6
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 5.5
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.1
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 92.8,
+          "mean_speed": 18.4,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 8.2
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 8.4
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 7.9
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 7.6
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 5.0
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 5.1
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 5.4
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 104.7,
+          "mean_speed": 22.0,
+          "zones": [
+            "bottom_mid",
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 8.8
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 8.4
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 8.0
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 8.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 6.0
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 3.7
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 7,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 0.6,
+          "mean_speed": 3.6,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 9.53,
+          "displacement_px": 99.8,
+          "mean_speed": 16.9,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 4.3
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 7.9
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 8.0
+            },
+            {
+              "track_id": 7,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 8.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 7.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 6.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 6.7
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 8.77,
+          "displacement_px": 117.4,
+          "mean_speed": 19.0,
+          "zones": [
+            "center",
+            "mid_right",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 4.6
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 7.6
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 8.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 8.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 6.3
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 6.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 6.7
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 7.5,
+          "displacement_px": 24.9,
+          "mean_speed": 12.1,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 5.0
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 2.6
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 7.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 6.3
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 3.7
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 6.7
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 7.0,
+          "displacement_px": 121.7,
+          "mean_speed": 25.2,
+          "zones": [
+            "bottom_right",
+            "center",
+            "mid_right",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 5.5
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 5.1
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 6.0
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 6.4
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 6.4
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 3.7
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 3.8
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 6.57,
+          "displacement_px": 74.0,
+          "mean_speed": 19.6,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 1.1
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 5.4
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 3.7
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 6.7
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 6.7
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 6.7
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 3.8
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 0.0,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 4.7,
+          "mean_speed": 12.9,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 0.73,
+          "displacement_px": 0.8,
+          "mean_speed": 1.8,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 1,
+          "object_track": null,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 12.43,
+          "abs_end": 13.83,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #1 enters the scene from the left side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 3,
+          "object_track": null,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 13.83,
+          "abs_end": 15.33,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #3 enters the scene from the right side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 5,
+          "object_track": null,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 15.33,
+          "abs_end": 16.73,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #5 enters the scene from the right side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 7,
+          "object_track": null,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 16.73,
+          "abs_end": 18.13,
+          "zone": "top_mid",
+          "confidence": 1.0,
+          "description": "Person #7 enters the scene from the top."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 8,
+          "object_track": null,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 18.13,
+          "abs_end": 19.53,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #8 enters the scene from the right side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 9,
+          "object_track": null,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 19.53,
+          "abs_end": 21.03,
+          "zone": "mid_right",
+          "confidence": 1.0,
+          "description": "Person #9 enters the scene from the right side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 10,
+          "object_track": null,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 21.03,
+          "abs_end": 22.43,
+          "zone": "top_mid",
+          "confidence": 1.0,
+          "description": "Person #10 enters the scene from the right side."
+        }
+      ]
+    },
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        17.43,
+        27.43
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Person",
+          "dwell_sec": 4.03,
+          "displacement_px": 81.8,
+          "mean_speed": 43.8,
+          "zones": [
+            "bottom_mid",
+            "bottom_right",
+            "center",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 3.2
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 3.8
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 4.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 115.9,
+          "mean_speed": 27.2,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 3.2
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 4.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 8.3
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 8.1
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 5.3
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 5.7
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 7.3
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 6.03,
+          "displacement_px": 64.2,
+          "mean_speed": 26.1,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 3.8
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 4.5
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 4.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 3.2
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 84.9,
+          "mean_speed": 29.5,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 8.3
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 4.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 8.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 7.3
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 6.6
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 6.9
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 9.23,
+          "displacement_px": 113.6,
+          "mean_speed": 26.0,
+          "zones": [
+            "bottom_mid",
+            "bottom_right",
+            "center",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 8.1
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 8.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 4.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 7.0
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 8.9
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 123.2,
+          "mean_speed": 20.0,
+          "zones": [
+            "bottom_mid",
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 5.3
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 7.3
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 4.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 2.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 7.8
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 0.6
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 6.83,
+          "displacement_px": 102.9,
+          "mean_speed": 27.2,
+          "zones": [
+            "bottom_mid",
+            "bottom_right",
+            "center",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Person",
+              "overlap_sec": 4.2
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 5.7
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 5.8
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 6.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 7.0
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.4
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 9.77,
+          "displacement_px": 158.3,
+          "mean_speed": 28.6,
+          "zones": [
+            "bottom_right",
+            "center",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 7.3
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 3.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 6.9
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 8.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 7.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 0.0,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 4.7,
+          "mean_speed": 12.9,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 1.97,
+          "displacement_px": 3.9,
+          "mean_speed": 3.1,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 18,
+          "class": "Person",
+          "dwell_sec": 1.27,
+          "displacement_px": 34.4,
+          "mean_speed": 41.2,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 22,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 1.7,
+          "mean_speed": 48.9,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 24,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 4.3,
+          "mean_speed": 17.9,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 25,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 4.6,
+          "mean_speed": 16.4,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 3,
+          "object_track": null,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 18.83,
+          "abs_end": 20.33,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #3 enters the scene wearing a red shirt and blue jeans."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 5,
+          "object_track": null,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 20.33,
+          "abs_end": 21.73,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #5 enters the scene wearing a white shirt and dark pants."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 8,
+          "object_track": null,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 21.73,
+          "abs_end": 23.13,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #8 enters the scene wearing a black t-shirt and jeans."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 9,
+          "object_track": null,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 23.13,
+          "abs_end": 24.53,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #9 enters the scene wearing a green shirt and jeans."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 10,
+          "object_track": null,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 24.53,
+          "abs_end": 26.03,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #10 enters the scene wearing a white shirt and jeans."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 11,
+          "object_track": null,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 26.03,
+          "abs_end": 27.43,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #11 enters the scene wearing a white shirt and jeans."
+        }
+      ]
+    },
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        22.43,
+        32.43
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 5.63,
+          "displacement_px": 129.4,
+          "mean_speed": 35.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 4.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 4.4
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 3.6
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 1.03,
+          "displacement_px": 31.1,
+          "mean_speed": 38.4,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 79.6,
+          "mean_speed": 33.3,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 4.6
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 3.1
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.6
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.9
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 4.23,
+          "displacement_px": 65.3,
+          "mean_speed": 29.5,
+          "zones": [
+            "bottom_mid",
+            "bottom_right",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 4.4
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 1.0
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 5.8,
+          "displacement_px": 110.4,
+          "mean_speed": 28.7,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.8
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 3.1
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 1.0
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 2.8
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 1.83,
+          "displacement_px": 42.1,
+          "mean_speed": 34.2,
+          "zones": [
+            "bottom_mid",
+            "bottom_right"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 1.6
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 2.0
+            },
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 4.77,
+          "displacement_px": 100.9,
+          "mean_speed": 34.9,
+          "zones": [
+            "bottom_right",
+            "center",
+            "mid_right"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 3.6
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 1.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 1.9
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 3.9
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 2.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 1.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 0.2,
+          "displacement_px": 1.9,
+          "mean_speed": 12.1,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 18,
+          "class": "Person",
+          "dwell_sec": 1.27,
+          "displacement_px": 34.4,
+          "mean_speed": 41.2,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 22,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 1.7,
+          "mean_speed": 48.9,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 24,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 4.3,
+          "mean_speed": 17.9,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 25,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 4.6,
+          "mean_speed": 16.4,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 26,
+          "class": "Person",
+          "dwell_sec": 0.7,
+          "displacement_px": 11.1,
+          "mean_speed": 18.5,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 27,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 28,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 27,
+          "class": "Person",
+          "dwell_sec": 1.0,
+          "displacement_px": 16.2,
+          "mean_speed": 17.8,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 26,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 28,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 28,
+          "class": "Person",
+          "dwell_sec": 0.0,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 26,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 27,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 29,
+          "class": "Person",
+          "dwell_sec": 0.1,
+          "displacement_px": 0.7,
+          "mean_speed": 7.4,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "walk",
+          "subject_track": 3,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 22.43,
+          "abs_end": 32.43,
+          "zone": "bottom_left -> bottom_mid -> center",
+          "confidence": 1.0,
+          "description": "Person #3 walks from the bottom left towards the center."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": 5,
+          "object_track": null,
+          "start": 1.4,
+          "end": 1.4,
+          "abs_start": 23.83,
+          "abs_end": 23.83,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #5 walks from the bottom mid towards the center."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": 8,
+          "object_track": null,
+          "start": 2.9,
+          "end": 10.0,
+          "abs_start": 25.33,
+          "abs_end": 32.43,
+          "zone": "bottom_mid -> center",
+          "confidence": 1.0,
+          "description": "Person #8 walks from the bottom mid towards the center."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": 9,
+          "object_track": null,
+          "start": 4.3,
+          "end": 10.0,
+          "abs_start": 26.73,
+          "abs_end": 32.43,
+          "zone": "bottom_mid -> bottom_right -> mid_right",
+          "confidence": 1.0,
+          "description": "Person #9 walks from the bottom mid towards the right."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": 10,
+          "object_track": null,
+          "start": 4.3,
+          "end": 10.0,
+          "abs_start": 26.73,
+          "abs_end": 32.43,
+          "zone": "bottom_mid -> center",
+          "confidence": 1.0,
+          "description": "Person #10 walks from the bottom mid towards the center."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": 11,
+          "object_track": null,
+          "start": 2.9,
+          "end": 10.0,
+          "abs_start": 25.33,
+          "abs_end": 32.43,
+          "zone": "bottom_mid -> bottom_right",
+          "confidence": 1.0,
+          "description": "Person #11 walks from the bottom mid towards the right."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": 12,
+          "object_track": null,
+          "start": 4.3,
+          "end": 10.0,
+          "abs_start": 26.73,
+          "abs_end": 32.43,
+          "zone": "bottom_right -> center -> mid_right",
+          "confidence": 1.0,
+          "description": "Person #12 walks from the bottom right towards the center."
+        }
+      ]
+    },
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        27.43,
+        37.43
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 0.63,
+          "displacement_px": 37.5,
+          "mean_speed": 60.5,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 5.53,
+          "displacement_px": 96.5,
+          "mean_speed": 24.9,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 0.8,
+          "displacement_px": 27.4,
+          "mean_speed": 38.4,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 26,
+          "class": "Person",
+          "dwell_sec": 0.7,
+          "displacement_px": 11.1,
+          "mean_speed": 18.5,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 27,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 28,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 27,
+          "class": "Person",
+          "dwell_sec": 1.0,
+          "displacement_px": 16.2,
+          "mean_speed": 17.8,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 26,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 28,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 28,
+          "class": "Person",
+          "dwell_sec": 0.0,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 26,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 27,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 29,
+          "class": "Person",
+          "dwell_sec": 0.1,
+          "displacement_px": 0.7,
+          "mean_speed": 7.4,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 3,
+          "object_track": null,
+          "start": 10.0,
+          "end": 10.0,
+          "abs_start": 37.43,
+          "abs_end": 37.43,
+          "zone": "bottom_left",
+          "confidence": 1.0,
+          "description": "Person #3 enters the scene from the bottom left corner."
+        }
+      ]
+    },
+    {
+      "video_id": "Normal_Videos_248_x264",
+      "camera_id": "Normal_Videos_248_x264",
+      "window": [
+        32.43,
+        42.43
+      ],
+      "tracks": [
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 0.53,
+          "displacement_px": 4.9,
+          "mean_speed": 10.0,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ],
+      "events": [
+        {
+          "event_type": "scene_description",
+          "subject_track": null,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 32.43,
+          "abs_end": 42.43,
+          "zone": "entrance",
+          "confidence": 1.0,
+          "description": "A person wearing a white shirt and dark pants exits through the entrance of a building."
+        }
+      ]
+    }
+  ]
+}

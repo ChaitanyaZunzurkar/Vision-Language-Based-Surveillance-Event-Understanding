@@ -1,0 +1,967 @@
+{
+  "windows": [
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        0.13,
+        10.13
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Gun",
+          "dwell_sec": 0.4,
+          "displacement_px": 2.4,
+          "mean_speed": 13.5,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 8.5,
+          "mean_speed": 50.1,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 2.5,
+          "mean_speed": 22.8,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.47,
+          "displacement_px": 14.6,
+          "mean_speed": 38.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 0.2,
+          "displacement_px": 17.1,
+          "mean_speed": 86.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 3.1,
+          "displacement_px": 7.2,
+          "mean_speed": 24.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.5
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 0.67,
+          "displacement_px": 13.0,
+          "mean_speed": 21.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.63,
+          "displacement_px": 2.7,
+          "mean_speed": 19.1,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 0.13,
+          "end": 1.4,
+          "abs_start": 0.26,
+          "abs_end": 1.53,
+          "zone": "mid_left",
+          "confidence": 0.9,
+          "description": "Person #8 approaches Person #10 from the left side."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 1.53,
+          "abs_end": 3.03,
+          "zone": "mid_left",
+          "confidence": 0.8,
+          "description": "Person #8 and Person #10 engage in a physical interaction near the table."
+        },
+        {
+          "event_type": "push",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 3.03,
+          "abs_end": 4.43,
+          "zone": "mid_left",
+          "confidence": 0.7,
+          "description": "Person #8 pushes Person #10 towards the right side of the frame."
+        },
+        {
+          "event_type": "struggle",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 4.43,
+          "abs_end": 5.83,
+          "zone": "mid_left",
+          "confidence": 0.6,
+          "description": "Person #8 and Person #10 engage in a struggle near the table."
+        },
+        {
+          "event_type": "push",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 5.83,
+          "abs_end": 7.23,
+          "zone": "mid_left",
+          "confidence": 0.7,
+          "description": "Person #8 pushes Person #10 again towards the right side of the frame."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 7.23,
+          "abs_end": 8.73,
+          "zone": "mid_left",
+          "confidence": 0.8,
+          "description": "Person #8 and Person #10 continue their physical interaction near the table."
+        },
+        {
+          "event_type": "push",
+          "subject_track": 8,
+          "object_track": 10,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 8.73,
+          "abs_end": 10.13,
+          "zone": "mid_left",
+          "confidence": 0.7,
+          "description": "Person #8 pushes Person #10 again towards the right side of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        5.13,
+        15.13
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 5.27,
+          "displacement_px": 42.4,
+          "mean_speed": 25.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.7
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 3.03,
+          "displacement_px": 21.7,
+          "mean_speed": 13.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.97,
+          "displacement_px": 3.6,
+          "mean_speed": 20.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.7
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 2.4,
+          "displacement_px": 1.6,
+          "mean_speed": 22.3,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 14,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 14,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 1.6,
+          "mean_speed": 31.2,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 0.1,
+          "displacement_px": 2.0,
+          "mean_speed": 21.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 0.07,
+          "displacement_px": 0.1,
+          "mean_speed": 5.7,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 5.13,
+          "abs_end": 6.53,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #9 approaches Person #10 from behind, both wearing dark uniforms."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 6.53,
+          "abs_end": 8.03,
+          "zone": "close to #10",
+          "confidence": 0.9,
+          "description": "Person #9 grabs Person #10 around the waist, causing Person #10 to step back slightly."
+        },
+        {
+          "event_type": "push",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 8.03,
+          "abs_end": 9.43,
+          "zone": "close to #10",
+          "confidence": 0.9,
+          "description": "Person #9 pushes Person #10 forward, who stumbles slightly but regains balance."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 10,
+          "object_track": 9,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 9.43,
+          "abs_end": 10.83,
+          "zone": "close to #9",
+          "confidence": 0.9,
+          "description": "Person #10 approaches Person #9, appearing to regain composure after the push."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 10,
+          "object_track": 9,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 10.83,
+          "abs_end": 12.23,
+          "zone": "close to #9",
+          "confidence": 0.9,
+          "description": "Person #10 grabs Person #9 again, this time more firmly, as Person #9 steps back."
+        },
+        {
+          "event_type": "struggle",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 12.23,
+          "abs_end": 13.73,
+          "zone": "close to #9",
+          "confidence": 0.9,
+          "description": "A struggle ensues between Person #9 and Person #10, with both individuals moving closer together."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 13.73,
+          "abs_end": 15.13,
+          "zone": "close to #9",
+          "confidence": 0.9,
+          "description": "Person #9 appears to gain the upper hand, pushing Person #10 further back."
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        10.13,
+        20.13
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 1.9,
+          "displacement_px": 46.2,
+          "mean_speed": 30.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 1.83,
+          "displacement_px": 5.9,
+          "mean_speed": 9.7,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.8
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 1.5,
+          "mean_speed": 26.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 7.13,
+          "displacement_px": 3.0,
+          "mean_speed": 17.7,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 14,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 1.1
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.5
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 14,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 1.6,
+          "mean_speed": 31.2,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 2.37,
+          "displacement_px": 32.0,
+          "mean_speed": 18.6,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 1.1
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 3.33,
+          "displacement_px": 25.9,
+          "mean_speed": 12.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 1.5
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 11.53,
+          "abs_end": 13.03,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "Person #9 approaches Person #10 from behind, both wearing dark uniforms."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 13.03,
+          "abs_end": 14.43,
+          "zone": "close to #10",
+          "confidence": 0.8,
+          "description": "Person #9 grabs Person #10 around the waist, both standing near a table."
+        },
+        {
+          "event_type": "struggle",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 14.43,
+          "abs_end": 15.83,
+          "zone": "close to #10",
+          "confidence": 0.8,
+          "description": "Person #9 and Person #10 struggle, with Person #9 attempting to control Person #10."
+        },
+        {
+          "event_type": "push",
+          "subject_track": 11,
+          "object_track": 10,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 15.83,
+          "abs_end": 17.23,
+          "zone": "close to #9",
+          "confidence": 0.8,
+          "description": "Person #11, wearing a light uniform, pushes Person #10 away from Person #9."
+        },
+        {
+          "event_type": "stand",
+          "subject_track": 10,
+          "object_track": null,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 17.23,
+          "abs_end": 18.73,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "Person #10 stands up after being pushed away."
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        15.13,
+        25.13
+      ],
+      "tracks": [
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 3.9,
+          "displacement_px": 2.2,
+          "mean_speed": 17.3,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.9
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.5
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 1.83,
+          "displacement_px": 23.7,
+          "mean_speed": 19.3,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.9
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 3.23,
+          "displacement_px": 26.0,
+          "mean_speed": 12.7,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 1.5
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 17,
+          "class": "Person",
+          "dwell_sec": 0.47,
+          "displacement_px": 35.7,
+          "mean_speed": 99.0,
+          "zones": [
+            "center",
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 15,
+          "object_track": 16,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 15.13,
+          "abs_end": 25.13,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #15 and Person #16 engage in a physical altercation, with Person #15 appearing to push or grab Person #16."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 16,
+          "object_track": 15,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 15.13,
+          "abs_end": 25.13,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #16 responds to Person #15's actions, possibly pushing back or attempting to defend themselves."
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        20.13,
+        30.13
+      ],
+      "tracks": [
+        {
+          "track_id": 17,
+          "class": "Person",
+          "dwell_sec": 0.73,
+          "displacement_px": 48.5,
+          "mean_speed": 80.8,
+          "zones": [
+            "center",
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 17,
+          "object_track": null,
+          "start": 0.0,
+          "end": 2.9,
+          "abs_start": 20.13,
+          "abs_end": 23.03,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #17 approaches and interacts with another individual, causing a physical altercation."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 17,
+          "object_track": null,
+          "start": 4.3,
+          "end": 7.1,
+          "abs_start": 24.43,
+          "abs_end": 27.23,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #17 continues the physical interaction, pushing and grappling with the other individual."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 17,
+          "object_track": null,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 27.23,
+          "abs_end": 28.73,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #17 maintains the physical contact, pushing the other individual to the ground."
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        25.13,
+        35.13
+      ],
+      "tracks": [
+        {
+          "track_id": 17,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.6,
+          "mean_speed": 18.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 17,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 25.13,
+          "abs_end": 35.13,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "A person wearing a white shirt and dark pants is lying on the ground while another individual in a light-colored shirt and dark pants is interacting with them."
+        }
+      ]
+    }
+  ]
+}

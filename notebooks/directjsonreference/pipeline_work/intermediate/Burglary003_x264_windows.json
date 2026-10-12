@@ -1,0 +1,582 @@
+{
+  "windows": [
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        0.0,
+        10.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 5.5,
+          "mean_speed": 144.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 2,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 11.4,
+          "mean_speed": 50.6,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        5.0,
+        15.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 4.5,
+          "mean_speed": 138.9,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 2,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 11.4,
+          "mean_speed": 50.6,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 2.8,
+          "displacement_px": 1.3,
+          "mean_speed": 63.0,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        10.0,
+        20.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 12.6,
+          "mean_speed": 109.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.9
+            },
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 2.8,
+          "displacement_px": 1.3,
+          "mean_speed": 63.0,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 2.8,
+          "mean_speed": 83.5,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.8,
+          "displacement_px": 22.6,
+          "mean_speed": 35.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        15.0,
+        25.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 6.0,
+          "displacement_px": 15.9,
+          "mean_speed": 64.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.9
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 2.8,
+          "mean_speed": 83.5,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.8,
+          "displacement_px": 22.6,
+          "mean_speed": 35.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 4.3,
+          "displacement_px": 4.8,
+          "mean_speed": 15.5,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 2.83,
+          "displacement_px": 18.8,
+          "mean_speed": 112.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        20.0,
+        30.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 1.0,
+          "displacement_px": 17.4,
+          "mean_speed": 119.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 9.3,
+          "displacement_px": 7.2,
+          "mean_speed": 19.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 7.9
+            }
+          ],
+          "candidate_events": [
+            "loiter",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 7.83,
+          "displacement_px": 11.1,
+          "mean_speed": 90.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 7.9
+            }
+          ],
+          "candidate_events": []
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        25.0,
+        35.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 63.1,
+          "mean_speed": 42.1,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 10.1
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 20.9,
+          "mean_speed": 95.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 10.1
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        30.0,
+        40.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 7.4,
+          "displacement_px": 72.2,
+          "mean_speed": 49.4,
+          "zones": [
+            "bottom_left",
+            "bottom_mid",
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 7.5
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 9.07,
+          "displacement_px": 17.9,
+          "mean_speed": 106.3,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 7.5
+            }
+          ],
+          "candidate_events": [
+            "exit",
+            "loiter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        35.0,
+        45.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 2.4,
+          "displacement_px": 6.3,
+          "mean_speed": 22.9,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 2.5
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 4.07,
+          "displacement_px": 21.9,
+          "mean_speed": 99.1,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 2.5
+            }
+          ],
+          "candidate_events": []
+        }
+      ]
+    }
+  ]
+}

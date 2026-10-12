@@ -1,0 +1,655 @@
+{
+  "windows": [
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        0.13,
+        10.13
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Gun",
+          "dwell_sec": 0.4,
+          "displacement_px": 2.4,
+          "mean_speed": 13.5,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 8.5,
+          "mean_speed": 50.1,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 2.5,
+          "mean_speed": 22.8,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.47,
+          "displacement_px": 14.6,
+          "mean_speed": 38.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 8,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 0.2,
+          "displacement_px": 17.1,
+          "mean_speed": 86.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 3.1,
+          "displacement_px": 7.2,
+          "mean_speed": 24.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.5
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 0.67,
+          "displacement_px": 13.0,
+          "mean_speed": 21.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.6
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.63,
+          "displacement_px": 2.7,
+          "mean_speed": 19.1,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.5
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        5.13,
+        15.13
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 5.27,
+          "displacement_px": 42.4,
+          "mean_speed": 25.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.7
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 3.03,
+          "displacement_px": 21.7,
+          "mean_speed": 13.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 1.4
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.97,
+          "displacement_px": 3.6,
+          "mean_speed": 20.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.7
+            },
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 2.4,
+          "displacement_px": 1.6,
+          "mean_speed": 22.3,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 14,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 14,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 1.6,
+          "mean_speed": 31.2,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 0.1,
+          "displacement_px": 2.0,
+          "mean_speed": 21.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 0.07,
+          "displacement_px": 0.1,
+          "mean_speed": 5.7,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        10.13,
+        20.13
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 1.9,
+          "displacement_px": 46.2,
+          "mean_speed": 30.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.8
+            },
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 1.83,
+          "displacement_px": 5.9,
+          "mean_speed": 9.7,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.8
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 1.5,
+          "mean_speed": 26.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 7.13,
+          "displacement_px": 3.0,
+          "mean_speed": 17.7,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 14,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 1.1
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.5
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 14,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 1.6,
+          "mean_speed": 31.2,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 2.37,
+          "displacement_px": 32.0,
+          "mean_speed": 18.6,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 1.1
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 3.33,
+          "displacement_px": 25.9,
+          "mean_speed": 12.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 1.5
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        15.13,
+        25.13
+      ],
+      "tracks": [
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 3.9,
+          "displacement_px": 2.2,
+          "mean_speed": 17.3,
+          "zones": [
+            "bottom_mid",
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.9
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.5
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 1.83,
+          "displacement_px": 23.7,
+          "mean_speed": 19.3,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 0.9
+            },
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 3.23,
+          "displacement_px": 26.0,
+          "mean_speed": 12.7,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 13,
+              "class": "Person",
+              "overlap_sec": 1.5
+            },
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 1.0
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 17,
+          "class": "Person",
+          "dwell_sec": 0.47,
+          "displacement_px": 35.7,
+          "mean_speed": 99.0,
+          "zones": [
+            "center",
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        20.13,
+        30.13
+      ],
+      "tracks": [
+        {
+          "track_id": 17,
+          "class": "Person",
+          "dwell_sec": 0.73,
+          "displacement_px": 48.5,
+          "mean_speed": 80.8,
+          "zones": [
+            "center",
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Abuse005_x264",
+      "camera_id": "Abuse005_x264",
+      "window": [
+        25.13,
+        35.13
+      ],
+      "tracks": [
+        {
+          "track_id": 17,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.6,
+          "mean_speed": 18.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ]
+    }
+  ]
+}

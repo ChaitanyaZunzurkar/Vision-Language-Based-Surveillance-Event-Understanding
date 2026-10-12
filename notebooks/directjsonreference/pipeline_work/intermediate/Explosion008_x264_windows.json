@@ -1,0 +1,92 @@
+{
+  "windows": [
+    {
+      "video_id": "Explosion008_x264",
+      "camera_id": "Explosion008_x264",
+      "window": [
+        3.27,
+        13.27
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "bottom_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Car",
+          "dwell_sec": 1.17,
+          "displacement_px": 34.8,
+          "mean_speed": 30.3,
+          "zones": [
+            "bottom_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Explosion008_x264",
+      "camera_id": "Explosion008_x264",
+      "window": [
+        33.27,
+        43.27
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 3.4,
+          "mean_speed": 17.0,
+          "zones": [
+            "top_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Explosion008_x264",
+      "camera_id": "Explosion008_x264",
+      "window": [
+        38.27,
+        48.27
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 0.3,
+          "displacement_px": 3.4,
+          "mean_speed": 17.0,
+          "zones": [
+            "top_right"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,566 @@
+{
+  "windows": [
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        19.2,
+        29.2
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Gun",
+          "dwell_sec": 3.77,
+          "displacement_px": 151.5,
+          "mean_speed": 55.6,
+          "zones": [
+            "center",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 1,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 19.2,
+          "abs_end": 29.2,
+          "zone": "office",
+          "confidence": 0.9,
+          "description": "A man wearing a dark jacket and light-colored pants walks through the office, moving from left to right."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        34.2,
+        44.2
+      ],
+      "tracks": [
+        {
+          "track_id": 7,
+          "class": "Gun",
+          "dwell_sec": 0.77,
+          "displacement_px": 18.6,
+          "mean_speed": 24.4,
+          "zones": [
+            "center",
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 7,
+          "object_track": 7,
+          "start": 0.77,
+          "end": 10.0,
+          "abs_start": 34.97,
+          "abs_end": 44.2,
+          "zone": "center -> top_left",
+          "confidence": 1.0,
+          "description": "A person wearing a dark jacket and light-colored pants is seen moving towards another individual near the center of the frame. They appear to be engaging in some form of interaction, possibly a struggle or a push, as their movements suggest a physical encounter."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        39.2,
+        49.2
+      ],
+      "tracks": [
+        {
+          "track_id": 7,
+          "class": "Gun",
+          "dwell_sec": 0.77,
+          "displacement_px": 18.6,
+          "mean_speed": 24.4,
+          "zones": [
+            "center",
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 8,
+          "class": "Gun",
+          "dwell_sec": 4.13,
+          "displacement_px": 33.3,
+          "mean_speed": 60.3,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Gun",
+              "overlap_sec": 3.3
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 4.1,
+          "displacement_px": 14.8,
+          "mean_speed": 19.3,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 8,
+              "class": "Gun",
+              "overlap_sec": 3.3
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 8,
+          "object_track": 9,
+          "start": 4.1,
+          "end": 4.13,
+          "abs_start": 43.3,
+          "abs_end": 43.33,
+          "zone": "center -> top_mid",
+          "confidence": 1.0,
+          "description": "Person wearing a dark jacket and jeans interacts with another individual near the center of the frame."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 7,
+          "object_track": 9,
+          "start": 0.77,
+          "end": 4.13,
+          "abs_start": 39.97,
+          "abs_end": 43.33,
+          "zone": "center -> top_left",
+          "confidence": 1.0,
+          "description": "Person wearing a light-colored jacket and jeans engages in a physical interaction with another individual near the top left of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        44.2,
+        54.2
+      ],
+      "tracks": [
+        {
+          "track_id": 8,
+          "class": "Gun",
+          "dwell_sec": 4.13,
+          "displacement_px": 33.3,
+          "mean_speed": 60.3,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Gun",
+              "overlap_sec": 3.3
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 9.17,
+          "displacement_px": 42.7,
+          "mean_speed": 17.5,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 8,
+              "class": "Gun",
+              "overlap_sec": 3.3
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 9,
+          "object_track": 8,
+          "start": 4.13,
+          "end": 9.17,
+          "abs_start": 48.33,
+          "abs_end": 53.37,
+          "zone": "center -> top_mid",
+          "confidence": 0.9,
+          "description": "Person #8 and Person #9 engage in a physical interaction near the center of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        49.2,
+        59.2
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 7.03,
+          "displacement_px": 28.9,
+          "mean_speed": 14.0,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Gun",
+          "dwell_sec": 0.27,
+          "displacement_px": 3.6,
+          "mean_speed": 14.9,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 9,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 49.2,
+          "abs_end": 59.2,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "A person wearing a dark outfit approaches from the left side of the frame."
+        },
+        {
+          "event_type": "stand",
+          "subject_track": 9,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 49.2,
+          "abs_end": 59.2,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "The person stands still near the center of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        54.2,
+        64.2
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 2.27,
+          "displacement_px": 2.3,
+          "mean_speed": 8.1,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Gun",
+          "dwell_sec": 3.77,
+          "displacement_px": 5.1,
+          "mean_speed": 7.6,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 9,
+          "object_track": null,
+          "start": 0.0,
+          "end": 2.27,
+          "abs_start": 54.2,
+          "abs_end": 56.47,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "A person wearing a dark-colored jacket and light-colored pants enters the scene from the left side."
+        },
+        {
+          "event_type": "exit",
+          "subject_track": 11,
+          "object_track": null,
+          "start": 3.77,
+          "end": 5.87,
+          "abs_start": 57.97,
+          "abs_end": 60.07,
+          "zone": "top_mid",
+          "confidence": 1.0,
+          "description": "A person wearing a dark-colored jacket and light-colored pants exits the scene towards the right side."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        59.2,
+        69.2
+      ],
+      "tracks": [
+        {
+          "track_id": 11,
+          "class": "Gun",
+          "dwell_sec": 3.47,
+          "displacement_px": 7.9,
+          "mean_speed": 7.1,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 12,
+          "class": "Gun",
+          "dwell_sec": 1.73,
+          "displacement_px": 6.9,
+          "mean_speed": 10.4,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": null,
+          "object_track": 12,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 59.2,
+          "abs_end": 69.2,
+          "zone": "top_mid",
+          "confidence": 1.0,
+          "description": "A person wearing a grey hoodie approaches from the left side of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        64.2,
+        74.2
+      ],
+      "tracks": [
+        {
+          "track_id": 12,
+          "class": "Gun",
+          "dwell_sec": 1.8,
+          "displacement_px": 7.6,
+          "mean_speed": 11.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 12,
+          "object_track": null,
+          "start": 1.8,
+          "end": 10.0,
+          "abs_start": 66.0,
+          "abs_end": 74.2,
+          "zone": "top_mid",
+          "confidence": 1.0,
+          "description": "A person wearing a dark jacket and light-colored pants enters the scene from the left side."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        69.2,
+        79.2
+      ],
+      "tracks": [
+        {
+          "track_id": 12,
+          "class": "Gun",
+          "dwell_sec": 0.03,
+          "displacement_px": 1.3,
+          "mean_speed": 38.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 13,
+          "class": "Gun",
+          "dwell_sec": 2.93,
+          "displacement_px": 116.6,
+          "mean_speed": 48.1,
+          "zones": [
+            "center",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 12,
+          "object_track": 13,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 69.2,
+          "abs_end": 79.2,
+          "zone": "top_mid",
+          "confidence": 0.9,
+          "description": "A person wearing a dark jacket and light-colored pants approaches another individual near the doorway, engaging in a physical interaction."
+        }
+      ]
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "camera_id": "Arrest001_x264",
+      "window": [
+        74.2,
+        84.2
+      ],
+      "tracks": [
+        {
+          "track_id": 13,
+          "class": "Gun",
+          "dwell_sec": 2.93,
+          "displacement_px": 116.6,
+          "mean_speed": 48.1,
+          "zones": [
+            "center",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": null,
+          "object_track": 13,
+          "start": 0.0,
+          "end": 2.9,
+          "abs_start": 74.2,
+          "abs_end": 77.1,
+          "zone": "mid_left",
+          "confidence": 1.0,
+          "description": "A person wearing dark clothing enters the scene from the left."
+        },
+        {
+          "event_type": "exit",
+          "subject_track": 13,
+          "object_track": null,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 77.1,
+          "abs_end": 78.5,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "The same person exits the scene towards the center."
+        }
+      ]
+    }
+  ]
+}

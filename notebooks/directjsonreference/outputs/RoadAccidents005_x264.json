@@ -1,0 +1,58 @@
+{
+  "windows": [
+    {
+      "video_id": "RoadAccidents005_x264",
+      "camera_id": "RoadAccidents005_x264",
+      "window": [
+        3.13,
+        13.13
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 0.33,
+          "displacement_px": 11.4,
+          "mean_speed": 67.4,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Knife",
+          "dwell_sec": 2.63,
+          "displacement_px": 21.1,
+          "mean_speed": 41.6,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 1,
+          "object_track": 2,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 3.13,
+          "abs_end": 13.13,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "A person wearing dark clothing and a cap is seen interacting with another individual dressed in lighter attire. They appear to be engaged in a physical altercation, with movements suggesting pushing or grappling."
+        }
+      ]
+    }
+  ]
+}

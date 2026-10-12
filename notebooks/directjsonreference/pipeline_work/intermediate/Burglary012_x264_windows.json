@@ -1,0 +1,457 @@
+{
+  "windows": [
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        0.0,
+        10.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Person",
+          "dwell_sec": 1.83,
+          "displacement_px": 12.6,
+          "mean_speed": 33.6,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 1.1,
+          "displacement_px": 4.8,
+          "mean_speed": 40.6,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        5.0,
+        15.0
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 6.1,
+          "displacement_px": 38.3,
+          "mean_speed": 35.7,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        10.0,
+        20.0
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 6.63,
+          "displacement_px": 39.6,
+          "mean_speed": 42.1,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Gun",
+          "dwell_sec": 1.93,
+          "displacement_px": 10.8,
+          "mean_speed": 24.6,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        15.0,
+        25.0
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 1.63,
+          "displacement_px": 10.2,
+          "mean_speed": 63.4,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 4,
+          "class": "Gun",
+          "dwell_sec": 5.63,
+          "displacement_px": 40.7,
+          "mean_speed": 39.8,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        20.0,
+        30.0
+      ],
+      "tracks": [
+        {
+          "track_id": 4,
+          "class": "Gun",
+          "dwell_sec": 3.67,
+          "displacement_px": 31.5,
+          "mean_speed": 47.7,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.1,
+          "displacement_px": 8.0,
+          "mean_speed": 83.2,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.67,
+          "displacement_px": 1.3,
+          "mean_speed": 3.1,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        25.0,
+        35.0
+      ],
+      "tracks": [
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.1,
+          "displacement_px": 8.0,
+          "mean_speed": 83.2,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 2.17,
+          "displacement_px": 50.5,
+          "mean_speed": 41.8,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Gun",
+          "dwell_sec": 0.5,
+          "displacement_px": 8.3,
+          "mean_speed": 51.5,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        30.0,
+        40.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 1.47,
+          "displacement_px": 51.3,
+          "mean_speed": 59.9,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 8,
+          "class": "Gun",
+          "dwell_sec": 2.4,
+          "displacement_px": 40.8,
+          "mean_speed": 29.3,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        35.0,
+        45.0
+      ],
+      "tracks": [
+        {
+          "track_id": 8,
+          "class": "Gun",
+          "dwell_sec": 1.87,
+          "displacement_px": 38.4,
+          "mean_speed": 23.6,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 3.33,
+          "displacement_px": 37.2,
+          "mean_speed": 43.8,
+          "zones": [
+            "mid_left",
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        40.0,
+        50.0
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 6.7,
+          "displacement_px": 33.8,
+          "mean_speed": 45.5,
+          "zones": [
+            "mid_left",
+            "top_left"
+          ],
+          "near": [
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 0.7
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 0.73,
+          "displacement_px": 14.3,
+          "mean_speed": 49.9,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Gun",
+              "overlap_sec": 0.7
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        45.0,
+        55.0
+      ],
+      "tracks": [
+        {
+          "track_id": 9,
+          "class": "Gun",
+          "dwell_sec": 3.0,
+          "displacement_px": 67.2,
+          "mean_speed": 49.1,
+          "zones": [
+            "mid_left",
+            "top_left"
+          ],
+          "near": [
+            {
+              "track_id": 12,
+              "class": "Person",
+              "overlap_sec": 0.7
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 0.73,
+          "displacement_px": 14.3,
+          "mean_speed": 49.9,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 9,
+              "class": "Gun",
+              "overlap_sec": 0.7
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 13,
+          "class": "Gun",
+          "dwell_sec": 0.43,
+          "displacement_px": 5.0,
+          "mean_speed": 36.6,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary012_x264",
+      "camera_id": "Burglary012_x264",
+      "window": [
+        50.0,
+        60.0
+      ],
+      "tracks": [
+        {
+          "track_id": 13,
+          "class": "Gun",
+          "dwell_sec": 0.43,
+          "displacement_px": 5.0,
+          "mean_speed": 36.6,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ]
+    }
+  ]
+}

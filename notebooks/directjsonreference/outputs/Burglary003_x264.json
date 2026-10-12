@@ -1,0 +1,718 @@
+{
+  "windows": [
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        0.0,
+        10.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 5.5,
+          "mean_speed": 144.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 2,
+              "class": "Person",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 11.4,
+          "mean_speed": 50.6,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 2,
+          "object_track": 1,
+          "start": 1.4,
+          "end": 10.0,
+          "abs_start": 1.4,
+          "abs_end": 10.0,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #2, wearing a white shirt and dark pants, bends down and interacts closely with Person #1, who is wearing a light-colored shirt and dark pants, near the center of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        5.0,
+        15.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 4.5,
+          "mean_speed": 138.9,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 2,
+              "class": "Person",
+              "overlap_sec": 0.4
+            },
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Person",
+          "dwell_sec": 0.4,
+          "displacement_px": 11.4,
+          "mean_speed": 50.6,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.4
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 2.8,
+          "displacement_px": 1.3,
+          "mean_speed": 63.0,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 2,
+          "object_track": 1,
+          "start": 0.4,
+          "end": 2.9,
+          "abs_start": 5.4,
+          "abs_end": 7.9,
+          "zone": "bottom_left -> bottom_mid",
+          "confidence": 0.9,
+          "description": "Person #2 approaches Person #1 from the left side."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 2,
+          "object_track": 1,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 7.9,
+          "abs_end": 9.3,
+          "zone": "close to #1",
+          "confidence": 0.8,
+          "description": "Person #2 reaches out towards Person #1, making physical contact."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        10.0,
+        20.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 12.6,
+          "mean_speed": 109.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 3,
+              "class": "Person",
+              "overlap_sec": 2.9
+            },
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Person",
+          "dwell_sec": 2.8,
+          "displacement_px": 1.3,
+          "mean_speed": 63.0,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 2.8,
+          "mean_speed": 83.5,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.8,
+          "displacement_px": 22.6,
+          "mean_speed": 35.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 3,
+          "object_track": 1,
+          "start": 2.9,
+          "end": 10.0,
+          "abs_start": 12.9,
+          "abs_end": 20.0,
+          "zone": "bottom_mid",
+          "confidence": 0.8,
+          "description": "Person #3 approaches Person #1 from the bottom left corner."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        15.0,
+        25.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 6.0,
+          "displacement_px": 15.9,
+          "mean_speed": 64.8,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 4,
+              "class": "Person",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 5,
+              "class": "Person",
+              "overlap_sec": 0.9
+            },
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 2.8,
+          "mean_speed": 83.5,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.8,
+          "displacement_px": 22.6,
+          "mean_speed": 35.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.9
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 4.3,
+          "displacement_px": 4.8,
+          "mean_speed": 15.5,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 2.83,
+          "displacement_px": 18.8,
+          "mean_speed": 112.0,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 2.9
+            }
+          ],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "standing",
+          "subject_track": 6,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 15.0,
+          "abs_end": 25.0,
+          "zone": "bottom_mid",
+          "confidence": 1.0,
+          "description": "Person #6 stands in the bottom mid area of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        20.0,
+        30.0
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Knife",
+          "dwell_sec": 1.0,
+          "displacement_px": 17.4,
+          "mean_speed": 119.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 9.3,
+          "displacement_px": 7.2,
+          "mean_speed": 19.8,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 1,
+              "class": "Knife",
+              "overlap_sec": 0.1
+            },
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 7.9
+            }
+          ],
+          "candidate_events": [
+            "loiter",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 7.83,
+          "displacement_px": 11.1,
+          "mean_speed": 90.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 7.9
+            }
+          ],
+          "candidate_events": []
+        }
+      ],
+      "events": [
+        {
+          "event_type": "standing",
+          "subject_track": 6,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 20.0,
+          "abs_end": 30.0,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "A man wearing a white t-shirt and gray pants stands in a storage area, facing the camera."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 6,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 20.0,
+          "abs_end": 30.0,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "The man moves closer to the camera, shifting his weight slightly as he does so."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        25.0,
+        35.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 9.97,
+          "displacement_px": 63.1,
+          "mean_speed": 42.1,
+          "zones": [
+            "bottom_left",
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 10.1
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 9.97,
+          "displacement_px": 20.9,
+          "mean_speed": 95.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 10.1
+            }
+          ],
+          "candidate_events": [
+            "loiter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 6,
+          "object_track": 7,
+          "start": 9.97,
+          "end": 10.0,
+          "abs_start": 34.97,
+          "abs_end": 35.0,
+          "zone": "bottom_mid",
+          "confidence": 0.9,
+          "description": "Person #6 approaches Person #7, who is holding a knife."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        30.0,
+        40.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 7.4,
+          "displacement_px": 72.2,
+          "mean_speed": 49.4,
+          "zones": [
+            "bottom_left",
+            "bottom_mid",
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 7.5
+            }
+          ],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 9.07,
+          "displacement_px": 17.9,
+          "mean_speed": 106.3,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 7.5
+            }
+          ],
+          "candidate_events": [
+            "exit",
+            "loiter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 6,
+          "object_track": 7,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 37.1,
+          "abs_end": 38.6,
+          "zone": "bottom_left -> bottom_mid -> mid_left",
+          "confidence": 0.9,
+          "description": "Person #6, wearing a light-colored shirt and dark pants, holds a knife and interacts closely with Person #7, who is partially obscured but appears to be wearing a dark outfit."
+        }
+      ]
+    },
+    {
+      "video_id": "Burglary003_x264",
+      "camera_id": "Burglary003_x264",
+      "window": [
+        35.0,
+        45.0
+      ],
+      "tracks": [
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 2.4,
+          "displacement_px": 6.3,
+          "mean_speed": 22.9,
+          "zones": [
+            "bottom_left",
+            "mid_left"
+          ],
+          "near": [
+            {
+              "track_id": 7,
+              "class": "Knife",
+              "overlap_sec": 2.5
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 7,
+          "class": "Knife",
+          "dwell_sec": 4.07,
+          "displacement_px": 21.9,
+          "mean_speed": 99.1,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 6,
+              "class": "Person",
+              "overlap_sec": 2.5
+            }
+          ],
+          "candidate_events": []
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 6,
+          "object_track": 7,
+          "start": 2.4,
+          "end": 4.07,
+          "abs_start": 37.4,
+          "abs_end": 39.07,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #6, wearing a light-colored shirt, interacts with a knife #7, which is moving rapidly."
+        }
+      ]
+    }
+  ]
+}

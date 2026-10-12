@@ -1,0 +1,1902 @@
+{
+  "windows": [
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        7.2,
+        17.2
+      ],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "Person",
+          "dwell_sec": 2.27,
+          "displacement_px": 1.8,
+          "mean_speed": 4.3,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "Gun",
+          "dwell_sec": 0.13,
+          "displacement_px": 1.1,
+          "mean_speed": 8.6,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 1,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 7.2,
+          "abs_end": 17.2,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "A person wearing a dark shirt and light-colored pants approaches the roadblock, moving slowly towards the center of the frame."
+        },
+        {
+          "event_type": "stand",
+          "subject_track": 1,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 7.2,
+          "abs_end": 17.2,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "The person stops near the roadblock, standing still and facing forward."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        12.2,
+        22.2
+      ],
+      "tracks": [
+        {
+          "track_id": 3,
+          "class": "Gun",
+          "dwell_sec": 0.13,
+          "displacement_px": 1.1,
+          "mean_speed": 8.6,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 2.4,
+          "mean_speed": 8.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.2,
+          "mean_speed": 1.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 6,
+          "object_track": 7,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 12.2,
+          "abs_end": 22.2,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #6 and Person #7 engage in a physical interaction near the center of the frame."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        17.2,
+        27.2
+      ],
+      "tracks": [
+        {
+          "track_id": 4,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 2.4,
+          "mean_speed": 8.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 5,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 6,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 7,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.2,
+          "mean_speed": 1.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.9,
+          "zones": [
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 1.57,
+          "displacement_px": 16.5,
+          "mean_speed": 12.8,
+          "zones": [
+            "center",
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "physical_contact",
+          "subject_track": 9,
+          "object_track": 8,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 22.9,
+          "abs_end": 24.3,
+          "zone": "mid_right",
+          "confidence": 0.9,
+          "description": "Person #9, wearing dark clothing, bends down near Person #8, who is also in dark clothing. They appear to be interacting closely."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 8,
+          "object_track": 9,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 24.3,
+          "abs_end": 25.8,
+          "zone": "mid_right",
+          "confidence": 0.9,
+          "description": "Person #8, in dark clothing, stands up and moves slightly away from Person #9, who remains bent down."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        22.2,
+        32.2
+      ],
+      "tracks": [
+        {
+          "track_id": 8,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.9,
+          "zones": [
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 9,
+          "class": "Person",
+          "dwell_sec": 1.57,
+          "displacement_px": 16.5,
+          "mean_speed": 12.8,
+          "zones": [
+            "center",
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 1.27,
+          "displacement_px": 2.6,
+          "mean_speed": 6.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 9,
+          "object_track": 10,
+          "start": 1.57,
+          "end": 2.9,
+          "abs_start": 23.77,
+          "abs_end": 25.1,
+          "zone": "center -> mid_right",
+          "confidence": 0.8,
+          "description": "Person #9 approaches Person #10 from the center towards the mid-right."
+        },
+        {
+          "event_type": "standing",
+          "subject_track": 10,
+          "object_track": null,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 25.1,
+          "abs_end": 26.5,
+          "zone": "top_mid",
+          "confidence": 0.9,
+          "description": "Person #10 stands still near the top mid area."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        27.2,
+        37.2
+      ],
+      "tracks": [
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 5.7,
+          "displacement_px": 3.1,
+          "mean_speed": 2.9,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.5,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 10,
+          "object_track": 11,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 32.9,
+          "abs_end": 34.3,
+          "zone": "top_mid",
+          "confidence": 0.8,
+          "description": "Person #10 approaches Person #11, both wearing dark clothing and standing near the road."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        32.2,
+        42.2
+      ],
+      "tracks": [
+        {
+          "track_id": 10,
+          "class": "Person",
+          "dwell_sec": 4.4,
+          "displacement_px": 1.4,
+          "mean_speed": 2.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 11,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 11,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.5,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 10,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 10,
+          "object_track": 11,
+          "start": 4.4,
+          "end": 5.7,
+          "abs_start": 36.6,
+          "abs_end": 37.9,
+          "zone": "top_mid",
+          "confidence": 0.8,
+          "description": "Person #10 approaches Person #11, both standing near the top mid area."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 12,
+          "object_track": null,
+          "start": 0.0,
+          "end": 0.03,
+          "abs_start": 32.2,
+          "abs_end": 32.23,
+          "zone": "center",
+          "confidence": 0.7,
+          "description": "Person #12 approaches the center area, but no clear interaction is observed."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        37.2,
+        47.2
+      ],
+      "tracks": [
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.7,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 6.6,
+          "mean_speed": 16.4,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "standing",
+          "subject_track": 12,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 37.2,
+          "abs_end": 47.2,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #12 stands near the center of the frame, wearing dark clothing and observing the scene."
+        },
+        {
+          "event_type": "standing",
+          "subject_track": 13,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 37.2,
+          "abs_end": 47.2,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #13 stands near the center of the frame, wearing light-colored clothing and observing the scene."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        42.2,
+        52.2
+      ],
+      "tracks": [
+        {
+          "track_id": 12,
+          "class": "Person",
+          "dwell_sec": 0.07,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 13,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 6.6,
+          "mean_speed": 16.4,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 14,
+          "class": "Person",
+          "dwell_sec": 1.1,
+          "displacement_px": 13.4,
+          "mean_speed": 14.8,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 1.23,
+          "displacement_px": 3.7,
+          "mean_speed": 3.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 1.47,
+          "displacement_px": 4.4,
+          "mean_speed": 6.0,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 17,
+          "class": "Gun",
+          "dwell_sec": 2.2,
+          "displacement_px": 23.3,
+          "mean_speed": 13.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 19,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 18,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 19,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.7,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 17,
+              "class": "Gun",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": null,
+          "object_track": null,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 42.2,
+          "abs_end": 43.6,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "A group of individuals, some wearing dark clothing and others in lighter attire, walk towards the center of the frame near a roadblock."
+        },
+        {
+          "event_type": "stand",
+          "subject_track": null,
+          "object_track": null,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 43.6,
+          "abs_end": 45.1,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "The individuals stop and stand near the roadblock, appearing to interact with each other."
+        },
+        {
+          "event_type": "move",
+          "subject_track": null,
+          "object_track": null,
+          "start": 2.9,
+          "end": 4.3,
+          "abs_start": 45.1,
+          "abs_end": 46.5,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "Some individuals move slightly within the group, maintaining their positions near the roadblock."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": null,
+          "object_track": null,
+          "start": 4.3,
+          "end": 5.7,
+          "abs_start": 46.5,
+          "abs_end": 47.9,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "Individuals continue to walk around the roadblock, some stopping to interact with others."
+        },
+        {
+          "event_type": "stand",
+          "subject_track": null,
+          "object_track": null,
+          "start": 5.7,
+          "end": 7.1,
+          "abs_start": 47.9,
+          "abs_end": 49.3,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "People stand near the roadblock, some facing each other, suggesting interaction."
+        },
+        {
+          "event_type": "move",
+          "subject_track": null,
+          "object_track": null,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 49.3,
+          "abs_end": 50.8,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "Individuals move slightly, some standing still while others appear to be in conversation."
+        },
+        {
+          "event_type": "walk",
+          "subject_track": null,
+          "object_track": null,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 50.8,
+          "abs_end": 52.2,
+          "zone": "center",
+          "confidence": 0.8,
+          "description": "People continue to walk around the area, some stopping to interact more closely."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        47.2,
+        57.2
+      ],
+      "tracks": [
+        {
+          "track_id": 14,
+          "class": "Person",
+          "dwell_sec": 1.1,
+          "displacement_px": 13.4,
+          "mean_speed": 14.8,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 15,
+          "class": "Person",
+          "dwell_sec": 1.23,
+          "displacement_px": 3.7,
+          "mean_speed": 3.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 16,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 16,
+          "class": "Person",
+          "dwell_sec": 1.47,
+          "displacement_px": 4.4,
+          "mean_speed": 6.0,
+          "zones": [
+            "center",
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 15,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 17,
+          "class": "Gun",
+          "dwell_sec": 2.2,
+          "displacement_px": 23.3,
+          "mean_speed": 13.4,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 19,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 18,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 19,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 0.1,
+          "mean_speed": 0.7,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 17,
+              "class": "Gun",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 20,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 1.5,
+          "mean_speed": 6.7,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 21,
+          "class": "Car",
+          "dwell_sec": 1.53,
+          "displacement_px": 3.1,
+          "mean_speed": 3.1,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 22,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 0.4,
+          "mean_speed": 1.7,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 23,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 23,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 0.9,
+          "mean_speed": 3.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 24,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 24,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 3.5,
+          "mean_speed": 15.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 23,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 25,
+          "class": "Person",
+          "dwell_sec": 0.17,
+          "displacement_px": 0.1,
+          "mean_speed": 1.5,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 14,
+          "object_track": 16,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 48.6,
+          "abs_end": 50.1,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #14 approaches Person #16 from the left side."
+        },
+        {
+          "event_type": "approach",
+          "subject_track": 15,
+          "object_track": 16,
+          "start": 1.4,
+          "end": 2.9,
+          "abs_start": 48.6,
+          "abs_end": 50.1,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #15 approaches Person #16 from the right side."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        52.2,
+        62.2
+      ],
+      "tracks": [
+        {
+          "track_id": 20,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 1.5,
+          "mean_speed": 6.7,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 21,
+          "class": "Car",
+          "dwell_sec": 1.53,
+          "displacement_px": 3.1,
+          "mean_speed": 3.1,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 22,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 0.4,
+          "mean_speed": 1.7,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 23,
+              "class": "Person",
+              "overlap_sec": 0.2
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 23,
+          "class": "Person",
+          "dwell_sec": 0.43,
+          "displacement_px": 0.9,
+          "mean_speed": 3.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [
+            {
+              "track_id": 22,
+              "class": "Person",
+              "overlap_sec": 0.2
+            },
+            {
+              "track_id": 24,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 24,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 3.5,
+          "mean_speed": 15.5,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 23,
+              "class": "Person",
+              "overlap_sec": 0.3
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 25,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 0.1,
+          "mean_speed": 1.1,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 26,
+          "class": "Person",
+          "dwell_sec": 1.03,
+          "displacement_px": 19.0,
+          "mean_speed": 26.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 27,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 28,
+          "class": "Knife",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "bottom_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 29,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 6.9,
+          "mean_speed": 51.9,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 30,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.1,
+          "mean_speed": 1.5,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 31,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 32,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 26,
+          "object_track": 23,
+          "start": 7.1,
+          "end": 8.6,
+          "abs_start": 59.3,
+          "abs_end": 60.8,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #26, wearing a dark jacket and light pants, approaches Person #23, who is dressed in a light shirt and dark pants."
+        },
+        {
+          "event_type": "physical_contact",
+          "subject_track": 26,
+          "object_track": 23,
+          "start": 8.6,
+          "end": 10.0,
+          "abs_start": 60.8,
+          "abs_end": 62.2,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #26 and Person #23 engage in a brief physical interaction, with Person #26 appearing to push or grab Person #23."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        57.2,
+        67.2
+      ],
+      "tracks": [
+        {
+          "track_id": 25,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 26,
+          "class": "Person",
+          "dwell_sec": 1.03,
+          "displacement_px": 19.0,
+          "mean_speed": 26.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 27,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 28,
+          "class": "Knife",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "bottom_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 29,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 6.9,
+          "mean_speed": 51.9,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 30,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.1,
+          "mean_speed": 1.5,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 31,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 32,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 33,
+          "class": "Gun",
+          "dwell_sec": 0.53,
+          "displacement_px": 11.2,
+          "mean_speed": 21.1,
+          "zones": [
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 34,
+          "class": "Person",
+          "dwell_sec": 0.63,
+          "displacement_px": 3.7,
+          "mean_speed": 12.4,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "enter",
+          "subject_track": 26,
+          "object_track": null,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 57.2,
+          "abs_end": 58.6,
+          "zone": "top_mid",
+          "confidence": 1.0,
+          "description": "Person #26 enters the scene from the left side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 29,
+          "object_track": null,
+          "start": 0.1,
+          "end": 0.6,
+          "abs_start": 57.3,
+          "abs_end": 57.8,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #29 enters the scene from the right side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 33,
+          "object_track": null,
+          "start": 0.5,
+          "end": 0.6,
+          "abs_start": 57.7,
+          "abs_end": 57.8,
+          "zone": "mid_right",
+          "confidence": 1.0,
+          "description": "Gun #33 enters the scene from the right side."
+        },
+        {
+          "event_type": "enter",
+          "subject_track": 34,
+          "object_track": null,
+          "start": 0.6,
+          "end": 1.0,
+          "abs_start": 57.8,
+          "abs_end": 58.2,
+          "zone": "center",
+          "confidence": 1.0,
+          "description": "Person #34 enters the scene from the right side."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        62.2,
+        72.2
+      ],
+      "tracks": [
+        {
+          "track_id": 33,
+          "class": "Gun",
+          "dwell_sec": 0.53,
+          "displacement_px": 11.2,
+          "mean_speed": 21.1,
+          "zones": [
+            "mid_right"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 34,
+          "class": "Person",
+          "dwell_sec": 1.13,
+          "displacement_px": 5.9,
+          "mean_speed": 15.3,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "exit"
+          ]
+        },
+        {
+          "track_id": 35,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "approach",
+          "subject_track": 34,
+          "object_track": 35,
+          "start": 0.0,
+          "end": 1.4,
+          "abs_start": 62.2,
+          "abs_end": 63.6,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #34 approaches Person #35, who is standing still near the middle of the frame."
+        },
+        {
+          "event_type": "standing",
+          "subject_track": 34,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 62.2,
+          "abs_end": 72.2,
+          "zone": "center",
+          "confidence": 0.9,
+          "description": "Person #34 remains standing in the center of the frame throughout the sequence."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        67.2,
+        77.2
+      ],
+      "tracks": [
+        {
+          "track_id": 34,
+          "class": "Person",
+          "dwell_sec": 0.17,
+          "displacement_px": 2.5,
+          "mean_speed": 16.2,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 35,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 36,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 37,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 6.5,
+          "mean_speed": 21.1,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 38,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 39,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 39,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 6.3,
+          "mean_speed": 48.6,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 38,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        },
+        {
+          "track_id": 40,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit",
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 41,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 1.3,
+          "mean_speed": 9.9,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [],
+          "candidate_events": [
+            "enter",
+            "exit"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_type": "crowd_gathering",
+          "subject_track": null,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 67.2,
+          "abs_end": 77.2,
+          "zone": "roadside",
+          "confidence": 0.9,
+          "description": "A group of individuals gathers along the roadside, some standing and others moving slightly. They appear to be observing something off-camera."
+        }
+      ]
+    },
+    {
+      "video_id": "Shooting003_x264",
+      "camera_id": "Shooting003_x264",
+      "window": [
+        72.2,
+        82.2
+      ],
+      "tracks": [
+        {
+          "track_id": 36,
+          "class": "Car",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "top_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 37,
+          "class": "Person",
+          "dwell_sec": 0.33,
+          "displacement_px": 6.5,
+          "mean_speed": 21.1,
+          "zones": [
+            "center"
+          ],
+          "near": [],
+          "candidate_events": []
+        },
+        {
+          "track_id": 38,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [
+            {
+              "track_id": 39,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 39,
+          "class": "Person",
+          "dwell_sec": 0.13,
+          "displacement_px": 6.3,
+          "mean_speed": 48.6,
+          "zones": [
+            "center"
+          ],
+          "near": [
+            {
+              "track_id": 38,
+              "class": "Person",
+              "overlap_sec": 0.1
+            }
+          ],
+          "candidate_events": []
+        },
+        {
+          "track_id": 40,
+          "class": "Person",
+          "dwell_sec": 0.03,
+          "displacement_px": 0.0,
+          "mean_speed": 0.0,
+          "zones": [
+            "mid_left"
+          ],
+          "near": [],
+          "candidate_events": [
+            "stationary"
+          ]
+        },
+        {
+          "track_id": 41,
+          "class": "Person",
+          "dwell_sec": 0.23,
+          "displacement_px": 1.3,
+          "mean_speed": 9.9,
+          "zones": [
+            "bottom_mid"
+          ],
+          "near": [],
+          "candidate_events": []
+        }
+      ],
+      "events": [
+        {
+          "event_type": "scene_description",
+          "subject_track": null,
+          "object_track": null,
+          "start": 0.0,
+          "end": 10.0,
+          "abs_start": 72.2,
+          "abs_end": 82.2,
+          "zone": "roadside",
+          "confidence": 1.0,
+          "description": "A group of individuals is gathered on the roadside near a vehicle. Some are standing while others appear to be moving slightly."
+        }
+      ]
+    }
+  ]
+}
