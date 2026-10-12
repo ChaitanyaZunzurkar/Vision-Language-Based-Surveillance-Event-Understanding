@@ -2,7 +2,7 @@
 
 See the repository [README](../README.md) for setup. The service provides both a complete video-only pipeline and a direct video + notebook windows JSON workflow.
 
-The API is started from the repository root with `python -m uvicorn server.app.main:app --reload`. Interactive endpoint documentation is available at `/docs`.
+The API is started from the repository root with `python -m uvicorn server.app.main:app --host 127.0.0.1 --port 8080 --reload`. Interactive endpoint documentation is available at `/docs`.
 
 ## Runtime device and benchmarking
 
@@ -50,6 +50,10 @@ from the video's native FPS and `video.sample_fps`; set a positive stride to
 override it. Track-buffer length is adjusted for the sampled cadence.
 The YOLO model and the lazily loaded Qwen model are reused across videos; YOLO
 tracking is serialized so tracker state cannot leak between concurrent videos.
+The default VLM is `Qwen/Qwen2.5-VL-3B-Instruct` to limit resource use; its
+weights are downloaded from Hugging Face on first inference if not cached.
+Insufficient VRAM can still cause CPU/RAM offloading, so monitor memory during
+the first run.
 When the YOLO checkpoint is missing or is only a Git LFS pointer, the configured
 OpenCV motion + local ByteTrack fallback is used and identified in the analysis
 JSON's `tracking_backend`.
@@ -81,7 +85,7 @@ New pipeline/import events are indexed automatically. Deleting a video rebuilds
 the index from the remaining SQLite events. To repair or rebuild it manually:
 
 ```powershell
-Invoke-RestMethod -Method Post http://127.0.0.1:8000/api/query/rebuild-index
+Invoke-RestMethod -Method Post http://127.0.0.1:8080/api/query/rebuild-index
 ```
 
 Search through `POST /api/query` with `query`, `top_k`, `min_score`, and

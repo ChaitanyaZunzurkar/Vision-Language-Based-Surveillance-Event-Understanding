@@ -4,7 +4,8 @@ from server.src.config.loader import config_loader
 
 
 def test_config_loads_values():
-    assert config_loader.get("server.port") == 8000
+    assert config_loader.get("server.port") == 8080
+    assert config_loader.get("vlm.model_name") == "Qwen/Qwen2.5-VL-3B-Instruct"
     assert config_loader.get("detection.conf_threshold") == 0.20
     assert config_loader.get("temporal.window_duration_sec") == 10.0
 
@@ -18,5 +19,4 @@ def test_classes_definition():
     assert len(anomalies) == 14
     assert any(a["name"] == "Burglary" for a in anomalies)
     assert any(a["name"] == "Normal" for a in anomalies)
-
 

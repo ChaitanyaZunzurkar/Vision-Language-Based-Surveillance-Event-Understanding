@@ -67,7 +67,7 @@ Do not activate a different Python environment; the backend command below uses
 **Terminal 1 — backend** (keep this terminal open):
 
 ```powershell
-.\server\.venv\Scripts\python.exe -m uvicorn server.app.main:app --host 127.0.0.1 --port 8000 --reload
+.\server\.venv\Scripts\python.exe -m uvicorn server.app.main:app --host 127.0.0.1 --port 8080 --reload
 ```
 
 Wait until Uvicorn reports that startup is complete.
@@ -80,8 +80,8 @@ npm run dev -- --host 127.0.0.1
 ```
 
 Open the frontend at <http://127.0.0.1:5173/ui/>. API documentation is at
-<http://127.0.0.1:8000/docs>. The frontend development server forwards API
-requests to the backend on port 8000. Keep both terminals running while using
+<http://127.0.0.1:8080/docs>. The frontend development server forwards API
+requests to the backend on port 8080. Keep both terminals running while using
 the app; press `Ctrl+C` in each terminal to stop the corresponding server.
 
 ### Optional: launch both services with one command
@@ -90,7 +90,7 @@ After first-time setup, this PowerShell command from the repository root opens
 the backend and frontend in separate windows:
 
 ```powershell
-$root = (Get-Location).Path; Start-Process -FilePath "$root\server\.venv\Scripts\python.exe" -ArgumentList @('-m','uvicorn','server.app.main:app','--host','127.0.0.1','--port','8000','--reload') -WorkingDirectory $root; Start-Process -FilePath 'powershell' -WorkingDirectory (Join-Path $root 'frontend') -ArgumentList '-NoExit','-Command','npm run dev -- --host 127.0.0.1'
+$root = (Get-Location).Path; Start-Process -FilePath "$root\server\.venv\Scripts\python.exe" -ArgumentList @('-m','uvicorn','server.app.main:app','--host','127.0.0.1','--port','8080','--reload') -WorkingDirectory $root; Start-Process -FilePath 'powershell' -WorkingDirectory (Join-Path $root 'frontend') -ArgumentList '-NoExit','-Command','npm run dev -- --host 127.0.0.1'
 ```
 
 ### If the retrieval dependency error appears
@@ -123,7 +123,7 @@ repository root or launch the API with another Python executable.
 Backend, from the repository root:
 
 ```powershell
-.\server\.venv\Scripts\python.exe -m uvicorn server.app.main:app --host 127.0.0.1 --port 8000 --reload
+.\server\.venv\Scripts\python.exe -m uvicorn server.app.main:app --host 127.0.0.1 --port 8080 --reload
 ```
 
 Frontend, from the repository root:
@@ -166,10 +166,13 @@ video filename stem. Event `start`/`end` values are relative to their window;
 
 **Yes. The application downloads Qwen model files automatically on first use**
 if they are not already present in the local Hugging Face cache. The configured
-default is `Qwen/Qwen2.5-VL-7B-Instruct`, loaded with Transformers
+default is `Qwen/Qwen2.5-VL-3B-Instruct`, loaded with Transformers
 `from_pretrained`. The download is lazy: app startup alone does not load or
 download Qwen. The first video window that needs generated events triggers model
-loading and may require a long wait and substantial disk, RAM, and GPU memory.
+loading and may require a long wait and several gigabytes of disk, RAM, and GPU
+memory. The 3B model is selected to reduce resource use compared with the
+previous 7B model, but it can still consume significant RAM and may offload
+weights when GPU VRAM is insufficient.
 Subsequent runs reuse the in-process model and cached files.
 
 Qwen inference can be skipped for direct-upload windows that already contain
@@ -184,7 +187,9 @@ accelerator when the installed PyTorch build supports it; otherwise it can run
 on CPU. GPU loading attempts 4-bit quantization when `bitsandbytes` is
 available. On Windows that optional package may not be available, in which case
 Qwen falls back to half precision on GPU. If memory is insufficient, reduce
-other GPU workloads or use a machine with more memory.
+other GPU workloads or use a machine with more memory. On a 6 GB VRAM laptop GPU,
+do not assume the 3B model will fit wholly in VRAM; monitor memory during the
+first inference.
 
 If the Qwen/PyTorch/Transformers runtime cannot be imported, the application
 keeps grounded motion-rule candidates and marks them **unverified** rather than
@@ -243,7 +248,7 @@ availability information. The completed video card provides a download link.
 The corresponding API endpoint is:
 
 ```text
-GET http://127.0.0.1:8000/api/pipeline/output/{video_id}
+GET http://127.0.0.1:8080/api/pipeline/output/{video_id}
 ```
 
 Other useful endpoints include:
@@ -256,7 +261,7 @@ Other useful endpoints include:
 - `POST /api/query` — search processed events.
 - `POST /api/query/rebuild-index` — rebuild the semantic search index.
 
-See <http://127.0.0.1:8000/docs> for the complete interactive API reference.
+See <http://127.0.0.1:8080/docs> for the complete interactive API reference.
 
 ## Data locations
 
@@ -282,7 +287,7 @@ routine setup.
 | Qwen imports are unavailable | Install the project requirements and a PyTorch build appropriate for the machine. The application will otherwise mark motion-rule output as unverified. |
 | CUDA is unavailable | Install a PyTorch build compatible with the installed CUDA/driver, or set `runtime.device: "cpu"` in `server/configs/config.yaml`. |
 | YOLO weights cannot be loaded | Verify the configured weights path and ensure the Git LFS object, not just its pointer file, is present. |
-| Frontend cannot reach the API | Start the backend on port 8000 and the Vite frontend on port 5173; use the Vite URL shown above. |
+| Frontend cannot reach the API | Start the backend on port 8080 and the Vite frontend on port 5173; use the Vite URL shown above. |
 | Analysis says anomaly is `Unassessed` | The anomaly classifier and feature extractor are not currently a compatible loaded pair. This is an explicit unavailable state, not a normal/anomaly classification. |
 
 ## Development checks

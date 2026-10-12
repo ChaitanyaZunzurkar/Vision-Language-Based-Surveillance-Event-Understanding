@@ -33,7 +33,7 @@ class VLMEventUnderstanding:
 
     def __init__(
         self,
-        model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct",
+        model_name: str = "Qwen/Qwen2.5-VL-3B-Instruct",
         device: str = "auto",
         temperature: float = 0.2,
     ):

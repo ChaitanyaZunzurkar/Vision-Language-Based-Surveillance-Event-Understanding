@@ -7,5 +7,5 @@ Start the backend from the repository root:
 python -m uvicorn server.app.main:app --reload
 ```
 
-Then open <http://127.0.0.1:8000/>. The dashboard communicates with the
+Then open <http://127.0.0.1:8080/>. The dashboard communicates with the
 backend through `/api` and media is served from `/static`.

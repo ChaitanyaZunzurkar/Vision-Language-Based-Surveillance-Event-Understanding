@@ -60,7 +60,7 @@ class SurveillancePipeline:
             anomaly_threshold=float(config_loader.get("anomaly.anomaly_threshold", 0.5)),
         )
         self.vlm = VLMEventUnderstanding(
-            model_name=config_loader.get("vlm.model_name", "Qwen/Qwen2.5-VL-7B-Instruct"),
+            model_name=config_loader.get("vlm.model_name", "Qwen/Qwen2.5-VL-3B-Instruct"),
             device=config_loader.get("vlm.device", "auto"),
             temperature=float(config_loader.get("vlm.temperature", 0.2)),
         )
