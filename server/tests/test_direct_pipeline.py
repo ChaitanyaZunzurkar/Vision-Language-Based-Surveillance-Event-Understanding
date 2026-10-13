@@ -267,6 +267,17 @@ def test_direct_json_anomaly_labels_are_used_instead_of_running_prediction():
     assert SurveillancePipeline._uploaded_anomaly_category(event) == "Robbery"
 
 
+def test_direct_json_accepts_model_anomaly_prediction_fields():
+    event = {
+        "model_anomaly_class": "Burglary",
+        "model_anomaly_confidence": 0.79,
+        "model_p_anomaly": 0.42,
+    }
+
+    assert SurveillancePipeline._uploaded_anomaly_category(event) == "Burglary"
+    assert SurveillancePipeline._uploaded_anomaly_confidence(event) == 0.79
+
+
 def test_anomaly_feature_pooling_produces_notebook_temporal_shape():
     features = np.asarray([[3.0, 4.0], [0.0, 2.0]], dtype=np.float32)
     pooled = _pool_features(features, np.asarray([0.0, 1.0]), 2.0)

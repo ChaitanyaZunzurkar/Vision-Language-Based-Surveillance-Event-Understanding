@@ -23,7 +23,7 @@ from server.src.event_understanding.event_generator import TemporalWindower
 from server.src.config.loader import config_loader
 from server.src.anomaly.detector import CATEGORIES as ANOMALY_CATEGORIES
 from server.src.anomaly.nn_predictor import TemporalAnomalyPredictor
-from server.src.anomaly.schemas import VideoAnomalySummary
+from server.src.anomaly.schemas import ClipAnomalyScore, VideoAnomalySummary
 from server.src.event_understanding.qwen import VLMEventUnderstanding
 from server.src.storage.schemas import EventRecord, AnomalyRecord, TrackRecord
 from server.src.evidence.clip_generator import ClipGenerator
@@ -534,6 +534,7 @@ class SurveillancePipeline:
             "pred_14class",
             "predicted_class",
             "predicted_anomaly",
+            "model_anomaly_class",
         )
         prediction = event.get("anomaly_prediction")
         candidates = [event.get(field) for field in fields]
@@ -589,6 +590,7 @@ class SurveillancePipeline:
             event.get("anomaly_confidence"),
             event.get("anomaly_probability"),
             event.get("anomaly_score"),
+            event.get("model_anomaly_confidence"),
         ]
         if isinstance(prediction, dict):
             candidates.extend(
