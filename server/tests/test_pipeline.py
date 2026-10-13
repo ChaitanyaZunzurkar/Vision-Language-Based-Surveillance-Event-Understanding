@@ -4,6 +4,7 @@ import tempfile
 from pathlib import Path
 import cv2
 import numpy as np
+from server.src.anomaly.schemas import ClipAnomalyScore, VideoAnomalySummary
 from server.src.pipeline.ingestion import VideoIngestor
 from server.src.pipeline.pipeline import SurveillancePipeline
 from server.src.storage.metadata_store import MetadataStore
@@ -52,6 +53,23 @@ def test_full_pipeline_and_retrieval():
         # 2. Run Pipeline
         pipeline = SurveillancePipeline(store=store, vec_store=vec_store)
         pipeline.clip_generator.output_dir = clips_dir
+        pipeline.anomaly_detector.predict_video = lambda *args: VideoAnomalySummary(
+            video_id=video_record.video_id,
+            overall_category="Unassessed",
+            overall_confidence=0.0,
+            is_anomalous=False,
+            model_available=False,
+            anomaly_segments=[
+                ClipAnomalyScore(
+                    clip_id=f"{video_record.video_id}_s001",
+                    start_sec=0.0,
+                    end_sec=4.0,
+                    category="Unassessed",
+                    confidence=0.0,
+                    is_anomaly=False,
+                )
+            ],
+        )
 
         summary = pipeline.process_video(video_record.video_id)
         assert summary["status"] == "completed"
@@ -76,5 +94,4 @@ def test_full_pipeline_and_retrieval():
         assert query_result.total_matches > 0
         assert len(query_result.matched_events) > 0
         assert "Retrieved" in query_result.grounded_summary
-
 

@@ -45,7 +45,20 @@ Install `server/requirements.txt` before running the API. The full workflow
 samples video at `video.sample_fps` (4 fps by default), passes those frames
 through the configured YOLO checkpoint and ByteTrack, builds sliding temporal
 windows, runs Qwen2.5-VL on five evenly spaced frames per window, then runs the
-configured anomaly detector. `stage1b.frame_stride: 0` derives the YOLO stride
+binary and 13-class temporal neural ensemble in
+`models/anomaly/nn_models_fixed.pt`. Anomaly inference samples frames at
+`anomaly.sample_fps`, encodes them with the configured CLIP ViT-B/16 image
+encoder, pools the features into the notebook's 64 temporal segments, and
+predicts Normal-vs-Anomaly followed by one of the 13 anomaly classes. The
+encoder loads on the first full-pipeline run and may download weights from
+Hugging Face. Configure `anomaly.anomaly_threshold` for the binary decision.
+The fixed checkpoint does not bundle the notebook's OOF-tuned threshold, so
+`0.50` is the configurable deployment default rather than a reproduced blend
+threshold.
+The fixed checkpoint contains neural heads, not the notebook's pre-extracted
+AnomalyCLIP feature encoder; the default OpenAI CLIP encoder has the matching
+feature dimension but can produce different features from the notebook.
+`stage1b.frame_stride: 0` derives the YOLO stride
 from the video's native FPS and `video.sample_fps`; set a positive stride to
 override it. Track-buffer length is adjusted for the sampled cadence.
 The YOLO model and the lazily loaded Qwen model are reused across videos; YOLO
@@ -62,17 +75,24 @@ In the UI, **Add footage** adds a video, then **Run full pipeline** starts all
 stages. **Video + JSON** accepts a video and a matching Stage 2/Stage 4
 notebook JSON (`{"windows":[...]}`), skips YOLO and ByteTrack, and reuses any
 events already present in each window. Windows without events are sent through
-Qwen before anomaly scoring. The JSON `video_id` must match the video filename
+Qwen. Direct JSON mode uses supplied event, window, or top-level anomaly labels
+instead of running the video anomaly predictor. Supported labels include
+`Normal` and the notebook's 13 anomaly classes; labels are copied into the
+analysis JSON and event records so the UI uses them. The JSON `video_id` must
+match the video filename
 stem; event track IDs and relative/absolute timestamps are validated.
 
 Both workflows write `server/data/outputs/<video_id>_analysis.json` with the
 notebook-compatible `windows` records plus a video-level `anomaly_summary`.
+For staged demo pairs, the source JSON's SHA-256 is recorded; replacing a JSON
+file causes the pair to be reprocessed on the next UI startup, while unchanged
+completed pairs are not rerun.
 Download it from `GET /api/pipeline/output/{video_id}` or the completed video
 card. If Qwen's Python dependencies are unavailable, only grounded
-motion-rule candidates are retained and marked unverified. The anomaly module
-reports `Unassessed` when its configured classifier and feature extractor are
-not available; the JSON records model availability rather than inventing a
-score.
+motion-rule candidates are retained and marked unverified. Full-video
+anomaly predictions and their per-segment probabilities are included in
+`anomaly_summary`; each event also records its predicted category, confidence,
+and prediction source.
 
 The default index files are:
 
@@ -93,12 +113,13 @@ optional `video_id`. Natural-language event, anomaly, entity, and time filters
 are parsed and applied against SQLite before hybrid ranking.
 
 The chat UI sends the last eight conversation turns with each query. When
-verified event records match, the local Qwen2.5-VL model answers using those
-records as its only footage evidence and cites their event IDs. Chat reuses the
-pipeline's lazily loaded Qwen instance rather than loading a second copy. If the
-model cannot load or returns missing/unknown citations, the API returns the
-deterministic evidence summary instead. A first chat query with matching events
-can therefore trigger local model loading; it may use substantial RAM/VRAM.
+verified event records match, the local Qwen2.5-VL model answers conversationally
+using those records as its only footage evidence; supporting event cards appear
+below the answer. Chat reuses the pipeline's lazily loaded Qwen instance rather
+than loading a second copy. If generation is unavailable or returns only raw
+event IDs, the API formats a natural-language response from the verified
+records. A first chat query with matching events can trigger local model
+loading; it may use substantial RAM/VRAM.
 
 On UI startup, the frontend asks the backend to import staged reference pairs
 from `server\data\uploads\demo` and

@@ -35,12 +35,17 @@ class QueryRequest(BaseModel):
 
 _FOLLOW_UP_PATTERN = re.compile(
     r"\b(?:it|its|they|them|their|he|she|him|her|this|that|these|those|there|"
-    r"then|next|before|after|again|more|also|what about|how about)\b",
+    r"then|next|before|after|again|more|also|time|when|where|who|how|what else|"
+    r"what about|how about)\b",
     re.IGNORECASE,
 )
 _TIMELINE_PATTERN = re.compile(
     r"\b(?:timeline|what happened|summari[sz]e|summary|overview|"
     r"describe (?:the )?video|sequence of events)\b",
+    re.IGNORECASE,
+)
+_RETRY_PATTERN = re.compile(
+    r"^\s*(?:try again|again|repeat(?: that)?|one more time)\s*[.!?]*\s*$",
     re.IGNORECASE,
 )
 
@@ -71,11 +76,17 @@ def natural_language_query(
             )
 
     latest_user_turn = next(
-        (turn.content for turn in reversed(request.history) if turn.role == "user"),
+        (
+            turn.content
+            for turn in reversed(request.history)
+            if turn.role == "user" and not _RETRY_PATTERN.fullmatch(turn.content)
+        ),
         None,
     )
     retrieval_query = request.query
-    if latest_user_turn and _FOLLOW_UP_PATTERN.search(request.query):
+    if latest_user_turn and _RETRY_PATTERN.fullmatch(request.query):
+        retrieval_query = latest_user_turn
+    elif latest_user_turn and _FOLLOW_UP_PATTERN.search(request.query):
         retrieval_query = f"{latest_user_turn}\nFollow-up: {request.query}"
 
     if request.video_id and _TIMELINE_PATTERN.search(request.query):
@@ -93,6 +104,7 @@ def natural_language_query(
                 "confidence": event.confidence,
                 "relevance_score": 1.0,
                 "anomaly_category": event.anomaly_category,
+                "anomaly_confidence": event.anomaly_confidence,
                 "clip_path": event.clip_path,
             }
             for event in events[:50]
@@ -116,6 +128,7 @@ def natural_language_query(
         result.query = request.query
 
     if result.matched_events:
+        conversational_answer = None
         try:
             conversational_answer = pipeline.vlm.generate_grounded_answer(
                 request.query,
@@ -128,6 +141,14 @@ def natural_language_query(
             logger.exception(
                 "Local Qwen chat answer failed; returning the grounded event summary"
             )
+        result.grounded_summary = conversational_answer or _conversational_fallback(
+            request.query, result.matched_events
+        )
+    else:
+        result.grounded_summary = (
+            "I couldn't find a verified event that answers that in the selected "
+            "footage. Try asking about a specific action, person, or time."
+        )
 
     # Attach browser-accessible streaming URLs for evidence clips
     for match in result.matched_events:
@@ -139,6 +160,39 @@ def natural_language_query(
             match["clip_url"] = None
 
     return result
+
+
+def _conversational_fallback(query: str, events: List[Dict[str, Any]]) -> str:
+    """Return a short, natural answer from evidence when local generation is unavailable."""
+    ordered = sorted(events, key=lambda event: float(event.get("start_sec", 0.0)))
+    timeline_request = _TIMELINE_PATTERN.search(query)
+    selected = ordered[:6] if timeline_request else events[:3]
+    if len(selected) == 1:
+        event = selected[0]
+        return (
+            f"I found one relevant moment, from {event['start_sec']:.1f} to "
+            f"{event['end_sec']:.1f} seconds: {event['description']}"
+        )
+    if timeline_request:
+        lines = [
+            f"Here’s the timeline from the processed event records "
+            f"({len(ordered)} events total):"
+        ]
+        lines.extend(
+            f"{event['start_sec']:.1f}–{event['end_sec']:.1f}s: {event['description']}"
+            for event in selected
+        )
+        if len(ordered) > len(selected):
+            lines.append(f"I’ve included the first {len(selected)} moments here.")
+        return "\n".join(lines)
+
+    lines = ["I found a few relevant moments in the footage:"]
+    lines.extend(
+        f"Around {event['start_sec']:.1f}–{event['end_sec']:.1f} seconds, "
+        f"{event['description']}"
+        for event in selected
+    )
+    return "\n".join(lines)
 
 
 @router.post("/rebuild-index")

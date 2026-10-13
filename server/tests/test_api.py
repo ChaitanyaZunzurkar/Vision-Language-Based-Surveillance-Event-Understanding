@@ -170,7 +170,35 @@ def test_query_for_processing_video_returns_clear_status():
         app.dependency_overrides.pop(get_metadata_store, None)
 
     assert response.status_code == 409
-    assert "still processing" in response.json()["detail"]
+    assert "not completed" in response.json()["detail"]
+
+
+def test_retry_query_reuses_last_substantive_question():
+    retrieval_queries = []
+    retriever = SimpleNamespace(query=lambda **kwargs: (
+        retrieval_queries.append(kwargs["query"]) or QueryResult(
+            query=kwargs["query"],
+            parsed_filters={},
+            total_matches=0,
+            matched_events=[],
+            grounded_summary="No matches.",
+        )
+    ))
+    app.dependency_overrides[get_retriever] = lambda: retriever
+    try:
+        response = client.post("/api/query", json={
+            "query": "Try again",
+            "history": [
+                {"role": "user", "content": "When were people near a vehicle?"},
+                {"role": "assistant", "content": "I found one event."},
+            ],
+        })
+    finally:
+        app.dependency_overrides.pop(get_retriever, None)
+
+    assert response.status_code == 200
+    assert retrieval_queries == ["When were people near a vehicle?"]
+    assert response.json()["grounded_summary"].startswith("I couldn't find")
 
 
 def test_frontend_ui():

@@ -171,6 +171,23 @@ class MetadataStore:
             conn.commit()
             return deleted
 
+    def clear_video_analysis(self, video_id: str) -> List[str]:
+        """Remove prior event and anomaly records before reprocessing a video."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT event_id FROM events WHERE video_id = ?", (video_id,))
+            event_ids = [row["event_id"] for row in cursor.fetchall()]
+            cursor.execute("DELETE FROM events WHERE video_id = ?", (video_id,))
+            cursor.execute("DELETE FROM anomalies WHERE video_id = ?", (video_id,))
+            conn.commit()
+            return event_ids
+
+    def clear_video_tracks(self, video_id: str) -> None:
+        """Remove previously persisted tracks before inserting a fresh tracking result."""
+        with self._get_connection() as conn:
+            conn.execute("DELETE FROM tracks WHERE video_id = ?", (video_id,))
+            conn.commit()
+
     def save_video(self, record: VideoRecord) -> None:
         """Insert or replace a video record."""
         with self._get_connection() as conn:

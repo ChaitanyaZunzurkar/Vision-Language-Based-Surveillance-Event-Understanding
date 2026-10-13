@@ -672,7 +672,7 @@ function EventCard({ event, active, onPlay }) {
   return <article className="event-card">
     <div className="event-card-top"><span className="event-type"><span className="event-type-mark" />{(event.event_type || "event").replaceAll("_", " ")}</span><span className="event-confidence">{Math.round((event.confidence || 0) * 100)}% confidence</span></div>
     <p>{event.description}</p>
-    <div className="event-card-footer"><span><Clock3 size={13} />{formatTime(event.start_sec)} – {formatTime(event.end_sec)}</span><span><Shield size={13} />{event.anomaly_category || "Unassessed"}</span>{event.entity_ids?.length > 0 && <span><Camera size={13} />Track {event.entity_ids.join(", ")}</span>}
+    <div className="event-card-footer"><span><Clock3 size={13} />{formatTime(event.start_sec)} – {formatTime(event.end_sec)}</span><span title="Anomaly classification"><Shield size={13} />{event.anomaly_category || "Unassessed"}{event.anomaly_confidence > 0 ? ` · ${Math.round(event.anomaly_confidence * 100)}%` : ""}</span>{event.entity_ids?.length > 0 && <span><Camera size={13} />Track {event.entity_ids.join(", ")}</span>}
       {event.clip_url && <button className="evidence-link" onClick={onPlay}>{active ? "Close clip" : "Play evidence"}<ArrowUpRight size={13} /></button>}
     </div>
     {active && event.clip_url && <video className="evidence-video" controls playsInline src={event.clip_url} />}

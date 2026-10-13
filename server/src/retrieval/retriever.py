@@ -81,6 +81,7 @@ class SurveillanceRetriever:
                     "confidence": ev.confidence,
                     "relevance_score": score,
                     "anomaly_category": ev.anomaly_category,
+                    "anomaly_confidence": ev.anomaly_confidence,
                     "clip_path": ev.clip_path,
                 }
             )

@@ -161,6 +161,7 @@ class VLMEventUnderstanding:
                 "description": item.get("description"),
                 "confidence": item.get("confidence"),
                 "anomaly_category": item.get("anomaly_category"),
+                "anomaly_confidence": item.get("anomaly_confidence"),
             }
             for item in evidence[:10]
             if item.get("event_id") is not None
@@ -174,14 +175,17 @@ class VLMEventUnderstanding:
             {
                 "role": "system",
                 "content": (
-                    "You are a conversational assistant for surveillance event records. "
-                    "Answer the user's current question naturally and briefly, using only "
-                    "the VERIFIED EVENT RECORDS below for claims about the footage. Treat "
+                    "You are a conversational assistant for surveillance video analysis. "
+                    "Respond as a person would in a helpful back-and-forth conversation: "
+                    "answer the current question directly in complete, natural sentences, "
+                    "use prior turns to resolve follow-ups, and mention precise timestamps "
+                    "when they help. Use only the VERIFIED EVENT RECORDS below for claims "
+                    "about the footage. Treat "
                     "conversation history only as context for references such as 'it' or "
                     "'that person'; it is not evidence. Do not infer intent, identity, or "
-                    "unstated actions. If the records do not answer the question, say so. "
-                    "Cite each factual claim with one or more exact event IDs in square "
-                    "brackets, for example [event-id]. Do not invent event IDs."
+                    "unstated actions. If the records do not answer the question, say so "
+                    "conversationally. The interface displays the supporting event cards, "
+                    "so do not output event IDs, labels, JSON, or a list of raw records."
                 ),
             },
             {
@@ -219,9 +223,14 @@ class VLMEventUnderstanding:
             )[0].strip()
 
         citations = set(re.findall(r"\[([^\]]+)\]", answer))
-        if not answer or not citations or not citations.issubset(evidence_ids):
+        answer_without_citations = re.sub(r"\[[^\]]+\]", "", answer).strip()
+        if (
+            len(answer_without_citations) < 24
+            or not re.search(r"[A-Za-z]{3}", answer_without_citations)
+            or (citations and not citations.issubset(evidence_ids))
+        ):
             logger.warning(
-                "Rejected local Qwen chat answer because it lacked valid event citations"
+                "Rejected local Qwen chat answer because it was not a grounded conversational response"
             )
             return None
         return answer

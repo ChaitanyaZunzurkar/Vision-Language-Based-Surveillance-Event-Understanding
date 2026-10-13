@@ -21,7 +21,8 @@ from server.src.detection.detector import SurveillanceDetector
 from server.src.detection.schemas import BoundingBox
 from server.src.event_understanding.event_generator import TemporalWindower
 from server.src.config.loader import config_loader
-from server.src.anomaly.detector import AnomalyDetector
+from server.src.anomaly.detector import CATEGORIES as ANOMALY_CATEGORIES
+from server.src.anomaly.nn_predictor import TemporalAnomalyPredictor
 from server.src.anomaly.schemas import VideoAnomalySummary
 from server.src.event_understanding.qwen import VLMEventUnderstanding
 from server.src.storage.schemas import EventRecord, AnomalyRecord, TrackRecord
@@ -52,12 +53,17 @@ class SurveillancePipeline:
             window_stride_sec=config_loader.get("temporal.window_stride_sec", 5.0),
             loiter_dwell_sec=config_loader.get("temporal.loiter_dwell_sec", 4.0),
         )
-        self.anomaly_detector = AnomalyDetector(
-            model_path=paths.root_dir / config_loader.get("anomaly.model_weights", "weights/best_model.pkl"),
-            scaler_path=paths.root_dir / config_loader.get("anomaly.scaler_weights", "weights/scaler.pkl"),
-            clip_duration_sec=float(config_loader.get("anomaly.clip_duration_sec", 4.0)),
-            clip_stride_sec=float(config_loader.get("anomaly.clip_stride_sec", 2.0)),
+        self.anomaly_detector = TemporalAnomalyPredictor(
+            model_path=paths.root_dir / config_loader.get(
+                "anomaly.nn_model_weights", "models/anomaly/nn_models_fixed.pt"
+            ),
+            feature_model=config_loader.get(
+                "anomaly.feature_model", "openai/clip-vit-base-patch16"
+            ),
+            sample_fps=float(config_loader.get("anomaly.sample_fps", 2.0)),
+            batch_size=int(config_loader.get("anomaly.batch_size", 16)),
             anomaly_threshold=float(config_loader.get("anomaly.anomaly_threshold", 0.5)),
+            device=config_loader.get("anomaly.device", "auto"),
         )
         self.vlm = VLMEventUnderstanding(
             model_name=config_loader.get("vlm.model_name", "Qwen/Qwen2.5-VL-3B-Instruct"),
@@ -274,6 +280,7 @@ class SurveillancePipeline:
         video_id: str,
         precomputed_windows: Optional[list[Dict[str, Any]]] = None,
         pipeline_mode: str = "full",
+        source_json_sha256: Optional[str] = None,
     ) -> Dict[str, Any]:
         """Run the video-only pipeline or continue from notebook temporal-window JSON."""
         video = self.store.get_video(video_id)
@@ -299,6 +306,7 @@ class SurveillancePipeline:
                 logger.info("Stage 1: Running sampled YOLO + ByteTrack...")
                 with timings.measure("detection_tracking"):
                     tracking_result = self._run_stage1b(video_path, video_id)
+                self.store.clear_video_tracks(video_id)
                 self.store.insert_tracks([
                     TrackRecord(
                         video_id=video_id,
@@ -321,6 +329,7 @@ class SurveillancePipeline:
                 self._write_json(windows_json_path, {"windows": windows_data})
             else:
                 logger.info("Direct JSON mode: validating supplied temporal windows...")
+                self.store.clear_video_tracks(video_id)
                 with timings.measure("temporal_events"):
                     windows_data = validate_windows_payload(
                         {"windows": precomputed_windows},
@@ -330,6 +339,7 @@ class SurveillancePipeline:
                 for window in windows_data:
                     window["video_id"] = video_id
                     window.setdefault("camera_id", video_id)
+                    self._inherit_window_anomaly_label(window)
                 self._write_json(windows_json_path, {"windows": windows_data})
 
             logger.info("Stage 3: Running Qwen2.5-VL event understanding...")
@@ -337,12 +347,24 @@ class SurveillancePipeline:
                 windows_data, vlm_model_available = self.vlm.process_windows(
                     video_id, windows_data, video_path
                 )
+            if pipeline_mode == "direct_json":
+                for window in windows_data:
+                    self._inherit_window_anomaly_label(window)
 
-            logger.info("Stage 4: Running video anomaly detection...")
-            with timings.measure("anomaly"):
-                anomaly_summary = self.anomaly_detector.detect_anomalies(
-                    video_path, video_id, video.duration_sec, tracking_result
+            if pipeline_mode == "direct_json":
+                logger.info("Stage 4: Using anomaly classes supplied in the JSON...")
+                anomaly_summary = self._anomaly_summary_from_windows(
+                    video_id, windows_data
                 )
+            else:
+                logger.info("Stage 4: Running the binary + 13-class anomaly network...")
+                with timings.measure("anomaly"):
+                    anomaly_summary = self.anomaly_detector.predict_video(
+                        video_path, video_id, video.duration_sec
+                    )
+            previous_event_ids = self.store.clear_video_analysis(video_id)
+            if previous_event_ids:
+                self.vec_store.rebuild(self.store.get_events())
             self.store.insert_anomalies([
                 AnomalyRecord(
                     anomaly_id=segment.clip_id,
@@ -367,7 +389,20 @@ class SurveillancePipeline:
                         segment for segment in anomaly_summary.anomaly_segments
                         if segment.end_sec >= start_sec and segment.start_sec <= end_sec
                     ]
-                    anomaly = max(overlapping, key=lambda item: item.confidence, default=None)
+                    anomaly = max(
+                        overlapping,
+                        key=lambda item: item.metadata.get(
+                            "anomaly_probability", item.confidence
+                        ),
+                        default=None,
+                    )
+                    supplied_category = self._uploaded_anomaly_category(event)
+                    if supplied_category:
+                        anomaly_category = supplied_category
+                        anomaly_confidence = self._uploaded_anomaly_confidence(event)
+                    else:
+                        anomaly_category = anomaly.category if anomaly else "Unassessed"
+                        anomaly_confidence = anomaly.confidence if anomaly else 0.0
                     event_id = event.get("event_id") or (
                         "ev_" + uuid.uuid5(
                             uuid.NAMESPACE_URL,
@@ -377,8 +412,20 @@ class SurveillancePipeline:
                     event_index += 1
                     event["abs_start"] = start_sec
                     event["abs_end"] = end_sec
-                    event["anomaly_category"] = anomaly.category if anomaly else "Unassessed"
-                    event["anomaly_confidence"] = anomaly.confidence if anomaly else 0.0
+                    event["anomaly_category"] = anomaly_category
+                    event["anomaly_confidence"] = anomaly_confidence
+                    event["anomaly_prediction"] = {
+                        "category": anomaly_category,
+                        "confidence": anomaly_confidence,
+                        "source": (
+                            "uploaded_json" if supplied_category
+                            else anomaly_summary.model_name or "unassessed"
+                        ),
+                        **({
+                            "anomaly_probability": anomaly.metadata["anomaly_probability"],
+                            "type_probabilities": anomaly.metadata["type_probabilities"],
+                        } if anomaly and "anomaly_probability" in anomaly.metadata else {}),
+                    }
                     event["event_id"] = event_id
                     clip_path = self.clip_generator.cut_evidence_clip(
                         video_path, start_sec, end_sec, event_id, video.duration_sec
@@ -399,8 +446,8 @@ class SurveillancePipeline:
                         entity_ids=entity_ids,
                         description=event["description"],
                         confidence=float(event.get("confidence", 0.5)),
-                        anomaly_category=anomaly.category if anomaly else "Unassessed",
-                        anomaly_confidence=anomaly.confidence if anomaly else 0.0,
+                        anomaly_category=anomaly_category,
+                        anomaly_confidence=anomaly_confidence,
                         vlm_verified=bool(event.get("vlm_verified", False)),
                         clip_path=clip_path,
                         metadata={
@@ -408,6 +455,7 @@ class SurveillancePipeline:
                             "camera_id": window.get("camera_id"),
                             "zone": event.get("zone"),
                             "pipeline_mode": pipeline_mode,
+                            "source_json_sha256": source_json_sha256,
                             "anomaly_model_available": anomaly_summary.model_available,
                             "anomaly_model": anomaly_summary.model_name,
                         },
@@ -442,6 +490,7 @@ class SurveillancePipeline:
                 "video_id": video_id,
                 "filename": video.filename,
                 "pipeline_mode": pipeline_mode,
+                "source_json_sha256": source_json_sha256,
                 "summary": summary,
                 "anomaly_summary": anomaly_summary.model_dump(mode="json"),
                 "windows": windows_data,
@@ -473,6 +522,143 @@ class SurveillancePipeline:
             logger.exception(f"Pipeline failed for {video_id}: {e}")
             self.store.update_video_status(video_id, "failed", error_message=str(e))
             raise
+
+    @staticmethod
+    def _uploaded_anomaly_category(event: Dict[str, Any]) -> Optional[str]:
+        fields = (
+            "anomaly_category",
+            "anomaly_class",
+            "anomaly_label",
+            "anomaly_type",
+            "predicted_category",
+            "pred_14class",
+            "predicted_class",
+            "predicted_anomaly",
+        )
+        prediction = event.get("anomaly_prediction")
+        candidates = [event.get(field) for field in fields]
+        if isinstance(prediction, dict):
+            candidates.extend(
+                prediction.get(field)
+                for field in (
+                    "category", "class", "label", "predicted_class",
+                    "overall_category",
+                )
+            )
+        else:
+            candidates.append(prediction)
+        summary = event.get("anomaly_summary")
+        if isinstance(summary, dict):
+            candidates.append(summary.get("overall_category"))
+        anomaly = event.get("anomaly")
+        if isinstance(anomaly, dict):
+            candidates.extend(
+                anomaly.get(key) for key in ("category", "class", "label")
+            )
+        else:
+            candidates.append(anomaly)
+        canonical = {
+            "".join(character for character in category.casefold() if character.isalnum()): category
+            for category in ANOMALY_CATEGORIES
+        }
+        for candidate in candidates:
+            if isinstance(candidate, str):
+                normalized = "".join(
+                    character
+                    for character in candidate.casefold()
+                    if character.isalnum()
+                )
+                if normalized in canonical:
+                    return canonical[normalized]
+        return None
+
+    @classmethod
+    def _inherit_window_anomaly_label(cls, window: Dict[str, Any]) -> None:
+        """Copy a window-level JSON label onto events that do not have their own."""
+        window_label = cls._uploaded_anomaly_category(window)
+        if not window_label:
+            return
+        for event in window.get("events", []):
+            if not cls._uploaded_anomaly_category(event):
+                event["anomaly_category"] = window_label
+
+    @staticmethod
+    def _uploaded_anomaly_confidence(event: Dict[str, Any]) -> float:
+        prediction = event.get("anomaly_prediction")
+        candidates = [
+            event.get("anomaly_confidence"),
+            event.get("anomaly_probability"),
+            event.get("anomaly_score"),
+        ]
+        if isinstance(prediction, dict):
+            candidates.extend(
+                prediction.get(key)
+                for key in ("confidence", "probability", "score")
+            )
+        for candidate in candidates:
+            try:
+                value = float(candidate)
+            except (TypeError, ValueError):
+                continue
+            if 0.0 <= value <= 1.0 and math.isfinite(value):
+                return value
+        return 1.0
+
+    @classmethod
+    def _anomaly_summary_from_windows(cls, video_id, windows):
+        """Build an anomaly summary from explicit labels in direct-upload JSON."""
+        labeled_events = []
+        for window in windows:
+            for event in window.get("events", []):
+                category = cls._uploaded_anomaly_category(event)
+                if category:
+                    start = float(event.get("abs_start", window["window"][0] + event["start"]))
+                    end = float(event.get("abs_end", window["window"][0] + event["end"]))
+                    labeled_events.append((event, category, start, end))
+
+        segments = [
+            ClipAnomalyScore(
+                clip_id=str(event.get("event_id") or f"{video_id}_json_{index + 1:03d}"),
+                start_sec=round(start, 2),
+                end_sec=round(end, 2),
+                category=category,
+                confidence=round(cls._uploaded_anomaly_confidence(event), 4),
+                is_anomaly=category != "Normal",
+                metadata={"source": "uploaded_json"},
+            )
+            for index, (event, category, start, end) in enumerate(labeled_events)
+        ]
+        if not segments:
+            return VideoAnomalySummary(
+                video_id=video_id,
+                overall_category="Unassessed",
+                overall_confidence=0.0,
+                is_anomalous=False,
+                model_available=False,
+                model_name="uploaded_json",
+                anomaly_segments=[],
+            )
+
+        category_durations: Dict[str, float] = {}
+        for segment in segments:
+            if segment.category != "Normal":
+                category_durations[segment.category] = (
+                    category_durations.get(segment.category, 0.0)
+                    + max(segment.end_sec - segment.start_sec, 0.1)
+                )
+        overall_category = (
+            max(category_durations, key=category_durations.get)
+            if category_durations else "Normal"
+        )
+        return VideoAnomalySummary(
+            video_id=video_id,
+            overall_category=overall_category,
+            overall_confidence=1.0,
+            is_anomalous=overall_category != "Normal",
+            model_available=False,
+            model_name="uploaded_json",
+            anomaly_segments=segments,
+        )
 
     @staticmethod
     def _serialize_windows(video_id, windows, tracking_result, frame_width, frame_height):

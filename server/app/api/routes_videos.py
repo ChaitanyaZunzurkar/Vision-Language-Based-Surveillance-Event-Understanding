@@ -129,6 +129,7 @@ async def upload_video_with_windows(
         json_bytes = await json_file.read(50 * 1024 * 1024 + 1)
         if len(json_bytes) > 50 * 1024 * 1024:
             raise HTTPException(status_code=413, detail="Windows JSON exceeds the 50 MB upload limit")
+        source_json_sha256 = hashlib.sha256(json_bytes).hexdigest()
         try:
             payload = json.loads(json_bytes.decode("utf-8-sig"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
@@ -153,6 +154,12 @@ async def upload_video_with_windows(
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
 
+        top_level_anomaly = SurveillancePipeline._uploaded_anomaly_category(payload)
+        if top_level_anomaly:
+            for window in windows:
+                if not SurveillancePipeline._uploaded_anomaly_category(window):
+                    window["anomaly_category"] = top_level_anomaly
+
         record = ingestor.ingest_video(temp_path, original_filename=safe_filename)
         if temp_path.exists() and temp_path.resolve() != Path(record.file_path).resolve():
             temp_path.unlink()
@@ -165,6 +172,7 @@ async def upload_video_with_windows(
             record.video_id,
             windows,
             "direct_json",
+            source_json_sha256,
         )
         return to_response(record)
     except HTTPException:
@@ -224,7 +232,9 @@ def import_demo_videos(
                     detail=f"Reference JSON exceeds the 50 MB limit: {json_path.name}",
                 )
             try:
-                payload = json.loads(json_path.read_text(encoding="utf-8-sig"))
+                source_json_bytes = json_path.read_bytes()
+                source_json_sha256 = hashlib.sha256(source_json_bytes).hexdigest()
+                payload = json.loads(source_json_bytes.decode("utf-8-sig"))
                 video_info = get_video_info(video_path)
                 payload = clip_event_times_to_video(
                     payload, video_info["duration_sec"]
@@ -237,6 +247,11 @@ def import_demo_videos(
                     status_code=400,
                     detail=f"Invalid video/JSON pair {video_path.name} + {json_path.name}: {exc}",
                 ) from exc
+            top_level_anomaly = SurveillancePipeline._uploaded_anomaly_category(payload)
+            if top_level_anomaly:
+                for window in windows:
+                    if not SurveillancePipeline._uploaded_anomaly_category(window):
+                        window["anomaly_category"] = top_level_anomaly
 
             hasher = hashlib.md5()
             with video_path.open("rb") as video_file:
@@ -252,7 +267,21 @@ def import_demo_videos(
                     video_path, original_filename=video_path.name
                 )
 
-            if record.status not in {"completed", "processing"}:
+            analysis_path = paths.outputs_dir / f"{record.video_id}_analysis.json"
+            processed_json_matches = False
+            if record.status == "completed" and analysis_path.is_file():
+                try:
+                    analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
+                    processed_json_matches = (
+                        analysis.get("source_json_sha256") == source_json_sha256
+                    )
+                except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+                    logger.warning(
+                        "Could not verify previously processed JSON for %s; reprocessing",
+                        video_path.name,
+                    )
+
+            if record.status != "processing" and not processed_json_matches:
                 store.update_video_status(record.video_id, "processing")
                 record.status = "processing"
                 record.error_message = None
@@ -261,6 +290,7 @@ def import_demo_videos(
                     record.video_id,
                     windows,
                     "direct_json",
+                    source_json_sha256,
                 )
             imported.append(record)
 

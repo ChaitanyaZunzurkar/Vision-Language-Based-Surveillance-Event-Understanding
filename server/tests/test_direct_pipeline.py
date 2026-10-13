@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 
@@ -6,7 +7,7 @@ import numpy as np
 import pytest
 import shutil
 from fastapi.testclient import TestClient
-from server.src.anomaly.schemas import ClipAnomalyScore, VideoAnomalySummary
+from server.src.anomaly.nn_predictor import SEGMENT_COUNT, _pool_features
 from server.app.main import app
 from server.app.api.deps import get_ingestor, get_metadata_store, get_pipeline
 from server.src.detection.schemas import BoundingBox
@@ -214,36 +215,23 @@ def test_direct_json_pipeline_skips_tracking_and_writes_analysis_json(tmp_path, 
 
     pipeline = SurveillancePipeline(store=store, vec_store=VectorStoreStub())
     pipeline.clip_generator.output_dir = tmp_path / "clips"
+    windows = _windows("sample")
+    windows[0]["events"][0]["anomaly_class"] = "Robbery"
+    windows[0]["events"][0]["anomaly_confidence"] = 0.91
 
     def fail_if_called(*args, **kwargs):
         raise AssertionError("Direct JSON mode must not run YOLO or ByteTrack")
 
     pipeline._run_stage1b = fail_if_called
-    pipeline.anomaly_detector.detect_anomalies = lambda *args, **kwargs: VideoAnomalySummary(
-        video_id="video-test",
-        overall_category="Unassessed",
-        overall_confidence=0.0,
-        is_anomalous=False,
-        model_available=False,
-        anomaly_segments=[
-            ClipAnomalyScore(
-                clip_id="video-test_c001",
-                start_sec=0.0,
-                end_sec=4.0,
-                category="Unassessed",
-                confidence=0.0,
-                is_anomaly=False,
-            )
-        ],
-    )
     monkeypatch.setattr("server.src.pipeline.pipeline.paths.outputs_dir", tmp_path / "outputs")
     monkeypatch.setattr("server.src.pipeline.pipeline.paths.windows_dir", tmp_path / "windows")
     monkeypatch.setattr("server.src.pipeline.pipeline.paths.tracks_dir", tmp_path / "tracks")
 
     result = pipeline.process_video(
         "video-test",
-        precomputed_windows=_windows("sample"),
+        precomputed_windows=windows,
         pipeline_mode="direct_json",
+        source_json_sha256="a" * 64,
     )
 
     output_path = Path(result["analysis_json"])
@@ -252,11 +240,40 @@ def test_direct_json_pipeline_skips_tracking_and_writes_analysis_json(tmp_path, 
     assert output["pipeline_mode"] == "direct_json"
     assert output["summary"]["total_windows"] == 1
     assert output["summary"]["tracking_backend"] == "precomputed_json"
-    assert output["summary"]["total_anomalies"] == 0
+    assert output["summary"]["total_anomalies"] == 1
     assert output["summary"]["total_anomaly_segments"] == 1
+    assert output["source_json_sha256"] == "a" * 64
     assert output["windows"][0]["events"][0]["abs_start"] == 1.0
-    assert output["windows"][0]["events"][0]["anomaly_category"] == "Unassessed"
+    assert output["windows"][0]["events"][0]["anomaly_category"] == "Robbery"
+    assert output["windows"][0]["events"][0]["anomaly_prediction"]["source"] == "uploaded_json"
     assert store.get_events(video_id="video-test")[0].start_sec == 1.0
+    assert store.get_events(video_id="video-test")[0].anomaly_category == "Robbery"
+
+
+def test_direct_json_anomaly_labels_are_used_instead_of_running_prediction():
+    windows = _windows("sample")
+    event = windows[0]["events"][0]
+    event["anomaly_class"] = "Robbery"
+    event["anomaly_confidence"] = 0.91
+
+    summary = SurveillancePipeline._anomaly_summary_from_windows(
+        "video-test", windows
+    )
+
+    assert summary.overall_category == "Robbery"
+    assert summary.is_anomalous is True
+    assert summary.anomaly_segments[0].confidence == 0.91
+    assert summary.anomaly_segments[0].metadata["source"] == "uploaded_json"
+    assert SurveillancePipeline._uploaded_anomaly_category(event) == "Robbery"
+
+
+def test_anomaly_feature_pooling_produces_notebook_temporal_shape():
+    features = np.asarray([[3.0, 4.0], [0.0, 2.0]], dtype=np.float32)
+    pooled = _pool_features(features, np.asarray([0.0, 1.0]), 2.0)
+
+    assert pooled.shape == (SEGMENT_COUNT, 2)
+    assert np.isfinite(pooled).all()
+    assert np.allclose(np.linalg.norm(pooled, axis=1), 1.0)
 
 
 def test_direct_upload_api_validates_pair_and_starts_direct_mode(tmp_path, monkeypatch):
@@ -332,6 +349,8 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
     video_path = video_dir / "sample.mp4"
     _make_video(video_path)
     payload = {"windows": _windows("sample")}
+    payload["windows"][0]["events"][0]["anomaly_class"] = "Robbery"
+    payload["windows"][0]["events"][0]["anomaly_confidence"] = 0.91
     payload["windows"][0]["events"][0]["end"] = 10.0
     payload["windows"][0]["events"][0]["abs_end"] = 10.0
     (output_dir / "sample.json").write_text(
@@ -397,3 +416,7 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
     assert pipeline.calls[0][1][0]["video_id"] == "sample"
     assert pipeline.calls[0][1][0]["events"][0]["abs_end"] == 4.0
     assert pipeline.calls[0][2] == "direct_json"
+    assert pipeline.calls[0][1][0]["events"][0]["anomaly_class"] == "Robbery"
+    assert pipeline.calls[0][3] == hashlib.sha256(
+        (output_dir / "sample.json").read_bytes()
+    ).hexdigest()

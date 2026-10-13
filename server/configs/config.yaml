@@ -79,12 +79,11 @@ chat:
   max_new_tokens: 192
 
 anomaly:
-  model_weights: "weights/best_model.pkl"
-  scaler_weights: "weights/scaler.pkl"
-  feature_extractor: "AnomalyCLIP"
-  clip_duration_sec: 4.0
-  clip_stride_sec: 2.0
-  num_frames: 16
+  nn_model_weights: "models/anomaly/nn_models_fixed.pt"
+  feature_model: "openai/clip-vit-base-patch16"
+  device: "auto"
+  sample_fps: 2.0
+  batch_size: 16
   anomaly_threshold: 0.50
 
 evidence:
