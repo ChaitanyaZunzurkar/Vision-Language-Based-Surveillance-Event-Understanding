@@ -16,7 +16,10 @@ from server.src.pipeline.pipeline import SurveillancePipeline
 from server.src.utils.paths import paths
 from server.src.utils.logger import logger
 from server.src.utils.video_utils import get_video_info
-from server.src.pipeline.json_input import validate_windows_payload
+from server.src.pipeline.json_input import (
+    clip_event_times_to_video,
+    validate_windows_payload,
+)
 from server.src.storage.vector_store import VectorStore
 from server.app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
 
@@ -141,6 +144,9 @@ async def upload_video_with_windows(
 
         video_info = get_video_info(temp_path)
         try:
+            payload = clip_event_times_to_video(
+                payload, video_info["duration_sec"]
+            )
             windows = validate_windows_payload(
                 payload, {Path(safe_filename).stem}, video_info["duration_sec"]
             )
@@ -220,6 +226,9 @@ def import_demo_videos(
             try:
                 payload = json.loads(json_path.read_text(encoding="utf-8-sig"))
                 video_info = get_video_info(video_path)
+                payload = clip_event_times_to_video(
+                    payload, video_info["duration_sec"]
+                )
                 windows = validate_windows_payload(
                     payload, {video_path.stem}, video_info["duration_sec"]
                 )

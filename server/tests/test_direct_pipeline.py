@@ -12,7 +12,10 @@ from server.app.api.deps import get_ingestor, get_metadata_store, get_pipeline
 from server.src.detection.schemas import BoundingBox
 from server.src.event_understanding.qwen import VLMEventUnderstanding
 from server.src.event_understanding.schemas import TemporalWindow
-from server.src.pipeline.json_input import validate_windows_payload
+from server.src.pipeline.json_input import (
+    clip_event_times_to_video,
+    validate_windows_payload,
+)
 from server.src.pipeline.pipeline import SurveillancePipeline
 from server.src.config.loader import config_loader
 from server.src.storage.metadata_store import MetadataStore
@@ -68,11 +71,36 @@ def test_windows_json_validation_checks_video_and_track_references():
     invalid = _windows("other")
     with pytest.raises(ValueError, match="do not match"):
         validate_windows_payload({"windows": invalid}, {"sample"}, 4.0)
-
     invalid = _windows("sample")
     invalid[0]["events"][0]["subject_track"] = 99
     with pytest.raises(ValueError, match="unknown subject_track"):
         validate_windows_payload({"windows": invalid}, {"sample"}, 4.0)
+
+
+def test_precomputed_events_are_clipped_to_video_duration():
+    payload = {"windows": [{
+        "video_id": "sample",
+        "window": [5.0, 15.0],
+        "tracks": [],
+        "events": [{
+            "event_type": "standing",
+            "subject_track": None,
+            "object_track": None,
+            "start": 0.0,
+            "end": 10.0,
+            "abs_start": 5.0,
+            "abs_end": 15.0,
+            "confidence": 0.8,
+            "description": "Person is standing.",
+        }],
+    }]}
+
+    clipped = clip_event_times_to_video(payload, 8.0)
+    windows = validate_windows_payload(clipped, {"sample"}, 8.0)
+
+    assert windows[0]["events"][0]["abs_end"] == 8.0
+    assert windows[0]["events"][0]["end"] == 3.0
+    assert payload["windows"][0]["events"][0]["abs_end"] == 15.0
 
 
 def test_existing_notebook_events_are_normalized_without_model_loading(tmp_path):
@@ -303,8 +331,11 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
     output_dir.mkdir(parents=True)
     video_path = video_dir / "sample.mp4"
     _make_video(video_path)
+    payload = {"windows": _windows("sample")}
+    payload["windows"][0]["events"][0]["end"] = 10.0
+    payload["windows"][0]["events"][0]["abs_end"] = 10.0
     (output_dir / "sample.json").write_text(
-        json.dumps({"windows": _windows("sample")}), encoding="utf-8"
+        json.dumps(payload), encoding="utf-8"
     )
     monkeypatch.setattr("server.app.api.routes_videos.paths.uploads_dir", uploads_dir)
     monkeypatch.setattr("server.app.api.routes_videos.paths.root_dir", repository_root)
@@ -364,4 +395,5 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
     assert len(ingestor.calls) == 1
     assert pipeline.calls[0][0] == "video-test"
     assert pipeline.calls[0][1][0]["video_id"] == "sample"
+    assert pipeline.calls[0][1][0]["events"][0]["abs_end"] == 4.0
     assert pipeline.calls[0][2] == "direct_json"

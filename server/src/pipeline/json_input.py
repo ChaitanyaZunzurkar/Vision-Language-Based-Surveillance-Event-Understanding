@@ -135,3 +135,58 @@ def _is_finite_number(value: Any) -> bool:
 def matching_video_names(filename: str, video_id: str) -> set[str]:
     """Names accepted in notebook window files for an ingested video."""
     return {video_id, Path(filename).stem}
+
+
+def clip_event_times_to_video(payload: Any, duration_sec: float) -> Any:
+    """Clip precomputed event timestamps to the source video's valid interval."""
+    if not isinstance(payload, dict) or not isinstance(payload.get("windows"), list):
+        return payload
+
+    clipped_payload = deepcopy(payload)
+    for window in clipped_payload["windows"]:
+        if not isinstance(window, dict):
+            continue
+        time_range = window.get("window")
+        if not isinstance(time_range, list) or len(time_range) != 2:
+            continue
+        window_start = time_range[0]
+        if not _is_finite_number(window_start):
+            continue
+
+        events = window.get("events")
+        if not isinstance(events, list):
+            continue
+
+        retained_events = []
+        for event in events:
+            if not isinstance(event, dict):
+                retained_events.append(event)
+                continue
+            start = event.get("abs_start", event.get("start"))
+            end = event.get("abs_end", event.get("end"))
+            if not _is_finite_number(start) or not _is_finite_number(end):
+                retained_events.append(event)
+                continue
+
+            absolute_start = float(start)
+            absolute_end = float(end)
+            if "abs_start" not in event:
+                absolute_start += float(window_start)
+                absolute_end += float(window_start)
+            if absolute_start >= duration_sec:
+                continue
+
+            clipped_start = max(0.0, absolute_start)
+            clipped_end = min(duration_sec, absolute_end)
+            if clipped_end < clipped_start:
+                continue
+            if "abs_start" in event:
+                event["abs_start"] = clipped_start
+                event["abs_end"] = clipped_end
+            event["start"] = max(0.0, clipped_start - float(window_start))
+            event["end"] = max(0.0, clipped_end - float(window_start))
+            retained_events.append(event)
+
+        window["events"] = retained_events
+
+    return clipped_payload

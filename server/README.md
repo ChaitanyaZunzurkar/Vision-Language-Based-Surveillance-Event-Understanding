@@ -107,4 +107,5 @@ paired with a same-name JSON sidecar or the corresponding file in
 `notebooks\directjsonreference\pipeline_outputs`. Valid pairs are registered
 and processed through direct-JSON mode, then appear under **FOOTAGE**. Keep
 large local videos in one of these ignored/local data folders rather than
-committing them.
+committing them. Event timestamps beyond the source video duration are clipped
+to its end, and events starting after the video ends are discarded.
