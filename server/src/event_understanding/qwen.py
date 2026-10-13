@@ -5,6 +5,7 @@ import math
 import re
 from copy import deepcopy
 from pathlib import Path
+from threading import RLock
 from typing import Any, Dict, List, Optional, Tuple
 
 import cv2
@@ -44,6 +45,7 @@ class VLMEventUnderstanding:
         self.processor = None
         self.execution_device = DEVICE_INFO.device if device == "auto" else device
         self.load_error: Optional[str] = None
+        self._model_lock = RLock()
 
     @property
     def model_available(self) -> bool:
@@ -94,6 +96,12 @@ class VLMEventUnderstanding:
         return output_windows, model_available
 
     def _load_model(self) -> None:
+        with self._model_lock:
+            if self.model_available:
+                return
+            self._load_model_unlocked()
+
+    def _load_model_unlocked(self) -> None:
         import torch
         from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
 
@@ -122,6 +130,101 @@ class VLMEventUnderstanding:
         )
         self.model.eval()
         self.processor = AutoProcessor.from_pretrained(self.model_name)
+
+    def generate_grounded_answer(
+        self,
+        question: str,
+        evidence: List[Dict[str, Any]],
+        history: List[Dict[str, str]],
+    ) -> Optional[str]:
+        """Answer conversational follow-ups from retrieved event records only."""
+        if not evidence:
+            return None
+        if not self.model_available:
+            self._load_model()
+
+        evidence_ids = {
+            str(item["event_id"])
+            for item in evidence
+            if item.get("event_id") is not None
+        }
+        if not evidence_ids:
+            return None
+
+        facts = [
+            {
+                "event_id": str(item["event_id"]),
+                "video_id": item.get("video_id"),
+                "event_type": item.get("event_type"),
+                "start_sec": item.get("start_sec"),
+                "end_sec": item.get("end_sec"),
+                "description": item.get("description"),
+                "confidence": item.get("confidence"),
+                "anomaly_category": item.get("anomaly_category"),
+            }
+            for item in evidence[:10]
+            if item.get("event_id") is not None
+        ]
+        recent_history = [
+            turn for turn in history[-8:]
+            if turn.get("role") in {"user", "assistant"}
+            and isinstance(turn.get("content"), str)
+        ]
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a conversational assistant for surveillance event records. "
+                    "Answer the user's current question naturally and briefly, using only "
+                    "the VERIFIED EVENT RECORDS below for claims about the footage. Treat "
+                    "conversation history only as context for references such as 'it' or "
+                    "'that person'; it is not evidence. Do not infer intent, identity, or "
+                    "unstated actions. If the records do not answer the question, say so. "
+                    "Cite each factual claim with one or more exact event IDs in square "
+                    "brackets, for example [event-id]. Do not invent event IDs."
+                ),
+            },
+            {
+                "role": "user",
+                "content": (
+                    f"Conversation history (context only):\n"
+                    f"{json.dumps(recent_history, ensure_ascii=True)}\n\n"
+                    f"Verified event records:\n{json.dumps(facts, ensure_ascii=True)}\n\n"
+                    f"Current question: {question}"
+                ),
+            },
+        ]
+
+        with self._model_lock:
+            import torch
+
+            prompt = self.processor.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+            inputs = self.processor(text=[prompt], return_tensors="pt")
+            model_device = getattr(self.model, "device", None)
+            if model_device is not None:
+                inputs = inputs.to(model_device)
+            generated = self.model.generate(
+                **inputs,
+                max_new_tokens=min(
+                    256,
+                    max(32, int(config_loader.get("chat.max_new_tokens", 192))),
+                ),
+                do_sample=False,
+            )
+            answer = self.processor.batch_decode(
+                generated[:, inputs.input_ids.shape[1]:],
+                skip_special_tokens=True,
+            )[0].strip()
+
+        citations = set(re.findall(r"\[([^\]]+)\]", answer))
+        if not answer or not citations or not citations.issubset(evidence_ids):
+            logger.warning(
+                "Rejected local Qwen chat answer because it lacked valid event citations"
+            )
+            return None
+        return answer
 
     @staticmethod
     def _extract_frames(
@@ -233,7 +336,7 @@ class VLMEventUnderstanding:
         }
         if sample:
             generation_options["temperature"] = max(self.temperature, 0.2)
-        with torch.inference_mode():
+        with self._model_lock, torch.inference_mode():
             generated = self.model.generate(**inputs, **generation_options)
         trimmed = [
             output[len(input_ids):]

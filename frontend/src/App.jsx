@@ -60,7 +60,7 @@ export default function App() {
   const [error, setError] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeClip, setActiveClip] = useState(null);
-  const [showArchive, setShowArchive] = useState(false);
+  const [showArchive, setShowArchive] = useState(true);
   const [eventsReviewOpen, setEventsReviewOpen] = useState(false);
   const [eventsFile, setEventsFile] = useState(null);
   const [eventsPreview, setEventsPreview] = useState(null);
@@ -190,7 +190,16 @@ export default function App() {
       const result = await request("/api/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: text, top_k: 6, min_score: 0.08, video_id: scope || null }),
+        body: JSON.stringify({
+          query: text,
+          top_k: 6,
+          min_score: 0.08,
+          video_id: scope || null,
+          history: (current?.messages || [])
+            .slice(-8)
+            .map(({ role, text: content }) => ({ role, content: content?.slice(0, 2000) }))
+            .filter((turn) => turn.content),
+        }),
       });
       updateConversation(chatId, (item) => ({
         ...item,
@@ -218,6 +227,7 @@ export default function App() {
       body.append("auto_run", "false");
       const video = await request("/api/videos/upload", { method: "POST", body });
       setVideos((items) => [video, ...items.filter((item) => item.video_id !== video.video_id)]);
+      setShowArchive(true);
       setScope(video.video_id);
       let chatId = conversationId;
       if (!chatId) {
@@ -259,6 +269,7 @@ export default function App() {
       body.append("json_file", directJsonFile);
       const video = await request("/api/videos/upload-direct", { method: "POST", body });
       setVideos((items) => [video, ...items.filter((item) => item.video_id !== video.video_id)]);
+      setShowArchive(true);
       setScope(video.video_id);
       setDirectUploadOpen(false);
       setDirectVideoFile(null);
@@ -383,7 +394,7 @@ export default function App() {
 
         <label className="sidebar-search"><Search size={15} /><input value={searchChats} onChange={(event) => setSearchChats(event.target.value)} placeholder="Search conversations" /></label>
 
-        <div className="sidebar-section-heading"><span>FOOTAGE</span><button className="icon-button small" onClick={() => setShowArchive((value) => !value)} aria-label="Toggle archive"><FolderOpen size={15} /></button></div>
+        <div className="sidebar-section-heading"><span>FOOTAGE <span className="conversation-count">{videos.length}</span></span><button className="icon-button small" onClick={() => setShowArchive((value) => !value)} aria-label="Toggle footage library" aria-expanded={showArchive}><FolderOpen size={15} /></button></div>
         {showArchive && <div className="archive-list">
           {videos.length === 0 && <div className="sidebar-empty">No footage yet.</div>}
           {videos.map((video) => <div className="archive-video-row" key={video.video_id}>

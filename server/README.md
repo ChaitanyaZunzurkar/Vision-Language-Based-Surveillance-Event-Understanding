@@ -91,3 +91,11 @@ Invoke-RestMethod -Method Post http://127.0.0.1:8080/api/query/rebuild-index
 Search through `POST /api/query` with `query`, `top_k`, `min_score`, and
 optional `video_id`. Natural-language event, anomaly, entity, and time filters
 are parsed and applied against SQLite before hybrid ranking.
+
+The chat UI sends the last eight conversation turns with each query. When
+verified event records match, the local Qwen2.5-VL model answers using those
+records as its only footage evidence and cites their event IDs. Chat reuses the
+pipeline's lazily loaded Qwen instance rather than loading a second copy. If the
+model cannot load or returns missing/unknown citations, the API returns the
+deterministic evidence summary instead. A first chat query with matching events
+can therefore trigger local model loading; it may use substantial RAM/VRAM.

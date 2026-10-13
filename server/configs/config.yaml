@@ -75,6 +75,9 @@ vlm:
   max_retries: 2
   temperature: 0.2
 
+chat:
+  max_new_tokens: 192
+
 anomaly:
   model_weights: "weights/best_model.pkl"
   scaler_weights: "weights/scaler.pkl"
