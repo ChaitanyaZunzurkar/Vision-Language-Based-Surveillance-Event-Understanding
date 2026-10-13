@@ -36,9 +36,62 @@
           "abs_end": 29.2,
           "zone": "office",
           "confidence": 0.9,
-          "description": "A man wearing a dark jacket and light-colored pants walks through the office, moving from left to right."
+          "description": "A man wearing a dark jacket and light-colored pants walks through the office, moving from left to right. [Model: Robbery (69%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6944,
+          "model_p_anomaly": 0.621,
+          "model_type_probs": {
+            "Abuse": 0.0177,
+            "Arrest": 0.0091,
+            "Arson": 0.0038,
+            "Assault": 0.0197,
+            "Burglary": 0.2126,
+            "Explosion": 0.0025,
+            "Fighting": 0.004,
+            "RoadAccidents": 0.0041,
+            "Robbery": 0.6944,
+            "Shooting": 0.0086,
+            "Shoplifting": 0.0097,
+            "Stealing": 0.0071,
+            "Vandalism": 0.0069
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6944,
+        "p_anomaly": 0.621,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6944
+          ],
+          [
+            "Burglary",
+            0.2126
+          ],
+          [
+            "Assault",
+            0.0197
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0177,
+          "Arrest": 0.0091,
+          "Arson": 0.0038,
+          "Assault": 0.0197,
+          "Burglary": 0.2126,
+          "Explosion": 0.0025,
+          "Fighting": 0.004,
+          "RoadAccidents": 0.0041,
+          "Robbery": 0.6944,
+          "Shooting": 0.0086,
+          "Shoplifting": 0.0097,
+          "Stealing": 0.0071,
+          "Vandalism": 0.0069
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -76,9 +129,62 @@
           "abs_end": 44.2,
           "zone": "center -> top_left",
           "confidence": 1.0,
-          "description": "A person wearing a dark jacket and light-colored pants is seen moving towards another individual near the center of the frame. They appear to be engaging in some form of interaction, possibly a struggle or a push, as their movements suggest a physical encounter."
+          "description": "A person wearing a dark jacket and light-colored pants is seen moving towards another individual near the center of the frame. They appear to be engaging in some form of interaction, possibly a struggle or a push, as their movements suggest a physical encounter. [Model: Robbery (67%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6699,
+          "model_p_anomaly": 0.9677,
+          "model_type_probs": {
+            "Abuse": 0.0342,
+            "Arrest": 0.0208,
+            "Arson": 0.0031,
+            "Assault": 0.0426,
+            "Burglary": 0.1759,
+            "Explosion": 0.0027,
+            "Fighting": 0.0113,
+            "RoadAccidents": 0.0043,
+            "Robbery": 0.6699,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.0106,
+            "Stealing": 0.0044,
+            "Vandalism": 0.0069
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6699,
+        "p_anomaly": 0.9677,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6699
+          ],
+          [
+            "Burglary",
+            0.1759
+          ],
+          [
+            "Assault",
+            0.0426
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0342,
+          "Arrest": 0.0208,
+          "Arson": 0.0031,
+          "Assault": 0.0426,
+          "Burglary": 0.1759,
+          "Explosion": 0.0027,
+          "Fighting": 0.0113,
+          "RoadAccidents": 0.0043,
+          "Robbery": 0.6699,
+          "Shooting": 0.0132,
+          "Shoplifting": 0.0106,
+          "Stealing": 0.0044,
+          "Vandalism": 0.0069
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -156,7 +262,25 @@
           "abs_end": 43.33,
           "zone": "center -> top_mid",
           "confidence": 1.0,
-          "description": "Person wearing a dark jacket and jeans interacts with another individual near the center of the frame."
+          "description": "Person wearing a dark jacket and jeans interacts with another individual near the center of the frame. [Model: Robbery (64%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6381,
+          "model_p_anomaly": 0.9886,
+          "model_type_probs": {
+            "Abuse": 0.0595,
+            "Arrest": 0.0345,
+            "Arson": 0.0029,
+            "Assault": 0.0475,
+            "Burglary": 0.1459,
+            "Explosion": 0.0033,
+            "Fighting": 0.0215,
+            "RoadAccidents": 0.0049,
+            "Robbery": 0.6381,
+            "Shooting": 0.0162,
+            "Shoplifting": 0.0144,
+            "Stealing": 0.0051,
+            "Vandalism": 0.0062
+          }
         },
         {
           "event_type": "physical_contact",
@@ -168,9 +292,62 @@
           "abs_end": 43.33,
           "zone": "center -> top_left",
           "confidence": 1.0,
-          "description": "Person wearing a light-colored jacket and jeans engages in a physical interaction with another individual near the top left of the frame."
+          "description": "Person wearing a light-colored jacket and jeans engages in a physical interaction with another individual near the top left of the frame. [Model: Robbery (64%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6381,
+          "model_p_anomaly": 0.9886,
+          "model_type_probs": {
+            "Abuse": 0.0595,
+            "Arrest": 0.0345,
+            "Arson": 0.0029,
+            "Assault": 0.0475,
+            "Burglary": 0.1459,
+            "Explosion": 0.0033,
+            "Fighting": 0.0215,
+            "RoadAccidents": 0.0049,
+            "Robbery": 0.6381,
+            "Shooting": 0.0162,
+            "Shoplifting": 0.0144,
+            "Stealing": 0.0051,
+            "Vandalism": 0.0062
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6381,
+        "p_anomaly": 0.9886,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6381
+          ],
+          [
+            "Burglary",
+            0.1459
+          ],
+          [
+            "Abuse",
+            0.0595
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0595,
+          "Arrest": 0.0345,
+          "Arson": 0.0029,
+          "Assault": 0.0475,
+          "Burglary": 0.1459,
+          "Explosion": 0.0033,
+          "Fighting": 0.0215,
+          "RoadAccidents": 0.0049,
+          "Robbery": 0.6381,
+          "Shooting": 0.0162,
+          "Shoplifting": 0.0144,
+          "Stealing": 0.0051,
+          "Vandalism": 0.0062
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -232,9 +409,62 @@
           "abs_end": 53.37,
           "zone": "center -> top_mid",
           "confidence": 0.9,
-          "description": "Person #8 and Person #9 engage in a physical interaction near the center of the frame."
+          "description": "Person #8 and Person #9 engage in a physical interaction near the center of the frame. [Model: Robbery (65%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6534,
+          "model_p_anomaly": 0.9344,
+          "model_type_probs": {
+            "Abuse": 0.0505,
+            "Arrest": 0.0198,
+            "Arson": 0.0028,
+            "Assault": 0.0271,
+            "Burglary": 0.1787,
+            "Explosion": 0.003,
+            "Fighting": 0.012,
+            "RoadAccidents": 0.0058,
+            "Robbery": 0.6534,
+            "Shooting": 0.0154,
+            "Shoplifting": 0.018,
+            "Stealing": 0.006,
+            "Vandalism": 0.0074
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6534,
+        "p_anomaly": 0.9344,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6534
+          ],
+          [
+            "Burglary",
+            0.1787
+          ],
+          [
+            "Abuse",
+            0.0505
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0505,
+          "Arrest": 0.0198,
+          "Arson": 0.0028,
+          "Assault": 0.0271,
+          "Burglary": 0.1787,
+          "Explosion": 0.003,
+          "Fighting": 0.012,
+          "RoadAccidents": 0.0058,
+          "Robbery": 0.6534,
+          "Shooting": 0.0154,
+          "Shoplifting": 0.018,
+          "Stealing": 0.006,
+          "Vandalism": 0.0074
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -287,7 +517,25 @@
           "abs_end": 59.2,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing a dark outfit approaches from the left side of the frame."
+          "description": "A person wearing a dark outfit approaches from the left side of the frame. [Model: Robbery (66%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6607,
+          "model_p_anomaly": 0.6425,
+          "model_type_probs": {
+            "Abuse": 0.0292,
+            "Arrest": 0.006,
+            "Arson": 0.0027,
+            "Assault": 0.0115,
+            "Burglary": 0.2383,
+            "Explosion": 0.0023,
+            "Fighting": 0.0048,
+            "RoadAccidents": 0.006,
+            "Robbery": 0.6607,
+            "Shooting": 0.0094,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "stand",
@@ -299,9 +547,62 @@
           "abs_end": 59.2,
           "zone": "center",
           "confidence": 1.0,
-          "description": "The person stands still near the center of the frame."
+          "description": "The person stands still near the center of the frame. [Model: Robbery (66%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6607,
+          "model_p_anomaly": 0.6425,
+          "model_type_probs": {
+            "Abuse": 0.0292,
+            "Arrest": 0.006,
+            "Arson": 0.0027,
+            "Assault": 0.0115,
+            "Burglary": 0.2383,
+            "Explosion": 0.0023,
+            "Fighting": 0.0048,
+            "RoadAccidents": 0.006,
+            "Robbery": 0.6607,
+            "Shooting": 0.0094,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0079
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6607,
+        "p_anomaly": 0.6425,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6607
+          ],
+          [
+            "Burglary",
+            0.2383
+          ],
+          [
+            "Abuse",
+            0.0292
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0292,
+          "Arrest": 0.006,
+          "Arson": 0.0027,
+          "Assault": 0.0115,
+          "Burglary": 0.2383,
+          "Explosion": 0.0023,
+          "Fighting": 0.0048,
+          "RoadAccidents": 0.006,
+          "Robbery": 0.6607,
+          "Shooting": 0.0094,
+          "Shoplifting": 0.0137,
+          "Stealing": 0.0075,
+          "Vandalism": 0.0079
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -353,7 +654,25 @@
           "abs_end": 56.47,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing a dark-colored jacket and light-colored pants enters the scene from the left side."
+          "description": "A person wearing a dark-colored jacket and light-colored pants enters the scene from the left side. [Model: Robbery (69%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6869,
+          "model_p_anomaly": 0.536,
+          "model_type_probs": {
+            "Abuse": 0.0202,
+            "Arrest": 0.0044,
+            "Arson": 0.0031,
+            "Assault": 0.011,
+            "Burglary": 0.2237,
+            "Explosion": 0.0024,
+            "Fighting": 0.0035,
+            "RoadAccidents": 0.0072,
+            "Robbery": 0.6869,
+            "Shooting": 0.0083,
+            "Shoplifting": 0.0115,
+            "Stealing": 0.0088,
+            "Vandalism": 0.009
+          }
         },
         {
           "event_type": "exit",
@@ -365,9 +684,62 @@
           "abs_end": 60.07,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A person wearing a dark-colored jacket and light-colored pants exits the scene towards the right side."
+          "description": "A person wearing a dark-colored jacket and light-colored pants exits the scene towards the right side. [Model: Robbery (69%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6869,
+          "model_p_anomaly": 0.536,
+          "model_type_probs": {
+            "Abuse": 0.0202,
+            "Arrest": 0.0044,
+            "Arson": 0.0031,
+            "Assault": 0.011,
+            "Burglary": 0.2237,
+            "Explosion": 0.0024,
+            "Fighting": 0.0035,
+            "RoadAccidents": 0.0072,
+            "Robbery": 0.6869,
+            "Shooting": 0.0083,
+            "Shoplifting": 0.0115,
+            "Stealing": 0.0088,
+            "Vandalism": 0.009
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6869,
+        "p_anomaly": 0.536,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6869
+          ],
+          [
+            "Burglary",
+            0.2237
+          ],
+          [
+            "Abuse",
+            0.0202
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0202,
+          "Arrest": 0.0044,
+          "Arson": 0.0031,
+          "Assault": 0.011,
+          "Burglary": 0.2237,
+          "Explosion": 0.0024,
+          "Fighting": 0.0035,
+          "RoadAccidents": 0.0072,
+          "Robbery": 0.6869,
+          "Shooting": 0.0083,
+          "Shoplifting": 0.0115,
+          "Stealing": 0.0088,
+          "Vandalism": 0.009
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -418,9 +790,62 @@
           "abs_end": 69.2,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A person wearing a grey hoodie approaches from the left side of the frame."
+          "description": "A person wearing a grey hoodie approaches from the left side of the frame. [Model: Robbery (68%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.684,
+          "model_p_anomaly": 0.4817,
+          "model_type_probs": {
+            "Abuse": 0.0194,
+            "Arrest": 0.0058,
+            "Arson": 0.0034,
+            "Assault": 0.0131,
+            "Burglary": 0.2223,
+            "Explosion": 0.0029,
+            "Fighting": 0.0041,
+            "RoadAccidents": 0.0065,
+            "Robbery": 0.684,
+            "Shooting": 0.0081,
+            "Shoplifting": 0.0116,
+            "Stealing": 0.0099,
+            "Vandalism": 0.0089
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.684,
+        "p_anomaly": 0.4817,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.684
+          ],
+          [
+            "Burglary",
+            0.2223
+          ],
+          [
+            "Abuse",
+            0.0194
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0194,
+          "Arrest": 0.0058,
+          "Arson": 0.0034,
+          "Assault": 0.0131,
+          "Burglary": 0.2223,
+          "Explosion": 0.0029,
+          "Fighting": 0.0041,
+          "RoadAccidents": 0.0065,
+          "Robbery": 0.684,
+          "Shooting": 0.0081,
+          "Shoplifting": 0.0116,
+          "Stealing": 0.0099,
+          "Vandalism": 0.0089
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -457,9 +882,62 @@
           "abs_end": 74.2,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A person wearing a dark jacket and light-colored pants enters the scene from the left side."
+          "description": "A person wearing a dark jacket and light-colored pants enters the scene from the left side. [Model: Robbery (60%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.597,
+          "model_p_anomaly": 0.531,
+          "model_type_probs": {
+            "Abuse": 0.0209,
+            "Arrest": 0.0062,
+            "Arson": 0.0048,
+            "Assault": 0.0143,
+            "Burglary": 0.3013,
+            "Explosion": 0.0029,
+            "Fighting": 0.0053,
+            "RoadAccidents": 0.0077,
+            "Robbery": 0.597,
+            "Shooting": 0.0102,
+            "Shoplifting": 0.0112,
+            "Stealing": 0.0087,
+            "Vandalism": 0.0096
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.597,
+        "p_anomaly": 0.531,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.597
+          ],
+          [
+            "Burglary",
+            0.3013
+          ],
+          [
+            "Abuse",
+            0.0209
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0209,
+          "Arrest": 0.0062,
+          "Arson": 0.0048,
+          "Assault": 0.0143,
+          "Burglary": 0.3013,
+          "Explosion": 0.0029,
+          "Fighting": 0.0053,
+          "RoadAccidents": 0.0077,
+          "Robbery": 0.597,
+          "Shooting": 0.0102,
+          "Shoplifting": 0.0112,
+          "Stealing": 0.0087,
+          "Vandalism": 0.0096
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -509,9 +987,62 @@
           "abs_end": 79.2,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "A person wearing a dark jacket and light-colored pants approaches another individual near the doorway, engaging in a physical interaction."
+          "description": "A person wearing a dark jacket and light-colored pants approaches another individual near the doorway, engaging in a physical interaction. [Model: Robbery (68%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6785,
+          "model_p_anomaly": 0.8105,
+          "model_type_probs": {
+            "Abuse": 0.0171,
+            "Arrest": 0.0063,
+            "Arson": 0.004,
+            "Assault": 0.0117,
+            "Burglary": 0.2339,
+            "Explosion": 0.0027,
+            "Fighting": 0.0049,
+            "RoadAccidents": 0.0055,
+            "Robbery": 0.6785,
+            "Shooting": 0.0093,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0066,
+            "Vandalism": 0.0087
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6785,
+        "p_anomaly": 0.8105,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6785
+          ],
+          [
+            "Burglary",
+            0.2339
+          ],
+          [
+            "Abuse",
+            0.0171
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0171,
+          "Arrest": 0.0063,
+          "Arson": 0.004,
+          "Assault": 0.0117,
+          "Burglary": 0.2339,
+          "Explosion": 0.0027,
+          "Fighting": 0.0049,
+          "RoadAccidents": 0.0055,
+          "Robbery": 0.6785,
+          "Shooting": 0.0093,
+          "Shoplifting": 0.0108,
+          "Stealing": 0.0066,
+          "Vandalism": 0.0087
+        }
+      }
     },
     {
       "video_id": "Arrest001_x264",
@@ -546,7 +1077,25 @@
           "abs_end": 77.1,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "A person wearing dark clothing enters the scene from the left."
+          "description": "A person wearing dark clothing enters the scene from the left. [Model: Robbery (74%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.7404,
+          "model_p_anomaly": 0.8859,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0061,
+            "Arson": 0.0034,
+            "Assault": 0.0095,
+            "Burglary": 0.1812,
+            "Explosion": 0.0025,
+            "Fighting": 0.005,
+            "RoadAccidents": 0.0047,
+            "Robbery": 0.7404,
+            "Shooting": 0.0089,
+            "Shoplifting": 0.0101,
+            "Stealing": 0.0044,
+            "Vandalism": 0.0078
+          }
         },
         {
           "event_type": "exit",
@@ -558,9 +1107,62 @@
           "abs_end": 78.5,
           "zone": "center",
           "confidence": 1.0,
-          "description": "The same person exits the scene towards the center."
+          "description": "The same person exits the scene towards the center. [Model: Robbery (74%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.7404,
+          "model_p_anomaly": 0.8859,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0061,
+            "Arson": 0.0034,
+            "Assault": 0.0095,
+            "Burglary": 0.1812,
+            "Explosion": 0.0025,
+            "Fighting": 0.005,
+            "RoadAccidents": 0.0047,
+            "Robbery": 0.7404,
+            "Shooting": 0.0089,
+            "Shoplifting": 0.0101,
+            "Stealing": 0.0044,
+            "Vandalism": 0.0078
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.7404,
+        "p_anomaly": 0.8859,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.7404
+          ],
+          [
+            "Burglary",
+            0.1812
+          ],
+          [
+            "Abuse",
+            0.0162
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0162,
+          "Arrest": 0.0061,
+          "Arson": 0.0034,
+          "Assault": 0.0095,
+          "Burglary": 0.1812,
+          "Explosion": 0.0025,
+          "Fighting": 0.005,
+          "RoadAccidents": 0.0047,
+          "Robbery": 0.7404,
+          "Shooting": 0.0089,
+          "Shoplifting": 0.0101,
+          "Stealing": 0.0044,
+          "Vandalism": 0.0078
+        }
+      }
     }
   ]
 }

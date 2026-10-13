@@ -207,7 +207,25 @@
           "abs_end": 3.83,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #1 enters the scene through the entrance."
+          "description": "Person #1 enters the scene through the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9983,
+          "model_p_anomaly": 0.0017,
+          "model_type_probs": {
+            "Abuse": 0.0105,
+            "Arrest": 0.0111,
+            "Arson": 0.0078,
+            "Assault": 0.0093,
+            "Burglary": 0.0787,
+            "Explosion": 0.0162,
+            "Fighting": 0.013,
+            "RoadAccidents": 0.1972,
+            "Robbery": 0.0464,
+            "Shooting": 0.0583,
+            "Shoplifting": 0.0229,
+            "Stealing": 0.5044,
+            "Vandalism": 0.0243
+          }
         },
         {
           "event_type": "approach",
@@ -219,7 +237,25 @@
           "abs_end": 5.33,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #2 approaches Person #1 near the entrance."
+          "description": "Person #2 approaches Person #1 near the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9983,
+          "model_p_anomaly": 0.0017,
+          "model_type_probs": {
+            "Abuse": 0.0105,
+            "Arrest": 0.0111,
+            "Arson": 0.0078,
+            "Assault": 0.0093,
+            "Burglary": 0.0787,
+            "Explosion": 0.0162,
+            "Fighting": 0.013,
+            "RoadAccidents": 0.1972,
+            "Robbery": 0.0464,
+            "Shooting": 0.0583,
+            "Shoplifting": 0.0229,
+            "Stealing": 0.5044,
+            "Vandalism": 0.0243
+          }
         },
         {
           "event_type": "approach",
@@ -231,7 +267,25 @@
           "abs_end": 6.73,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #3 approaches Person #1 near the entrance."
+          "description": "Person #3 approaches Person #1 near the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9983,
+          "model_p_anomaly": 0.0017,
+          "model_type_probs": {
+            "Abuse": 0.0105,
+            "Arrest": 0.0111,
+            "Arson": 0.0078,
+            "Assault": 0.0093,
+            "Burglary": 0.0787,
+            "Explosion": 0.0162,
+            "Fighting": 0.013,
+            "RoadAccidents": 0.1972,
+            "Robbery": 0.0464,
+            "Shooting": 0.0583,
+            "Shoplifting": 0.0229,
+            "Stealing": 0.5044,
+            "Vandalism": 0.0243
+          }
         },
         {
           "event_type": "approach",
@@ -243,7 +297,25 @@
           "abs_end": 8.13,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #4 approaches Person #1 near the entrance."
+          "description": "Person #4 approaches Person #1 near the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9983,
+          "model_p_anomaly": 0.0017,
+          "model_type_probs": {
+            "Abuse": 0.0105,
+            "Arrest": 0.0111,
+            "Arson": 0.0078,
+            "Assault": 0.0093,
+            "Burglary": 0.0787,
+            "Explosion": 0.0162,
+            "Fighting": 0.013,
+            "RoadAccidents": 0.1972,
+            "Robbery": 0.0464,
+            "Shooting": 0.0583,
+            "Shoplifting": 0.0229,
+            "Stealing": 0.5044,
+            "Vandalism": 0.0243
+          }
         },
         {
           "event_type": "approach",
@@ -255,7 +327,25 @@
           "abs_end": 9.53,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #5 approaches Person #1 near the entrance."
+          "description": "Person #5 approaches Person #1 near the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9983,
+          "model_p_anomaly": 0.0017,
+          "model_type_probs": {
+            "Abuse": 0.0105,
+            "Arrest": 0.0111,
+            "Arson": 0.0078,
+            "Assault": 0.0093,
+            "Burglary": 0.0787,
+            "Explosion": 0.0162,
+            "Fighting": 0.013,
+            "RoadAccidents": 0.1972,
+            "Robbery": 0.0464,
+            "Shooting": 0.0583,
+            "Shoplifting": 0.0229,
+            "Stealing": 0.5044,
+            "Vandalism": 0.0243
+          }
         },
         {
           "event_type": "approach",
@@ -267,9 +357,62 @@
           "abs_end": 11.03,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #6 approaches Person #1 near the entrance."
+          "description": "Person #6 approaches Person #1 near the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9983,
+          "model_p_anomaly": 0.0017,
+          "model_type_probs": {
+            "Abuse": 0.0105,
+            "Arrest": 0.0111,
+            "Arson": 0.0078,
+            "Assault": 0.0093,
+            "Burglary": 0.0787,
+            "Explosion": 0.0162,
+            "Fighting": 0.013,
+            "RoadAccidents": 0.1972,
+            "Robbery": 0.0464,
+            "Shooting": 0.0583,
+            "Shoplifting": 0.0229,
+            "Stealing": 0.5044,
+            "Vandalism": 0.0243
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9983,
+        "p_anomaly": 0.0017,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5044
+          ],
+          [
+            "RoadAccidents",
+            0.1972
+          ],
+          [
+            "Burglary",
+            0.0787
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0105,
+          "Arrest": 0.0111,
+          "Arson": 0.0078,
+          "Assault": 0.0093,
+          "Burglary": 0.0787,
+          "Explosion": 0.0162,
+          "Fighting": 0.013,
+          "RoadAccidents": 0.1972,
+          "Robbery": 0.0464,
+          "Shooting": 0.0583,
+          "Shoplifting": 0.0229,
+          "Stealing": 0.5044,
+          "Vandalism": 0.0243
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_248_x264",
@@ -830,7 +973,25 @@
           "abs_end": 8.83,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #1 enters the scene from the entrance."
+          "description": "Person #1 enters the scene from the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9982,
+          "model_p_anomaly": 0.0018,
+          "model_type_probs": {
+            "Abuse": 0.0124,
+            "Arrest": 0.0143,
+            "Arson": 0.0079,
+            "Assault": 0.0127,
+            "Burglary": 0.0585,
+            "Explosion": 0.0176,
+            "Fighting": 0.0222,
+            "RoadAccidents": 0.2007,
+            "Robbery": 0.0567,
+            "Shooting": 0.0492,
+            "Shoplifting": 0.0307,
+            "Stealing": 0.4924,
+            "Vandalism": 0.0245
+          }
         },
         {
           "event_type": "enter",
@@ -842,7 +1003,25 @@
           "abs_end": 10.33,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #3 enters the scene from the entrance."
+          "description": "Person #3 enters the scene from the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9982,
+          "model_p_anomaly": 0.0018,
+          "model_type_probs": {
+            "Abuse": 0.0124,
+            "Arrest": 0.0143,
+            "Arson": 0.0079,
+            "Assault": 0.0127,
+            "Burglary": 0.0585,
+            "Explosion": 0.0176,
+            "Fighting": 0.0222,
+            "RoadAccidents": 0.2007,
+            "Robbery": 0.0567,
+            "Shooting": 0.0492,
+            "Shoplifting": 0.0307,
+            "Stealing": 0.4924,
+            "Vandalism": 0.0245
+          }
         },
         {
           "event_type": "enter",
@@ -854,7 +1033,25 @@
           "abs_end": 13.13,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #4 enters the scene from the entrance."
+          "description": "Person #4 enters the scene from the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9982,
+          "model_p_anomaly": 0.0018,
+          "model_type_probs": {
+            "Abuse": 0.0124,
+            "Arrest": 0.0143,
+            "Arson": 0.0079,
+            "Assault": 0.0127,
+            "Burglary": 0.0585,
+            "Explosion": 0.0176,
+            "Fighting": 0.0222,
+            "RoadAccidents": 0.2007,
+            "Robbery": 0.0567,
+            "Shooting": 0.0492,
+            "Shoplifting": 0.0307,
+            "Stealing": 0.4924,
+            "Vandalism": 0.0245
+          }
         },
         {
           "event_type": "enter",
@@ -866,7 +1063,25 @@
           "abs_end": 14.53,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #5 enters the scene from the entrance."
+          "description": "Person #5 enters the scene from the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9982,
+          "model_p_anomaly": 0.0018,
+          "model_type_probs": {
+            "Abuse": 0.0124,
+            "Arrest": 0.0143,
+            "Arson": 0.0079,
+            "Assault": 0.0127,
+            "Burglary": 0.0585,
+            "Explosion": 0.0176,
+            "Fighting": 0.0222,
+            "RoadAccidents": 0.2007,
+            "Robbery": 0.0567,
+            "Shooting": 0.0492,
+            "Shoplifting": 0.0307,
+            "Stealing": 0.4924,
+            "Vandalism": 0.0245
+          }
         },
         {
           "event_type": "enter",
@@ -878,7 +1093,25 @@
           "abs_end": 16.03,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #6 enters the scene from the entrance."
+          "description": "Person #6 enters the scene from the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9982,
+          "model_p_anomaly": 0.0018,
+          "model_type_probs": {
+            "Abuse": 0.0124,
+            "Arrest": 0.0143,
+            "Arson": 0.0079,
+            "Assault": 0.0127,
+            "Burglary": 0.0585,
+            "Explosion": 0.0176,
+            "Fighting": 0.0222,
+            "RoadAccidents": 0.2007,
+            "Robbery": 0.0567,
+            "Shooting": 0.0492,
+            "Shoplifting": 0.0307,
+            "Stealing": 0.4924,
+            "Vandalism": 0.0245
+          }
         },
         {
           "event_type": "enter",
@@ -890,9 +1123,62 @@
           "abs_end": 17.43,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "Person #7 enters the scene from the entrance."
+          "description": "Person #7 enters the scene from the entrance. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9982,
+          "model_p_anomaly": 0.0018,
+          "model_type_probs": {
+            "Abuse": 0.0124,
+            "Arrest": 0.0143,
+            "Arson": 0.0079,
+            "Assault": 0.0127,
+            "Burglary": 0.0585,
+            "Explosion": 0.0176,
+            "Fighting": 0.0222,
+            "RoadAccidents": 0.2007,
+            "Robbery": 0.0567,
+            "Shooting": 0.0492,
+            "Shoplifting": 0.0307,
+            "Stealing": 0.4924,
+            "Vandalism": 0.0245
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9982,
+        "p_anomaly": 0.0018,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4924
+          ],
+          [
+            "RoadAccidents",
+            0.2007
+          ],
+          [
+            "Burglary",
+            0.0585
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0124,
+          "Arrest": 0.0143,
+          "Arson": 0.0079,
+          "Assault": 0.0127,
+          "Burglary": 0.0585,
+          "Explosion": 0.0176,
+          "Fighting": 0.0222,
+          "RoadAccidents": 0.2007,
+          "Robbery": 0.0567,
+          "Shooting": 0.0492,
+          "Shoplifting": 0.0307,
+          "Stealing": 0.4924,
+          "Vandalism": 0.0245
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_248_x264",
@@ -1498,7 +1784,25 @@
           "abs_end": 13.83,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #1 enters the scene from the left side."
+          "description": "Person #1 enters the scene from the left side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         },
         {
           "event_type": "enter",
@@ -1510,7 +1814,25 @@
           "abs_end": 15.33,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #3 enters the scene from the right side."
+          "description": "Person #3 enters the scene from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         },
         {
           "event_type": "enter",
@@ -1522,7 +1844,25 @@
           "abs_end": 16.73,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #5 enters the scene from the right side."
+          "description": "Person #5 enters the scene from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         },
         {
           "event_type": "enter",
@@ -1534,7 +1874,25 @@
           "abs_end": 18.13,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "Person #7 enters the scene from the top."
+          "description": "Person #7 enters the scene from the top. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         },
         {
           "event_type": "enter",
@@ -1546,7 +1904,25 @@
           "abs_end": 19.53,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #8 enters the scene from the right side."
+          "description": "Person #8 enters the scene from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         },
         {
           "event_type": "enter",
@@ -1558,7 +1934,25 @@
           "abs_end": 21.03,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #9 enters the scene from the right side."
+          "description": "Person #9 enters the scene from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         },
         {
           "event_type": "enter",
@@ -1570,9 +1964,62 @@
           "abs_end": 22.43,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "Person #10 enters the scene from the right side."
+          "description": "Person #10 enters the scene from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.0141,
+            "Arrest": 0.0178,
+            "Arson": 0.0092,
+            "Assault": 0.0129,
+            "Burglary": 0.0497,
+            "Explosion": 0.0204,
+            "Fighting": 0.0356,
+            "RoadAccidents": 0.1783,
+            "Robbery": 0.0523,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0426,
+            "Stealing": 0.4872,
+            "Vandalism": 0.0261
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9972,
+        "p_anomaly": 0.0028,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4872
+          ],
+          [
+            "RoadAccidents",
+            0.1783
+          ],
+          [
+            "Shooting",
+            0.0537
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0141,
+          "Arrest": 0.0178,
+          "Arson": 0.0092,
+          "Assault": 0.0129,
+          "Burglary": 0.0497,
+          "Explosion": 0.0204,
+          "Fighting": 0.0356,
+          "RoadAccidents": 0.1783,
+          "Robbery": 0.0523,
+          "Shooting": 0.0537,
+          "Shoplifting": 0.0426,
+          "Stealing": 0.4872,
+          "Vandalism": 0.0261
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_248_x264",
@@ -2210,7 +2657,25 @@
           "abs_end": 20.33,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #3 enters the scene wearing a red shirt and blue jeans."
+          "description": "Person #3 enters the scene wearing a red shirt and blue jeans. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9971,
+          "model_p_anomaly": 0.0029,
+          "model_type_probs": {
+            "Abuse": 0.013,
+            "Arrest": 0.0179,
+            "Arson": 0.0087,
+            "Assault": 0.0131,
+            "Burglary": 0.0538,
+            "Explosion": 0.0207,
+            "Fighting": 0.0377,
+            "RoadAccidents": 0.1229,
+            "Robbery": 0.074,
+            "Shooting": 0.0573,
+            "Shoplifting": 0.0459,
+            "Stealing": 0.5152,
+            "Vandalism": 0.0198
+          }
         },
         {
           "event_type": "enter",
@@ -2222,7 +2687,25 @@
           "abs_end": 21.73,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #5 enters the scene wearing a white shirt and dark pants."
+          "description": "Person #5 enters the scene wearing a white shirt and dark pants. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9971,
+          "model_p_anomaly": 0.0029,
+          "model_type_probs": {
+            "Abuse": 0.013,
+            "Arrest": 0.0179,
+            "Arson": 0.0087,
+            "Assault": 0.0131,
+            "Burglary": 0.0538,
+            "Explosion": 0.0207,
+            "Fighting": 0.0377,
+            "RoadAccidents": 0.1229,
+            "Robbery": 0.074,
+            "Shooting": 0.0573,
+            "Shoplifting": 0.0459,
+            "Stealing": 0.5152,
+            "Vandalism": 0.0198
+          }
         },
         {
           "event_type": "enter",
@@ -2234,7 +2717,25 @@
           "abs_end": 23.13,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #8 enters the scene wearing a black t-shirt and jeans."
+          "description": "Person #8 enters the scene wearing a black t-shirt and jeans. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9971,
+          "model_p_anomaly": 0.0029,
+          "model_type_probs": {
+            "Abuse": 0.013,
+            "Arrest": 0.0179,
+            "Arson": 0.0087,
+            "Assault": 0.0131,
+            "Burglary": 0.0538,
+            "Explosion": 0.0207,
+            "Fighting": 0.0377,
+            "RoadAccidents": 0.1229,
+            "Robbery": 0.074,
+            "Shooting": 0.0573,
+            "Shoplifting": 0.0459,
+            "Stealing": 0.5152,
+            "Vandalism": 0.0198
+          }
         },
         {
           "event_type": "enter",
@@ -2246,7 +2747,25 @@
           "abs_end": 24.53,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #9 enters the scene wearing a green shirt and jeans."
+          "description": "Person #9 enters the scene wearing a green shirt and jeans. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9971,
+          "model_p_anomaly": 0.0029,
+          "model_type_probs": {
+            "Abuse": 0.013,
+            "Arrest": 0.0179,
+            "Arson": 0.0087,
+            "Assault": 0.0131,
+            "Burglary": 0.0538,
+            "Explosion": 0.0207,
+            "Fighting": 0.0377,
+            "RoadAccidents": 0.1229,
+            "Robbery": 0.074,
+            "Shooting": 0.0573,
+            "Shoplifting": 0.0459,
+            "Stealing": 0.5152,
+            "Vandalism": 0.0198
+          }
         },
         {
           "event_type": "enter",
@@ -2258,7 +2777,25 @@
           "abs_end": 26.03,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #10 enters the scene wearing a white shirt and jeans."
+          "description": "Person #10 enters the scene wearing a white shirt and jeans. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9971,
+          "model_p_anomaly": 0.0029,
+          "model_type_probs": {
+            "Abuse": 0.013,
+            "Arrest": 0.0179,
+            "Arson": 0.0087,
+            "Assault": 0.0131,
+            "Burglary": 0.0538,
+            "Explosion": 0.0207,
+            "Fighting": 0.0377,
+            "RoadAccidents": 0.1229,
+            "Robbery": 0.074,
+            "Shooting": 0.0573,
+            "Shoplifting": 0.0459,
+            "Stealing": 0.5152,
+            "Vandalism": 0.0198
+          }
         },
         {
           "event_type": "enter",
@@ -2270,9 +2807,62 @@
           "abs_end": 27.43,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #11 enters the scene wearing a white shirt and jeans."
+          "description": "Person #11 enters the scene wearing a white shirt and jeans. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9971,
+          "model_p_anomaly": 0.0029,
+          "model_type_probs": {
+            "Abuse": 0.013,
+            "Arrest": 0.0179,
+            "Arson": 0.0087,
+            "Assault": 0.0131,
+            "Burglary": 0.0538,
+            "Explosion": 0.0207,
+            "Fighting": 0.0377,
+            "RoadAccidents": 0.1229,
+            "Robbery": 0.074,
+            "Shooting": 0.0573,
+            "Shoplifting": 0.0459,
+            "Stealing": 0.5152,
+            "Vandalism": 0.0198
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9971,
+        "p_anomaly": 0.0029,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5152
+          ],
+          [
+            "RoadAccidents",
+            0.1229
+          ],
+          [
+            "Robbery",
+            0.074
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.013,
+          "Arrest": 0.0179,
+          "Arson": 0.0087,
+          "Assault": 0.0131,
+          "Burglary": 0.0538,
+          "Explosion": 0.0207,
+          "Fighting": 0.0377,
+          "RoadAccidents": 0.1229,
+          "Robbery": 0.074,
+          "Shooting": 0.0573,
+          "Shoplifting": 0.0459,
+          "Stealing": 0.5152,
+          "Vandalism": 0.0198
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_248_x264",
@@ -2787,7 +3377,25 @@
           "abs_end": 32.43,
           "zone": "bottom_left -> bottom_mid -> center",
           "confidence": 1.0,
-          "description": "Person #3 walks from the bottom left towards the center."
+          "description": "Person #3 walks from the bottom left towards the center. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         },
         {
           "event_type": "walk",
@@ -2799,7 +3407,25 @@
           "abs_end": 23.83,
           "zone": "bottom_mid",
           "confidence": 1.0,
-          "description": "Person #5 walks from the bottom mid towards the center."
+          "description": "Person #5 walks from the bottom mid towards the center. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         },
         {
           "event_type": "walk",
@@ -2811,7 +3437,25 @@
           "abs_end": 32.43,
           "zone": "bottom_mid -> center",
           "confidence": 1.0,
-          "description": "Person #8 walks from the bottom mid towards the center."
+          "description": "Person #8 walks from the bottom mid towards the center. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         },
         {
           "event_type": "walk",
@@ -2823,7 +3467,25 @@
           "abs_end": 32.43,
           "zone": "bottom_mid -> bottom_right -> mid_right",
           "confidence": 1.0,
-          "description": "Person #9 walks from the bottom mid towards the right."
+          "description": "Person #9 walks from the bottom mid towards the right. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         },
         {
           "event_type": "walk",
@@ -2835,7 +3497,25 @@
           "abs_end": 32.43,
           "zone": "bottom_mid -> center",
           "confidence": 1.0,
-          "description": "Person #10 walks from the bottom mid towards the center."
+          "description": "Person #10 walks from the bottom mid towards the center. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         },
         {
           "event_type": "walk",
@@ -2847,7 +3527,25 @@
           "abs_end": 32.43,
           "zone": "bottom_mid -> bottom_right",
           "confidence": 1.0,
-          "description": "Person #11 walks from the bottom mid towards the right."
+          "description": "Person #11 walks from the bottom mid towards the right. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         },
         {
           "event_type": "walk",
@@ -2859,9 +3557,62 @@
           "abs_end": 32.43,
           "zone": "bottom_right -> center -> mid_right",
           "confidence": 1.0,
-          "description": "Person #12 walks from the bottom right towards the center."
+          "description": "Person #12 walks from the bottom right towards the center. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9973,
+          "model_p_anomaly": 0.0027,
+          "model_type_probs": {
+            "Abuse": 0.014,
+            "Arrest": 0.0159,
+            "Arson": 0.0087,
+            "Assault": 0.0111,
+            "Burglary": 0.0628,
+            "Explosion": 0.0157,
+            "Fighting": 0.0288,
+            "RoadAccidents": 0.1473,
+            "Robbery": 0.0744,
+            "Shooting": 0.0514,
+            "Shoplifting": 0.0377,
+            "Stealing": 0.5064,
+            "Vandalism": 0.0258
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9973,
+        "p_anomaly": 0.0027,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5064
+          ],
+          [
+            "RoadAccidents",
+            0.1473
+          ],
+          [
+            "Robbery",
+            0.0744
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.014,
+          "Arrest": 0.0159,
+          "Arson": 0.0087,
+          "Assault": 0.0111,
+          "Burglary": 0.0628,
+          "Explosion": 0.0157,
+          "Fighting": 0.0288,
+          "RoadAccidents": 0.1473,
+          "Robbery": 0.0744,
+          "Shooting": 0.0514,
+          "Shoplifting": 0.0377,
+          "Stealing": 0.5064,
+          "Vandalism": 0.0258
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_248_x264",
@@ -3031,9 +3782,62 @@
           "abs_end": 37.43,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #3 enters the scene from the bottom left corner."
+          "description": "Person #3 enters the scene from the bottom left corner. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9981,
+          "model_p_anomaly": 0.0019,
+          "model_type_probs": {
+            "Abuse": 0.0137,
+            "Arrest": 0.0115,
+            "Arson": 0.008,
+            "Assault": 0.0077,
+            "Burglary": 0.0905,
+            "Explosion": 0.0163,
+            "Fighting": 0.015,
+            "RoadAccidents": 0.1861,
+            "Robbery": 0.0562,
+            "Shooting": 0.0507,
+            "Shoplifting": 0.0211,
+            "Stealing": 0.4962,
+            "Vandalism": 0.027
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9981,
+        "p_anomaly": 0.0019,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4962
+          ],
+          [
+            "RoadAccidents",
+            0.1861
+          ],
+          [
+            "Burglary",
+            0.0905
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0137,
+          "Arrest": 0.0115,
+          "Arson": 0.008,
+          "Assault": 0.0077,
+          "Burglary": 0.0905,
+          "Explosion": 0.0163,
+          "Fighting": 0.015,
+          "RoadAccidents": 0.1861,
+          "Robbery": 0.0562,
+          "Shooting": 0.0507,
+          "Shoplifting": 0.0211,
+          "Stealing": 0.4962,
+          "Vandalism": 0.027
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_248_x264",
@@ -3067,9 +3871,62 @@
           "abs_end": 42.43,
           "zone": "entrance",
           "confidence": 1.0,
-          "description": "A person wearing a white shirt and dark pants exits through the entrance of a building."
+          "description": "A person wearing a white shirt and dark pants exits through the entrance of a building. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9974,
+          "model_p_anomaly": 0.0026,
+          "model_type_probs": {
+            "Abuse": 0.0119,
+            "Arrest": 0.0112,
+            "Arson": 0.0091,
+            "Assault": 0.0085,
+            "Burglary": 0.1464,
+            "Explosion": 0.0164,
+            "Fighting": 0.0114,
+            "RoadAccidents": 0.1608,
+            "Robbery": 0.0317,
+            "Shooting": 0.0663,
+            "Shoplifting": 0.0152,
+            "Stealing": 0.4855,
+            "Vandalism": 0.0256
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9974,
+        "p_anomaly": 0.0026,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4855
+          ],
+          [
+            "RoadAccidents",
+            0.1608
+          ],
+          [
+            "Burglary",
+            0.1464
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0119,
+          "Arrest": 0.0112,
+          "Arson": 0.0091,
+          "Assault": 0.0085,
+          "Burglary": 0.1464,
+          "Explosion": 0.0164,
+          "Fighting": 0.0114,
+          "RoadAccidents": 0.1608,
+          "Robbery": 0.0317,
+          "Shooting": 0.0663,
+          "Shoplifting": 0.0152,
+          "Stealing": 0.4855,
+          "Vandalism": 0.0256
+        }
+      }
     }
   ]
 }

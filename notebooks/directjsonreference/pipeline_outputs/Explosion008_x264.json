@@ -51,9 +51,62 @@
           "abs_end": 13.27,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "A car moves across the bottom left corner of the frame."
+          "description": "A car moves across the bottom left corner of the frame. [Model: RoadAccidents (63%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.6334,
+          "model_p_anomaly": 0.5306,
+          "model_type_probs": {
+            "Abuse": 0.0158,
+            "Arrest": 0.01,
+            "Arson": 0.0112,
+            "Assault": 0.0142,
+            "Burglary": 0.0288,
+            "Explosion": 0.195,
+            "Fighting": 0.0138,
+            "RoadAccidents": 0.6334,
+            "Robbery": 0.0171,
+            "Shooting": 0.0188,
+            "Shoplifting": 0.0095,
+            "Stealing": 0.0182,
+            "Vandalism": 0.0143
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "RoadAccidents",
+        "confidence": 0.6334,
+        "p_anomaly": 0.5306,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "RoadAccidents",
+            0.6334
+          ],
+          [
+            "Explosion",
+            0.195
+          ],
+          [
+            "Burglary",
+            0.0288
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0158,
+          "Arrest": 0.01,
+          "Arson": 0.0112,
+          "Assault": 0.0142,
+          "Burglary": 0.0288,
+          "Explosion": 0.195,
+          "Fighting": 0.0138,
+          "RoadAccidents": 0.6334,
+          "Robbery": 0.0171,
+          "Shooting": 0.0188,
+          "Shoplifting": 0.0095,
+          "Stealing": 0.0182,
+          "Vandalism": 0.0143
+        }
+      }
     },
     {
       "video_id": "Explosion008_x264",
@@ -90,9 +143,62 @@
           "abs_end": 43.27,
           "zone": "roadside",
           "confidence": 1.0,
-          "description": "A large explosion occurs on the roadside, sending thick black smoke and debris into the air. Vehicles are seen moving away from the scene."
+          "description": "A large explosion occurs on the roadside, sending thick black smoke and debris into the air. Vehicles are seen moving away from the scene. [Model: Explosion (81%)]",
+          "model_anomaly_class": "Explosion",
+          "model_anomaly_confidence": 0.8064,
+          "model_p_anomaly": 0.8823,
+          "model_type_probs": {
+            "Abuse": 0.019,
+            "Arrest": 0.0125,
+            "Arson": 0.0253,
+            "Assault": 0.0082,
+            "Burglary": 0.0075,
+            "Explosion": 0.8064,
+            "Fighting": 0.0107,
+            "RoadAccidents": 0.066,
+            "Robbery": 0.008,
+            "Shooting": 0.0162,
+            "Shoplifting": 0.0043,
+            "Stealing": 0.0064,
+            "Vandalism": 0.0094
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Explosion",
+        "confidence": 0.8064,
+        "p_anomaly": 0.8823,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Explosion",
+            0.8064
+          ],
+          [
+            "RoadAccidents",
+            0.066
+          ],
+          [
+            "Arson",
+            0.0253
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.019,
+          "Arrest": 0.0125,
+          "Arson": 0.0253,
+          "Assault": 0.0082,
+          "Burglary": 0.0075,
+          "Explosion": 0.8064,
+          "Fighting": 0.0107,
+          "RoadAccidents": 0.066,
+          "Robbery": 0.008,
+          "Shooting": 0.0162,
+          "Shoplifting": 0.0043,
+          "Stealing": 0.0064,
+          "Vandalism": 0.0094
+        }
+      }
     },
     {
       "video_id": "Explosion008_x264",
@@ -126,9 +232,62 @@
           "abs_end": 48.27,
           "zone": "top_right",
           "confidence": 1.0,
-          "description": "A large plume of smoke rises into the sky, indicating a significant event or disaster. The area appears to be an open field with utility poles and a few small structures in the distance."
+          "description": "A large plume of smoke rises into the sky, indicating a significant event or disaster. The area appears to be an open field with utility poles and a few small structures in the distance. [Model: Explosion (83%)]",
+          "model_anomaly_class": "Explosion",
+          "model_anomaly_confidence": 0.8324,
+          "model_p_anomaly": 0.9456,
+          "model_type_probs": {
+            "Abuse": 0.0198,
+            "Arrest": 0.0119,
+            "Arson": 0.0211,
+            "Assault": 0.0104,
+            "Burglary": 0.009,
+            "Explosion": 0.8324,
+            "Fighting": 0.0088,
+            "RoadAccidents": 0.0426,
+            "Robbery": 0.0093,
+            "Shooting": 0.0152,
+            "Shoplifting": 0.0044,
+            "Stealing": 0.0067,
+            "Vandalism": 0.0084
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Explosion",
+        "confidence": 0.8324,
+        "p_anomaly": 0.9456,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Explosion",
+            0.8324
+          ],
+          [
+            "RoadAccidents",
+            0.0426
+          ],
+          [
+            "Arson",
+            0.0211
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0198,
+          "Arrest": 0.0119,
+          "Arson": 0.0211,
+          "Assault": 0.0104,
+          "Burglary": 0.009,
+          "Explosion": 0.8324,
+          "Fighting": 0.0088,
+          "RoadAccidents": 0.0426,
+          "Robbery": 0.0093,
+          "Shooting": 0.0152,
+          "Shoplifting": 0.0044,
+          "Stealing": 0.0067,
+          "Vandalism": 0.0084
+        }
+      }
     }
   ]
 }

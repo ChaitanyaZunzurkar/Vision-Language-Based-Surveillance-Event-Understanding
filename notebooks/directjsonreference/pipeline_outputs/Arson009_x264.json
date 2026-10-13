@@ -65,9 +65,62 @@
           "abs_end": 11.17,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person 1, wearing a white shirt and dark pants, interacts physically with Person 2, who is partially obscured but appears to be wearing a light-colored top. They are near a white van."
+          "description": "Person 1, wearing a white shirt and dark pants, interacts physically with Person 2, who is partially obscured but appears to be wearing a light-colored top. They are near a white van. [Model: Arson (43%)]",
+          "model_anomaly_class": "Arson",
+          "model_anomaly_confidence": 0.4276,
+          "model_p_anomaly": 0.9994,
+          "model_type_probs": {
+            "Abuse": 0.0093,
+            "Arrest": 0.0103,
+            "Arson": 0.4276,
+            "Assault": 0.0628,
+            "Burglary": 0.1739,
+            "Explosion": 0.0339,
+            "Fighting": 0.0225,
+            "RoadAccidents": 0.0323,
+            "Robbery": 0.0234,
+            "Shooting": 0.0185,
+            "Shoplifting": 0.0086,
+            "Stealing": 0.0938,
+            "Vandalism": 0.0831
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Arson",
+        "confidence": 0.4276,
+        "p_anomaly": 0.9994,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Arson",
+            0.4276
+          ],
+          [
+            "Burglary",
+            0.1739
+          ],
+          [
+            "Stealing",
+            0.0938
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0093,
+          "Arrest": 0.0103,
+          "Arson": 0.4276,
+          "Assault": 0.0628,
+          "Burglary": 0.1739,
+          "Explosion": 0.0339,
+          "Fighting": 0.0225,
+          "RoadAccidents": 0.0323,
+          "Robbery": 0.0234,
+          "Shooting": 0.0185,
+          "Shoplifting": 0.0086,
+          "Stealing": 0.0938,
+          "Vandalism": 0.0831
+        }
+      }
     },
     {
       "video_id": "Arson009_x264",
@@ -117,7 +170,25 @@
           "abs_end": 9.07,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "A person wearing a white shirt and dark pants is seen approaching another individual near a van. The two interact physically."
+          "description": "A person wearing a white shirt and dark pants is seen approaching another individual near a van. The two interact physically. [Model: Arson (51%)]",
+          "model_anomaly_class": "Arson",
+          "model_anomaly_confidence": 0.5101,
+          "model_p_anomaly": 0.9997,
+          "model_type_probs": {
+            "Abuse": 0.0121,
+            "Arrest": 0.0221,
+            "Arson": 0.5101,
+            "Assault": 0.0352,
+            "Burglary": 0.0504,
+            "Explosion": 0.1455,
+            "Fighting": 0.0281,
+            "RoadAccidents": 0.0765,
+            "Robbery": 0.013,
+            "Shooting": 0.02,
+            "Shoplifting": 0.0057,
+            "Stealing": 0.031,
+            "Vandalism": 0.0501
+          }
         },
         {
           "event_type": "physical_contact",
@@ -129,7 +200,25 @@
           "abs_end": 13.27,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "The interaction between the person in the white shirt and the individual near the van continues, involving physical contact."
+          "description": "The interaction between the person in the white shirt and the individual near the van continues, involving physical contact. [Model: Arson (51%)]",
+          "model_anomaly_class": "Arson",
+          "model_anomaly_confidence": 0.5101,
+          "model_p_anomaly": 0.9997,
+          "model_type_probs": {
+            "Abuse": 0.0121,
+            "Arrest": 0.0221,
+            "Arson": 0.5101,
+            "Assault": 0.0352,
+            "Burglary": 0.0504,
+            "Explosion": 0.1455,
+            "Fighting": 0.0281,
+            "RoadAccidents": 0.0765,
+            "Robbery": 0.013,
+            "Shooting": 0.02,
+            "Shoplifting": 0.0057,
+            "Stealing": 0.031,
+            "Vandalism": 0.0501
+          }
         },
         {
           "event_type": "physical_contact",
@@ -141,9 +230,62 @@
           "abs_end": 16.17,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "The two individuals continue their physical interaction near the van."
+          "description": "The two individuals continue their physical interaction near the van. [Model: Arson (51%)]",
+          "model_anomaly_class": "Arson",
+          "model_anomaly_confidence": 0.5101,
+          "model_p_anomaly": 0.9997,
+          "model_type_probs": {
+            "Abuse": 0.0121,
+            "Arrest": 0.0221,
+            "Arson": 0.5101,
+            "Assault": 0.0352,
+            "Burglary": 0.0504,
+            "Explosion": 0.1455,
+            "Fighting": 0.0281,
+            "RoadAccidents": 0.0765,
+            "Robbery": 0.013,
+            "Shooting": 0.02,
+            "Shoplifting": 0.0057,
+            "Stealing": 0.031,
+            "Vandalism": 0.0501
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Arson",
+        "confidence": 0.5101,
+        "p_anomaly": 0.9997,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Arson",
+            0.5101
+          ],
+          [
+            "Explosion",
+            0.1455
+          ],
+          [
+            "RoadAccidents",
+            0.0765
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0121,
+          "Arrest": 0.0221,
+          "Arson": 0.5101,
+          "Assault": 0.0352,
+          "Burglary": 0.0504,
+          "Explosion": 0.1455,
+          "Fighting": 0.0281,
+          "RoadAccidents": 0.0765,
+          "Robbery": 0.013,
+          "Shooting": 0.02,
+          "Shoplifting": 0.0057,
+          "Stealing": 0.031,
+          "Vandalism": 0.0501
+        }
+      }
     },
     {
       "video_id": "Arson009_x264",
@@ -179,9 +321,62 @@
           "abs_end": 21.17,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "A person wearing reflective clothing stands near a vehicle, holding a bright object that emits sparks. Another individual, also in reflective attire, approaches and interacts with the first person, causing the sparks to intensify."
+          "description": "A person wearing reflective clothing stands near a vehicle, holding a bright object that emits sparks. Another individual, also in reflective attire, approaches and interacts with the first person, causing the sparks to intensify. [Model: Arson (34%)]",
+          "model_anomaly_class": "Arson",
+          "model_anomaly_confidence": 0.3406,
+          "model_p_anomaly": 0.9998,
+          "model_type_probs": {
+            "Abuse": 0.0149,
+            "Arrest": 0.0235,
+            "Arson": 0.3406,
+            "Assault": 0.0658,
+            "Burglary": 0.0596,
+            "Explosion": 0.2103,
+            "Fighting": 0.0321,
+            "RoadAccidents": 0.1437,
+            "Robbery": 0.0142,
+            "Shooting": 0.0166,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0445,
+            "Vandalism": 0.0287
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Arson",
+        "confidence": 0.3406,
+        "p_anomaly": 0.9998,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Arson",
+            0.3406
+          ],
+          [
+            "Explosion",
+            0.2103
+          ],
+          [
+            "RoadAccidents",
+            0.1437
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0149,
+          "Arrest": 0.0235,
+          "Arson": 0.3406,
+          "Assault": 0.0658,
+          "Burglary": 0.0596,
+          "Explosion": 0.2103,
+          "Fighting": 0.0321,
+          "RoadAccidents": 0.1437,
+          "Robbery": 0.0142,
+          "Shooting": 0.0166,
+          "Shoplifting": 0.0055,
+          "Stealing": 0.0445,
+          "Vandalism": 0.0287
+        }
+      }
     }
   ]
 }

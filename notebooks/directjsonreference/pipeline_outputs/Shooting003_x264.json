@@ -67,7 +67,25 @@
           "abs_end": 17.2,
           "zone": "center",
           "confidence": 0.9,
-          "description": "A person wearing a dark shirt and light-colored pants approaches the roadblock, moving slowly towards the center of the frame."
+          "description": "A person wearing a dark shirt and light-colored pants approaches the roadblock, moving slowly towards the center of the frame. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.268,
+          "model_p_anomaly": 0.7231,
+          "model_type_probs": {
+            "Abuse": 0.1334,
+            "Arrest": 0.0188,
+            "Arson": 0.0103,
+            "Assault": 0.079,
+            "Burglary": 0.0289,
+            "Explosion": 0.0732,
+            "Fighting": 0.0561,
+            "RoadAccidents": 0.15,
+            "Robbery": 0.1355,
+            "Shooting": 0.268,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0174,
+            "Vandalism": 0.0186
+          }
         },
         {
           "event_type": "stand",
@@ -79,9 +97,62 @@
           "abs_end": 17.2,
           "zone": "center",
           "confidence": 0.9,
-          "description": "The person stops near the roadblock, standing still and facing forward."
+          "description": "The person stops near the roadblock, standing still and facing forward. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.268,
+          "model_p_anomaly": 0.7231,
+          "model_type_probs": {
+            "Abuse": 0.1334,
+            "Arrest": 0.0188,
+            "Arson": 0.0103,
+            "Assault": 0.079,
+            "Burglary": 0.0289,
+            "Explosion": 0.0732,
+            "Fighting": 0.0561,
+            "RoadAccidents": 0.15,
+            "Robbery": 0.1355,
+            "Shooting": 0.268,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0174,
+            "Vandalism": 0.0186
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.268,
+        "p_anomaly": 0.7231,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.268
+          ],
+          [
+            "RoadAccidents",
+            0.15
+          ],
+          [
+            "Robbery",
+            0.1355
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1334,
+          "Arrest": 0.0188,
+          "Arson": 0.0103,
+          "Assault": 0.079,
+          "Burglary": 0.0289,
+          "Explosion": 0.0732,
+          "Fighting": 0.0561,
+          "RoadAccidents": 0.15,
+          "Robbery": 0.1355,
+          "Shooting": 0.268,
+          "Shoplifting": 0.0109,
+          "Stealing": 0.0174,
+          "Vandalism": 0.0186
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -178,9 +249,62 @@
           "abs_end": 22.2,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #6 and Person #7 engage in a physical interaction near the center of the frame."
+          "description": "Person #6 and Person #7 engage in a physical interaction near the center of the frame. [Model: Shooting (31%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.3146,
+          "model_p_anomaly": 0.882,
+          "model_type_probs": {
+            "Abuse": 0.1327,
+            "Arrest": 0.0192,
+            "Arson": 0.0105,
+            "Assault": 0.0867,
+            "Burglary": 0.0307,
+            "Explosion": 0.0771,
+            "Fighting": 0.0528,
+            "RoadAccidents": 0.1317,
+            "Robbery": 0.0969,
+            "Shooting": 0.3146,
+            "Shoplifting": 0.0093,
+            "Stealing": 0.0158,
+            "Vandalism": 0.0218
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.3146,
+        "p_anomaly": 0.882,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.3146
+          ],
+          [
+            "Abuse",
+            0.1327
+          ],
+          [
+            "RoadAccidents",
+            0.1317
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1327,
+          "Arrest": 0.0192,
+          "Arson": 0.0105,
+          "Assault": 0.0867,
+          "Burglary": 0.0307,
+          "Explosion": 0.0771,
+          "Fighting": 0.0528,
+          "RoadAccidents": 0.1317,
+          "Robbery": 0.0969,
+          "Shooting": 0.3146,
+          "Shoplifting": 0.0093,
+          "Stealing": 0.0158,
+          "Vandalism": 0.0218
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -288,7 +412,25 @@
           "abs_end": 24.3,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "Person #9, wearing dark clothing, bends down near Person #8, who is also in dark clothing. They appear to be interacting closely."
+          "description": "Person #9, wearing dark clothing, bends down near Person #8, who is also in dark clothing. They appear to be interacting closely. [Model: Shooting (32%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.3151,
+          "model_p_anomaly": 0.9714,
+          "model_type_probs": {
+            "Abuse": 0.1247,
+            "Arrest": 0.0203,
+            "Arson": 0.0079,
+            "Assault": 0.0629,
+            "Burglary": 0.0185,
+            "Explosion": 0.0936,
+            "Fighting": 0.0717,
+            "RoadAccidents": 0.1747,
+            "Robbery": 0.0757,
+            "Shooting": 0.3151,
+            "Shoplifting": 0.0099,
+            "Stealing": 0.0106,
+            "Vandalism": 0.0145
+          }
         },
         {
           "event_type": "physical_contact",
@@ -300,9 +442,62 @@
           "abs_end": 25.8,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "Person #8, in dark clothing, stands up and moves slightly away from Person #9, who remains bent down."
+          "description": "Person #8, in dark clothing, stands up and moves slightly away from Person #9, who remains bent down. [Model: Shooting (32%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.3151,
+          "model_p_anomaly": 0.9714,
+          "model_type_probs": {
+            "Abuse": 0.1247,
+            "Arrest": 0.0203,
+            "Arson": 0.0079,
+            "Assault": 0.0629,
+            "Burglary": 0.0185,
+            "Explosion": 0.0936,
+            "Fighting": 0.0717,
+            "RoadAccidents": 0.1747,
+            "Robbery": 0.0757,
+            "Shooting": 0.3151,
+            "Shoplifting": 0.0099,
+            "Stealing": 0.0106,
+            "Vandalism": 0.0145
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.3151,
+        "p_anomaly": 0.9714,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.3151
+          ],
+          [
+            "RoadAccidents",
+            0.1747
+          ],
+          [
+            "Abuse",
+            0.1247
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1247,
+          "Arrest": 0.0203,
+          "Arson": 0.0079,
+          "Assault": 0.0629,
+          "Burglary": 0.0185,
+          "Explosion": 0.0936,
+          "Fighting": 0.0717,
+          "RoadAccidents": 0.1747,
+          "Robbery": 0.0757,
+          "Shooting": 0.3151,
+          "Shoplifting": 0.0099,
+          "Stealing": 0.0106,
+          "Vandalism": 0.0145
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -366,7 +561,25 @@
           "abs_end": 25.1,
           "zone": "center -> mid_right",
           "confidence": 0.8,
-          "description": "Person #9 approaches Person #10 from the center towards the mid-right."
+          "description": "Person #9 approaches Person #10 from the center towards the mid-right. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2725,
+          "model_p_anomaly": 0.9827,
+          "model_type_probs": {
+            "Abuse": 0.1134,
+            "Arrest": 0.0266,
+            "Arson": 0.0061,
+            "Assault": 0.0657,
+            "Burglary": 0.0164,
+            "Explosion": 0.1234,
+            "Fighting": 0.0843,
+            "RoadAccidents": 0.2139,
+            "Robbery": 0.0459,
+            "Shooting": 0.2725,
+            "Shoplifting": 0.0093,
+            "Stealing": 0.0115,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "standing",
@@ -378,9 +591,62 @@
           "abs_end": 26.5,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #10 stands still near the top mid area."
+          "description": "Person #10 stands still near the top mid area. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2725,
+          "model_p_anomaly": 0.9827,
+          "model_type_probs": {
+            "Abuse": 0.1134,
+            "Arrest": 0.0266,
+            "Arson": 0.0061,
+            "Assault": 0.0657,
+            "Burglary": 0.0164,
+            "Explosion": 0.1234,
+            "Fighting": 0.0843,
+            "RoadAccidents": 0.2139,
+            "Robbery": 0.0459,
+            "Shooting": 0.2725,
+            "Shoplifting": 0.0093,
+            "Stealing": 0.0115,
+            "Vandalism": 0.0111
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2725,
+        "p_anomaly": 0.9827,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2725
+          ],
+          [
+            "RoadAccidents",
+            0.2139
+          ],
+          [
+            "Explosion",
+            0.1234
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1134,
+          "Arrest": 0.0266,
+          "Arson": 0.0061,
+          "Assault": 0.0657,
+          "Burglary": 0.0164,
+          "Explosion": 0.1234,
+          "Fighting": 0.0843,
+          "RoadAccidents": 0.2139,
+          "Robbery": 0.0459,
+          "Shooting": 0.2725,
+          "Shoplifting": 0.0093,
+          "Stealing": 0.0115,
+          "Vandalism": 0.0111
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -445,9 +711,62 @@
           "abs_end": 34.3,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #10 approaches Person #11, both wearing dark clothing and standing near the road."
+          "description": "Person #10 approaches Person #11, both wearing dark clothing and standing near the road. [Model: Shooting (26%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2605,
+          "model_p_anomaly": 0.9728,
+          "model_type_probs": {
+            "Abuse": 0.1496,
+            "Arrest": 0.0341,
+            "Arson": 0.0058,
+            "Assault": 0.0647,
+            "Burglary": 0.0209,
+            "Explosion": 0.1126,
+            "Fighting": 0.1244,
+            "RoadAccidents": 0.1545,
+            "Robbery": 0.0385,
+            "Shooting": 0.2605,
+            "Shoplifting": 0.0091,
+            "Stealing": 0.0126,
+            "Vandalism": 0.0127
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2605,
+        "p_anomaly": 0.9728,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2605
+          ],
+          [
+            "RoadAccidents",
+            0.1545
+          ],
+          [
+            "Abuse",
+            0.1496
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1496,
+          "Arrest": 0.0341,
+          "Arson": 0.0058,
+          "Assault": 0.0647,
+          "Burglary": 0.0209,
+          "Explosion": 0.1126,
+          "Fighting": 0.1244,
+          "RoadAccidents": 0.1545,
+          "Robbery": 0.0385,
+          "Shooting": 0.2605,
+          "Shoplifting": 0.0091,
+          "Stealing": 0.0126,
+          "Vandalism": 0.0127
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -524,7 +843,25 @@
           "abs_end": 37.9,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #10 approaches Person #11, both standing near the top mid area."
+          "description": "Person #10 approaches Person #11, both standing near the top mid area. [Model: Shooting (23%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2344,
+          "model_p_anomaly": 0.9725,
+          "model_type_probs": {
+            "Abuse": 0.199,
+            "Arrest": 0.0363,
+            "Arson": 0.0058,
+            "Assault": 0.0867,
+            "Burglary": 0.0191,
+            "Explosion": 0.0797,
+            "Fighting": 0.1294,
+            "RoadAccidents": 0.1428,
+            "Robbery": 0.0317,
+            "Shooting": 0.2344,
+            "Shoplifting": 0.0096,
+            "Stealing": 0.0123,
+            "Vandalism": 0.0132
+          }
         },
         {
           "event_type": "approach",
@@ -536,9 +873,62 @@
           "abs_end": 32.23,
           "zone": "center",
           "confidence": 0.7,
-          "description": "Person #12 approaches the center area, but no clear interaction is observed."
+          "description": "Person #12 approaches the center area, but no clear interaction is observed. [Model: Shooting (23%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2344,
+          "model_p_anomaly": 0.9725,
+          "model_type_probs": {
+            "Abuse": 0.199,
+            "Arrest": 0.0363,
+            "Arson": 0.0058,
+            "Assault": 0.0867,
+            "Burglary": 0.0191,
+            "Explosion": 0.0797,
+            "Fighting": 0.1294,
+            "RoadAccidents": 0.1428,
+            "Robbery": 0.0317,
+            "Shooting": 0.2344,
+            "Shoplifting": 0.0096,
+            "Stealing": 0.0123,
+            "Vandalism": 0.0132
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2344,
+        "p_anomaly": 0.9725,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2344
+          ],
+          [
+            "Abuse",
+            0.199
+          ],
+          [
+            "RoadAccidents",
+            0.1428
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.199,
+          "Arrest": 0.0363,
+          "Arson": 0.0058,
+          "Assault": 0.0867,
+          "Burglary": 0.0191,
+          "Explosion": 0.0797,
+          "Fighting": 0.1294,
+          "RoadAccidents": 0.1428,
+          "Robbery": 0.0317,
+          "Shooting": 0.2344,
+          "Shoplifting": 0.0096,
+          "Stealing": 0.0123,
+          "Vandalism": 0.0132
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -590,7 +980,25 @@
           "abs_end": 47.2,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #12 stands near the center of the frame, wearing dark clothing and observing the scene."
+          "description": "Person #12 stands near the center of the frame, wearing dark clothing and observing the scene. [Model: Shooting (25%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2451,
+          "model_p_anomaly": 0.9692,
+          "model_type_probs": {
+            "Abuse": 0.1822,
+            "Arrest": 0.0331,
+            "Arson": 0.0062,
+            "Assault": 0.0773,
+            "Burglary": 0.016,
+            "Explosion": 0.0837,
+            "Fighting": 0.1087,
+            "RoadAccidents": 0.1713,
+            "Robbery": 0.0438,
+            "Shooting": 0.2451,
+            "Shoplifting": 0.0104,
+            "Stealing": 0.0096,
+            "Vandalism": 0.0125
+          }
         },
         {
           "event_type": "standing",
@@ -602,9 +1010,62 @@
           "abs_end": 47.2,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #13 stands near the center of the frame, wearing light-colored clothing and observing the scene."
+          "description": "Person #13 stands near the center of the frame, wearing light-colored clothing and observing the scene. [Model: Shooting (25%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2451,
+          "model_p_anomaly": 0.9692,
+          "model_type_probs": {
+            "Abuse": 0.1822,
+            "Arrest": 0.0331,
+            "Arson": 0.0062,
+            "Assault": 0.0773,
+            "Burglary": 0.016,
+            "Explosion": 0.0837,
+            "Fighting": 0.1087,
+            "RoadAccidents": 0.1713,
+            "Robbery": 0.0438,
+            "Shooting": 0.2451,
+            "Shoplifting": 0.0104,
+            "Stealing": 0.0096,
+            "Vandalism": 0.0125
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2451,
+        "p_anomaly": 0.9692,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2451
+          ],
+          [
+            "Abuse",
+            0.1822
+          ],
+          [
+            "RoadAccidents",
+            0.1713
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1822,
+          "Arrest": 0.0331,
+          "Arson": 0.0062,
+          "Assault": 0.0773,
+          "Burglary": 0.016,
+          "Explosion": 0.0837,
+          "Fighting": 0.1087,
+          "RoadAccidents": 0.1713,
+          "Robbery": 0.0438,
+          "Shooting": 0.2451,
+          "Shoplifting": 0.0104,
+          "Stealing": 0.0096,
+          "Vandalism": 0.0125
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -771,7 +1232,25 @@
           "abs_end": 43.6,
           "zone": "center",
           "confidence": 0.8,
-          "description": "A group of individuals, some wearing dark clothing and others in lighter attire, walk towards the center of the frame near a roadblock."
+          "description": "A group of individuals, some wearing dark clothing and others in lighter attire, walk towards the center of the frame near a roadblock. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         },
         {
           "event_type": "stand",
@@ -783,7 +1262,25 @@
           "abs_end": 45.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "The individuals stop and stand near the roadblock, appearing to interact with each other."
+          "description": "The individuals stop and stand near the roadblock, appearing to interact with each other. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         },
         {
           "event_type": "move",
@@ -795,7 +1292,25 @@
           "abs_end": 46.5,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Some individuals move slightly within the group, maintaining their positions near the roadblock."
+          "description": "Some individuals move slightly within the group, maintaining their positions near the roadblock. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         },
         {
           "event_type": "walk",
@@ -807,7 +1322,25 @@
           "abs_end": 47.9,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Individuals continue to walk around the roadblock, some stopping to interact with others."
+          "description": "Individuals continue to walk around the roadblock, some stopping to interact with others. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         },
         {
           "event_type": "stand",
@@ -819,7 +1352,25 @@
           "abs_end": 49.3,
           "zone": "center",
           "confidence": 0.9,
-          "description": "People stand near the roadblock, some facing each other, suggesting interaction."
+          "description": "People stand near the roadblock, some facing each other, suggesting interaction. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         },
         {
           "event_type": "move",
@@ -831,7 +1382,25 @@
           "abs_end": 50.8,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Individuals move slightly, some standing still while others appear to be in conversation."
+          "description": "Individuals move slightly, some standing still while others appear to be in conversation. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         },
         {
           "event_type": "walk",
@@ -843,9 +1412,62 @@
           "abs_end": 52.2,
           "zone": "center",
           "confidence": 0.8,
-          "description": "People continue to walk around the area, some stopping to interact more closely."
+          "description": "People continue to walk around the area, some stopping to interact more closely. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2726,
+          "model_p_anomaly": 0.9414,
+          "model_type_probs": {
+            "Abuse": 0.1844,
+            "Arrest": 0.0296,
+            "Arson": 0.0062,
+            "Assault": 0.0635,
+            "Burglary": 0.0216,
+            "Explosion": 0.0811,
+            "Fighting": 0.1026,
+            "RoadAccidents": 0.1492,
+            "Robbery": 0.0544,
+            "Shooting": 0.2726,
+            "Shoplifting": 0.0108,
+            "Stealing": 0.0103,
+            "Vandalism": 0.0137
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2726,
+        "p_anomaly": 0.9414,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2726
+          ],
+          [
+            "Abuse",
+            0.1844
+          ],
+          [
+            "RoadAccidents",
+            0.1492
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1844,
+          "Arrest": 0.0296,
+          "Arson": 0.0062,
+          "Assault": 0.0635,
+          "Burglary": 0.0216,
+          "Explosion": 0.0811,
+          "Fighting": 0.1026,
+          "RoadAccidents": 0.1492,
+          "Robbery": 0.0544,
+          "Shooting": 0.2726,
+          "Shoplifting": 0.0108,
+          "Stealing": 0.0103,
+          "Vandalism": 0.0137
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -1088,7 +1710,25 @@
           "abs_end": 50.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #14 approaches Person #16 from the left side."
+          "description": "Person #14 approaches Person #16 from the left side. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2674,
+          "model_p_anomaly": 0.9129,
+          "model_type_probs": {
+            "Abuse": 0.1748,
+            "Arrest": 0.0242,
+            "Arson": 0.0061,
+            "Assault": 0.0743,
+            "Burglary": 0.0252,
+            "Explosion": 0.0807,
+            "Fighting": 0.1524,
+            "RoadAccidents": 0.1114,
+            "Robbery": 0.0467,
+            "Shooting": 0.2674,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0105,
+            "Vandalism": 0.0153
+          }
         },
         {
           "event_type": "approach",
@@ -1100,9 +1740,62 @@
           "abs_end": 50.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #15 approaches Person #16 from the right side."
+          "description": "Person #15 approaches Person #16 from the right side. [Model: Shooting (27%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2674,
+          "model_p_anomaly": 0.9129,
+          "model_type_probs": {
+            "Abuse": 0.1748,
+            "Arrest": 0.0242,
+            "Arson": 0.0061,
+            "Assault": 0.0743,
+            "Burglary": 0.0252,
+            "Explosion": 0.0807,
+            "Fighting": 0.1524,
+            "RoadAccidents": 0.1114,
+            "Robbery": 0.0467,
+            "Shooting": 0.2674,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0105,
+            "Vandalism": 0.0153
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2674,
+        "p_anomaly": 0.9129,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2674
+          ],
+          [
+            "Abuse",
+            0.1748
+          ],
+          [
+            "Fighting",
+            0.1524
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1748,
+          "Arrest": 0.0242,
+          "Arson": 0.0061,
+          "Assault": 0.0743,
+          "Burglary": 0.0252,
+          "Explosion": 0.0807,
+          "Fighting": 0.1524,
+          "RoadAccidents": 0.1114,
+          "Robbery": 0.0467,
+          "Shooting": 0.2674,
+          "Shoplifting": 0.0109,
+          "Stealing": 0.0105,
+          "Vandalism": 0.0153
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -1338,7 +2031,25 @@
           "abs_end": 60.8,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #26, wearing a dark jacket and light pants, approaches Person #23, who is dressed in a light shirt and dark pants."
+          "description": "Person #26, wearing a dark jacket and light pants, approaches Person #23, who is dressed in a light shirt and dark pants. [Model: Shooting (28%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2799,
+          "model_p_anomaly": 0.9231,
+          "model_type_probs": {
+            "Abuse": 0.1358,
+            "Arrest": 0.0228,
+            "Arson": 0.0068,
+            "Assault": 0.0635,
+            "Burglary": 0.0196,
+            "Explosion": 0.0933,
+            "Fighting": 0.1749,
+            "RoadAccidents": 0.1326,
+            "Robbery": 0.0388,
+            "Shooting": 0.2799,
+            "Shoplifting": 0.011,
+            "Stealing": 0.0089,
+            "Vandalism": 0.0122
+          }
         },
         {
           "event_type": "physical_contact",
@@ -1350,9 +2061,62 @@
           "abs_end": 62.2,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #26 and Person #23 engage in a brief physical interaction, with Person #26 appearing to push or grab Person #23."
+          "description": "Person #26 and Person #23 engage in a brief physical interaction, with Person #26 appearing to push or grab Person #23. [Model: Shooting (28%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2799,
+          "model_p_anomaly": 0.9231,
+          "model_type_probs": {
+            "Abuse": 0.1358,
+            "Arrest": 0.0228,
+            "Arson": 0.0068,
+            "Assault": 0.0635,
+            "Burglary": 0.0196,
+            "Explosion": 0.0933,
+            "Fighting": 0.1749,
+            "RoadAccidents": 0.1326,
+            "Robbery": 0.0388,
+            "Shooting": 0.2799,
+            "Shoplifting": 0.011,
+            "Stealing": 0.0089,
+            "Vandalism": 0.0122
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2799,
+        "p_anomaly": 0.9231,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2799
+          ],
+          [
+            "Fighting",
+            0.1749
+          ],
+          [
+            "Abuse",
+            0.1358
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1358,
+          "Arrest": 0.0228,
+          "Arson": 0.0068,
+          "Assault": 0.0635,
+          "Burglary": 0.0196,
+          "Explosion": 0.0933,
+          "Fighting": 0.1749,
+          "RoadAccidents": 0.1326,
+          "Robbery": 0.0388,
+          "Shooting": 0.2799,
+          "Shoplifting": 0.011,
+          "Stealing": 0.0089,
+          "Vandalism": 0.0122
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -1511,7 +2275,25 @@
           "abs_end": 58.6,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "Person #26 enters the scene from the left side."
+          "description": "Person #26 enters the scene from the left side. [Model: RoadAccidents (24%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.2353,
+          "model_p_anomaly": 0.9325,
+          "model_type_probs": {
+            "Abuse": 0.1214,
+            "Arrest": 0.0182,
+            "Arson": 0.0065,
+            "Assault": 0.0441,
+            "Burglary": 0.0147,
+            "Explosion": 0.0984,
+            "Fighting": 0.1792,
+            "RoadAccidents": 0.2353,
+            "Robbery": 0.0395,
+            "Shooting": 0.2109,
+            "Shoplifting": 0.0118,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "enter",
@@ -1523,7 +2305,25 @@
           "abs_end": 57.8,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #29 enters the scene from the right side."
+          "description": "Person #29 enters the scene from the right side. [Model: RoadAccidents (24%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.2353,
+          "model_p_anomaly": 0.9325,
+          "model_type_probs": {
+            "Abuse": 0.1214,
+            "Arrest": 0.0182,
+            "Arson": 0.0065,
+            "Assault": 0.0441,
+            "Burglary": 0.0147,
+            "Explosion": 0.0984,
+            "Fighting": 0.1792,
+            "RoadAccidents": 0.2353,
+            "Robbery": 0.0395,
+            "Shooting": 0.2109,
+            "Shoplifting": 0.0118,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "enter",
@@ -1535,7 +2335,25 @@
           "abs_end": 57.8,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Gun #33 enters the scene from the right side."
+          "description": "Gun #33 enters the scene from the right side. [Model: RoadAccidents (24%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.2353,
+          "model_p_anomaly": 0.9325,
+          "model_type_probs": {
+            "Abuse": 0.1214,
+            "Arrest": 0.0182,
+            "Arson": 0.0065,
+            "Assault": 0.0441,
+            "Burglary": 0.0147,
+            "Explosion": 0.0984,
+            "Fighting": 0.1792,
+            "RoadAccidents": 0.2353,
+            "Robbery": 0.0395,
+            "Shooting": 0.2109,
+            "Shoplifting": 0.0118,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "enter",
@@ -1547,9 +2365,62 @@
           "abs_end": 58.2,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #34 enters the scene from the right side."
+          "description": "Person #34 enters the scene from the right side. [Model: RoadAccidents (24%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.2353,
+          "model_p_anomaly": 0.9325,
+          "model_type_probs": {
+            "Abuse": 0.1214,
+            "Arrest": 0.0182,
+            "Arson": 0.0065,
+            "Assault": 0.0441,
+            "Burglary": 0.0147,
+            "Explosion": 0.0984,
+            "Fighting": 0.1792,
+            "RoadAccidents": 0.2353,
+            "Robbery": 0.0395,
+            "Shooting": 0.2109,
+            "Shoplifting": 0.0118,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0111
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "RoadAccidents",
+        "confidence": 0.2353,
+        "p_anomaly": 0.9325,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "RoadAccidents",
+            0.2353
+          ],
+          [
+            "Shooting",
+            0.2109
+          ],
+          [
+            "Fighting",
+            0.1792
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.1214,
+          "Arrest": 0.0182,
+          "Arson": 0.0065,
+          "Assault": 0.0441,
+          "Burglary": 0.0147,
+          "Explosion": 0.0984,
+          "Fighting": 0.1792,
+          "RoadAccidents": 0.2353,
+          "Robbery": 0.0395,
+          "Shooting": 0.2109,
+          "Shoplifting": 0.0118,
+          "Stealing": 0.0088,
+          "Vandalism": 0.0111
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -1613,7 +2484,25 @@
           "abs_end": 63.6,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #34 approaches Person #35, who is standing still near the middle of the frame."
+          "description": "Person #34 approaches Person #35, who is standing still near the middle of the frame. [Model: RoadAccidents (28%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.2796,
+          "model_p_anomaly": 0.9157,
+          "model_type_probs": {
+            "Abuse": 0.0919,
+            "Arrest": 0.0178,
+            "Arson": 0.0061,
+            "Assault": 0.0439,
+            "Burglary": 0.0121,
+            "Explosion": 0.0923,
+            "Fighting": 0.2041,
+            "RoadAccidents": 0.2796,
+            "Robbery": 0.0462,
+            "Shooting": 0.1754,
+            "Shoplifting": 0.0114,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0093
+          }
         },
         {
           "event_type": "standing",
@@ -1625,9 +2514,62 @@
           "abs_end": 72.2,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #34 remains standing in the center of the frame throughout the sequence."
+          "description": "Person #34 remains standing in the center of the frame throughout the sequence. [Model: RoadAccidents (28%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.2796,
+          "model_p_anomaly": 0.9157,
+          "model_type_probs": {
+            "Abuse": 0.0919,
+            "Arrest": 0.0178,
+            "Arson": 0.0061,
+            "Assault": 0.0439,
+            "Burglary": 0.0121,
+            "Explosion": 0.0923,
+            "Fighting": 0.2041,
+            "RoadAccidents": 0.2796,
+            "Robbery": 0.0462,
+            "Shooting": 0.1754,
+            "Shoplifting": 0.0114,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0093
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "RoadAccidents",
+        "confidence": 0.2796,
+        "p_anomaly": 0.9157,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "RoadAccidents",
+            0.2796
+          ],
+          [
+            "Fighting",
+            0.2041
+          ],
+          [
+            "Shooting",
+            0.1754
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0919,
+          "Arrest": 0.0178,
+          "Arson": 0.0061,
+          "Assault": 0.0439,
+          "Burglary": 0.0121,
+          "Explosion": 0.0923,
+          "Fighting": 0.2041,
+          "RoadAccidents": 0.2796,
+          "Robbery": 0.0462,
+          "Shooting": 0.1754,
+          "Shoplifting": 0.0114,
+          "Stealing": 0.0097,
+          "Vandalism": 0.0093
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -1780,9 +2722,62 @@
           "abs_end": 77.2,
           "zone": "roadside",
           "confidence": 0.9,
-          "description": "A group of individuals gathers along the roadside, some standing and others moving slightly. They appear to be observing something off-camera."
+          "description": "A group of individuals gathers along the roadside, some standing and others moving slightly. They appear to be observing something off-camera. [Model: Shooting (30%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2951,
+          "model_p_anomaly": 0.8773,
+          "model_type_probs": {
+            "Abuse": 0.0661,
+            "Arrest": 0.0414,
+            "Arson": 0.0118,
+            "Assault": 0.0248,
+            "Burglary": 0.0108,
+            "Explosion": 0.1168,
+            "Fighting": 0.2221,
+            "RoadAccidents": 0.1426,
+            "Robbery": 0.0352,
+            "Shooting": 0.2951,
+            "Shoplifting": 0.0122,
+            "Stealing": 0.0078,
+            "Vandalism": 0.0133
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2951,
+        "p_anomaly": 0.8773,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2951
+          ],
+          [
+            "Fighting",
+            0.2221
+          ],
+          [
+            "RoadAccidents",
+            0.1426
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0661,
+          "Arrest": 0.0414,
+          "Arson": 0.0118,
+          "Assault": 0.0248,
+          "Burglary": 0.0108,
+          "Explosion": 0.1168,
+          "Fighting": 0.2221,
+          "RoadAccidents": 0.1426,
+          "Robbery": 0.0352,
+          "Shooting": 0.2951,
+          "Shoplifting": 0.0122,
+          "Stealing": 0.0078,
+          "Vandalism": 0.0133
+        }
+      }
     },
     {
       "video_id": "Shooting003_x264",
@@ -1894,9 +2889,62 @@
           "abs_end": 82.2,
           "zone": "roadside",
           "confidence": 1.0,
-          "description": "A group of individuals is gathered on the roadside near a vehicle. Some are standing while others appear to be moving slightly."
+          "description": "A group of individuals is gathered on the roadside near a vehicle. Some are standing while others appear to be moving slightly. [Model: Shooting (28%)]",
+          "model_anomaly_class": "Shooting",
+          "model_anomaly_confidence": 0.2767,
+          "model_p_anomaly": 0.7781,
+          "model_type_probs": {
+            "Abuse": 0.0838,
+            "Arrest": 0.0625,
+            "Arson": 0.0241,
+            "Assault": 0.02,
+            "Burglary": 0.0177,
+            "Explosion": 0.1503,
+            "Fighting": 0.201,
+            "RoadAccidents": 0.0833,
+            "Robbery": 0.0348,
+            "Shooting": 0.2767,
+            "Shoplifting": 0.0127,
+            "Stealing": 0.0081,
+            "Vandalism": 0.0251
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Shooting",
+        "confidence": 0.2767,
+        "p_anomaly": 0.7781,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Shooting",
+            0.2767
+          ],
+          [
+            "Fighting",
+            0.201
+          ],
+          [
+            "Explosion",
+            0.1503
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0838,
+          "Arrest": 0.0625,
+          "Arson": 0.0241,
+          "Assault": 0.02,
+          "Burglary": 0.0177,
+          "Explosion": 0.1503,
+          "Fighting": 0.201,
+          "RoadAccidents": 0.0833,
+          "Robbery": 0.0348,
+          "Shooting": 0.2767,
+          "Shoplifting": 0.0127,
+          "Stealing": 0.0081,
+          "Vandalism": 0.0251
+        }
+      }
     }
   ]
 }

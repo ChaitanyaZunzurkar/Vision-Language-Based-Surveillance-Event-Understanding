@@ -35,9 +35,62 @@
           "abs_end": 35.5,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing dark clothing and carrying a gun is seen moving from left to right across the frame."
+          "description": "A person wearing dark clothing and carrying a gun is seen moving from left to right across the frame. [Model: Burglary (34%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.344,
+          "model_p_anomaly": 0.9995,
+          "model_type_probs": {
+            "Abuse": 0.0145,
+            "Arrest": 0.025,
+            "Arson": 0.0708,
+            "Assault": 0.1393,
+            "Burglary": 0.344,
+            "Explosion": 0.0093,
+            "Fighting": 0.0154,
+            "RoadAccidents": 0.0254,
+            "Robbery": 0.154,
+            "Shooting": 0.0484,
+            "Shoplifting": 0.009,
+            "Stealing": 0.0421,
+            "Vandalism": 0.103
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.344,
+        "p_anomaly": 0.9995,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.344
+          ],
+          [
+            "Robbery",
+            0.154
+          ],
+          [
+            "Assault",
+            0.1393
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0145,
+          "Arrest": 0.025,
+          "Arson": 0.0708,
+          "Assault": 0.1393,
+          "Burglary": 0.344,
+          "Explosion": 0.0093,
+          "Fighting": 0.0154,
+          "RoadAccidents": 0.0254,
+          "Robbery": 0.154,
+          "Shooting": 0.0484,
+          "Shoplifting": 0.009,
+          "Stealing": 0.0421,
+          "Vandalism": 0.103
+        }
+      }
     },
     {
       "video_id": "Explosion004_x264",
@@ -75,9 +128,62 @@
           "abs_end": 50.5,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing dark clothing and a hat is seen interacting with another individual near the center of the frame."
+          "description": "A person wearing dark clothing and a hat is seen interacting with another individual near the center of the frame. [Model: Assault (32%)]",
+          "model_anomaly_class": "Assault",
+          "model_anomaly_confidence": 0.3222,
+          "model_p_anomaly": 0.9995,
+          "model_type_probs": {
+            "Abuse": 0.0187,
+            "Arrest": 0.0517,
+            "Arson": 0.0619,
+            "Assault": 0.3222,
+            "Burglary": 0.177,
+            "Explosion": 0.0097,
+            "Fighting": 0.0264,
+            "RoadAccidents": 0.0256,
+            "Robbery": 0.1409,
+            "Shooting": 0.0776,
+            "Shoplifting": 0.0099,
+            "Stealing": 0.0244,
+            "Vandalism": 0.054
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Assault",
+        "confidence": 0.3222,
+        "p_anomaly": 0.9995,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Assault",
+            0.3222
+          ],
+          [
+            "Burglary",
+            0.177
+          ],
+          [
+            "Robbery",
+            0.1409
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0187,
+          "Arrest": 0.0517,
+          "Arson": 0.0619,
+          "Assault": 0.3222,
+          "Burglary": 0.177,
+          "Explosion": 0.0097,
+          "Fighting": 0.0264,
+          "RoadAccidents": 0.0256,
+          "Robbery": 0.1409,
+          "Shooting": 0.0776,
+          "Shoplifting": 0.0099,
+          "Stealing": 0.0244,
+          "Vandalism": 0.054
+        }
+      }
     },
     {
       "video_id": "Explosion004_x264",
@@ -113,9 +219,62 @@
           "abs_end": 55.5,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing dark clothing and a hat is seen in the corridor, engaging in a physical interaction involving a gun."
+          "description": "A person wearing dark clothing and a hat is seen in the corridor, engaging in a physical interaction involving a gun. [Model: Assault (32%)]",
+          "model_anomaly_class": "Assault",
+          "model_anomaly_confidence": 0.3194,
+          "model_p_anomaly": 0.9994,
+          "model_type_probs": {
+            "Abuse": 0.0177,
+            "Arrest": 0.0553,
+            "Arson": 0.0627,
+            "Assault": 0.3194,
+            "Burglary": 0.2056,
+            "Explosion": 0.0119,
+            "Fighting": 0.0399,
+            "RoadAccidents": 0.0191,
+            "Robbery": 0.1177,
+            "Shooting": 0.0743,
+            "Shoplifting": 0.0107,
+            "Stealing": 0.0175,
+            "Vandalism": 0.0482
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Assault",
+        "confidence": 0.3194,
+        "p_anomaly": 0.9994,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Assault",
+            0.3194
+          ],
+          [
+            "Burglary",
+            0.2056
+          ],
+          [
+            "Robbery",
+            0.1177
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0177,
+          "Arrest": 0.0553,
+          "Arson": 0.0627,
+          "Assault": 0.3194,
+          "Burglary": 0.2056,
+          "Explosion": 0.0119,
+          "Fighting": 0.0399,
+          "RoadAccidents": 0.0191,
+          "Robbery": 0.1177,
+          "Shooting": 0.0743,
+          "Shoplifting": 0.0107,
+          "Stealing": 0.0175,
+          "Vandalism": 0.0482
+        }
+      }
     },
     {
       "video_id": "Explosion004_x264",
@@ -152,7 +311,25 @@
           "abs_end": 51.9,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway."
+          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway. [Model: Assault (25%)]",
+          "model_anomaly_class": "Assault",
+          "model_anomaly_confidence": 0.2511,
+          "model_p_anomaly": 0.9992,
+          "model_type_probs": {
+            "Abuse": 0.0188,
+            "Arrest": 0.0367,
+            "Arson": 0.2134,
+            "Assault": 0.2511,
+            "Burglary": 0.1746,
+            "Explosion": 0.0192,
+            "Fighting": 0.0392,
+            "RoadAccidents": 0.0201,
+            "Robbery": 0.074,
+            "Shooting": 0.0645,
+            "Shoplifting": 0.0087,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0699
+          }
         },
         {
           "event_type": "physical_contact",
@@ -164,7 +341,25 @@
           "abs_end": 54.8,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway."
+          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway. [Model: Assault (25%)]",
+          "model_anomaly_class": "Assault",
+          "model_anomaly_confidence": 0.2511,
+          "model_p_anomaly": 0.9992,
+          "model_type_probs": {
+            "Abuse": 0.0188,
+            "Arrest": 0.0367,
+            "Arson": 0.2134,
+            "Assault": 0.2511,
+            "Burglary": 0.1746,
+            "Explosion": 0.0192,
+            "Fighting": 0.0392,
+            "RoadAccidents": 0.0201,
+            "Robbery": 0.074,
+            "Shooting": 0.0645,
+            "Shoplifting": 0.0087,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0699
+          }
         },
         {
           "event_type": "physical_contact",
@@ -176,7 +371,25 @@
           "abs_end": 57.6,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway."
+          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway. [Model: Assault (25%)]",
+          "model_anomaly_class": "Assault",
+          "model_anomaly_confidence": 0.2511,
+          "model_p_anomaly": 0.9992,
+          "model_type_probs": {
+            "Abuse": 0.0188,
+            "Arrest": 0.0367,
+            "Arson": 0.2134,
+            "Assault": 0.2511,
+            "Burglary": 0.1746,
+            "Explosion": 0.0192,
+            "Fighting": 0.0392,
+            "RoadAccidents": 0.0201,
+            "Robbery": 0.074,
+            "Shooting": 0.0645,
+            "Shoplifting": 0.0087,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0699
+          }
         },
         {
           "event_type": "physical_contact",
@@ -188,9 +401,62 @@
           "abs_end": 60.5,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway."
+          "description": "Person wearing dark clothing and a helmet is seen interacting closely with another individual near a doorway. [Model: Assault (25%)]",
+          "model_anomaly_class": "Assault",
+          "model_anomaly_confidence": 0.2511,
+          "model_p_anomaly": 0.9992,
+          "model_type_probs": {
+            "Abuse": 0.0188,
+            "Arrest": 0.0367,
+            "Arson": 0.2134,
+            "Assault": 0.2511,
+            "Burglary": 0.1746,
+            "Explosion": 0.0192,
+            "Fighting": 0.0392,
+            "RoadAccidents": 0.0201,
+            "Robbery": 0.074,
+            "Shooting": 0.0645,
+            "Shoplifting": 0.0087,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0699
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Assault",
+        "confidence": 0.2511,
+        "p_anomaly": 0.9992,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Assault",
+            0.2511
+          ],
+          [
+            "Arson",
+            0.2134
+          ],
+          [
+            "Burglary",
+            0.1746
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0188,
+          "Arrest": 0.0367,
+          "Arson": 0.2134,
+          "Assault": 0.2511,
+          "Burglary": 0.1746,
+          "Explosion": 0.0192,
+          "Fighting": 0.0392,
+          "RoadAccidents": 0.0201,
+          "Robbery": 0.074,
+          "Shooting": 0.0645,
+          "Shoplifting": 0.0087,
+          "Stealing": 0.0097,
+          "Vandalism": 0.0699
+        }
+      }
     },
     {
       "video_id": "Explosion004_x264",
@@ -224,9 +490,62 @@
           "abs_end": 65.5,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing is seen moving in the mid-right zone, suggesting physical interaction."
+          "description": "A person wearing dark clothing is seen moving in the mid-right zone, suggesting physical interaction. [Model: Arson (30%)]",
+          "model_anomaly_class": "Arson",
+          "model_anomaly_confidence": 0.2974,
+          "model_p_anomaly": 0.9985,
+          "model_type_probs": {
+            "Abuse": 0.025,
+            "Arrest": 0.0259,
+            "Arson": 0.2974,
+            "Assault": 0.2232,
+            "Burglary": 0.1649,
+            "Explosion": 0.0206,
+            "Fighting": 0.0331,
+            "RoadAccidents": 0.023,
+            "Robbery": 0.0497,
+            "Shooting": 0.0438,
+            "Shoplifting": 0.0076,
+            "Stealing": 0.0101,
+            "Vandalism": 0.0758
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Arson",
+        "confidence": 0.2974,
+        "p_anomaly": 0.9985,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Arson",
+            0.2974
+          ],
+          [
+            "Assault",
+            0.2232
+          ],
+          [
+            "Burglary",
+            0.1649
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.025,
+          "Arrest": 0.0259,
+          "Arson": 0.2974,
+          "Assault": 0.2232,
+          "Burglary": 0.1649,
+          "Explosion": 0.0206,
+          "Fighting": 0.0331,
+          "RoadAccidents": 0.023,
+          "Robbery": 0.0497,
+          "Shooting": 0.0438,
+          "Shoplifting": 0.0076,
+          "Stealing": 0.0101,
+          "Vandalism": 0.0758
+        }
+      }
     }
   ]
 }

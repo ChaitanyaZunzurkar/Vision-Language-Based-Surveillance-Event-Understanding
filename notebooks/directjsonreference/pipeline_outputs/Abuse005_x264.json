@@ -183,7 +183,25 @@
           "abs_end": 1.53,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #8 approaches Person #10 from the left side."
+          "description": "Person #8 approaches Person #10 from the left side. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         },
         {
           "event_type": "physical_contact",
@@ -195,7 +213,25 @@
           "abs_end": 3.03,
           "zone": "mid_left",
           "confidence": 0.8,
-          "description": "Person #8 and Person #10 engage in a physical interaction near the table."
+          "description": "Person #8 and Person #10 engage in a physical interaction near the table. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         },
         {
           "event_type": "push",
@@ -207,7 +243,25 @@
           "abs_end": 4.43,
           "zone": "mid_left",
           "confidence": 0.7,
-          "description": "Person #8 pushes Person #10 towards the right side of the frame."
+          "description": "Person #8 pushes Person #10 towards the right side of the frame. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         },
         {
           "event_type": "struggle",
@@ -219,7 +273,25 @@
           "abs_end": 5.83,
           "zone": "mid_left",
           "confidence": 0.6,
-          "description": "Person #8 and Person #10 engage in a struggle near the table."
+          "description": "Person #8 and Person #10 engage in a struggle near the table. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         },
         {
           "event_type": "push",
@@ -231,7 +303,25 @@
           "abs_end": 7.23,
           "zone": "mid_left",
           "confidence": 0.7,
-          "description": "Person #8 pushes Person #10 again towards the right side of the frame."
+          "description": "Person #8 pushes Person #10 again towards the right side of the frame. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         },
         {
           "event_type": "physical_contact",
@@ -243,7 +333,25 @@
           "abs_end": 8.73,
           "zone": "mid_left",
           "confidence": 0.8,
-          "description": "Person #8 and Person #10 continue their physical interaction near the table."
+          "description": "Person #8 and Person #10 continue their physical interaction near the table. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         },
         {
           "event_type": "push",
@@ -255,9 +363,62 @@
           "abs_end": 10.13,
           "zone": "mid_left",
           "confidence": 0.7,
-          "description": "Person #8 pushes Person #10 again towards the right side of the frame."
+          "description": "Person #8 pushes Person #10 again towards the right side of the frame. [Model: Abuse (59%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5896,
+          "model_p_anomaly": 0.9829,
+          "model_type_probs": {
+            "Abuse": 0.5896,
+            "Arrest": 0.0747,
+            "Arson": 0.0054,
+            "Assault": 0.0389,
+            "Burglary": 0.0296,
+            "Explosion": 0.0054,
+            "Fighting": 0.1141,
+            "RoadAccidents": 0.0073,
+            "Robbery": 0.0351,
+            "Shooting": 0.0689,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0187,
+            "Vandalism": 0.0068
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Abuse",
+        "confidence": 0.5896,
+        "p_anomaly": 0.9829,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Abuse",
+            0.5896
+          ],
+          [
+            "Fighting",
+            0.1141
+          ],
+          [
+            "Arrest",
+            0.0747
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.5896,
+          "Arrest": 0.0747,
+          "Arson": 0.0054,
+          "Assault": 0.0389,
+          "Burglary": 0.0296,
+          "Explosion": 0.0054,
+          "Fighting": 0.1141,
+          "RoadAccidents": 0.0073,
+          "Robbery": 0.0351,
+          "Shooting": 0.0689,
+          "Shoplifting": 0.0055,
+          "Stealing": 0.0187,
+          "Vandalism": 0.0068
+        }
+      }
     },
     {
       "video_id": "Abuse005_x264",
@@ -435,7 +596,25 @@
           "abs_end": 6.53,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #9 approaches Person #10 from behind, both wearing dark uniforms."
+          "description": "Person #9 approaches Person #10 from behind, both wearing dark uniforms. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "physical_contact",
@@ -447,7 +626,25 @@
           "abs_end": 8.03,
           "zone": "close to #10",
           "confidence": 0.9,
-          "description": "Person #9 grabs Person #10 around the waist, causing Person #10 to step back slightly."
+          "description": "Person #9 grabs Person #10 around the waist, causing Person #10 to step back slightly. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "push",
@@ -459,7 +656,25 @@
           "abs_end": 9.43,
           "zone": "close to #10",
           "confidence": 0.9,
-          "description": "Person #9 pushes Person #10 forward, who stumbles slightly but regains balance."
+          "description": "Person #9 pushes Person #10 forward, who stumbles slightly but regains balance. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "approach",
@@ -471,7 +686,25 @@
           "abs_end": 10.83,
           "zone": "close to #9",
           "confidence": 0.9,
-          "description": "Person #10 approaches Person #9, appearing to regain composure after the push."
+          "description": "Person #10 approaches Person #9, appearing to regain composure after the push. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "physical_contact",
@@ -483,7 +716,25 @@
           "abs_end": 12.23,
           "zone": "close to #9",
           "confidence": 0.9,
-          "description": "Person #10 grabs Person #9 again, this time more firmly, as Person #9 steps back."
+          "description": "Person #10 grabs Person #9 again, this time more firmly, as Person #9 steps back. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "struggle",
@@ -495,7 +746,25 @@
           "abs_end": 13.73,
           "zone": "close to #9",
           "confidence": 0.9,
-          "description": "A struggle ensues between Person #9 and Person #10, with both individuals moving closer together."
+          "description": "A struggle ensues between Person #9 and Person #10, with both individuals moving closer together. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         },
         {
           "event_type": "physical_contact",
@@ -507,9 +776,62 @@
           "abs_end": 15.13,
           "zone": "close to #9",
           "confidence": 0.9,
-          "description": "Person #9 appears to gain the upper hand, pushing Person #10 further back."
+          "description": "Person #9 appears to gain the upper hand, pushing Person #10 further back. [Model: Abuse (55%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5465,
+          "model_p_anomaly": 0.9781,
+          "model_type_probs": {
+            "Abuse": 0.5465,
+            "Arrest": 0.0776,
+            "Arson": 0.0053,
+            "Assault": 0.0425,
+            "Burglary": 0.0421,
+            "Explosion": 0.0056,
+            "Fighting": 0.1372,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.0357,
+            "Shooting": 0.0631,
+            "Shoplifting": 0.0055,
+            "Stealing": 0.0241,
+            "Vandalism": 0.0079
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Abuse",
+        "confidence": 0.5465,
+        "p_anomaly": 0.9781,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Abuse",
+            0.5465
+          ],
+          [
+            "Fighting",
+            0.1372
+          ],
+          [
+            "Arrest",
+            0.0776
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.5465,
+          "Arrest": 0.0776,
+          "Arson": 0.0053,
+          "Assault": 0.0425,
+          "Burglary": 0.0421,
+          "Explosion": 0.0056,
+          "Fighting": 0.1372,
+          "RoadAccidents": 0.0068,
+          "Robbery": 0.0357,
+          "Shooting": 0.0631,
+          "Shoplifting": 0.0055,
+          "Stealing": 0.0241,
+          "Vandalism": 0.0079
+        }
+      }
     },
     {
       "video_id": "Abuse005_x264",
@@ -691,7 +1013,25 @@
           "abs_end": 13.03,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #9 approaches Person #10 from behind, both wearing dark uniforms."
+          "description": "Person #9 approaches Person #10 from behind, both wearing dark uniforms. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5661,
+          "model_p_anomaly": 0.9851,
+          "model_type_probs": {
+            "Abuse": 0.5661,
+            "Arrest": 0.0647,
+            "Arson": 0.005,
+            "Assault": 0.0368,
+            "Burglary": 0.0474,
+            "Explosion": 0.0042,
+            "Fighting": 0.1215,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.042,
+            "Shooting": 0.0716,
+            "Shoplifting": 0.0052,
+            "Stealing": 0.0211,
+            "Vandalism": 0.0074
+          }
         },
         {
           "event_type": "physical_contact",
@@ -703,7 +1043,25 @@
           "abs_end": 14.43,
           "zone": "close to #10",
           "confidence": 0.8,
-          "description": "Person #9 grabs Person #10 around the waist, both standing near a table."
+          "description": "Person #9 grabs Person #10 around the waist, both standing near a table. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5661,
+          "model_p_anomaly": 0.9851,
+          "model_type_probs": {
+            "Abuse": 0.5661,
+            "Arrest": 0.0647,
+            "Arson": 0.005,
+            "Assault": 0.0368,
+            "Burglary": 0.0474,
+            "Explosion": 0.0042,
+            "Fighting": 0.1215,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.042,
+            "Shooting": 0.0716,
+            "Shoplifting": 0.0052,
+            "Stealing": 0.0211,
+            "Vandalism": 0.0074
+          }
         },
         {
           "event_type": "struggle",
@@ -715,7 +1073,25 @@
           "abs_end": 15.83,
           "zone": "close to #10",
           "confidence": 0.8,
-          "description": "Person #9 and Person #10 struggle, with Person #9 attempting to control Person #10."
+          "description": "Person #9 and Person #10 struggle, with Person #9 attempting to control Person #10. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5661,
+          "model_p_anomaly": 0.9851,
+          "model_type_probs": {
+            "Abuse": 0.5661,
+            "Arrest": 0.0647,
+            "Arson": 0.005,
+            "Assault": 0.0368,
+            "Burglary": 0.0474,
+            "Explosion": 0.0042,
+            "Fighting": 0.1215,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.042,
+            "Shooting": 0.0716,
+            "Shoplifting": 0.0052,
+            "Stealing": 0.0211,
+            "Vandalism": 0.0074
+          }
         },
         {
           "event_type": "push",
@@ -727,7 +1103,25 @@
           "abs_end": 17.23,
           "zone": "close to #9",
           "confidence": 0.8,
-          "description": "Person #11, wearing a light uniform, pushes Person #10 away from Person #9."
+          "description": "Person #11, wearing a light uniform, pushes Person #10 away from Person #9. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5661,
+          "model_p_anomaly": 0.9851,
+          "model_type_probs": {
+            "Abuse": 0.5661,
+            "Arrest": 0.0647,
+            "Arson": 0.005,
+            "Assault": 0.0368,
+            "Burglary": 0.0474,
+            "Explosion": 0.0042,
+            "Fighting": 0.1215,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.042,
+            "Shooting": 0.0716,
+            "Shoplifting": 0.0052,
+            "Stealing": 0.0211,
+            "Vandalism": 0.0074
+          }
         },
         {
           "event_type": "stand",
@@ -739,9 +1133,62 @@
           "abs_end": 18.73,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #10 stands up after being pushed away."
+          "description": "Person #10 stands up after being pushed away. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5661,
+          "model_p_anomaly": 0.9851,
+          "model_type_probs": {
+            "Abuse": 0.5661,
+            "Arrest": 0.0647,
+            "Arson": 0.005,
+            "Assault": 0.0368,
+            "Burglary": 0.0474,
+            "Explosion": 0.0042,
+            "Fighting": 0.1215,
+            "RoadAccidents": 0.0068,
+            "Robbery": 0.042,
+            "Shooting": 0.0716,
+            "Shoplifting": 0.0052,
+            "Stealing": 0.0211,
+            "Vandalism": 0.0074
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Abuse",
+        "confidence": 0.5661,
+        "p_anomaly": 0.9851,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Abuse",
+            0.5661
+          ],
+          [
+            "Fighting",
+            0.1215
+          ],
+          [
+            "Shooting",
+            0.0716
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.5661,
+          "Arrest": 0.0647,
+          "Arson": 0.005,
+          "Assault": 0.0368,
+          "Burglary": 0.0474,
+          "Explosion": 0.0042,
+          "Fighting": 0.1215,
+          "RoadAccidents": 0.0068,
+          "Robbery": 0.042,
+          "Shooting": 0.0716,
+          "Shoplifting": 0.0052,
+          "Stealing": 0.0211,
+          "Vandalism": 0.0074
+        }
+      }
     },
     {
       "video_id": "Abuse005_x264",
@@ -848,7 +1295,25 @@
           "abs_end": 25.13,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #15 and Person #16 engage in a physical altercation, with Person #15 appearing to push or grab Person #16."
+          "description": "Person #15 and Person #16 engage in a physical altercation, with Person #15 appearing to push or grab Person #16. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5733,
+          "model_p_anomaly": 0.9944,
+          "model_type_probs": {
+            "Abuse": 0.5733,
+            "Arrest": 0.1179,
+            "Arson": 0.0043,
+            "Assault": 0.0353,
+            "Burglary": 0.0121,
+            "Explosion": 0.0035,
+            "Fighting": 0.1793,
+            "RoadAccidents": 0.0043,
+            "Robbery": 0.0237,
+            "Shooting": 0.0328,
+            "Shoplifting": 0.0036,
+            "Stealing": 0.0056,
+            "Vandalism": 0.0042
+          }
         },
         {
           "event_type": "physical_contact",
@@ -860,9 +1325,62 @@
           "abs_end": 25.13,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #16 responds to Person #15's actions, possibly pushing back or attempting to defend themselves."
+          "description": "Person #16 responds to Person #15's actions, possibly pushing back or attempting to defend themselves. [Model: Abuse (57%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5733,
+          "model_p_anomaly": 0.9944,
+          "model_type_probs": {
+            "Abuse": 0.5733,
+            "Arrest": 0.1179,
+            "Arson": 0.0043,
+            "Assault": 0.0353,
+            "Burglary": 0.0121,
+            "Explosion": 0.0035,
+            "Fighting": 0.1793,
+            "RoadAccidents": 0.0043,
+            "Robbery": 0.0237,
+            "Shooting": 0.0328,
+            "Shoplifting": 0.0036,
+            "Stealing": 0.0056,
+            "Vandalism": 0.0042
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Abuse",
+        "confidence": 0.5733,
+        "p_anomaly": 0.9944,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Abuse",
+            0.5733
+          ],
+          [
+            "Fighting",
+            0.1793
+          ],
+          [
+            "Arrest",
+            0.1179
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.5733,
+          "Arrest": 0.1179,
+          "Arson": 0.0043,
+          "Assault": 0.0353,
+          "Burglary": 0.0121,
+          "Explosion": 0.0035,
+          "Fighting": 0.1793,
+          "RoadAccidents": 0.0043,
+          "Robbery": 0.0237,
+          "Shooting": 0.0328,
+          "Shoplifting": 0.0036,
+          "Stealing": 0.0056,
+          "Vandalism": 0.0042
+        }
+      }
     },
     {
       "video_id": "Abuse005_x264",
@@ -899,7 +1417,25 @@
           "abs_end": 23.03,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #17 approaches and interacts with another individual, causing a physical altercation."
+          "description": "Person #17 approaches and interacts with another individual, causing a physical altercation. [Model: Abuse (53%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5324,
+          "model_p_anomaly": 0.9952,
+          "model_type_probs": {
+            "Abuse": 0.5324,
+            "Arrest": 0.2511,
+            "Arson": 0.0044,
+            "Assault": 0.0436,
+            "Burglary": 0.0069,
+            "Explosion": 0.0037,
+            "Fighting": 0.1159,
+            "RoadAccidents": 0.0037,
+            "Robbery": 0.013,
+            "Shooting": 0.0149,
+            "Shoplifting": 0.003,
+            "Stealing": 0.0044,
+            "Vandalism": 0.003
+          }
         },
         {
           "event_type": "physical_contact",
@@ -911,7 +1447,25 @@
           "abs_end": 27.23,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #17 continues the physical interaction, pushing and grappling with the other individual."
+          "description": "Person #17 continues the physical interaction, pushing and grappling with the other individual. [Model: Abuse (53%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5324,
+          "model_p_anomaly": 0.9952,
+          "model_type_probs": {
+            "Abuse": 0.5324,
+            "Arrest": 0.2511,
+            "Arson": 0.0044,
+            "Assault": 0.0436,
+            "Burglary": 0.0069,
+            "Explosion": 0.0037,
+            "Fighting": 0.1159,
+            "RoadAccidents": 0.0037,
+            "Robbery": 0.013,
+            "Shooting": 0.0149,
+            "Shoplifting": 0.003,
+            "Stealing": 0.0044,
+            "Vandalism": 0.003
+          }
         },
         {
           "event_type": "physical_contact",
@@ -923,9 +1477,62 @@
           "abs_end": 28.73,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #17 maintains the physical contact, pushing the other individual to the ground."
+          "description": "Person #17 maintains the physical contact, pushing the other individual to the ground. [Model: Abuse (53%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.5324,
+          "model_p_anomaly": 0.9952,
+          "model_type_probs": {
+            "Abuse": 0.5324,
+            "Arrest": 0.2511,
+            "Arson": 0.0044,
+            "Assault": 0.0436,
+            "Burglary": 0.0069,
+            "Explosion": 0.0037,
+            "Fighting": 0.1159,
+            "RoadAccidents": 0.0037,
+            "Robbery": 0.013,
+            "Shooting": 0.0149,
+            "Shoplifting": 0.003,
+            "Stealing": 0.0044,
+            "Vandalism": 0.003
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Abuse",
+        "confidence": 0.5324,
+        "p_anomaly": 0.9952,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Abuse",
+            0.5324
+          ],
+          [
+            "Arrest",
+            0.2511
+          ],
+          [
+            "Fighting",
+            0.1159
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.5324,
+          "Arrest": 0.2511,
+          "Arson": 0.0044,
+          "Assault": 0.0436,
+          "Burglary": 0.0069,
+          "Explosion": 0.0037,
+          "Fighting": 0.1159,
+          "RoadAccidents": 0.0037,
+          "Robbery": 0.013,
+          "Shooting": 0.0149,
+          "Shoplifting": 0.003,
+          "Stealing": 0.0044,
+          "Vandalism": 0.003
+        }
+      }
     },
     {
       "video_id": "Abuse005_x264",
@@ -959,9 +1566,62 @@
           "abs_end": 35.13,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing a white shirt and dark pants is lying on the ground while another individual in a light-colored shirt and dark pants is interacting with them."
+          "description": "A person wearing a white shirt and dark pants is lying on the ground while another individual in a light-colored shirt and dark pants is interacting with them. [Model: Abuse (45%)]",
+          "model_anomaly_class": "Abuse",
+          "model_anomaly_confidence": 0.4453,
+          "model_p_anomaly": 0.9945,
+          "model_type_probs": {
+            "Abuse": 0.4453,
+            "Arrest": 0.2988,
+            "Arson": 0.0051,
+            "Assault": 0.0613,
+            "Burglary": 0.0087,
+            "Explosion": 0.0044,
+            "Fighting": 0.1361,
+            "RoadAccidents": 0.0047,
+            "Robbery": 0.0119,
+            "Shooting": 0.0096,
+            "Shoplifting": 0.003,
+            "Stealing": 0.0059,
+            "Vandalism": 0.005
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Abuse",
+        "confidence": 0.4453,
+        "p_anomaly": 0.9945,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Abuse",
+            0.4453
+          ],
+          [
+            "Arrest",
+            0.2988
+          ],
+          [
+            "Fighting",
+            0.1361
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.4453,
+          "Arrest": 0.2988,
+          "Arson": 0.0051,
+          "Assault": 0.0613,
+          "Burglary": 0.0087,
+          "Explosion": 0.0044,
+          "Fighting": 0.1361,
+          "RoadAccidents": 0.0047,
+          "Robbery": 0.0119,
+          "Shooting": 0.0096,
+          "Shoplifting": 0.003,
+          "Stealing": 0.0059,
+          "Vandalism": 0.005
+        }
+      }
     }
   ]
 }

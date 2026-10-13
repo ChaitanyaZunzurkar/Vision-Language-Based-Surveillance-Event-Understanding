@@ -50,9 +50,62 @@
           "abs_end": 13.13,
           "zone": "center",
           "confidence": 1.0,
-          "description": "A person wearing dark clothing and a cap is seen interacting with another individual dressed in lighter attire. They appear to be engaged in a physical altercation, with movements suggesting pushing or grappling."
+          "description": "A person wearing dark clothing and a cap is seen interacting with another individual dressed in lighter attire. They appear to be engaged in a physical altercation, with movements suggesting pushing or grappling. [Model: RoadAccidents (49%)]",
+          "model_anomaly_class": "RoadAccidents",
+          "model_anomaly_confidence": 0.4899,
+          "model_p_anomaly": 0.9953,
+          "model_type_probs": {
+            "Abuse": 0.0055,
+            "Arrest": 0.0074,
+            "Arson": 0.0536,
+            "Assault": 0.0264,
+            "Burglary": 0.0126,
+            "Explosion": 0.0135,
+            "Fighting": 0.02,
+            "RoadAccidents": 0.4899,
+            "Robbery": 0.0117,
+            "Shooting": 0.0079,
+            "Shoplifting": 0.0036,
+            "Stealing": 0.3071,
+            "Vandalism": 0.0408
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "RoadAccidents",
+        "confidence": 0.4899,
+        "p_anomaly": 0.9953,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "RoadAccidents",
+            0.4899
+          ],
+          [
+            "Stealing",
+            0.3071
+          ],
+          [
+            "Arson",
+            0.0536
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0055,
+          "Arrest": 0.0074,
+          "Arson": 0.0536,
+          "Assault": 0.0264,
+          "Burglary": 0.0126,
+          "Explosion": 0.0135,
+          "Fighting": 0.02,
+          "RoadAccidents": 0.4899,
+          "Robbery": 0.0117,
+          "Shooting": 0.0079,
+          "Shoplifting": 0.0036,
+          "Stealing": 0.3071,
+          "Vandalism": 0.0408
+        }
+      }
     }
   ]
 }

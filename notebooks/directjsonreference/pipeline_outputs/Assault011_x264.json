@@ -301,7 +301,25 @@
           "abs_end": 2.9,
           "zone": "mid_left",
           "confidence": 0.8,
-          "description": "Person #2 approaches Person #5 from the left."
+          "description": "Person #2 approaches Person #5 from the left. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5398,
+          "model_p_anomaly": 0.6092,
+          "model_type_probs": {
+            "Abuse": 0.0049,
+            "Arrest": 0.0048,
+            "Arson": 0.0038,
+            "Assault": 0.0186,
+            "Burglary": 0.0142,
+            "Explosion": 0.006,
+            "Fighting": 0.0183,
+            "RoadAccidents": 0.1655,
+            "Robbery": 0.0644,
+            "Shooting": 0.0123,
+            "Shoplifting": 0.1371,
+            "Stealing": 0.5398,
+            "Vandalism": 0.0102
+          }
         },
         {
           "event_type": "approach",
@@ -313,9 +331,62 @@
           "abs_end": 8.6,
           "zone": "mid_left",
           "confidence": 0.8,
-          "description": "Person #9 approaches Person #10 from the left."
+          "description": "Person #9 approaches Person #10 from the left. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5398,
+          "model_p_anomaly": 0.6092,
+          "model_type_probs": {
+            "Abuse": 0.0049,
+            "Arrest": 0.0048,
+            "Arson": 0.0038,
+            "Assault": 0.0186,
+            "Burglary": 0.0142,
+            "Explosion": 0.006,
+            "Fighting": 0.0183,
+            "RoadAccidents": 0.1655,
+            "Robbery": 0.0644,
+            "Shooting": 0.0123,
+            "Shoplifting": 0.1371,
+            "Stealing": 0.5398,
+            "Vandalism": 0.0102
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.5398,
+        "p_anomaly": 0.6092,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5398
+          ],
+          [
+            "RoadAccidents",
+            0.1655
+          ],
+          [
+            "Shoplifting",
+            0.1371
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0049,
+          "Arrest": 0.0048,
+          "Arson": 0.0038,
+          "Assault": 0.0186,
+          "Burglary": 0.0142,
+          "Explosion": 0.006,
+          "Fighting": 0.0183,
+          "RoadAccidents": 0.1655,
+          "Robbery": 0.0644,
+          "Shooting": 0.0123,
+          "Shoplifting": 0.1371,
+          "Stealing": 0.5398,
+          "Vandalism": 0.0102
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -748,7 +819,25 @@
           "abs_end": 6.4,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A person wearing a pink shirt and dark pants enters the scene."
+          "description": "A person wearing a pink shirt and dark pants enters the scene. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "enter",
@@ -760,7 +849,25 @@
           "abs_end": 7.9,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "Another person wearing a blue shirt and red pants enters the scene."
+          "description": "Another person wearing a blue shirt and red pants enters the scene. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "enter",
@@ -772,7 +879,25 @@
           "abs_end": 9.3,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A third person wearing a white shirt and dark pants enters the scene."
+          "description": "A third person wearing a white shirt and dark pants enters the scene. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "enter",
@@ -784,7 +909,25 @@
           "abs_end": 10.7,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A fourth person wearing a light blue shirt and dark pants enters the scene."
+          "description": "A fourth person wearing a light blue shirt and dark pants enters the scene. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "enter",
@@ -796,7 +939,25 @@
           "abs_end": 12.1,
           "zone": "top_mid",
           "confidence": 1.0,
-          "description": "A fifth person wearing a dark shirt and light pants enters the scene."
+          "description": "A fifth person wearing a dark shirt and light pants enters the scene. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "approach",
@@ -808,7 +969,25 @@
           "abs_end": 13.6,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "The person in the pink shirt approaches the person in the white shirt."
+          "description": "The person in the pink shirt approaches the person in the white shirt. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "approach",
@@ -820,7 +999,25 @@
           "abs_end": 13.6,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "The person in the blue shirt approaches the person in the light blue shirt."
+          "description": "The person in the blue shirt approaches the person in the light blue shirt. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "approach",
@@ -832,7 +1029,25 @@
           "abs_end": 13.6,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "The person in the white shirt approaches the person in the light blue shirt."
+          "description": "The person in the white shirt approaches the person in the light blue shirt. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         },
         {
           "event_type": "approach",
@@ -844,9 +1059,62 @@
           "abs_end": 13.6,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "The person in the light blue shirt approaches the person in the dark shirt."
+          "description": "The person in the light blue shirt approaches the person in the dark shirt. [Model: Stealing (54%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.538,
+          "model_p_anomaly": 0.7471,
+          "model_type_probs": {
+            "Abuse": 0.0046,
+            "Arrest": 0.0046,
+            "Arson": 0.0034,
+            "Assault": 0.0134,
+            "Burglary": 0.0147,
+            "Explosion": 0.0063,
+            "Fighting": 0.0211,
+            "RoadAccidents": 0.1552,
+            "Robbery": 0.0536,
+            "Shooting": 0.0134,
+            "Shoplifting": 0.161,
+            "Stealing": 0.538,
+            "Vandalism": 0.0106
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.538,
+        "p_anomaly": 0.7471,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.538
+          ],
+          [
+            "Shoplifting",
+            0.161
+          ],
+          [
+            "RoadAccidents",
+            0.1552
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0046,
+          "Arrest": 0.0046,
+          "Arson": 0.0034,
+          "Assault": 0.0134,
+          "Burglary": 0.0147,
+          "Explosion": 0.0063,
+          "Fighting": 0.0211,
+          "RoadAccidents": 0.1552,
+          "Robbery": 0.0536,
+          "Shooting": 0.0134,
+          "Shoplifting": 0.161,
+          "Stealing": 0.538,
+          "Vandalism": 0.0106
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -1277,7 +1545,25 @@
           "abs_end": 15.7,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #7, wearing a green shirt and black pants, approaches Person #9, dressed in a pink shirt and black pants, near the center of the frame."
+          "description": "Person #7, wearing a green shirt and black pants, approaches Person #9, dressed in a pink shirt and black pants, near the center of the frame. [Model: Stealing (55%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5507,
+          "model_p_anomaly": 0.8413,
+          "model_type_probs": {
+            "Abuse": 0.0047,
+            "Arrest": 0.004,
+            "Arson": 0.0029,
+            "Assault": 0.0113,
+            "Burglary": 0.0118,
+            "Explosion": 0.0054,
+            "Fighting": 0.0239,
+            "RoadAccidents": 0.1687,
+            "Robbery": 0.0523,
+            "Shooting": 0.0144,
+            "Shoplifting": 0.1409,
+            "Stealing": 0.5507,
+            "Vandalism": 0.0091
+          }
         },
         {
           "event_type": "physical_contact",
@@ -1289,7 +1575,25 @@
           "abs_end": 17.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #7 and Person #9 engage in a physical interaction, with Person #7 appearing to push or grab Person #9 near the center of the frame."
+          "description": "Person #7 and Person #9 engage in a physical interaction, with Person #7 appearing to push or grab Person #9 near the center of the frame. [Model: Stealing (55%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5507,
+          "model_p_anomaly": 0.8413,
+          "model_type_probs": {
+            "Abuse": 0.0047,
+            "Arrest": 0.004,
+            "Arson": 0.0029,
+            "Assault": 0.0113,
+            "Burglary": 0.0118,
+            "Explosion": 0.0054,
+            "Fighting": 0.0239,
+            "RoadAccidents": 0.1687,
+            "Robbery": 0.0523,
+            "Shooting": 0.0144,
+            "Shoplifting": 0.1409,
+            "Stealing": 0.5507,
+            "Vandalism": 0.0091
+          }
         },
         {
           "event_type": "walk",
@@ -1301,9 +1605,62 @@
           "abs_end": 20.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #10, wearing a white shirt and dark pants, walks into the frame from the left side."
+          "description": "Person #10, wearing a white shirt and dark pants, walks into the frame from the left side. [Model: Stealing (55%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5507,
+          "model_p_anomaly": 0.8413,
+          "model_type_probs": {
+            "Abuse": 0.0047,
+            "Arrest": 0.004,
+            "Arson": 0.0029,
+            "Assault": 0.0113,
+            "Burglary": 0.0118,
+            "Explosion": 0.0054,
+            "Fighting": 0.0239,
+            "RoadAccidents": 0.1687,
+            "Robbery": 0.0523,
+            "Shooting": 0.0144,
+            "Shoplifting": 0.1409,
+            "Stealing": 0.5507,
+            "Vandalism": 0.0091
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.5507,
+        "p_anomaly": 0.8413,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5507
+          ],
+          [
+            "RoadAccidents",
+            0.1687
+          ],
+          [
+            "Shoplifting",
+            0.1409
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0047,
+          "Arrest": 0.004,
+          "Arson": 0.0029,
+          "Assault": 0.0113,
+          "Burglary": 0.0118,
+          "Explosion": 0.0054,
+          "Fighting": 0.0239,
+          "RoadAccidents": 0.1687,
+          "Robbery": 0.0523,
+          "Shooting": 0.0144,
+          "Shoplifting": 0.1409,
+          "Stealing": 0.5507,
+          "Vandalism": 0.0091
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -1561,7 +1918,25 @@
           "abs_end": 17.9,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #22, wearing a pink shirt and jeans, approaches Person #25, who is dressed in dark clothing, near the motorcycles."
+          "description": "Person #22, wearing a pink shirt and jeans, approaches Person #25, who is dressed in dark clothing, near the motorcycles. [Model: Stealing (57%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5674,
+          "model_p_anomaly": 0.8257,
+          "model_type_probs": {
+            "Abuse": 0.0055,
+            "Arrest": 0.004,
+            "Arson": 0.003,
+            "Assault": 0.0135,
+            "Burglary": 0.0123,
+            "Explosion": 0.0054,
+            "Fighting": 0.0232,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0654,
+            "Shooting": 0.0144,
+            "Shoplifting": 0.1276,
+            "Stealing": 0.5674,
+            "Vandalism": 0.0097
+          }
         },
         {
           "event_type": "approach",
@@ -1573,9 +1948,62 @@
           "abs_end": 20.7,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #20, wearing a blue shirt and jeans, moves towards Person #23, who is dressed in a white shirt and black pants, near the top of the frame."
+          "description": "Person #20, wearing a blue shirt and jeans, moves towards Person #23, who is dressed in a white shirt and black pants, near the top of the frame. [Model: Stealing (57%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5674,
+          "model_p_anomaly": 0.8257,
+          "model_type_probs": {
+            "Abuse": 0.0055,
+            "Arrest": 0.004,
+            "Arson": 0.003,
+            "Assault": 0.0135,
+            "Burglary": 0.0123,
+            "Explosion": 0.0054,
+            "Fighting": 0.0232,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0654,
+            "Shooting": 0.0144,
+            "Shoplifting": 0.1276,
+            "Stealing": 0.5674,
+            "Vandalism": 0.0097
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.5674,
+        "p_anomaly": 0.8257,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5674
+          ],
+          [
+            "RoadAccidents",
+            0.1486
+          ],
+          [
+            "Shoplifting",
+            0.1276
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0055,
+          "Arrest": 0.004,
+          "Arson": 0.003,
+          "Assault": 0.0135,
+          "Burglary": 0.0123,
+          "Explosion": 0.0054,
+          "Fighting": 0.0232,
+          "RoadAccidents": 0.1486,
+          "Robbery": 0.0654,
+          "Shooting": 0.0144,
+          "Shoplifting": 0.1276,
+          "Stealing": 0.5674,
+          "Vandalism": 0.0097
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -1839,7 +2267,25 @@
           "abs_end": 24.3,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #29, wearing a pink shirt and black pants, is seen physically interacting with Person #30, dressed in a green shirt and dark pants, near the entrance."
+          "description": "Person #29, wearing a pink shirt and black pants, is seen physically interacting with Person #30, dressed in a green shirt and dark pants, near the entrance. [Model: Stealing (46%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4573,
+          "model_p_anomaly": 0.7671,
+          "model_type_probs": {
+            "Abuse": 0.0072,
+            "Arrest": 0.005,
+            "Arson": 0.0037,
+            "Assault": 0.0141,
+            "Burglary": 0.0137,
+            "Explosion": 0.0087,
+            "Fighting": 0.0197,
+            "RoadAccidents": 0.2053,
+            "Robbery": 0.0824,
+            "Shooting": 0.014,
+            "Shoplifting": 0.1578,
+            "Stealing": 0.4573,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "physical_contact",
@@ -1851,9 +2297,62 @@
           "abs_end": 27.1,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #33, holding a gun, is seen engaging in a physical interaction with Person #35, also holding a gun, near the center of the frame."
+          "description": "Person #33, holding a gun, is seen engaging in a physical interaction with Person #35, also holding a gun, near the center of the frame. [Model: Stealing (46%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4573,
+          "model_p_anomaly": 0.7671,
+          "model_type_probs": {
+            "Abuse": 0.0072,
+            "Arrest": 0.005,
+            "Arson": 0.0037,
+            "Assault": 0.0141,
+            "Burglary": 0.0137,
+            "Explosion": 0.0087,
+            "Fighting": 0.0197,
+            "RoadAccidents": 0.2053,
+            "Robbery": 0.0824,
+            "Shooting": 0.014,
+            "Shoplifting": 0.1578,
+            "Stealing": 0.4573,
+            "Vandalism": 0.0111
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.4573,
+        "p_anomaly": 0.7671,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4573
+          ],
+          [
+            "RoadAccidents",
+            0.2053
+          ],
+          [
+            "Shoplifting",
+            0.1578
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0072,
+          "Arrest": 0.005,
+          "Arson": 0.0037,
+          "Assault": 0.0141,
+          "Burglary": 0.0137,
+          "Explosion": 0.0087,
+          "Fighting": 0.0197,
+          "RoadAccidents": 0.2053,
+          "Robbery": 0.0824,
+          "Shooting": 0.014,
+          "Shoplifting": 0.1578,
+          "Stealing": 0.4573,
+          "Vandalism": 0.0111
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -2162,7 +2661,25 @@
           "abs_end": 33.6,
           "zone": "bottom_left -> bottom_mid -> center -> top_mid",
           "confidence": 0.9,
-          "description": "Person #34 approaches Person #37 from the left."
+          "description": "Person #34 approaches Person #37 from the left. [Model: Stealing (51%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5083,
+          "model_p_anomaly": 0.7493,
+          "model_type_probs": {
+            "Abuse": 0.0053,
+            "Arrest": 0.0047,
+            "Arson": 0.0031,
+            "Assault": 0.0154,
+            "Burglary": 0.0154,
+            "Explosion": 0.0069,
+            "Fighting": 0.0185,
+            "RoadAccidents": 0.1848,
+            "Robbery": 0.072,
+            "Shooting": 0.0117,
+            "Shoplifting": 0.1455,
+            "Stealing": 0.5083,
+            "Vandalism": 0.0083
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2174,9 +2691,62 @@
           "abs_end": 35.0,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #34 and Person #37 make physical contact, possibly pushing or shoving."
+          "description": "Person #34 and Person #37 make physical contact, possibly pushing or shoving. [Model: Stealing (51%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.5083,
+          "model_p_anomaly": 0.7493,
+          "model_type_probs": {
+            "Abuse": 0.0053,
+            "Arrest": 0.0047,
+            "Arson": 0.0031,
+            "Assault": 0.0154,
+            "Burglary": 0.0154,
+            "Explosion": 0.0069,
+            "Fighting": 0.0185,
+            "RoadAccidents": 0.1848,
+            "Robbery": 0.072,
+            "Shooting": 0.0117,
+            "Shoplifting": 0.1455,
+            "Stealing": 0.5083,
+            "Vandalism": 0.0083
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.5083,
+        "p_anomaly": 0.7493,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.5083
+          ],
+          [
+            "RoadAccidents",
+            0.1848
+          ],
+          [
+            "Shoplifting",
+            0.1455
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0053,
+          "Arrest": 0.0047,
+          "Arson": 0.0031,
+          "Assault": 0.0154,
+          "Burglary": 0.0154,
+          "Explosion": 0.0069,
+          "Fighting": 0.0185,
+          "RoadAccidents": 0.1848,
+          "Robbery": 0.072,
+          "Shooting": 0.0117,
+          "Shoplifting": 0.1455,
+          "Stealing": 0.5083,
+          "Vandalism": 0.0083
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -2432,7 +3002,25 @@
           "abs_end": 37.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #33, wearing a green shirt and black pants, approaches Person #37, dressed in a blue shirt and dark pants, and strikes them with a knife."
+          "description": "Person #33, wearing a green shirt and black pants, approaches Person #37, dressed in a blue shirt and dark pants, and strikes them with a knife. [Model: Stealing (49%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4933,
+          "model_p_anomaly": 0.8103,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0053,
+            "Arson": 0.0031,
+            "Assault": 0.0174,
+            "Burglary": 0.016,
+            "Explosion": 0.0075,
+            "Fighting": 0.0231,
+            "RoadAccidents": 0.1906,
+            "Robbery": 0.076,
+            "Shooting": 0.0139,
+            "Shoplifting": 0.1385,
+            "Stealing": 0.4933,
+            "Vandalism": 0.0094
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2444,9 +3032,62 @@
           "abs_end": 38.6,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #33 continues to strike Person #37 with the knife, causing them to fall to the ground."
+          "description": "Person #33 continues to strike Person #37 with the knife, causing them to fall to the ground. [Model: Stealing (49%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4933,
+          "model_p_anomaly": 0.8103,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0053,
+            "Arson": 0.0031,
+            "Assault": 0.0174,
+            "Burglary": 0.016,
+            "Explosion": 0.0075,
+            "Fighting": 0.0231,
+            "RoadAccidents": 0.1906,
+            "Robbery": 0.076,
+            "Shooting": 0.0139,
+            "Shoplifting": 0.1385,
+            "Stealing": 0.4933,
+            "Vandalism": 0.0094
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.4933,
+        "p_anomaly": 0.8103,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4933
+          ],
+          [
+            "RoadAccidents",
+            0.1906
+          ],
+          [
+            "Shoplifting",
+            0.1385
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0059,
+          "Arrest": 0.0053,
+          "Arson": 0.0031,
+          "Assault": 0.0174,
+          "Burglary": 0.016,
+          "Explosion": 0.0075,
+          "Fighting": 0.0231,
+          "RoadAccidents": 0.1906,
+          "Robbery": 0.076,
+          "Shooting": 0.0139,
+          "Shoplifting": 0.1385,
+          "Stealing": 0.4933,
+          "Vandalism": 0.0094
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -2705,7 +3346,25 @@
           "abs_end": 36.4,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #39 approaches Person #43 from the left side."
+          "description": "Person #39 approaches Person #43 from the left side. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2717,7 +3376,25 @@
           "abs_end": 37.9,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #39 grabs Person #43 by the arm while both are standing."
+          "description": "Person #39 grabs Person #43 by the arm while both are standing. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2729,7 +3406,25 @@
           "abs_end": 39.3,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #39 holds Person #43's arm tightly as they move slightly apart."
+          "description": "Person #39 holds Person #43's arm tightly as they move slightly apart. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2741,7 +3436,25 @@
           "abs_end": 40.7,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #39 releases Person #43's arm but continues to stand nearby."
+          "description": "Person #39 releases Person #43's arm but continues to stand nearby. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2753,7 +3466,25 @@
           "abs_end": 42.1,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #39 reaches out towards Person #43 again, appearing to check on them."
+          "description": "Person #39 reaches out towards Person #43 again, appearing to check on them. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2765,7 +3496,25 @@
           "abs_end": 43.6,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #39 holds Person #43's arm once more, ensuring they are okay."
+          "description": "Person #39 holds Person #43's arm once more, ensuring they are okay. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         },
         {
           "event_type": "physical_contact",
@@ -2777,9 +3526,62 @@
           "abs_end": 45.0,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #39 releases Person #43's arm completely as they walk away."
+          "description": "Person #39 releases Person #43's arm completely as they walk away. [Model: Stealing (39%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3937,
+          "model_p_anomaly": 0.8785,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0066,
+            "Arson": 0.0042,
+            "Assault": 0.0226,
+            "Burglary": 0.0213,
+            "Explosion": 0.0094,
+            "Fighting": 0.0365,
+            "RoadAccidents": 0.2169,
+            "Robbery": 0.1027,
+            "Shooting": 0.0156,
+            "Shoplifting": 0.1502,
+            "Stealing": 0.3937,
+            "Vandalism": 0.0129
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.3937,
+        "p_anomaly": 0.8785,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.3937
+          ],
+          [
+            "RoadAccidents",
+            0.2169
+          ],
+          [
+            "Shoplifting",
+            0.1502
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0073,
+          "Arrest": 0.0066,
+          "Arson": 0.0042,
+          "Assault": 0.0226,
+          "Burglary": 0.0213,
+          "Explosion": 0.0094,
+          "Fighting": 0.0365,
+          "RoadAccidents": 0.2169,
+          "Robbery": 0.1027,
+          "Shooting": 0.0156,
+          "Shoplifting": 0.1502,
+          "Stealing": 0.3937,
+          "Vandalism": 0.0129
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -3675,7 +4477,25 @@
           "abs_end": 42.1,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #39 approaches Person #46 from the left."
+          "description": "Person #39 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3687,7 +4507,25 @@
           "abs_end": 42.1,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #50 approaches Person #46 from the right."
+          "description": "Person #50 approaches Person #46 from the right. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3699,7 +4537,25 @@
           "abs_end": 44.5,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #54 approaches Person #46 from the left."
+          "description": "Person #54 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3711,7 +4567,25 @@
           "abs_end": 44.5,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #56 approaches Person #46 from the left."
+          "description": "Person #56 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3723,7 +4597,25 @@
           "abs_end": 44.5,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #57 approaches Person #46 from the top."
+          "description": "Person #57 approaches Person #46 from the top. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3735,7 +4627,25 @@
           "abs_end": 41.8,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #58 approaches Person #46 from the left."
+          "description": "Person #58 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3747,7 +4657,25 @@
           "abs_end": 43.3,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #59 approaches Person #46 from the left."
+          "description": "Person #59 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3759,7 +4687,25 @@
           "abs_end": 41.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #61 approaches Person #46 from the left."
+          "description": "Person #61 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3771,7 +4717,25 @@
           "abs_end": 42.6,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #62 approaches Person #46 from the left."
+          "description": "Person #62 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3783,7 +4747,25 @@
           "abs_end": 43.3,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #63 approaches Person #46 from the left."
+          "description": "Person #63 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3795,7 +4777,25 @@
           "abs_end": 43.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #66 approaches Person #46 from the left."
+          "description": "Person #66 approaches Person #46 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -3807,9 +4807,62 @@
           "abs_end": 40.8,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #68 approaches Person #46 from the top."
+          "description": "Person #68 approaches Person #46 from the top. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3184,
+          "model_p_anomaly": 0.8611,
+          "model_type_probs": {
+            "Abuse": 0.008,
+            "Arrest": 0.0071,
+            "Arson": 0.0052,
+            "Assault": 0.0296,
+            "Burglary": 0.0189,
+            "Explosion": 0.0112,
+            "Fighting": 0.0517,
+            "RoadAccidents": 0.2812,
+            "Robbery": 0.0709,
+            "Shooting": 0.0189,
+            "Shoplifting": 0.1668,
+            "Stealing": 0.3184,
+            "Vandalism": 0.012
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.3184,
+        "p_anomaly": 0.8611,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.3184
+          ],
+          [
+            "RoadAccidents",
+            0.2812
+          ],
+          [
+            "Shoplifting",
+            0.1668
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.008,
+          "Arrest": 0.0071,
+          "Arson": 0.0052,
+          "Assault": 0.0296,
+          "Burglary": 0.0189,
+          "Explosion": 0.0112,
+          "Fighting": 0.0517,
+          "RoadAccidents": 0.2812,
+          "Robbery": 0.0709,
+          "Shooting": 0.0189,
+          "Shoplifting": 0.1668,
+          "Stealing": 0.3184,
+          "Vandalism": 0.012
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -5007,7 +6060,25 @@
           "abs_end": 47.9,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #54 approaches Person #56 from the mid_left."
+          "description": "Person #54 approaches Person #56 from the mid_left. [Model: Stealing (40%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3976,
+          "model_p_anomaly": 0.7895,
+          "model_type_probs": {
+            "Abuse": 0.0067,
+            "Arrest": 0.0066,
+            "Arson": 0.0044,
+            "Assault": 0.0243,
+            "Burglary": 0.0171,
+            "Explosion": 0.0114,
+            "Fighting": 0.0445,
+            "RoadAccidents": 0.2642,
+            "Robbery": 0.0663,
+            "Shooting": 0.0171,
+            "Shoplifting": 0.1301,
+            "Stealing": 0.3976,
+            "Vandalism": 0.0097
+          }
         },
         {
           "event_type": "approach",
@@ -5019,9 +6090,62 @@
           "abs_end": 49.3,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #56 approaches Person #57 from the top_mid."
+          "description": "Person #56 approaches Person #57 from the top_mid. [Model: Stealing (40%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3976,
+          "model_p_anomaly": 0.7895,
+          "model_type_probs": {
+            "Abuse": 0.0067,
+            "Arrest": 0.0066,
+            "Arson": 0.0044,
+            "Assault": 0.0243,
+            "Burglary": 0.0171,
+            "Explosion": 0.0114,
+            "Fighting": 0.0445,
+            "RoadAccidents": 0.2642,
+            "Robbery": 0.0663,
+            "Shooting": 0.0171,
+            "Shoplifting": 0.1301,
+            "Stealing": 0.3976,
+            "Vandalism": 0.0097
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.3976,
+        "p_anomaly": 0.7895,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.3976
+          ],
+          [
+            "RoadAccidents",
+            0.2642
+          ],
+          [
+            "Shoplifting",
+            0.1301
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0067,
+          "Arrest": 0.0066,
+          "Arson": 0.0044,
+          "Assault": 0.0243,
+          "Burglary": 0.0171,
+          "Explosion": 0.0114,
+          "Fighting": 0.0445,
+          "RoadAccidents": 0.2642,
+          "Robbery": 0.0663,
+          "Shooting": 0.0171,
+          "Shoplifting": 0.1301,
+          "Stealing": 0.3976,
+          "Vandalism": 0.0097
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -6306,7 +7430,25 @@
           "abs_end": 51.4,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #54 approaches Person #57 from the left."
+          "description": "Person #54 approaches Person #57 from the left. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         },
         {
           "event_type": "approach",
@@ -6318,7 +7460,25 @@
           "abs_end": 52.9,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #56 approaches Person #57 from the top."
+          "description": "Person #56 approaches Person #57 from the top. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         },
         {
           "event_type": "approach",
@@ -6330,7 +7490,25 @@
           "abs_end": 54.3,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #62 approaches Person #57 from the center."
+          "description": "Person #62 approaches Person #57 from the center. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         },
         {
           "event_type": "approach",
@@ -6342,7 +7520,25 @@
           "abs_end": 55.7,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #63 approaches Person #57 from the center."
+          "description": "Person #63 approaches Person #57 from the center. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         },
         {
           "event_type": "approach",
@@ -6354,7 +7550,25 @@
           "abs_end": 57.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #66 approaches Person #57 from the center."
+          "description": "Person #66 approaches Person #57 from the center. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         },
         {
           "event_type": "approach",
@@ -6366,7 +7580,25 @@
           "abs_end": 58.6,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #71 approaches Person #57 from the center."
+          "description": "Person #71 approaches Person #57 from the center. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         },
         {
           "event_type": "approach",
@@ -6378,9 +7610,62 @@
           "abs_end": 60.0,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #77 approaches Person #57 from the center."
+          "description": "Person #77 approaches Person #57 from the center. [Model: Stealing (47%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4693,
+          "model_p_anomaly": 0.7274,
+          "model_type_probs": {
+            "Abuse": 0.0059,
+            "Arrest": 0.0059,
+            "Arson": 0.0036,
+            "Assault": 0.0147,
+            "Burglary": 0.0181,
+            "Explosion": 0.0098,
+            "Fighting": 0.0319,
+            "RoadAccidents": 0.2486,
+            "Robbery": 0.0562,
+            "Shooting": 0.0132,
+            "Shoplifting": 0.1126,
+            "Stealing": 0.4693,
+            "Vandalism": 0.0101
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.4693,
+        "p_anomaly": 0.7274,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4693
+          ],
+          [
+            "RoadAccidents",
+            0.2486
+          ],
+          [
+            "Shoplifting",
+            0.1126
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0059,
+          "Arrest": 0.0059,
+          "Arson": 0.0036,
+          "Assault": 0.0147,
+          "Burglary": 0.0181,
+          "Explosion": 0.0098,
+          "Fighting": 0.0319,
+          "RoadAccidents": 0.2486,
+          "Robbery": 0.0562,
+          "Shooting": 0.0132,
+          "Shoplifting": 0.1126,
+          "Stealing": 0.4693,
+          "Vandalism": 0.0101
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -7952,7 +9237,25 @@
           "abs_end": 63.6,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #57 approaches Person #79, both wearing light-colored shirts and dark pants."
+          "description": "Person #57 approaches Person #79, both wearing light-colored shirts and dark pants. [Model: Stealing (40%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4014,
+          "model_p_anomaly": 0.714,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0081,
+            "Arson": 0.0041,
+            "Assault": 0.0196,
+            "Burglary": 0.0206,
+            "Explosion": 0.0122,
+            "Fighting": 0.0436,
+            "RoadAccidents": 0.2337,
+            "Robbery": 0.0727,
+            "Shooting": 0.0178,
+            "Shoplifting": 0.1477,
+            "Stealing": 0.4014,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "approach",
@@ -7964,7 +9267,25 @@
           "abs_end": 63.6,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #79 approaches Person #57, both wearing light-colored shirts and dark pants."
+          "description": "Person #79 approaches Person #57, both wearing light-colored shirts and dark pants. [Model: Stealing (40%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4014,
+          "model_p_anomaly": 0.714,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0081,
+            "Arson": 0.0041,
+            "Assault": 0.0196,
+            "Burglary": 0.0206,
+            "Explosion": 0.0122,
+            "Fighting": 0.0436,
+            "RoadAccidents": 0.2337,
+            "Robbery": 0.0727,
+            "Shooting": 0.0178,
+            "Shoplifting": 0.1477,
+            "Stealing": 0.4014,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "approach",
@@ -7976,7 +9297,25 @@
           "abs_end": 65.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #57 approaches Person #81, both wearing light-colored shirts and dark pants."
+          "description": "Person #57 approaches Person #81, both wearing light-colored shirts and dark pants. [Model: Stealing (40%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4014,
+          "model_p_anomaly": 0.714,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0081,
+            "Arson": 0.0041,
+            "Assault": 0.0196,
+            "Burglary": 0.0206,
+            "Explosion": 0.0122,
+            "Fighting": 0.0436,
+            "RoadAccidents": 0.2337,
+            "Robbery": 0.0727,
+            "Shooting": 0.0178,
+            "Shoplifting": 0.1477,
+            "Stealing": 0.4014,
+            "Vandalism": 0.0111
+          }
         },
         {
           "event_type": "approach",
@@ -7988,9 +9327,62 @@
           "abs_end": 65.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #81 approaches Person #57, both wearing light-colored shirts and dark pants."
+          "description": "Person #81 approaches Person #57, both wearing light-colored shirts and dark pants. [Model: Stealing (40%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4014,
+          "model_p_anomaly": 0.714,
+          "model_type_probs": {
+            "Abuse": 0.0073,
+            "Arrest": 0.0081,
+            "Arson": 0.0041,
+            "Assault": 0.0196,
+            "Burglary": 0.0206,
+            "Explosion": 0.0122,
+            "Fighting": 0.0436,
+            "RoadAccidents": 0.2337,
+            "Robbery": 0.0727,
+            "Shooting": 0.0178,
+            "Shoplifting": 0.1477,
+            "Stealing": 0.4014,
+            "Vandalism": 0.0111
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.4014,
+        "p_anomaly": 0.714,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4014
+          ],
+          [
+            "RoadAccidents",
+            0.2337
+          ],
+          [
+            "Shoplifting",
+            0.1477
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0073,
+          "Arrest": 0.0081,
+          "Arson": 0.0041,
+          "Assault": 0.0196,
+          "Burglary": 0.0206,
+          "Explosion": 0.0122,
+          "Fighting": 0.0436,
+          "RoadAccidents": 0.2337,
+          "Robbery": 0.0727,
+          "Shooting": 0.0178,
+          "Shoplifting": 0.1477,
+          "Stealing": 0.4014,
+          "Vandalism": 0.0111
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -9630,7 +11022,25 @@
           "abs_end": 62.9,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #57 approaches Person #54 from the left."
+          "description": "Person #57 approaches Person #54 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3214,
+          "model_p_anomaly": 0.6489,
+          "model_type_probs": {
+            "Abuse": 0.0084,
+            "Arrest": 0.0099,
+            "Arson": 0.0043,
+            "Assault": 0.0235,
+            "Burglary": 0.0203,
+            "Explosion": 0.0117,
+            "Fighting": 0.0541,
+            "RoadAccidents": 0.2206,
+            "Robbery": 0.0836,
+            "Shooting": 0.025,
+            "Shoplifting": 0.206,
+            "Stealing": 0.3214,
+            "Vandalism": 0.0112
+          }
         },
         {
           "event_type": "approach",
@@ -9642,7 +11052,25 @@
           "abs_end": 64.3,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #63 approaches Person #54 from the left."
+          "description": "Person #63 approaches Person #54 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3214,
+          "model_p_anomaly": 0.6489,
+          "model_type_probs": {
+            "Abuse": 0.0084,
+            "Arrest": 0.0099,
+            "Arson": 0.0043,
+            "Assault": 0.0235,
+            "Burglary": 0.0203,
+            "Explosion": 0.0117,
+            "Fighting": 0.0541,
+            "RoadAccidents": 0.2206,
+            "Robbery": 0.0836,
+            "Shooting": 0.025,
+            "Shoplifting": 0.206,
+            "Stealing": 0.3214,
+            "Vandalism": 0.0112
+          }
         },
         {
           "event_type": "approach",
@@ -9654,7 +11082,25 @@
           "abs_end": 65.7,
           "zone": "bottom_mid",
           "confidence": 0.9,
-          "description": "Person #79 approaches Person #54 from the right."
+          "description": "Person #79 approaches Person #54 from the right. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3214,
+          "model_p_anomaly": 0.6489,
+          "model_type_probs": {
+            "Abuse": 0.0084,
+            "Arrest": 0.0099,
+            "Arson": 0.0043,
+            "Assault": 0.0235,
+            "Burglary": 0.0203,
+            "Explosion": 0.0117,
+            "Fighting": 0.0541,
+            "RoadAccidents": 0.2206,
+            "Robbery": 0.0836,
+            "Shooting": 0.025,
+            "Shoplifting": 0.206,
+            "Stealing": 0.3214,
+            "Vandalism": 0.0112
+          }
         },
         {
           "event_type": "approach",
@@ -9666,7 +11112,25 @@
           "abs_end": 67.1,
           "zone": "bottom_mid",
           "confidence": 0.9,
-          "description": "Person #81 approaches Person #54 from the right."
+          "description": "Person #81 approaches Person #54 from the right. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3214,
+          "model_p_anomaly": 0.6489,
+          "model_type_probs": {
+            "Abuse": 0.0084,
+            "Arrest": 0.0099,
+            "Arson": 0.0043,
+            "Assault": 0.0235,
+            "Burglary": 0.0203,
+            "Explosion": 0.0117,
+            "Fighting": 0.0541,
+            "RoadAccidents": 0.2206,
+            "Robbery": 0.0836,
+            "Shooting": 0.025,
+            "Shoplifting": 0.206,
+            "Stealing": 0.3214,
+            "Vandalism": 0.0112
+          }
         },
         {
           "event_type": "approach",
@@ -9678,7 +11142,25 @@
           "abs_end": 68.6,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #83 approaches Person #57 from the top."
+          "description": "Person #83 approaches Person #57 from the top. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3214,
+          "model_p_anomaly": 0.6489,
+          "model_type_probs": {
+            "Abuse": 0.0084,
+            "Arrest": 0.0099,
+            "Arson": 0.0043,
+            "Assault": 0.0235,
+            "Burglary": 0.0203,
+            "Explosion": 0.0117,
+            "Fighting": 0.0541,
+            "RoadAccidents": 0.2206,
+            "Robbery": 0.0836,
+            "Shooting": 0.025,
+            "Shoplifting": 0.206,
+            "Stealing": 0.3214,
+            "Vandalism": 0.0112
+          }
         },
         {
           "event_type": "approach",
@@ -9690,9 +11172,62 @@
           "abs_end": 70.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #84 approaches Person #57 from the left."
+          "description": "Person #84 approaches Person #57 from the left. [Model: Stealing (32%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3214,
+          "model_p_anomaly": 0.6489,
+          "model_type_probs": {
+            "Abuse": 0.0084,
+            "Arrest": 0.0099,
+            "Arson": 0.0043,
+            "Assault": 0.0235,
+            "Burglary": 0.0203,
+            "Explosion": 0.0117,
+            "Fighting": 0.0541,
+            "RoadAccidents": 0.2206,
+            "Robbery": 0.0836,
+            "Shooting": 0.025,
+            "Shoplifting": 0.206,
+            "Stealing": 0.3214,
+            "Vandalism": 0.0112
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.3214,
+        "p_anomaly": 0.6489,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.3214
+          ],
+          [
+            "RoadAccidents",
+            0.2206
+          ],
+          [
+            "Shoplifting",
+            0.206
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0084,
+          "Arrest": 0.0099,
+          "Arson": 0.0043,
+          "Assault": 0.0235,
+          "Burglary": 0.0203,
+          "Explosion": 0.0117,
+          "Fighting": 0.0541,
+          "RoadAccidents": 0.2206,
+          "Robbery": 0.0836,
+          "Shooting": 0.025,
+          "Shoplifting": 0.206,
+          "Stealing": 0.3214,
+          "Vandalism": 0.0112
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -10812,7 +12347,25 @@
           "abs_end": 66.4,
           "zone": "bottom_left",
           "confidence": 0.9,
-          "description": "Person #57 approaches Person #63 from the left."
+          "description": "Person #57 approaches Person #63 from the left. [Model: Stealing (33%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3345,
+          "model_p_anomaly": 0.6264,
+          "model_type_probs": {
+            "Abuse": 0.0076,
+            "Arrest": 0.0088,
+            "Arson": 0.0041,
+            "Assault": 0.0198,
+            "Burglary": 0.0185,
+            "Explosion": 0.0111,
+            "Fighting": 0.0484,
+            "RoadAccidents": 0.2216,
+            "Robbery": 0.078,
+            "Shooting": 0.0236,
+            "Shoplifting": 0.2131,
+            "Stealing": 0.3345,
+            "Vandalism": 0.011
+          }
         },
         {
           "event_type": "approach",
@@ -10824,7 +12377,25 @@
           "abs_end": 69.3,
           "zone": "bottom_mid",
           "confidence": 0.9,
-          "description": "Person #81 approaches Person #79 from the right."
+          "description": "Person #81 approaches Person #79 from the right. [Model: Stealing (33%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3345,
+          "model_p_anomaly": 0.6264,
+          "model_type_probs": {
+            "Abuse": 0.0076,
+            "Arrest": 0.0088,
+            "Arson": 0.0041,
+            "Assault": 0.0198,
+            "Burglary": 0.0185,
+            "Explosion": 0.0111,
+            "Fighting": 0.0484,
+            "RoadAccidents": 0.2216,
+            "Robbery": 0.078,
+            "Shooting": 0.0236,
+            "Shoplifting": 0.2131,
+            "Stealing": 0.3345,
+            "Vandalism": 0.011
+          }
         },
         {
           "event_type": "approach",
@@ -10836,7 +12407,25 @@
           "abs_end": 70.7,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #83 approaches Person #92 from the left."
+          "description": "Person #83 approaches Person #92 from the left. [Model: Stealing (33%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3345,
+          "model_p_anomaly": 0.6264,
+          "model_type_probs": {
+            "Abuse": 0.0076,
+            "Arrest": 0.0088,
+            "Arson": 0.0041,
+            "Assault": 0.0198,
+            "Burglary": 0.0185,
+            "Explosion": 0.0111,
+            "Fighting": 0.0484,
+            "RoadAccidents": 0.2216,
+            "Robbery": 0.078,
+            "Shooting": 0.0236,
+            "Shoplifting": 0.2131,
+            "Stealing": 0.3345,
+            "Vandalism": 0.011
+          }
         },
         {
           "event_type": "approach",
@@ -10848,7 +12437,25 @@
           "abs_end": 72.1,
           "zone": "bottom_left",
           "confidence": 0.9,
-          "description": "Person #84 approaches Person #95 from the left."
+          "description": "Person #84 approaches Person #95 from the left. [Model: Stealing (33%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3345,
+          "model_p_anomaly": 0.6264,
+          "model_type_probs": {
+            "Abuse": 0.0076,
+            "Arrest": 0.0088,
+            "Arson": 0.0041,
+            "Assault": 0.0198,
+            "Burglary": 0.0185,
+            "Explosion": 0.0111,
+            "Fighting": 0.0484,
+            "RoadAccidents": 0.2216,
+            "Robbery": 0.078,
+            "Shooting": 0.0236,
+            "Shoplifting": 0.2131,
+            "Stealing": 0.3345,
+            "Vandalism": 0.011
+          }
         },
         {
           "event_type": "approach",
@@ -10860,7 +12467,25 @@
           "abs_end": 73.6,
           "zone": "bottom_left",
           "confidence": 0.9,
-          "description": "Person #85 approaches Person #98 from the left."
+          "description": "Person #85 approaches Person #98 from the left. [Model: Stealing (33%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3345,
+          "model_p_anomaly": 0.6264,
+          "model_type_probs": {
+            "Abuse": 0.0076,
+            "Arrest": 0.0088,
+            "Arson": 0.0041,
+            "Assault": 0.0198,
+            "Burglary": 0.0185,
+            "Explosion": 0.0111,
+            "Fighting": 0.0484,
+            "RoadAccidents": 0.2216,
+            "Robbery": 0.078,
+            "Shooting": 0.0236,
+            "Shoplifting": 0.2131,
+            "Stealing": 0.3345,
+            "Vandalism": 0.011
+          }
         },
         {
           "event_type": "approach",
@@ -10872,9 +12497,62 @@
           "abs_end": 75.0,
           "zone": "center -> mid_left",
           "confidence": 0.9,
-          "description": "Person #92 approaches Person #95 from the center."
+          "description": "Person #92 approaches Person #95 from the center. [Model: Stealing (33%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.3345,
+          "model_p_anomaly": 0.6264,
+          "model_type_probs": {
+            "Abuse": 0.0076,
+            "Arrest": 0.0088,
+            "Arson": 0.0041,
+            "Assault": 0.0198,
+            "Burglary": 0.0185,
+            "Explosion": 0.0111,
+            "Fighting": 0.0484,
+            "RoadAccidents": 0.2216,
+            "Robbery": 0.078,
+            "Shooting": 0.0236,
+            "Shoplifting": 0.2131,
+            "Stealing": 0.3345,
+            "Vandalism": 0.011
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.3345,
+        "p_anomaly": 0.6264,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.3345
+          ],
+          [
+            "RoadAccidents",
+            0.2216
+          ],
+          [
+            "Shoplifting",
+            0.2131
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0076,
+          "Arrest": 0.0088,
+          "Arson": 0.0041,
+          "Assault": 0.0198,
+          "Burglary": 0.0185,
+          "Explosion": 0.0111,
+          "Fighting": 0.0484,
+          "RoadAccidents": 0.2216,
+          "Robbery": 0.078,
+          "Shooting": 0.0236,
+          "Shoplifting": 0.2131,
+          "Stealing": 0.3345,
+          "Vandalism": 0.011
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -11358,7 +13036,25 @@
           "abs_end": 76.23,
           "zone": "bottom_mid",
           "confidence": 0.9,
-          "description": "Person #92 approaches Person #81 from the right."
+          "description": "Person #92 approaches Person #81 from the right. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         },
         {
           "event_type": "approach",
@@ -11370,7 +13066,25 @@
           "abs_end": 76.23,
           "zone": "bottom_left -> center -> mid_left",
           "confidence": 0.9,
-          "description": "Person #98 approaches Person #92 from the left."
+          "description": "Person #98 approaches Person #92 from the left. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         },
         {
           "event_type": "approach",
@@ -11382,7 +13096,25 @@
           "abs_end": 76.23,
           "zone": "bottom_left",
           "confidence": 0.9,
-          "description": "Person #104 approaches Person #92 from the left."
+          "description": "Person #104 approaches Person #92 from the left. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         },
         {
           "event_type": "approach",
@@ -11394,7 +13126,25 @@
           "abs_end": 76.23,
           "zone": "top_left",
           "confidence": 0.9,
-          "description": "Person #105 approaches Person #106 from the left."
+          "description": "Person #105 approaches Person #106 from the left. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         },
         {
           "event_type": "approach",
@@ -11406,7 +13156,25 @@
           "abs_end": 76.23,
           "zone": "top_mid",
           "confidence": 0.9,
-          "description": "Person #107 approaches Person #105 from the right."
+          "description": "Person #107 approaches Person #105 from the right. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         },
         {
           "event_type": "approach",
@@ -11418,7 +13186,25 @@
           "abs_end": 71.23,
           "zone": "bottom_left",
           "confidence": 0.9,
-          "description": "Person #108 approaches Person #98 from the left."
+          "description": "Person #108 approaches Person #98 from the left. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         },
         {
           "event_type": "approach",
@@ -11430,9 +13216,62 @@
           "abs_end": 76.23,
           "zone": "center -> top_mid",
           "confidence": 0.9,
-          "description": "Person #110 approaches Person #105 from the right."
+          "description": "Person #110 approaches Person #105 from the right. [Model: Stealing (42%)]",
+          "model_anomaly_class": "Stealing",
+          "model_anomaly_confidence": 0.4215,
+          "model_p_anomaly": 0.5142,
+          "model_type_probs": {
+            "Abuse": 0.0068,
+            "Arrest": 0.008,
+            "Arson": 0.0037,
+            "Assault": 0.0174,
+            "Burglary": 0.0165,
+            "Explosion": 0.0099,
+            "Fighting": 0.0367,
+            "RoadAccidents": 0.1878,
+            "Robbery": 0.0638,
+            "Shooting": 0.0206,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4215,
+            "Vandalism": 0.0108
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Stealing",
+        "confidence": 0.4215,
+        "p_anomaly": 0.5142,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4215
+          ],
+          [
+            "Shoplifting",
+            0.1966
+          ],
+          [
+            "RoadAccidents",
+            0.1878
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0068,
+          "Arrest": 0.008,
+          "Arson": 0.0037,
+          "Assault": 0.0174,
+          "Burglary": 0.0165,
+          "Explosion": 0.0099,
+          "Fighting": 0.0367,
+          "RoadAccidents": 0.1878,
+          "Robbery": 0.0638,
+          "Shooting": 0.0206,
+          "Shoplifting": 0.1966,
+          "Stealing": 0.4215,
+          "Vandalism": 0.0108
+        }
+      }
     },
     {
       "video_id": "Assault011_x264",
@@ -11708,7 +13547,25 @@
           "abs_end": 77.9,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #105 approaches Person #107, both wearing light blue shirts."
+          "description": "Person #105 approaches Person #107, both wearing light blue shirts. [Model: Normal (70%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.6961,
+          "model_p_anomaly": 0.3039,
+          "model_type_probs": {
+            "Abuse": 0.007,
+            "Arrest": 0.009,
+            "Arson": 0.0041,
+            "Assault": 0.0182,
+            "Burglary": 0.0239,
+            "Explosion": 0.0105,
+            "Fighting": 0.0329,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0533,
+            "Shooting": 0.0216,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4623,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -11720,7 +13577,25 @@
           "abs_end": 79.3,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #105 moves closer to Person #110, who is wearing a dark shirt."
+          "description": "Person #105 moves closer to Person #110, who is wearing a dark shirt. [Model: Normal (70%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.6961,
+          "model_p_anomaly": 0.3039,
+          "model_type_probs": {
+            "Abuse": 0.007,
+            "Arrest": 0.009,
+            "Arson": 0.0041,
+            "Assault": 0.0182,
+            "Burglary": 0.0239,
+            "Explosion": 0.0105,
+            "Fighting": 0.0329,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0533,
+            "Shooting": 0.0216,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4623,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -11732,7 +13607,25 @@
           "abs_end": 80.7,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #105 gets closer to Person #113, who is wearing a dark shirt."
+          "description": "Person #105 gets closer to Person #113, who is wearing a dark shirt. [Model: Normal (70%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.6961,
+          "model_p_anomaly": 0.3039,
+          "model_type_probs": {
+            "Abuse": 0.007,
+            "Arrest": 0.009,
+            "Arson": 0.0041,
+            "Assault": 0.0182,
+            "Burglary": 0.0239,
+            "Explosion": 0.0105,
+            "Fighting": 0.0329,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0533,
+            "Shooting": 0.0216,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4623,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -11744,7 +13637,25 @@
           "abs_end": 82.1,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #105 moves towards Person #114, who is wearing a dark shirt."
+          "description": "Person #105 moves towards Person #114, who is wearing a dark shirt. [Model: Normal (70%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.6961,
+          "model_p_anomaly": 0.3039,
+          "model_type_probs": {
+            "Abuse": 0.007,
+            "Arrest": 0.009,
+            "Arson": 0.0041,
+            "Assault": 0.0182,
+            "Burglary": 0.0239,
+            "Explosion": 0.0105,
+            "Fighting": 0.0329,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0533,
+            "Shooting": 0.0216,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4623,
+            "Vandalism": 0.012
+          }
         },
         {
           "event_type": "approach",
@@ -11756,9 +13667,62 @@
           "abs_end": 83.6,
           "zone": "mid_left",
           "confidence": 0.8,
-          "description": "Person #105 gets closer to Person #115, who is wearing a dark shirt."
+          "description": "Person #105 gets closer to Person #115, who is wearing a dark shirt. [Model: Normal (70%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.6961,
+          "model_p_anomaly": 0.3039,
+          "model_type_probs": {
+            "Abuse": 0.007,
+            "Arrest": 0.009,
+            "Arson": 0.0041,
+            "Assault": 0.0182,
+            "Burglary": 0.0239,
+            "Explosion": 0.0105,
+            "Fighting": 0.0329,
+            "RoadAccidents": 0.1486,
+            "Robbery": 0.0533,
+            "Shooting": 0.0216,
+            "Shoplifting": 0.1966,
+            "Stealing": 0.4623,
+            "Vandalism": 0.012
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.6961,
+        "p_anomaly": 0.3039,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Stealing",
+            0.4623
+          ],
+          [
+            "Shoplifting",
+            0.1966
+          ],
+          [
+            "RoadAccidents",
+            0.1486
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.007,
+          "Arrest": 0.009,
+          "Arson": 0.0041,
+          "Assault": 0.0182,
+          "Burglary": 0.0239,
+          "Explosion": 0.0105,
+          "Fighting": 0.0329,
+          "RoadAccidents": 0.1486,
+          "Robbery": 0.0533,
+          "Shooting": 0.0216,
+          "Shoplifting": 0.1966,
+          "Stealing": 0.4623,
+          "Vandalism": 0.012
+        }
+      }
     }
   ]
 }

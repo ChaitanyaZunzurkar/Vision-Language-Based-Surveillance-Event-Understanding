@@ -51,7 +51,25 @@
           "abs_end": 10.0,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #1 stands near the counter, facing slightly towards the right."
+          "description": "Person #1 stands near the counter, facing slightly towards the right. [Model: Burglary (57%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.5718,
+          "model_p_anomaly": 0.5649,
+          "model_type_probs": {
+            "Abuse": 0.0117,
+            "Arrest": 0.0059,
+            "Arson": 0.0096,
+            "Assault": 0.0103,
+            "Burglary": 0.5718,
+            "Explosion": 0.0145,
+            "Fighting": 0.0193,
+            "RoadAccidents": 0.0129,
+            "Robbery": 0.2259,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0264,
+            "Stealing": 0.0129,
+            "Vandalism": 0.0252
+          }
         },
         {
           "event_type": "standing",
@@ -63,9 +81,62 @@
           "abs_end": 10.0,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #3 stands near the counter, facing slightly towards the left."
+          "description": "Person #3 stands near the counter, facing slightly towards the left. [Model: Burglary (57%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.5718,
+          "model_p_anomaly": 0.5649,
+          "model_type_probs": {
+            "Abuse": 0.0117,
+            "Arrest": 0.0059,
+            "Arson": 0.0096,
+            "Assault": 0.0103,
+            "Burglary": 0.5718,
+            "Explosion": 0.0145,
+            "Fighting": 0.0193,
+            "RoadAccidents": 0.0129,
+            "Robbery": 0.2259,
+            "Shooting": 0.0537,
+            "Shoplifting": 0.0264,
+            "Stealing": 0.0129,
+            "Vandalism": 0.0252
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.5718,
+        "p_anomaly": 0.5649,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.5718
+          ],
+          [
+            "Robbery",
+            0.2259
+          ],
+          [
+            "Shooting",
+            0.0537
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0117,
+          "Arrest": 0.0059,
+          "Arson": 0.0096,
+          "Assault": 0.0103,
+          "Burglary": 0.5718,
+          "Explosion": 0.0145,
+          "Fighting": 0.0193,
+          "RoadAccidents": 0.0129,
+          "Robbery": 0.2259,
+          "Shooting": 0.0537,
+          "Shoplifting": 0.0264,
+          "Stealing": 0.0129,
+          "Vandalism": 0.0252
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -100,9 +171,62 @@
           "abs_end": 15.0,
           "zone": "bottom_left",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing and a cap approaches from the left side of the frame."
+          "description": "A person wearing dark clothing and a cap approaches from the left side of the frame. [Model: Burglary (54%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.5404,
+          "model_p_anomaly": 0.5891,
+          "model_type_probs": {
+            "Abuse": 0.0122,
+            "Arrest": 0.0066,
+            "Arson": 0.009,
+            "Assault": 0.0108,
+            "Burglary": 0.5404,
+            "Explosion": 0.0146,
+            "Fighting": 0.0235,
+            "RoadAccidents": 0.0158,
+            "Robbery": 0.2554,
+            "Shooting": 0.0535,
+            "Shoplifting": 0.0228,
+            "Stealing": 0.0135,
+            "Vandalism": 0.0218
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.5404,
+        "p_anomaly": 0.5891,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.5404
+          ],
+          [
+            "Robbery",
+            0.2554
+          ],
+          [
+            "Shooting",
+            0.0535
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0122,
+          "Arrest": 0.0066,
+          "Arson": 0.009,
+          "Assault": 0.0108,
+          "Burglary": 0.5404,
+          "Explosion": 0.0146,
+          "Fighting": 0.0235,
+          "RoadAccidents": 0.0158,
+          "Robbery": 0.2554,
+          "Shooting": 0.0535,
+          "Shoplifting": 0.0228,
+          "Stealing": 0.0135,
+          "Vandalism": 0.0218
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -152,9 +276,62 @@
           "abs_end": 20.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3, wearing dark clothing, interacts physically with Gun #4, which appears to be a firearm, in the mid-left area."
+          "description": "Person #3, wearing dark clothing, interacts physically with Gun #4, which appears to be a firearm, in the mid-left area. [Model: Burglary (54%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.5441,
+          "model_p_anomaly": 0.5684,
+          "model_type_probs": {
+            "Abuse": 0.0148,
+            "Arrest": 0.0072,
+            "Arson": 0.0091,
+            "Assault": 0.0105,
+            "Burglary": 0.5441,
+            "Explosion": 0.0176,
+            "Fighting": 0.0287,
+            "RoadAccidents": 0.0189,
+            "Robbery": 0.2297,
+            "Shooting": 0.0626,
+            "Shoplifting": 0.0218,
+            "Stealing": 0.0134,
+            "Vandalism": 0.0215
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.5441,
+        "p_anomaly": 0.5684,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.5441
+          ],
+          [
+            "Robbery",
+            0.2297
+          ],
+          [
+            "Shooting",
+            0.0626
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0148,
+          "Arrest": 0.0072,
+          "Arson": 0.0091,
+          "Assault": 0.0105,
+          "Burglary": 0.5441,
+          "Explosion": 0.0176,
+          "Fighting": 0.0287,
+          "RoadAccidents": 0.0189,
+          "Robbery": 0.2297,
+          "Shooting": 0.0626,
+          "Shoplifting": 0.0218,
+          "Stealing": 0.0134,
+          "Vandalism": 0.0215
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -202,9 +379,62 @@
           "abs_end": 25.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing and a hat is seen moving around the mid-left area, engaging in some form of physical activity."
+          "description": "A person wearing dark clothing and a hat is seen moving around the mid-left area, engaging in some form of physical activity. [Model: Burglary (64%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6416,
+          "model_p_anomaly": 0.6783,
+          "model_type_probs": {
+            "Abuse": 0.0122,
+            "Arrest": 0.0061,
+            "Arson": 0.0079,
+            "Assault": 0.0089,
+            "Burglary": 0.6416,
+            "Explosion": 0.0143,
+            "Fighting": 0.0215,
+            "RoadAccidents": 0.0159,
+            "Robbery": 0.1824,
+            "Shooting": 0.0393,
+            "Shoplifting": 0.019,
+            "Stealing": 0.0116,
+            "Vandalism": 0.0192
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.6416,
+        "p_anomaly": 0.6783,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.6416
+          ],
+          [
+            "Robbery",
+            0.1824
+          ],
+          [
+            "Shooting",
+            0.0393
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0122,
+          "Arrest": 0.0061,
+          "Arson": 0.0079,
+          "Assault": 0.0089,
+          "Burglary": 0.6416,
+          "Explosion": 0.0143,
+          "Fighting": 0.0215,
+          "RoadAccidents": 0.0159,
+          "Robbery": 0.1824,
+          "Shooting": 0.0393,
+          "Shoplifting": 0.019,
+          "Stealing": 0.0116,
+          "Vandalism": 0.0192
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -268,9 +498,62 @@
           "abs_end": 30.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #5 and Person #6 engage in a physical interaction near the counter."
+          "description": "Person #5 and Person #6 engage in a physical interaction near the counter. [Model: Burglary (69%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.692,
+          "model_p_anomaly": 0.8337,
+          "model_type_probs": {
+            "Abuse": 0.0091,
+            "Arrest": 0.006,
+            "Arson": 0.0065,
+            "Assault": 0.0094,
+            "Burglary": 0.692,
+            "Explosion": 0.0117,
+            "Fighting": 0.0145,
+            "RoadAccidents": 0.0125,
+            "Robbery": 0.1554,
+            "Shooting": 0.0287,
+            "Shoplifting": 0.0197,
+            "Stealing": 0.0116,
+            "Vandalism": 0.0231
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.692,
+        "p_anomaly": 0.8337,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.692
+          ],
+          [
+            "Robbery",
+            0.1554
+          ],
+          [
+            "Shooting",
+            0.0287
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0091,
+          "Arrest": 0.006,
+          "Arson": 0.0065,
+          "Assault": 0.0094,
+          "Burglary": 0.692,
+          "Explosion": 0.0117,
+          "Fighting": 0.0145,
+          "RoadAccidents": 0.0125,
+          "Robbery": 0.1554,
+          "Shooting": 0.0287,
+          "Shoplifting": 0.0197,
+          "Stealing": 0.0116,
+          "Vandalism": 0.0231
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -333,9 +616,62 @@
           "abs_end": 35.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #5 and Person #6 engage in a physical interaction near the counter."
+          "description": "Person #5 and Person #6 engage in a physical interaction near the counter. [Model: Burglary (70%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6954,
+          "model_p_anomaly": 0.8712,
+          "model_type_probs": {
+            "Abuse": 0.0126,
+            "Arrest": 0.0076,
+            "Arson": 0.0068,
+            "Assault": 0.0115,
+            "Burglary": 0.6954,
+            "Explosion": 0.0145,
+            "Fighting": 0.0146,
+            "RoadAccidents": 0.0151,
+            "Robbery": 0.1279,
+            "Shooting": 0.0317,
+            "Shoplifting": 0.0224,
+            "Stealing": 0.0125,
+            "Vandalism": 0.0275
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.6954,
+        "p_anomaly": 0.8712,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.6954
+          ],
+          [
+            "Robbery",
+            0.1279
+          ],
+          [
+            "Shooting",
+            0.0317
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0126,
+          "Arrest": 0.0076,
+          "Arson": 0.0068,
+          "Assault": 0.0115,
+          "Burglary": 0.6954,
+          "Explosion": 0.0145,
+          "Fighting": 0.0146,
+          "RoadAccidents": 0.0151,
+          "Robbery": 0.1279,
+          "Shooting": 0.0317,
+          "Shoplifting": 0.0224,
+          "Stealing": 0.0125,
+          "Vandalism": 0.0275
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -385,7 +721,25 @@
           "abs_end": 32.9,
           "zone": "bottom_left -> mid_left",
           "confidence": 0.9,
-          "description": "Person #6, wearing dark clothing, bends down near the gun #8, which is lying on the floor."
+          "description": "Person #6, wearing dark clothing, bends down near the gun #8, which is lying on the floor. [Model: Burglary (67%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6676,
+          "model_p_anomaly": 0.8897,
+          "model_type_probs": {
+            "Abuse": 0.0154,
+            "Arrest": 0.008,
+            "Arson": 0.009,
+            "Assault": 0.011,
+            "Burglary": 0.6676,
+            "Explosion": 0.0173,
+            "Fighting": 0.0201,
+            "RoadAccidents": 0.0137,
+            "Robbery": 0.1404,
+            "Shooting": 0.0383,
+            "Shoplifting": 0.0256,
+            "Stealing": 0.0077,
+            "Vandalism": 0.026
+          }
         },
         {
           "event_type": "physical_contact",
@@ -397,7 +751,25 @@
           "abs_end": 35.7,
           "zone": "bottom_left -> mid_left",
           "confidence": 0.9,
-          "description": "Person #6 continues to interact with the gun #8, now standing up."
+          "description": "Person #6 continues to interact with the gun #8, now standing up. [Model: Burglary (67%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6676,
+          "model_p_anomaly": 0.8897,
+          "model_type_probs": {
+            "Abuse": 0.0154,
+            "Arrest": 0.008,
+            "Arson": 0.009,
+            "Assault": 0.011,
+            "Burglary": 0.6676,
+            "Explosion": 0.0173,
+            "Fighting": 0.0201,
+            "RoadAccidents": 0.0137,
+            "Robbery": 0.1404,
+            "Shooting": 0.0383,
+            "Shoplifting": 0.0256,
+            "Stealing": 0.0077,
+            "Vandalism": 0.026
+          }
         },
         {
           "event_type": "physical_contact",
@@ -409,7 +781,25 @@
           "abs_end": 38.6,
           "zone": "bottom_left -> mid_left",
           "confidence": 0.9,
-          "description": "Person #6 moves closer to the gun #8, bending down again."
+          "description": "Person #6 moves closer to the gun #8, bending down again. [Model: Burglary (67%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6676,
+          "model_p_anomaly": 0.8897,
+          "model_type_probs": {
+            "Abuse": 0.0154,
+            "Arrest": 0.008,
+            "Arson": 0.009,
+            "Assault": 0.011,
+            "Burglary": 0.6676,
+            "Explosion": 0.0173,
+            "Fighting": 0.0201,
+            "RoadAccidents": 0.0137,
+            "Robbery": 0.1404,
+            "Shooting": 0.0383,
+            "Shoplifting": 0.0256,
+            "Stealing": 0.0077,
+            "Vandalism": 0.026
+          }
         },
         {
           "event_type": "physical_contact",
@@ -421,9 +811,62 @@
           "abs_end": 40.0,
           "zone": "bottom_left -> mid_left",
           "confidence": 0.9,
-          "description": "Person #6 stands up and appears to be inspecting the gun #8 more closely."
+          "description": "Person #6 stands up and appears to be inspecting the gun #8 more closely. [Model: Burglary (67%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6676,
+          "model_p_anomaly": 0.8897,
+          "model_type_probs": {
+            "Abuse": 0.0154,
+            "Arrest": 0.008,
+            "Arson": 0.009,
+            "Assault": 0.011,
+            "Burglary": 0.6676,
+            "Explosion": 0.0173,
+            "Fighting": 0.0201,
+            "RoadAccidents": 0.0137,
+            "Robbery": 0.1404,
+            "Shooting": 0.0383,
+            "Shoplifting": 0.0256,
+            "Stealing": 0.0077,
+            "Vandalism": 0.026
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.6676,
+        "p_anomaly": 0.8897,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.6676
+          ],
+          [
+            "Robbery",
+            0.1404
+          ],
+          [
+            "Shooting",
+            0.0383
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0154,
+          "Arrest": 0.008,
+          "Arson": 0.009,
+          "Assault": 0.011,
+          "Burglary": 0.6676,
+          "Explosion": 0.0173,
+          "Fighting": 0.0201,
+          "RoadAccidents": 0.0137,
+          "Robbery": 0.1404,
+          "Shooting": 0.0383,
+          "Shoplifting": 0.0256,
+          "Stealing": 0.0077,
+          "Vandalism": 0.026
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -473,7 +916,25 @@
           "abs_end": 37.9,
           "zone": "mid_left -> top_left",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing and a cap is seen reaching towards another individual holding a gun. The interaction appears to be a struggle."
+          "description": "A person wearing dark clothing and a cap is seen reaching towards another individual holding a gun. The interaction appears to be a struggle. [Model: Burglary (63%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6296,
+          "model_p_anomaly": 0.8506,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0075,
+            "Arson": 0.0123,
+            "Assault": 0.0102,
+            "Burglary": 0.6296,
+            "Explosion": 0.0237,
+            "Fighting": 0.0228,
+            "RoadAccidents": 0.0149,
+            "Robbery": 0.1511,
+            "Shooting": 0.0497,
+            "Shoplifting": 0.0243,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0288
+          }
         },
         {
           "event_type": "fleeing",
@@ -485,7 +946,25 @@
           "abs_end": 39.3,
           "zone": "top_left -> mid_left",
           "confidence": 0.9,
-          "description": "The individual holding the gun begins to run away from the confrontation."
+          "description": "The individual holding the gun begins to run away from the confrontation. [Model: Burglary (63%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6296,
+          "model_p_anomaly": 0.8506,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0075,
+            "Arson": 0.0123,
+            "Assault": 0.0102,
+            "Burglary": 0.6296,
+            "Explosion": 0.0237,
+            "Fighting": 0.0228,
+            "RoadAccidents": 0.0149,
+            "Robbery": 0.1511,
+            "Shooting": 0.0497,
+            "Shoplifting": 0.0243,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0288
+          }
         },
         {
           "event_type": "physical_contact",
@@ -497,7 +976,25 @@
           "abs_end": 40.7,
           "zone": "mid_left -> top_left",
           "confidence": 0.9,
-          "description": "The person in dark clothing continues to engage with the individual holding the gun, attempting to subdue them."
+          "description": "The person in dark clothing continues to engage with the individual holding the gun, attempting to subdue them. [Model: Burglary (63%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6296,
+          "model_p_anomaly": 0.8506,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0075,
+            "Arson": 0.0123,
+            "Assault": 0.0102,
+            "Burglary": 0.6296,
+            "Explosion": 0.0237,
+            "Fighting": 0.0228,
+            "RoadAccidents": 0.0149,
+            "Robbery": 0.1511,
+            "Shooting": 0.0497,
+            "Shoplifting": 0.0243,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0288
+          }
         },
         {
           "event_type": "physical_contact",
@@ -509,7 +1006,25 @@
           "abs_end": 42.1,
           "zone": "top_left -> mid_left",
           "confidence": 0.9,
-          "description": "The struggle intensifies as the person in dark clothing grapples with the individual holding the gun."
+          "description": "The struggle intensifies as the person in dark clothing grapples with the individual holding the gun. [Model: Burglary (63%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6296,
+          "model_p_anomaly": 0.8506,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0075,
+            "Arson": 0.0123,
+            "Assault": 0.0102,
+            "Burglary": 0.6296,
+            "Explosion": 0.0237,
+            "Fighting": 0.0228,
+            "RoadAccidents": 0.0149,
+            "Robbery": 0.1511,
+            "Shooting": 0.0497,
+            "Shoplifting": 0.0243,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0288
+          }
         },
         {
           "event_type": "physical_contact",
@@ -521,7 +1036,25 @@
           "abs_end": 43.6,
           "zone": "mid_left -> top_left",
           "confidence": 0.9,
-          "description": "The person in dark clothing manages to take control of the gun, causing the individual to fall to the ground."
+          "description": "The person in dark clothing manages to take control of the gun, causing the individual to fall to the ground. [Model: Burglary (63%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6296,
+          "model_p_anomaly": 0.8506,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0075,
+            "Arson": 0.0123,
+            "Assault": 0.0102,
+            "Burglary": 0.6296,
+            "Explosion": 0.0237,
+            "Fighting": 0.0228,
+            "RoadAccidents": 0.0149,
+            "Robbery": 0.1511,
+            "Shooting": 0.0497,
+            "Shoplifting": 0.0243,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0288
+          }
         },
         {
           "event_type": "physical_contact",
@@ -533,9 +1066,62 @@
           "abs_end": 45.0,
           "zone": "top_left -> mid_left",
           "confidence": 0.9,
-          "description": "The person in dark clothing continues to hold the gun, ensuring the individual remains subdued."
+          "description": "The person in dark clothing continues to hold the gun, ensuring the individual remains subdued. [Model: Burglary (63%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6296,
+          "model_p_anomaly": 0.8506,
+          "model_type_probs": {
+            "Abuse": 0.0162,
+            "Arrest": 0.0075,
+            "Arson": 0.0123,
+            "Assault": 0.0102,
+            "Burglary": 0.6296,
+            "Explosion": 0.0237,
+            "Fighting": 0.0228,
+            "RoadAccidents": 0.0149,
+            "Robbery": 0.1511,
+            "Shooting": 0.0497,
+            "Shoplifting": 0.0243,
+            "Stealing": 0.0088,
+            "Vandalism": 0.0288
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.6296,
+        "p_anomaly": 0.8506,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.6296
+          ],
+          [
+            "Robbery",
+            0.1511
+          ],
+          [
+            "Shooting",
+            0.0497
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0162,
+          "Arrest": 0.0075,
+          "Arson": 0.0123,
+          "Assault": 0.0102,
+          "Burglary": 0.6296,
+          "Explosion": 0.0237,
+          "Fighting": 0.0228,
+          "RoadAccidents": 0.0149,
+          "Robbery": 0.1511,
+          "Shooting": 0.0497,
+          "Shoplifting": 0.0243,
+          "Stealing": 0.0088,
+          "Vandalism": 0.0288
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -599,7 +1185,25 @@
           "abs_end": 41.4,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #12 enters the scene from the left side."
+          "description": "Person #12 enters the scene from the left side. [Model: Burglary (66%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6608,
+          "model_p_anomaly": 0.6371,
+          "model_type_probs": {
+            "Abuse": 0.0155,
+            "Arrest": 0.007,
+            "Arson": 0.0143,
+            "Assault": 0.0089,
+            "Burglary": 0.6608,
+            "Explosion": 0.0286,
+            "Fighting": 0.0227,
+            "RoadAccidents": 0.0164,
+            "Robbery": 0.1142,
+            "Shooting": 0.0547,
+            "Shoplifting": 0.0226,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0247
+          }
         },
         {
           "event_type": "exit",
@@ -611,9 +1215,62 @@
           "abs_end": 47.1,
           "zone": "top_left",
           "confidence": 0.9,
-          "description": "Person #9 exits the scene towards the top left."
+          "description": "Person #9 exits the scene towards the top left. [Model: Burglary (66%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6608,
+          "model_p_anomaly": 0.6371,
+          "model_type_probs": {
+            "Abuse": 0.0155,
+            "Arrest": 0.007,
+            "Arson": 0.0143,
+            "Assault": 0.0089,
+            "Burglary": 0.6608,
+            "Explosion": 0.0286,
+            "Fighting": 0.0227,
+            "RoadAccidents": 0.0164,
+            "Robbery": 0.1142,
+            "Shooting": 0.0547,
+            "Shoplifting": 0.0226,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0247
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.6608,
+        "p_anomaly": 0.6371,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.6608
+          ],
+          [
+            "Robbery",
+            0.1142
+          ],
+          [
+            "Shooting",
+            0.0547
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0155,
+          "Arrest": 0.007,
+          "Arson": 0.0143,
+          "Assault": 0.0089,
+          "Burglary": 0.6608,
+          "Explosion": 0.0286,
+          "Fighting": 0.0227,
+          "RoadAccidents": 0.0164,
+          "Robbery": 0.1142,
+          "Shooting": 0.0547,
+          "Shoplifting": 0.0226,
+          "Stealing": 0.0097,
+          "Vandalism": 0.0247
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -687,9 +1344,62 @@
           "abs_end": 55.0,
           "zone": "mid_left -> top_left",
           "confidence": 0.9,
-          "description": "Person #12, wearing dark clothing, interacts physically with Gun #9, which is being held by Person #9."
+          "description": "Person #12, wearing dark clothing, interacts physically with Gun #9, which is being held by Person #9. [Model: Burglary (64%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.6411,
+          "model_p_anomaly": 0.8816,
+          "model_type_probs": {
+            "Abuse": 0.0148,
+            "Arrest": 0.0063,
+            "Arson": 0.0107,
+            "Assault": 0.0096,
+            "Burglary": 0.6411,
+            "Explosion": 0.0191,
+            "Fighting": 0.017,
+            "RoadAccidents": 0.0111,
+            "Robbery": 0.1812,
+            "Shooting": 0.0413,
+            "Shoplifting": 0.0203,
+            "Stealing": 0.0058,
+            "Vandalism": 0.0217
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.6411,
+        "p_anomaly": 0.8816,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.6411
+          ],
+          [
+            "Robbery",
+            0.1812
+          ],
+          [
+            "Shooting",
+            0.0413
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0148,
+          "Arrest": 0.0063,
+          "Arson": 0.0107,
+          "Assault": 0.0096,
+          "Burglary": 0.6411,
+          "Explosion": 0.0191,
+          "Fighting": 0.017,
+          "RoadAccidents": 0.0111,
+          "Robbery": 0.1812,
+          "Shooting": 0.0413,
+          "Shoplifting": 0.0203,
+          "Stealing": 0.0058,
+          "Vandalism": 0.0217
+        }
+      }
     },
     {
       "video_id": "Burglary012_x264",
@@ -723,9 +1433,62 @@
           "abs_end": 60.0,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing is seen bending over near the counter, interacting with an object on the floor."
+          "description": "A person wearing dark clothing is seen bending over near the counter, interacting with an object on the floor. [Model: Burglary (60%)]",
+          "model_anomaly_class": "Burglary",
+          "model_anomaly_confidence": 0.5985,
+          "model_p_anomaly": 0.9362,
+          "model_type_probs": {
+            "Abuse": 0.012,
+            "Arrest": 0.0067,
+            "Arson": 0.0087,
+            "Assault": 0.0085,
+            "Burglary": 0.5985,
+            "Explosion": 0.0139,
+            "Fighting": 0.0163,
+            "RoadAccidents": 0.0103,
+            "Robbery": 0.2406,
+            "Shooting": 0.0413,
+            "Shoplifting": 0.0178,
+            "Stealing": 0.0054,
+            "Vandalism": 0.0198
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Burglary",
+        "confidence": 0.5985,
+        "p_anomaly": 0.9362,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Burglary",
+            0.5985
+          ],
+          [
+            "Robbery",
+            0.2406
+          ],
+          [
+            "Shooting",
+            0.0413
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.012,
+          "Arrest": 0.0067,
+          "Arson": 0.0087,
+          "Assault": 0.0085,
+          "Burglary": 0.5985,
+          "Explosion": 0.0139,
+          "Fighting": 0.0163,
+          "RoadAccidents": 0.0103,
+          "Robbery": 0.2406,
+          "Shooting": 0.0413,
+          "Shoplifting": 0.0178,
+          "Stealing": 0.0054,
+          "Vandalism": 0.0198
+        }
+      }
     }
   ]
 }

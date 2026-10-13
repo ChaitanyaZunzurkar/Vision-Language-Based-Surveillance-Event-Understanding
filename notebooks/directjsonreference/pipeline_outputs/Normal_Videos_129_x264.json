@@ -937,9 +937,62 @@
           "abs_end": 10.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "A group of pedestrians walks along the street."
+          "description": "A group of pedestrians walks along the street. [Model: Vandalism (37%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.3668,
+          "model_p_anomaly": 0.3401,
+          "model_type_probs": {
+            "Abuse": 0.0347,
+            "Arrest": 0.1026,
+            "Arson": 0.0251,
+            "Assault": 0.0875,
+            "Burglary": 0.0391,
+            "Explosion": 0.0801,
+            "Fighting": 0.0813,
+            "RoadAccidents": 0.0959,
+            "Robbery": 0.0271,
+            "Shooting": 0.0255,
+            "Shoplifting": 0.0171,
+            "Stealing": 0.0171,
+            "Vandalism": 0.3668
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Vandalism",
+        "confidence": 0.3668,
+        "p_anomaly": 0.3401,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Vandalism",
+            0.3668
+          ],
+          [
+            "Arrest",
+            0.1026
+          ],
+          [
+            "RoadAccidents",
+            0.0959
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0347,
+          "Arrest": 0.1026,
+          "Arson": 0.0251,
+          "Assault": 0.0875,
+          "Burglary": 0.0391,
+          "Explosion": 0.0801,
+          "Fighting": 0.0813,
+          "RoadAccidents": 0.0959,
+          "Robbery": 0.0271,
+          "Shooting": 0.0255,
+          "Shoplifting": 0.0171,
+          "Stealing": 0.0171,
+          "Vandalism": 0.3668
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_129_x264",
@@ -1896,7 +1949,25 @@
           "abs_end": 15.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "Three police officers in dark uniforms walk down the street."
+          "description": "Three police officers in dark uniforms walk down the street. [Model: Vandalism (37%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.3667,
+          "model_p_anomaly": 0.3909,
+          "model_type_probs": {
+            "Abuse": 0.0289,
+            "Arrest": 0.1116,
+            "Arson": 0.0201,
+            "Assault": 0.0832,
+            "Burglary": 0.0392,
+            "Explosion": 0.0904,
+            "Fighting": 0.0795,
+            "RoadAccidents": 0.0935,
+            "Robbery": 0.0242,
+            "Shooting": 0.024,
+            "Shoplifting": 0.0158,
+            "Stealing": 0.0229,
+            "Vandalism": 0.3667
+          }
         },
         {
           "event_type": "walk",
@@ -1908,7 +1979,25 @@
           "abs_end": 15.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "A person in a black coat walks past the officers."
+          "description": "A person in a black coat walks past the officers. [Model: Vandalism (37%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.3667,
+          "model_p_anomaly": 0.3909,
+          "model_type_probs": {
+            "Abuse": 0.0289,
+            "Arrest": 0.1116,
+            "Arson": 0.0201,
+            "Assault": 0.0832,
+            "Burglary": 0.0392,
+            "Explosion": 0.0904,
+            "Fighting": 0.0795,
+            "RoadAccidents": 0.0935,
+            "Robbery": 0.0242,
+            "Shooting": 0.024,
+            "Shoplifting": 0.0158,
+            "Stealing": 0.0229,
+            "Vandalism": 0.3667
+          }
         },
         {
           "event_type": "walk",
@@ -1920,9 +2009,62 @@
           "abs_end": 15.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "Another person in a dark coat walks in the opposite direction."
+          "description": "Another person in a dark coat walks in the opposite direction. [Model: Vandalism (37%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.3667,
+          "model_p_anomaly": 0.3909,
+          "model_type_probs": {
+            "Abuse": 0.0289,
+            "Arrest": 0.1116,
+            "Arson": 0.0201,
+            "Assault": 0.0832,
+            "Burglary": 0.0392,
+            "Explosion": 0.0904,
+            "Fighting": 0.0795,
+            "RoadAccidents": 0.0935,
+            "Robbery": 0.0242,
+            "Shooting": 0.024,
+            "Shoplifting": 0.0158,
+            "Stealing": 0.0229,
+            "Vandalism": 0.3667
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Vandalism",
+        "confidence": 0.3667,
+        "p_anomaly": 0.3909,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Vandalism",
+            0.3667
+          ],
+          [
+            "Arrest",
+            0.1116
+          ],
+          [
+            "RoadAccidents",
+            0.0935
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0289,
+          "Arrest": 0.1116,
+          "Arson": 0.0201,
+          "Assault": 0.0832,
+          "Burglary": 0.0392,
+          "Explosion": 0.0904,
+          "Fighting": 0.0795,
+          "RoadAccidents": 0.0935,
+          "Robbery": 0.0242,
+          "Shooting": 0.024,
+          "Shoplifting": 0.0158,
+          "Stealing": 0.0229,
+          "Vandalism": 0.3667
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_129_x264",
@@ -2578,7 +2720,25 @@
           "abs_end": 12.9,
           "zone": "mid_right",
           "confidence": 0.8,
-          "description": "Person #2 approaches Person #3 from the right."
+          "description": "Person #2 approaches Person #3 from the right. [Model: Vandalism (33%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.329,
+          "model_p_anomaly": 0.4309,
+          "model_type_probs": {
+            "Abuse": 0.0269,
+            "Arrest": 0.1217,
+            "Arson": 0.0188,
+            "Assault": 0.0888,
+            "Burglary": 0.051,
+            "Explosion": 0.0866,
+            "Fighting": 0.0938,
+            "RoadAccidents": 0.1007,
+            "Robbery": 0.025,
+            "Shooting": 0.023,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.021,
+            "Vandalism": 0.329
+          }
         },
         {
           "event_type": "approach",
@@ -2590,7 +2750,25 @@
           "abs_end": 15.7,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #4 approaches Person #5 from the front."
+          "description": "Person #4 approaches Person #5 from the front. [Model: Vandalism (33%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.329,
+          "model_p_anomaly": 0.4309,
+          "model_type_probs": {
+            "Abuse": 0.0269,
+            "Arrest": 0.1217,
+            "Arson": 0.0188,
+            "Assault": 0.0888,
+            "Burglary": 0.051,
+            "Explosion": 0.0866,
+            "Fighting": 0.0938,
+            "RoadAccidents": 0.1007,
+            "Robbery": 0.025,
+            "Shooting": 0.023,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.021,
+            "Vandalism": 0.329
+          }
         },
         {
           "event_type": "approach",
@@ -2602,7 +2780,25 @@
           "abs_end": 17.1,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #7 approaches Person #8 from the left."
+          "description": "Person #7 approaches Person #8 from the left. [Model: Vandalism (33%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.329,
+          "model_p_anomaly": 0.4309,
+          "model_type_probs": {
+            "Abuse": 0.0269,
+            "Arrest": 0.1217,
+            "Arson": 0.0188,
+            "Assault": 0.0888,
+            "Burglary": 0.051,
+            "Explosion": 0.0866,
+            "Fighting": 0.0938,
+            "RoadAccidents": 0.1007,
+            "Robbery": 0.025,
+            "Shooting": 0.023,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.021,
+            "Vandalism": 0.329
+          }
         },
         {
           "event_type": "approach",
@@ -2614,7 +2810,25 @@
           "abs_end": 18.6,
           "zone": "top_mid",
           "confidence": 0.8,
-          "description": "Person #11 approaches Person #8 from the right."
+          "description": "Person #11 approaches Person #8 from the right. [Model: Vandalism (33%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.329,
+          "model_p_anomaly": 0.4309,
+          "model_type_probs": {
+            "Abuse": 0.0269,
+            "Arrest": 0.1217,
+            "Arson": 0.0188,
+            "Assault": 0.0888,
+            "Burglary": 0.051,
+            "Explosion": 0.0866,
+            "Fighting": 0.0938,
+            "RoadAccidents": 0.1007,
+            "Robbery": 0.025,
+            "Shooting": 0.023,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.021,
+            "Vandalism": 0.329
+          }
         },
         {
           "event_type": "approach",
@@ -2626,9 +2840,62 @@
           "abs_end": 20.0,
           "zone": "center",
           "confidence": 0.8,
-          "description": "Person #12 approaches Person #4 from the right."
+          "description": "Person #12 approaches Person #4 from the right. [Model: Vandalism (33%)]",
+          "model_anomaly_class": "Vandalism",
+          "model_anomaly_confidence": 0.329,
+          "model_p_anomaly": 0.4309,
+          "model_type_probs": {
+            "Abuse": 0.0269,
+            "Arrest": 0.1217,
+            "Arson": 0.0188,
+            "Assault": 0.0888,
+            "Burglary": 0.051,
+            "Explosion": 0.0866,
+            "Fighting": 0.0938,
+            "RoadAccidents": 0.1007,
+            "Robbery": 0.025,
+            "Shooting": 0.023,
+            "Shoplifting": 0.0137,
+            "Stealing": 0.021,
+            "Vandalism": 0.329
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Vandalism",
+        "confidence": 0.329,
+        "p_anomaly": 0.4309,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Vandalism",
+            0.329
+          ],
+          [
+            "Arrest",
+            0.1217
+          ],
+          [
+            "RoadAccidents",
+            0.1007
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0269,
+          "Arrest": 0.1217,
+          "Arson": 0.0188,
+          "Assault": 0.0888,
+          "Burglary": 0.051,
+          "Explosion": 0.0866,
+          "Fighting": 0.0938,
+          "RoadAccidents": 0.1007,
+          "Robbery": 0.025,
+          "Shooting": 0.023,
+          "Shoplifting": 0.0137,
+          "Stealing": 0.021,
+          "Vandalism": 0.329
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_129_x264",
@@ -2840,7 +3107,25 @@
           "abs_end": 25.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "Person #3 walks across the street, wearing dark clothing and carrying a bag."
+          "description": "Person #3 walks across the street, wearing dark clothing and carrying a bag. [Model: Normal (82%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.818,
+          "model_p_anomaly": 0.182,
+          "model_type_probs": {
+            "Abuse": 0.0209,
+            "Arrest": 0.067,
+            "Arson": 0.0193,
+            "Assault": 0.0906,
+            "Burglary": 0.1083,
+            "Explosion": 0.0907,
+            "Fighting": 0.0543,
+            "RoadAccidents": 0.1086,
+            "Robbery": 0.0276,
+            "Shooting": 0.0217,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0459,
+            "Vandalism": 0.3342
+          }
         },
         {
           "event_type": "walking",
@@ -2852,7 +3137,25 @@
           "abs_end": 25.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "Person #4 walks alongside Person #3, both wearing dark clothing."
+          "description": "Person #4 walks alongside Person #3, both wearing dark clothing. [Model: Normal (82%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.818,
+          "model_p_anomaly": 0.182,
+          "model_type_probs": {
+            "Abuse": 0.0209,
+            "Arrest": 0.067,
+            "Arson": 0.0193,
+            "Assault": 0.0906,
+            "Burglary": 0.1083,
+            "Explosion": 0.0907,
+            "Fighting": 0.0543,
+            "RoadAccidents": 0.1086,
+            "Robbery": 0.0276,
+            "Shooting": 0.0217,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0459,
+            "Vandalism": 0.3342
+          }
         },
         {
           "event_type": "walking",
@@ -2864,9 +3167,62 @@
           "abs_end": 25.0,
           "zone": "street",
           "confidence": 1.0,
-          "description": "Person #7 walks behind Person #3 and #4, dressed in dark clothing."
+          "description": "Person #7 walks behind Person #3 and #4, dressed in dark clothing. [Model: Normal (82%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.818,
+          "model_p_anomaly": 0.182,
+          "model_type_probs": {
+            "Abuse": 0.0209,
+            "Arrest": 0.067,
+            "Arson": 0.0193,
+            "Assault": 0.0906,
+            "Burglary": 0.1083,
+            "Explosion": 0.0907,
+            "Fighting": 0.0543,
+            "RoadAccidents": 0.1086,
+            "Robbery": 0.0276,
+            "Shooting": 0.0217,
+            "Shoplifting": 0.0109,
+            "Stealing": 0.0459,
+            "Vandalism": 0.3342
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.818,
+        "p_anomaly": 0.182,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Vandalism",
+            0.3342
+          ],
+          [
+            "RoadAccidents",
+            0.1086
+          ],
+          [
+            "Burglary",
+            0.1083
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0209,
+          "Arrest": 0.067,
+          "Arson": 0.0193,
+          "Assault": 0.0906,
+          "Burglary": 0.1083,
+          "Explosion": 0.0907,
+          "Fighting": 0.0543,
+          "RoadAccidents": 0.1086,
+          "Robbery": 0.0276,
+          "Shooting": 0.0217,
+          "Shoplifting": 0.0109,
+          "Stealing": 0.0459,
+          "Vandalism": 0.3342
+        }
+      }
     }
   ]
 }

@@ -36,9 +36,62 @@
           "abs_end": 12.17,
           "zone": "counter",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing and a hood approaches the counter and interacts with items on it."
+          "description": "A person wearing dark clothing and a hood approaches the counter and interacts with items on it. [Model: Robbery (85%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8531,
+          "model_p_anomaly": 0.9865,
+          "model_type_probs": {
+            "Abuse": 0.0027,
+            "Arrest": 0.0026,
+            "Arson": 0.0025,
+            "Assault": 0.0043,
+            "Burglary": 0.0701,
+            "Explosion": 0.0017,
+            "Fighting": 0.0048,
+            "RoadAccidents": 0.0018,
+            "Robbery": 0.8531,
+            "Shooting": 0.0058,
+            "Shoplifting": 0.0367,
+            "Stealing": 0.0058,
+            "Vandalism": 0.0082
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8531,
+        "p_anomaly": 0.9865,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8531
+          ],
+          [
+            "Burglary",
+            0.0701
+          ],
+          [
+            "Shoplifting",
+            0.0367
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0027,
+          "Arrest": 0.0026,
+          "Arson": 0.0025,
+          "Assault": 0.0043,
+          "Burglary": 0.0701,
+          "Explosion": 0.0017,
+          "Fighting": 0.0048,
+          "RoadAccidents": 0.0018,
+          "Robbery": 0.8531,
+          "Shooting": 0.0058,
+          "Shoplifting": 0.0367,
+          "Stealing": 0.0058,
+          "Vandalism": 0.0082
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -75,9 +128,62 @@
           "abs_end": 27.17,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "A person wearing dark clothing and a hood is seen standing near the checkout counter, occasionally bending down and reaching towards the items on the counter."
+          "description": "A person wearing dark clothing and a hood is seen standing near the checkout counter, occasionally bending down and reaching towards the items on the counter. [Model: Robbery (88%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8767,
+          "model_p_anomaly": 0.9694,
+          "model_type_probs": {
+            "Abuse": 0.0024,
+            "Arrest": 0.0027,
+            "Arson": 0.0029,
+            "Assault": 0.0058,
+            "Burglary": 0.052,
+            "Explosion": 0.0014,
+            "Fighting": 0.0048,
+            "RoadAccidents": 0.0021,
+            "Robbery": 0.8767,
+            "Shooting": 0.0054,
+            "Shoplifting": 0.0262,
+            "Stealing": 0.0097,
+            "Vandalism": 0.0079
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8767,
+        "p_anomaly": 0.9694,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8767
+          ],
+          [
+            "Burglary",
+            0.052
+          ],
+          [
+            "Shoplifting",
+            0.0262
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0024,
+          "Arrest": 0.0027,
+          "Arson": 0.0029,
+          "Assault": 0.0058,
+          "Burglary": 0.052,
+          "Explosion": 0.0014,
+          "Fighting": 0.0048,
+          "RoadAccidents": 0.0021,
+          "Robbery": 0.8767,
+          "Shooting": 0.0054,
+          "Shoplifting": 0.0262,
+          "Stealing": 0.0097,
+          "Vandalism": 0.0079
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -114,7 +220,25 @@
           "abs_end": 26.47,
           "zone": "counter",
           "confidence": 0.9,
-          "description": "Person #2 reaches out to grab an item from the counter."
+          "description": "Person #2 reaches out to grab an item from the counter. [Model: Robbery (89%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8884,
+          "model_p_anomaly": 0.981,
+          "model_type_probs": {
+            "Abuse": 0.0021,
+            "Arrest": 0.002,
+            "Arson": 0.0027,
+            "Assault": 0.0046,
+            "Burglary": 0.0459,
+            "Explosion": 0.0013,
+            "Fighting": 0.0047,
+            "RoadAccidents": 0.0017,
+            "Robbery": 0.8884,
+            "Shooting": 0.0059,
+            "Shoplifting": 0.0262,
+            "Stealing": 0.0081,
+            "Vandalism": 0.0063
+          }
         },
         {
           "event_type": "carry_object",
@@ -126,7 +250,25 @@
           "abs_end": 27.87,
           "zone": "counter",
           "confidence": 0.9,
-          "description": "Person #2 picks up the item from the counter."
+          "description": "Person #2 picks up the item from the counter. [Model: Robbery (89%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8884,
+          "model_p_anomaly": 0.981,
+          "model_type_probs": {
+            "Abuse": 0.0021,
+            "Arrest": 0.002,
+            "Arson": 0.0027,
+            "Assault": 0.0046,
+            "Burglary": 0.0459,
+            "Explosion": 0.0013,
+            "Fighting": 0.0047,
+            "RoadAccidents": 0.0017,
+            "Robbery": 0.8884,
+            "Shooting": 0.0059,
+            "Shoplifting": 0.0262,
+            "Stealing": 0.0081,
+            "Vandalism": 0.0063
+          }
         },
         {
           "event_type": "walk",
@@ -138,9 +280,62 @@
           "abs_end": 29.27,
           "zone": "aisle",
           "confidence": 0.9,
-          "description": "Person #2 walks away from the counter towards the aisle."
+          "description": "Person #2 walks away from the counter towards the aisle. [Model: Robbery (89%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8884,
+          "model_p_anomaly": 0.981,
+          "model_type_probs": {
+            "Abuse": 0.0021,
+            "Arrest": 0.002,
+            "Arson": 0.0027,
+            "Assault": 0.0046,
+            "Burglary": 0.0459,
+            "Explosion": 0.0013,
+            "Fighting": 0.0047,
+            "RoadAccidents": 0.0017,
+            "Robbery": 0.8884,
+            "Shooting": 0.0059,
+            "Shoplifting": 0.0262,
+            "Stealing": 0.0081,
+            "Vandalism": 0.0063
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8884,
+        "p_anomaly": 0.981,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8884
+          ],
+          [
+            "Burglary",
+            0.0459
+          ],
+          [
+            "Shoplifting",
+            0.0262
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0021,
+          "Arrest": 0.002,
+          "Arson": 0.0027,
+          "Assault": 0.0046,
+          "Burglary": 0.0459,
+          "Explosion": 0.0013,
+          "Fighting": 0.0047,
+          "RoadAccidents": 0.0017,
+          "Robbery": 0.8884,
+          "Shooting": 0.0059,
+          "Shoplifting": 0.0262,
+          "Stealing": 0.0081,
+          "Vandalism": 0.0063
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -175,9 +370,62 @@
           "abs_end": 37.17,
           "zone": "counter",
           "confidence": 1.0,
-          "description": "A person wearing a dark hoodie and black pants is seen grabbing items from the counter."
+          "description": "A person wearing a dark hoodie and black pants is seen grabbing items from the counter. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8967,
+          "model_p_anomaly": 0.9867,
+          "model_type_probs": {
+            "Abuse": 0.002,
+            "Arrest": 0.0019,
+            "Arson": 0.0022,
+            "Assault": 0.0043,
+            "Burglary": 0.045,
+            "Explosion": 0.0011,
+            "Fighting": 0.0042,
+            "RoadAccidents": 0.0017,
+            "Robbery": 0.8967,
+            "Shooting": 0.0053,
+            "Shoplifting": 0.0233,
+            "Stealing": 0.0066,
+            "Vandalism": 0.0058
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8967,
+        "p_anomaly": 0.9867,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8967
+          ],
+          [
+            "Burglary",
+            0.045
+          ],
+          [
+            "Shoplifting",
+            0.0233
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.002,
+          "Arrest": 0.0019,
+          "Arson": 0.0022,
+          "Assault": 0.0043,
+          "Burglary": 0.045,
+          "Explosion": 0.0011,
+          "Fighting": 0.0042,
+          "RoadAccidents": 0.0017,
+          "Robbery": 0.8967,
+          "Shooting": 0.0053,
+          "Shoplifting": 0.0233,
+          "Stealing": 0.0066,
+          "Vandalism": 0.0058
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -213,7 +461,25 @@
           "abs_end": 36.47,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3, wearing dark clothing, interacts with items on the counter, possibly scanning or checking them."
+          "description": "Person #3, wearing dark clothing, interacts with items on the counter, possibly scanning or checking them. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9004,
+          "model_p_anomaly": 0.9871,
+          "model_type_probs": {
+            "Abuse": 0.002,
+            "Arrest": 0.0018,
+            "Arson": 0.0021,
+            "Assault": 0.0036,
+            "Burglary": 0.0437,
+            "Explosion": 0.0011,
+            "Fighting": 0.0038,
+            "RoadAccidents": 0.0014,
+            "Robbery": 0.9004,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0222,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0061
+          }
         },
         {
           "event_type": "physical_contact",
@@ -225,7 +491,25 @@
           "abs_end": 37.87,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3 continues to interact with items on the counter, focusing on a specific area."
+          "description": "Person #3 continues to interact with items on the counter, focusing on a specific area. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9004,
+          "model_p_anomaly": 0.9871,
+          "model_type_probs": {
+            "Abuse": 0.002,
+            "Arrest": 0.0018,
+            "Arson": 0.0021,
+            "Assault": 0.0036,
+            "Burglary": 0.0437,
+            "Explosion": 0.0011,
+            "Fighting": 0.0038,
+            "RoadAccidents": 0.0014,
+            "Robbery": 0.9004,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0222,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0061
+          }
         },
         {
           "event_type": "physical_contact",
@@ -237,7 +521,25 @@
           "abs_end": 39.27,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3 examines a particular item closely, holding it up for inspection."
+          "description": "Person #3 examines a particular item closely, holding it up for inspection. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9004,
+          "model_p_anomaly": 0.9871,
+          "model_type_probs": {
+            "Abuse": 0.002,
+            "Arrest": 0.0018,
+            "Arson": 0.0021,
+            "Assault": 0.0036,
+            "Burglary": 0.0437,
+            "Explosion": 0.0011,
+            "Fighting": 0.0038,
+            "RoadAccidents": 0.0014,
+            "Robbery": 0.9004,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0222,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0061
+          }
         },
         {
           "event_type": "physical_contact",
@@ -249,7 +551,25 @@
           "abs_end": 40.77,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3 places the item back on the counter and continues to look around, possibly deciding whether to purchase it."
+          "description": "Person #3 places the item back on the counter and continues to look around, possibly deciding whether to purchase it. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9004,
+          "model_p_anomaly": 0.9871,
+          "model_type_probs": {
+            "Abuse": 0.002,
+            "Arrest": 0.0018,
+            "Arson": 0.0021,
+            "Assault": 0.0036,
+            "Burglary": 0.0437,
+            "Explosion": 0.0011,
+            "Fighting": 0.0038,
+            "RoadAccidents": 0.0014,
+            "Robbery": 0.9004,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0222,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0061
+          }
         },
         {
           "event_type": "physical_contact",
@@ -261,9 +581,62 @@
           "abs_end": 42.17,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3 picks up another item from the counter, examining it briefly before placing it back."
+          "description": "Person #3 picks up another item from the counter, examining it briefly before placing it back. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9004,
+          "model_p_anomaly": 0.9871,
+          "model_type_probs": {
+            "Abuse": 0.002,
+            "Arrest": 0.0018,
+            "Arson": 0.0021,
+            "Assault": 0.0036,
+            "Burglary": 0.0437,
+            "Explosion": 0.0011,
+            "Fighting": 0.0038,
+            "RoadAccidents": 0.0014,
+            "Robbery": 0.9004,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0222,
+            "Stealing": 0.0075,
+            "Vandalism": 0.0061
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.9004,
+        "p_anomaly": 0.9871,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.9004
+          ],
+          [
+            "Burglary",
+            0.0437
+          ],
+          [
+            "Shoplifting",
+            0.0222
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.002,
+          "Arrest": 0.0018,
+          "Arson": 0.0021,
+          "Assault": 0.0036,
+          "Burglary": 0.0437,
+          "Explosion": 0.0011,
+          "Fighting": 0.0038,
+          "RoadAccidents": 0.0014,
+          "Robbery": 0.9004,
+          "Shooting": 0.0044,
+          "Shoplifting": 0.0222,
+          "Stealing": 0.0075,
+          "Vandalism": 0.0061
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -315,9 +688,62 @@
           "abs_end": 41.47,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #3 and Person #4 engage in a physical interaction near the checkout counter."
+          "description": "Person #3 and Person #4 engage in a physical interaction near the checkout counter. [Model: Robbery (90%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9004,
+          "model_p_anomaly": 0.9844,
+          "model_type_probs": {
+            "Abuse": 0.0016,
+            "Arrest": 0.0021,
+            "Arson": 0.0022,
+            "Assault": 0.0035,
+            "Burglary": 0.0465,
+            "Explosion": 0.0011,
+            "Fighting": 0.0034,
+            "RoadAccidents": 0.0014,
+            "Robbery": 0.9004,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0203,
+            "Stealing": 0.0072,
+            "Vandalism": 0.0059
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.9004,
+        "p_anomaly": 0.9844,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.9004
+          ],
+          [
+            "Burglary",
+            0.0465
+          ],
+          [
+            "Shoplifting",
+            0.0203
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0016,
+          "Arrest": 0.0021,
+          "Arson": 0.0022,
+          "Assault": 0.0035,
+          "Burglary": 0.0465,
+          "Explosion": 0.0011,
+          "Fighting": 0.0034,
+          "RoadAccidents": 0.0014,
+          "Robbery": 0.9004,
+          "Shooting": 0.0044,
+          "Shoplifting": 0.0203,
+          "Stealing": 0.0072,
+          "Vandalism": 0.0059
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -382,9 +808,62 @@
           "abs_end": 52.17,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #4 approaches Person #6 from the left side."
+          "description": "Person #4 approaches Person #6 from the left side. [Model: Robbery (91%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.9096,
+          "model_p_anomaly": 0.9836,
+          "model_type_probs": {
+            "Abuse": 0.0016,
+            "Arrest": 0.0018,
+            "Arson": 0.002,
+            "Assault": 0.004,
+            "Burglary": 0.0403,
+            "Explosion": 0.0011,
+            "Fighting": 0.0035,
+            "RoadAccidents": 0.0013,
+            "Robbery": 0.9096,
+            "Shooting": 0.0044,
+            "Shoplifting": 0.0185,
+            "Stealing": 0.0064,
+            "Vandalism": 0.0055
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.9096,
+        "p_anomaly": 0.9836,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.9096
+          ],
+          [
+            "Burglary",
+            0.0403
+          ],
+          [
+            "Shoplifting",
+            0.0185
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0016,
+          "Arrest": 0.0018,
+          "Arson": 0.002,
+          "Assault": 0.004,
+          "Burglary": 0.0403,
+          "Explosion": 0.0011,
+          "Fighting": 0.0035,
+          "RoadAccidents": 0.0013,
+          "Robbery": 0.9096,
+          "Shooting": 0.0044,
+          "Shoplifting": 0.0185,
+          "Stealing": 0.0064,
+          "Vandalism": 0.0055
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -418,9 +897,62 @@
           "abs_end": 57.17,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "A person wearing a dark hoodie and black pants is seen near the checkout counter. They appear to be interacting with the environment, possibly reaching for items or adjusting their position."
+          "description": "A person wearing a dark hoodie and black pants is seen near the checkout counter. They appear to be interacting with the environment, possibly reaching for items or adjusting their position. [Model: Robbery (89%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8881,
+          "model_p_anomaly": 0.9864,
+          "model_type_probs": {
+            "Abuse": 0.0021,
+            "Arrest": 0.0025,
+            "Arson": 0.0027,
+            "Assault": 0.0042,
+            "Burglary": 0.0438,
+            "Explosion": 0.0014,
+            "Fighting": 0.0042,
+            "RoadAccidents": 0.0015,
+            "Robbery": 0.8881,
+            "Shooting": 0.0066,
+            "Shoplifting": 0.0314,
+            "Stealing": 0.0053,
+            "Vandalism": 0.0063
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8881,
+        "p_anomaly": 0.9864,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8881
+          ],
+          [
+            "Burglary",
+            0.0438
+          ],
+          [
+            "Shoplifting",
+            0.0314
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0021,
+          "Arrest": 0.0025,
+          "Arson": 0.0027,
+          "Assault": 0.0042,
+          "Burglary": 0.0438,
+          "Explosion": 0.0014,
+          "Fighting": 0.0042,
+          "RoadAccidents": 0.0015,
+          "Robbery": 0.8881,
+          "Shooting": 0.0066,
+          "Shoplifting": 0.0314,
+          "Stealing": 0.0053,
+          "Vandalism": 0.0063
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -457,9 +989,62 @@
           "abs_end": 77.17,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "A knife is seen moving slightly within the mid-right zone."
+          "description": "A knife is seen moving slightly within the mid-right zone. [Model: Robbery (73%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.7275,
+          "model_p_anomaly": 0.687,
+          "model_type_probs": {
+            "Abuse": 0.0034,
+            "Arrest": 0.0031,
+            "Arson": 0.0048,
+            "Assault": 0.0107,
+            "Burglary": 0.1633,
+            "Explosion": 0.0023,
+            "Fighting": 0.0075,
+            "RoadAccidents": 0.0049,
+            "Robbery": 0.7275,
+            "Shooting": 0.0169,
+            "Shoplifting": 0.031,
+            "Stealing": 0.0138,
+            "Vandalism": 0.011
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.7275,
+        "p_anomaly": 0.687,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.7275
+          ],
+          [
+            "Burglary",
+            0.1633
+          ],
+          [
+            "Shoplifting",
+            0.031
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0034,
+          "Arrest": 0.0031,
+          "Arson": 0.0048,
+          "Assault": 0.0107,
+          "Burglary": 0.1633,
+          "Explosion": 0.0023,
+          "Fighting": 0.0075,
+          "RoadAccidents": 0.0049,
+          "Robbery": 0.7275,
+          "Shooting": 0.0169,
+          "Shoplifting": 0.031,
+          "Stealing": 0.0138,
+          "Vandalism": 0.011
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -495,9 +1080,62 @@
           "abs_end": 80.77,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "A knife is seen moving slightly, indicating potential interaction or threat."
+          "description": "A knife is seen moving slightly, indicating potential interaction or threat. [Model: Robbery (67%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6681,
+          "model_p_anomaly": 0.5511,
+          "model_type_probs": {
+            "Abuse": 0.0039,
+            "Arrest": 0.003,
+            "Arson": 0.0054,
+            "Assault": 0.0127,
+            "Burglary": 0.208,
+            "Explosion": 0.0027,
+            "Fighting": 0.0073,
+            "RoadAccidents": 0.0063,
+            "Robbery": 0.6681,
+            "Shooting": 0.0161,
+            "Shoplifting": 0.0323,
+            "Stealing": 0.0223,
+            "Vandalism": 0.012
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6681,
+        "p_anomaly": 0.5511,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6681
+          ],
+          [
+            "Burglary",
+            0.208
+          ],
+          [
+            "Shoplifting",
+            0.0323
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0039,
+          "Arrest": 0.003,
+          "Arson": 0.0054,
+          "Assault": 0.0127,
+          "Burglary": 0.208,
+          "Explosion": 0.0027,
+          "Fighting": 0.0073,
+          "RoadAccidents": 0.0063,
+          "Robbery": 0.6681,
+          "Shooting": 0.0161,
+          "Shoplifting": 0.0323,
+          "Stealing": 0.0223,
+          "Vandalism": 0.012
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -534,9 +1172,62 @@
           "abs_end": 87.17,
           "zone": "store",
           "confidence": 1.0,
-          "description": "The scene shows a store interior with shelves stocked with various items. A checkout counter is visible in the foreground."
+          "description": "The scene shows a store interior with shelves stocked with various items. A checkout counter is visible in the foreground. [Model: Robbery (67%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.6707,
+          "model_p_anomaly": 0.4731,
+          "model_type_probs": {
+            "Abuse": 0.0039,
+            "Arrest": 0.0031,
+            "Arson": 0.0054,
+            "Assault": 0.0131,
+            "Burglary": 0.1982,
+            "Explosion": 0.0027,
+            "Fighting": 0.0073,
+            "RoadAccidents": 0.0069,
+            "Robbery": 0.6707,
+            "Shooting": 0.019,
+            "Shoplifting": 0.0336,
+            "Stealing": 0.0234,
+            "Vandalism": 0.0128
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.6707,
+        "p_anomaly": 0.4731,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.6707
+          ],
+          [
+            "Burglary",
+            0.1982
+          ],
+          [
+            "Shoplifting",
+            0.0336
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0039,
+          "Arrest": 0.0031,
+          "Arson": 0.0054,
+          "Assault": 0.0131,
+          "Burglary": 0.1982,
+          "Explosion": 0.0027,
+          "Fighting": 0.0073,
+          "RoadAccidents": 0.0069,
+          "Robbery": 0.6707,
+          "Shooting": 0.019,
+          "Shoplifting": 0.0336,
+          "Stealing": 0.0234,
+          "Vandalism": 0.0128
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -573,9 +1264,62 @@
           "abs_end": 92.17,
           "zone": "mid_right -> top_right",
           "confidence": 1.0,
-          "description": "A person wearing a dark jacket and jeans approaches from the right side of the frame."
+          "description": "A person wearing a dark jacket and jeans approaches from the right side of the frame. [Model: Robbery (71%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.7077,
+          "model_p_anomaly": 0.4829,
+          "model_type_probs": {
+            "Abuse": 0.0038,
+            "Arrest": 0.0028,
+            "Arson": 0.0055,
+            "Assault": 0.012,
+            "Burglary": 0.1669,
+            "Explosion": 0.0025,
+            "Fighting": 0.0071,
+            "RoadAccidents": 0.0064,
+            "Robbery": 0.7077,
+            "Shooting": 0.0223,
+            "Shoplifting": 0.0313,
+            "Stealing": 0.0186,
+            "Vandalism": 0.0131
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.7077,
+        "p_anomaly": 0.4829,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.7077
+          ],
+          [
+            "Burglary",
+            0.1669
+          ],
+          [
+            "Shoplifting",
+            0.0313
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0038,
+          "Arrest": 0.0028,
+          "Arson": 0.0055,
+          "Assault": 0.012,
+          "Burglary": 0.1669,
+          "Explosion": 0.0025,
+          "Fighting": 0.0071,
+          "RoadAccidents": 0.0064,
+          "Robbery": 0.7077,
+          "Shooting": 0.0223,
+          "Shoplifting": 0.0313,
+          "Stealing": 0.0186,
+          "Vandalism": 0.0131
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -639,9 +1383,62 @@
           "abs_end": 97.17,
           "zone": "mid_left",
           "confidence": 0.9,
-          "description": "Person #8 enters the scene from the left side."
+          "description": "Person #8 enters the scene from the left side. [Model: Robbery (81%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8095,
+          "model_p_anomaly": 0.7984,
+          "model_type_probs": {
+            "Abuse": 0.0034,
+            "Arrest": 0.0028,
+            "Arson": 0.0043,
+            "Assault": 0.0081,
+            "Burglary": 0.0975,
+            "Explosion": 0.0019,
+            "Fighting": 0.0072,
+            "RoadAccidents": 0.0032,
+            "Robbery": 0.8095,
+            "Shooting": 0.0125,
+            "Shoplifting": 0.0312,
+            "Stealing": 0.0093,
+            "Vandalism": 0.0091
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8095,
+        "p_anomaly": 0.7984,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8095
+          ],
+          [
+            "Burglary",
+            0.0975
+          ],
+          [
+            "Shoplifting",
+            0.0312
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0034,
+          "Arrest": 0.0028,
+          "Arson": 0.0043,
+          "Assault": 0.0081,
+          "Burglary": 0.0975,
+          "Explosion": 0.0019,
+          "Fighting": 0.0072,
+          "RoadAccidents": 0.0032,
+          "Robbery": 0.8095,
+          "Shooting": 0.0125,
+          "Shoplifting": 0.0312,
+          "Stealing": 0.0093,
+          "Vandalism": 0.0091
+        }
+      }
     },
     {
       "video_id": "Robbery002_x264",
@@ -700,9 +1497,62 @@
           "abs_end": 93.77,
           "zone": "mid_left -> mid_right",
           "confidence": 0.9,
-          "description": "Person #8, wearing a dark jacket and light-colored pants, approaches Person #7, who is holding a knife. They make physical contact."
+          "description": "Person #8, wearing a dark jacket and light-colored pants, approaches Person #7, who is holding a knife. They make physical contact. [Model: Robbery (80%)]",
+          "model_anomaly_class": "Robbery",
+          "model_anomaly_confidence": 0.8032,
+          "model_p_anomaly": 0.7784,
+          "model_type_probs": {
+            "Abuse": 0.0031,
+            "Arrest": 0.0028,
+            "Arson": 0.0042,
+            "Assault": 0.008,
+            "Burglary": 0.1074,
+            "Explosion": 0.0019,
+            "Fighting": 0.0068,
+            "RoadAccidents": 0.003,
+            "Robbery": 0.8032,
+            "Shooting": 0.0094,
+            "Shoplifting": 0.0306,
+            "Stealing": 0.0093,
+            "Vandalism": 0.0101
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Robbery",
+        "confidence": 0.8032,
+        "p_anomaly": 0.7784,
+        "is_anomaly": true,
+        "top3_types": [
+          [
+            "Robbery",
+            0.8032
+          ],
+          [
+            "Burglary",
+            0.1074
+          ],
+          [
+            "Shoplifting",
+            0.0306
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.0031,
+          "Arrest": 0.0028,
+          "Arson": 0.0042,
+          "Assault": 0.008,
+          "Burglary": 0.1074,
+          "Explosion": 0.0019,
+          "Fighting": 0.0068,
+          "RoadAccidents": 0.003,
+          "Robbery": 0.8032,
+          "Shooting": 0.0094,
+          "Shoplifting": 0.0306,
+          "Stealing": 0.0093,
+          "Vandalism": 0.0101
+        }
+      }
     }
   ]
 }

@@ -867,7 +867,25 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A man in a suit walks through the corridor."
+          "description": "A man in a suit walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         },
         {
           "event_type": "walking",
@@ -879,7 +897,25 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A man in a blue jacket walks through the corridor."
+          "description": "A man in a blue jacket walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         },
         {
           "event_type": "walking",
@@ -891,7 +927,25 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A woman in a black jacket walks through the corridor."
+          "description": "A woman in a black jacket walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         },
         {
           "event_type": "walking",
@@ -903,7 +957,25 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A man in a yellow jacket walks through the corridor."
+          "description": "A man in a yellow jacket walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         },
         {
           "event_type": "walking",
@@ -915,7 +987,25 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A man in a dark jacket walks through the corridor."
+          "description": "A man in a dark jacket walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         },
         {
           "event_type": "walking",
@@ -927,7 +1017,25 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A man in a dark jacket walks through the corridor."
+          "description": "A man in a dark jacket walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         },
         {
           "event_type": "walking",
@@ -939,9 +1047,62 @@
           "abs_end": 10.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "A man in a dark jacket walks through the corridor."
+          "description": "A man in a dark jacket walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3526,
+            "Arrest": 0.0669,
+            "Arson": 0.0396,
+            "Assault": 0.0447,
+            "Burglary": 0.1138,
+            "Explosion": 0.0276,
+            "Fighting": 0.1531,
+            "RoadAccidents": 0.0345,
+            "Robbery": 0.0686,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0141,
+            "Stealing": 0.0198,
+            "Vandalism": 0.0415
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9991,
+        "p_anomaly": 0.0009,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Abuse",
+            0.3526
+          ],
+          [
+            "Fighting",
+            0.1531
+          ],
+          [
+            "Burglary",
+            0.1138
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.3526,
+          "Arrest": 0.0669,
+          "Arson": 0.0396,
+          "Assault": 0.0447,
+          "Burglary": 0.1138,
+          "Explosion": 0.0276,
+          "Fighting": 0.1531,
+          "RoadAccidents": 0.0345,
+          "Robbery": 0.0686,
+          "Shooting": 0.0233,
+          "Shoplifting": 0.0141,
+          "Stealing": 0.0198,
+          "Vandalism": 0.0415
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_150_x264",
@@ -2025,7 +2186,25 @@
           "abs_end": 6.4,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #1 approaches Person #6 from the left side."
+          "description": "Person #1 approaches Person #6 from the left side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         },
         {
           "event_type": "approach",
@@ -2037,7 +2216,25 @@
           "abs_end": 7.9,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #6 approaches Person #1 from the right side."
+          "description": "Person #6 approaches Person #1 from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         },
         {
           "event_type": "approach",
@@ -2049,7 +2246,25 @@
           "abs_end": 9.3,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "Person #8 approaches Person #9 from the right side."
+          "description": "Person #8 approaches Person #9 from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         },
         {
           "event_type": "approach",
@@ -2061,7 +2276,25 @@
           "abs_end": 10.7,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "Person #12 approaches Person #15 from the right side."
+          "description": "Person #12 approaches Person #15 from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         },
         {
           "event_type": "approach",
@@ -2073,7 +2306,25 @@
           "abs_end": 12.1,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #14 approaches Person #17 from the left side."
+          "description": "Person #14 approaches Person #17 from the left side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         },
         {
           "event_type": "approach",
@@ -2085,7 +2336,25 @@
           "abs_end": 13.6,
           "zone": "mid_right",
           "confidence": 0.9,
-          "description": "Person #15 approaches Person #16 from the right side."
+          "description": "Person #15 approaches Person #16 from the right side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         },
         {
           "event_type": "approach",
@@ -2097,9 +2366,62 @@
           "abs_end": 15.0,
           "zone": "center",
           "confidence": 0.9,
-          "description": "Person #17 approaches Person #18 from the left side."
+          "description": "Person #17 approaches Person #18 from the left side. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9992,
+          "model_p_anomaly": 0.0008,
+          "model_type_probs": {
+            "Abuse": 0.3068,
+            "Arrest": 0.05,
+            "Arson": 0.0283,
+            "Assault": 0.0435,
+            "Burglary": 0.1546,
+            "Explosion": 0.0207,
+            "Fighting": 0.1938,
+            "RoadAccidents": 0.0283,
+            "Robbery": 0.0595,
+            "Shooting": 0.0233,
+            "Shoplifting": 0.0135,
+            "Stealing": 0.0333,
+            "Vandalism": 0.0444
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9992,
+        "p_anomaly": 0.0008,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Abuse",
+            0.3068
+          ],
+          [
+            "Fighting",
+            0.1938
+          ],
+          [
+            "Burglary",
+            0.1546
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.3068,
+          "Arrest": 0.05,
+          "Arson": 0.0283,
+          "Assault": 0.0435,
+          "Burglary": 0.1546,
+          "Explosion": 0.0207,
+          "Fighting": 0.1938,
+          "RoadAccidents": 0.0283,
+          "Robbery": 0.0595,
+          "Shooting": 0.0233,
+          "Shoplifting": 0.0135,
+          "Stealing": 0.0333,
+          "Vandalism": 0.0444
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_150_x264",
@@ -3143,7 +3465,25 @@
           "abs_end": 20.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "People walk through the corridor, some carrying bags and wearing jackets."
+          "description": "People walk through the corridor, some carrying bags and wearing jackets. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3155,7 +3495,25 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #12 approaches Person #6 from behind."
+          "description": "Person #12 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3167,7 +3525,25 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #14 approaches Person #6 from behind."
+          "description": "Person #14 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3179,7 +3555,25 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #15 approaches Person #6 from behind."
+          "description": "Person #15 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3191,7 +3585,25 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #17 approaches Person #6 from behind."
+          "description": "Person #17 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3203,7 +3615,25 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #18 approaches Person #6 from behind."
+          "description": "Person #18 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3215,7 +3645,25 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #19 approaches Person #6 from behind."
+          "description": "Person #19 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         },
         {
           "event_type": "approach",
@@ -3227,9 +3675,62 @@
           "abs_end": 15.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "Person #20 approaches Person #6 from behind."
+          "description": "Person #20 approaches Person #6 from behind. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9991,
+          "model_p_anomaly": 0.0009,
+          "model_type_probs": {
+            "Abuse": 0.3338,
+            "Arrest": 0.0621,
+            "Arson": 0.03,
+            "Assault": 0.044,
+            "Burglary": 0.1257,
+            "Explosion": 0.0241,
+            "Fighting": 0.192,
+            "RoadAccidents": 0.0278,
+            "Robbery": 0.0631,
+            "Shooting": 0.0203,
+            "Shoplifting": 0.0136,
+            "Stealing": 0.0234,
+            "Vandalism": 0.04
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9991,
+        "p_anomaly": 0.0009,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Abuse",
+            0.3338
+          ],
+          [
+            "Fighting",
+            0.192
+          ],
+          [
+            "Burglary",
+            0.1257
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.3338,
+          "Arrest": 0.0621,
+          "Arson": 0.03,
+          "Assault": 0.044,
+          "Burglary": 0.1257,
+          "Explosion": 0.0241,
+          "Fighting": 0.192,
+          "RoadAccidents": 0.0278,
+          "Robbery": 0.0631,
+          "Shooting": 0.0203,
+          "Shoplifting": 0.0136,
+          "Stealing": 0.0234,
+          "Vandalism": 0.04
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_150_x264",
@@ -3966,7 +4467,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #21 walks through the corridor."
+          "description": "Person #21 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -3978,7 +4497,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #23 walks through the corridor."
+          "description": "Person #23 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -3990,7 +4527,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #27 walks through the corridor."
+          "description": "Person #27 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4002,7 +4557,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #29 walks through the corridor."
+          "description": "Person #29 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4014,7 +4587,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #30 walks through the corridor."
+          "description": "Person #30 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4026,7 +4617,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #31 walks through the corridor."
+          "description": "Person #31 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4038,7 +4647,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #32 walks through the corridor."
+          "description": "Person #32 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4050,7 +4677,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #34 walks through the corridor."
+          "description": "Person #34 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4062,7 +4707,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #35 walks through the corridor."
+          "description": "Person #35 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4074,7 +4737,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #36 walks through the corridor."
+          "description": "Person #36 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4086,7 +4767,25 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #37 walks through the corridor."
+          "description": "Person #37 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         },
         {
           "event_type": "walk",
@@ -4098,9 +4797,62 @@
           "abs_end": 25.0,
           "zone": "corridor",
           "confidence": 1.0,
-          "description": "Person #38 walks through the corridor."
+          "description": "Person #38 walks through the corridor. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.999,
+          "model_p_anomaly": 0.001,
+          "model_type_probs": {
+            "Abuse": 0.3212,
+            "Arrest": 0.0669,
+            "Arson": 0.0364,
+            "Assault": 0.0374,
+            "Burglary": 0.1224,
+            "Explosion": 0.0339,
+            "Fighting": 0.1989,
+            "RoadAccidents": 0.0325,
+            "Robbery": 0.0574,
+            "Shooting": 0.0197,
+            "Shoplifting": 0.0155,
+            "Stealing": 0.0189,
+            "Vandalism": 0.0388
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.999,
+        "p_anomaly": 0.001,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Abuse",
+            0.3212
+          ],
+          [
+            "Fighting",
+            0.1989
+          ],
+          [
+            "Burglary",
+            0.1224
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.3212,
+          "Arrest": 0.0669,
+          "Arson": 0.0364,
+          "Assault": 0.0374,
+          "Burglary": 0.1224,
+          "Explosion": 0.0339,
+          "Fighting": 0.1989,
+          "RoadAccidents": 0.0325,
+          "Robbery": 0.0574,
+          "Shooting": 0.0197,
+          "Shoplifting": 0.0155,
+          "Stealing": 0.0189,
+          "Vandalism": 0.0388
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_150_x264",
@@ -4748,7 +5500,25 @@
           "abs_end": 21.4,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "A group of people walk into the frame from the left."
+          "description": "A group of people walk into the frame from the left. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         },
         {
           "event_type": "walk",
@@ -4760,7 +5530,25 @@
           "abs_end": 22.9,
           "zone": "center",
           "confidence": 1.0,
-          "description": "The group continues walking through the center of the frame."
+          "description": "The group continues walking through the center of the frame. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         },
         {
           "event_type": "walk",
@@ -4772,7 +5560,25 @@
           "abs_end": 24.3,
           "zone": "mid_left",
           "confidence": 1.0,
-          "description": "The group moves to the mid-left area of the frame."
+          "description": "The group moves to the mid-left area of the frame. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         },
         {
           "event_type": "walk",
@@ -4784,7 +5590,25 @@
           "abs_end": 25.7,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "The group moves to the mid-right area of the frame."
+          "description": "The group moves to the mid-right area of the frame. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         },
         {
           "event_type": "walk",
@@ -4796,7 +5620,25 @@
           "abs_end": 27.1,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "The group continues walking to the mid-right area of the frame."
+          "description": "The group continues walking to the mid-right area of the frame. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         },
         {
           "event_type": "walk",
@@ -4808,7 +5650,25 @@
           "abs_end": 28.6,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "The group moves further to the mid-right area of the frame."
+          "description": "The group moves further to the mid-right area of the frame. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         },
         {
           "event_type": "walk",
@@ -4820,9 +5680,62 @@
           "abs_end": 30.0,
           "zone": "mid_right",
           "confidence": 1.0,
-          "description": "The group continues walking to the mid-right area of the frame."
+          "description": "The group continues walking to the mid-right area of the frame. [Model: Normal (100%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9972,
+          "model_p_anomaly": 0.0028,
+          "model_type_probs": {
+            "Abuse": 0.2597,
+            "Arrest": 0.0683,
+            "Arson": 0.0383,
+            "Assault": 0.0454,
+            "Burglary": 0.1198,
+            "Explosion": 0.0376,
+            "Fighting": 0.229,
+            "RoadAccidents": 0.0322,
+            "Robbery": 0.0697,
+            "Shooting": 0.0218,
+            "Shoplifting": 0.0199,
+            "Stealing": 0.0156,
+            "Vandalism": 0.0427
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9972,
+        "p_anomaly": 0.0028,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Abuse",
+            0.2597
+          ],
+          [
+            "Fighting",
+            0.229
+          ],
+          [
+            "Burglary",
+            0.1198
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.2597,
+          "Arrest": 0.0683,
+          "Arson": 0.0383,
+          "Assault": 0.0454,
+          "Burglary": 0.1198,
+          "Explosion": 0.0376,
+          "Fighting": 0.229,
+          "RoadAccidents": 0.0322,
+          "Robbery": 0.0697,
+          "Shooting": 0.0218,
+          "Shoplifting": 0.0199,
+          "Stealing": 0.0156,
+          "Vandalism": 0.0427
+        }
+      }
     },
     {
       "video_id": "Normal_Videos_150_x264",
@@ -5221,7 +6134,25 @@
           "abs_end": 26.4,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #27 enters the scene from the left side."
+          "description": "Person #27 enters the scene from the left side. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         },
         {
           "event_type": "walk",
@@ -5233,7 +6164,25 @@
           "abs_end": 27.9,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #27 walks towards the center of the frame."
+          "description": "Person #27 walks towards the center of the frame. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         },
         {
           "event_type": "walk",
@@ -5245,7 +6194,25 @@
           "abs_end": 29.3,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #32 walks towards the center of the frame."
+          "description": "Person #32 walks towards the center of the frame. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         },
         {
           "event_type": "walk",
@@ -5257,7 +6224,25 @@
           "abs_end": 30.7,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #35 walks towards the right side of the frame."
+          "description": "Person #35 walks towards the right side of the frame. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         },
         {
           "event_type": "walk",
@@ -5269,7 +6254,25 @@
           "abs_end": 32.1,
           "zone": "bottom_left",
           "confidence": 1.0,
-          "description": "Person #36 walks towards the center of the frame."
+          "description": "Person #36 walks towards the center of the frame. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         },
         {
           "event_type": "walk",
@@ -5281,7 +6284,25 @@
           "abs_end": 33.6,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #37 walks towards the right side of the frame."
+          "description": "Person #37 walks towards the right side of the frame. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         },
         {
           "event_type": "walk",
@@ -5293,9 +6314,62 @@
           "abs_end": 35.0,
           "zone": "center",
           "confidence": 1.0,
-          "description": "Person #38 walks towards the right side of the frame."
+          "description": "Person #38 walks towards the right side of the frame. [Model: Normal (99%)]",
+          "model_anomaly_class": "Normal",
+          "model_anomaly_confidence": 0.9947,
+          "model_p_anomaly": 0.0053,
+          "model_type_probs": {
+            "Abuse": 0.2355,
+            "Arrest": 0.0709,
+            "Arson": 0.0357,
+            "Assault": 0.0788,
+            "Burglary": 0.1512,
+            "Explosion": 0.0358,
+            "Fighting": 0.1867,
+            "RoadAccidents": 0.0342,
+            "Robbery": 0.0595,
+            "Shooting": 0.0235,
+            "Shoplifting": 0.0219,
+            "Stealing": 0.0157,
+            "Vandalism": 0.0505
+          }
         }
-      ]
+      ],
+      "model_anomaly": {
+        "predicted_class": "Normal",
+        "confidence": 0.9947,
+        "p_anomaly": 0.0053,
+        "is_anomaly": false,
+        "top3_types": [
+          [
+            "Abuse",
+            0.2355
+          ],
+          [
+            "Fighting",
+            0.1867
+          ],
+          [
+            "Burglary",
+            0.1512
+          ]
+        ],
+        "all_type_probs": {
+          "Abuse": 0.2355,
+          "Arrest": 0.0709,
+          "Arson": 0.0357,
+          "Assault": 0.0788,
+          "Burglary": 0.1512,
+          "Explosion": 0.0358,
+          "Fighting": 0.1867,
+          "RoadAccidents": 0.0342,
+          "Robbery": 0.0595,
+          "Shooting": 0.0235,
+          "Shoplifting": 0.0219,
+          "Stealing": 0.0157,
+          "Vandalism": 0.0505
+        }
+      }
     }
   ]
 }
