@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from typing import List, Optional
+import hashlib
 import shutil
 import uuid
 import json
@@ -176,6 +177,85 @@ def list_videos(store: MetadataStore = Depends(get_metadata_store)):
     """List all registered surveillance videos."""
     videos = store.list_videos()
     return [to_response(v) for v in videos]
+
+
+@router.post("/import-demo", response_model=List[VideoResponse])
+def import_demo_videos(
+    background_tasks: BackgroundTasks,
+    store: MetadataStore = Depends(get_metadata_store),
+    ingestor: VideoIngestor = Depends(get_ingestor),
+    pipeline: SurveillancePipeline = Depends(get_pipeline),
+):
+    """Register staged reference videos and process their paired windows JSON."""
+    reference_dir = paths.root_dir / "notebooks" / "directjsonreference"
+    video_dirs = (
+        paths.uploads_dir / "demo",
+        reference_dir / "video",
+        reference_dir / "videos",
+    )
+    output_json_dir = reference_dir / "pipeline_outputs"
+
+    imported = []
+    seen_video_ids = set()
+    for video_dir in video_dirs:
+        if not video_dir.is_dir():
+            continue
+        for video_path in sorted(video_dir.iterdir()):
+            if not video_path.is_file() or video_path.suffix.lower() not in {
+                ".mp4", ".avi", ".mov", ".mkv"
+            }:
+                continue
+
+            json_path = video_path.with_suffix(".json")
+            if not json_path.is_file():
+                json_path = output_json_dir / f"{video_path.stem}.json"
+            if not json_path.is_file():
+                logger.warning("Skipping video without matching JSON: %s", video_path.name)
+                continue
+            if json_path.stat().st_size > 50 * 1024 * 1024:
+                raise HTTPException(
+                    status_code=413,
+                    detail=f"Reference JSON exceeds the 50 MB limit: {json_path.name}",
+                )
+            try:
+                payload = json.loads(json_path.read_text(encoding="utf-8-sig"))
+                video_info = get_video_info(video_path)
+                windows = validate_windows_payload(
+                    payload, {video_path.stem}, video_info["duration_sec"]
+                )
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Invalid video/JSON pair {video_path.name} + {json_path.name}: {exc}",
+                ) from exc
+
+            hasher = hashlib.md5()
+            with video_path.open("rb") as video_file:
+                hasher.update(video_file.read(1024 * 1024))
+            video_id = f"vid_{hasher.hexdigest()[:12]}"
+            if video_id in seen_video_ids:
+                continue
+            seen_video_ids.add(video_id)
+
+            record = store.get_video(video_id)
+            if record is None or not Path(record.file_path).is_file():
+                record = ingestor.ingest_video(
+                    video_path, original_filename=video_path.name
+                )
+
+            if record.status not in {"completed", "processing"}:
+                store.update_video_status(record.video_id, "processing")
+                record.status = "processing"
+                record.error_message = None
+                background_tasks.add_task(
+                    pipeline.process_video,
+                    record.video_id,
+                    windows,
+                    "direct_json",
+                )
+            imported.append(record)
+
+    return [to_response(video) for video in imported]
 
 
 @router.get("/{video_id}", response_model=VideoResponse)

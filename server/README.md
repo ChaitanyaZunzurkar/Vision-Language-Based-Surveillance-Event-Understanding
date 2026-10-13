@@ -99,3 +99,12 @@ pipeline's lazily loaded Qwen instance rather than loading a second copy. If the
 model cannot load or returns missing/unknown citations, the API returns the
 deterministic evidence summary instead. A first chat query with matching events
 can therefore trigger local model loading; it may use substantial RAM/VRAM.
+
+On UI startup, the frontend asks the backend to import staged reference pairs
+from `server\data\uploads\demo` and
+`notebooks\directjsonreference\video` (also accepts `videos`). Each video is
+paired with a same-name JSON sidecar or the corresponding file in
+`notebooks\directjsonreference\pipeline_outputs`. Valid pairs are registered
+and processed through direct-JSON mode, then appear under **FOOTAGE**. Keep
+large local videos in one of these ignored/local data folders rather than
+committing them.

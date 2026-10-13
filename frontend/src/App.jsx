@@ -84,9 +84,19 @@ export default function App() {
   }, [conversations]);
 
   useEffect(() => {
-    Promise.allSettled([request("/api/videos")]).then(([videoResult]) => {
-      if (videoResult.status === "fulfilled") setVideos(videoResult.value);
-    });
+    let cancelled = false;
+    request("/api/videos/import-demo", { method: "POST" })
+      .catch((err) => {
+        if (!cancelled) setError(`Could not import staged demo videos: ${err.message}`);
+      })
+      .then(() => request("/api/videos"))
+      .then((items) => {
+        if (!cancelled) setVideos(items);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message);
+      });
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {

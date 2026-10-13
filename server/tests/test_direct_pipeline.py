@@ -291,3 +291,77 @@ def test_direct_upload_api_validates_pair_and_starts_direct_mode(tmp_path, monke
     assert pipeline.calls[0][0] == "video-test"
     assert pipeline.calls[0][1][0]["video_id"] == "sample"
     assert pipeline.calls[0][2] == "direct_json"
+
+
+def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch):
+    uploads_dir = tmp_path / "uploads"
+    repository_root = tmp_path / "project"
+    reference_dir = repository_root / "notebooks" / "directjsonreference"
+    video_dir = reference_dir / "video"
+    output_dir = reference_dir / "pipeline_outputs"
+    video_dir.mkdir(parents=True)
+    output_dir.mkdir(parents=True)
+    video_path = video_dir / "sample.mp4"
+    _make_video(video_path)
+    (output_dir / "sample.json").write_text(
+        json.dumps({"windows": _windows("sample")}), encoding="utf-8"
+    )
+    monkeypatch.setattr("server.app.api.routes_videos.paths.uploads_dir", uploads_dir)
+    monkeypatch.setattr("server.app.api.routes_videos.paths.root_dir", repository_root)
+
+    class StoreStub:
+        def __init__(self):
+            self.videos = {}
+            self.status_updates = []
+
+        def get_video(self, video_id):
+            return self.videos.get(video_id)
+
+        def update_video_status(self, video_id, status):
+            self.status_updates.append((video_id, status))
+            self.videos[video_id].status = status
+
+    class IngestorStub:
+        def __init__(self):
+            self.calls = []
+
+        def ingest_video(self, source_path, original_filename):
+            self.calls.append((source_path, original_filename))
+            video = VideoRecord(
+                video_id="video-test",
+                filename=original_filename,
+                file_path=str(source_path),
+                duration_sec=4.0,
+                fps=10.0,
+                frame_count=40,
+                resolution="96x64",
+            )
+            store.videos[video.video_id] = video
+            return video
+
+    class PipelineStub:
+        def __init__(self):
+            self.calls = []
+
+        def process_video(self, *args):
+            self.calls.append(args)
+
+    store = StoreStub()
+    ingestor = IngestorStub()
+    pipeline = PipelineStub()
+    app.dependency_overrides[get_metadata_store] = lambda: store
+    app.dependency_overrides[get_ingestor] = lambda: ingestor
+    app.dependency_overrides[get_pipeline] = lambda: pipeline
+    try:
+        response = TestClient(app).post("/api/videos/import-demo")
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert [video["filename"] for video in response.json()] == ["sample.mp4"]
+    assert response.json()[0]["status"] == "processing"
+    assert store.status_updates == [("video-test", "processing")]
+    assert len(ingestor.calls) == 1
+    assert pipeline.calls[0][0] == "video-test"
+    assert pipeline.calls[0][1][0]["video_id"] == "sample"
+    assert pipeline.calls[0][2] == "direct_json"
