@@ -3,14 +3,18 @@
 from pathlib import Path
 import re
 from typing import Dict, Any, List, Literal, Optional
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from server.src.retrieval.retriever import SurveillanceRetriever, QueryResult
-from server.app.api.deps import get_pipeline, get_retriever
+from server.app.api.deps import (
+    get_metadata_store,
+    get_pipeline,
+    get_retriever,
+    get_vector_store,
+)
+from server.src.pipeline.pipeline import SurveillancePipeline
 from server.src.storage.metadata_store import MetadataStore
 from server.src.storage.vector_store import VectorStore
-from server.app.api.deps import get_metadata_store, get_vector_store
-from server.src.pipeline.pipeline import SurveillancePipeline
 from server.src.utils.logger import logger
 
 router = APIRouter(prefix="/query", tags=["Query & Retrieval"])
@@ -34,6 +38,11 @@ _FOLLOW_UP_PATTERN = re.compile(
     r"then|next|before|after|again|more|also|what about|how about)\b",
     re.IGNORECASE,
 )
+_TIMELINE_PATTERN = re.compile(
+    r"\b(?:timeline|what happened|summari[sz]e|summary|overview|"
+    r"describe (?:the )?video|sequence of events)\b",
+    re.IGNORECASE,
+)
 
 
 @router.post("", response_model=QueryResult)
@@ -41,12 +50,26 @@ def natural_language_query(
     request: QueryRequest,
     retriever: SurveillanceRetriever = Depends(get_retriever),
     pipeline: SurveillancePipeline = Depends(get_pipeline),
+    store: MetadataStore = Depends(get_metadata_store),
 ):
     """Execute hybrid natural-language search over surveillance archive.
 
     Matches events using semantic vector search combined with structured metadata filtering
     (e.g., event type, anomaly category, time interval) and generates a grounded response.
     """
+    if request.video_id:
+        video = store.get_video(request.video_id)
+        if video and video.status in {"pending", "processing"}:
+            raise HTTPException(
+                status_code=409,
+                detail="This video's analysis has not completed. Start or wait for analysis to finish, then ask again.",
+            )
+        if video and video.status == "failed":
+            raise HTTPException(
+                status_code=409,
+                detail="This video's analysis failed. Retry its pipeline before asking questions about it.",
+            )
+
     latest_user_turn = next(
         (turn.content for turn in reversed(request.history) if turn.role == "user"),
         None,
@@ -55,13 +78,42 @@ def natural_language_query(
     if latest_user_turn and _FOLLOW_UP_PATTERN.search(request.query):
         retrieval_query = f"{latest_user_turn}\nFollow-up: {request.query}"
 
-    result = retriever.query(
-        query_text=retrieval_query,
-        top_k=request.top_k,
-        min_score=request.min_score,
-        video_id=request.video_id,
-    )
-    result.query = request.query
+    if request.video_id and _TIMELINE_PATTERN.search(request.query):
+        parsed = retriever.parser.parse(request.query)
+        events = store.get_events(video_id=request.video_id)
+        matches = [
+            {
+                "event_id": event.event_id,
+                "video_id": event.video_id,
+                "event_type": event.event_type,
+                "start_sec": event.start_sec,
+                "end_sec": event.end_sec,
+                "entity_ids": event.entity_ids,
+                "description": event.description,
+                "confidence": event.confidence,
+                "relevance_score": 1.0,
+                "anomaly_category": event.anomaly_category,
+                "clip_path": event.clip_path,
+            }
+            for event in events[:50]
+        ]
+        result = QueryResult(
+            query=request.query,
+            parsed_filters=parsed.model_dump(),
+            total_matches=len(matches),
+            matched_events=matches,
+            grounded_summary=retriever._generate_grounded_summary(
+                request.query, matches, parsed
+            ),
+        )
+    else:
+        result = retriever.query(
+            query_text=retrieval_query,
+            top_k=request.top_k,
+            min_score=request.min_score,
+            video_id=request.video_id,
+        )
+        result.query = request.query
 
     if result.matched_events:
         try:

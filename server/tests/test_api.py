@@ -3,7 +3,7 @@
 import io
 from types import SimpleNamespace
 from fastapi.testclient import TestClient
-from server.app.api.deps import get_pipeline, get_retriever
+from server.app.api.deps import get_metadata_store, get_pipeline, get_retriever
 from server.app.main import app
 from server.src.retrieval.retriever import QueryResult
 
@@ -107,6 +107,70 @@ def test_natural_language_query_uses_conversation_history_for_local_answer():
     assert retrieval_queries == [
         "What happened to the person?\nFollow-up: when did they leave?"
     ]
+
+
+def test_timeline_query_returns_chronological_events_without_semantic_retrieval():
+    events = [
+        SimpleNamespace(
+            event_id=f"event-{start}",
+            video_id="video-1",
+            event_type="activity",
+            start_sec=start,
+            end_sec=start + 1,
+            entity_ids=[],
+            description=f"Activity at {start} seconds.",
+            confidence=0.9,
+            anomaly_category="Normal",
+            clip_path=None,
+        )
+        for start in (4.0, 1.0)
+    ]
+    parser = SimpleNamespace(
+        parse=lambda query: SimpleNamespace(model_dump=lambda: {})
+    )
+    retriever = SimpleNamespace(
+        parser=parser,
+        query=lambda **kwargs: (_ for _ in ()).throw(AssertionError("semantic search should be skipped")),
+        _generate_grounded_summary=lambda query, matches, parsed: (
+            f"Retrieved {len(matches)} events."
+        ),
+    )
+    store = SimpleNamespace(
+        get_video=lambda video_id: SimpleNamespace(status="completed"),
+        get_events=lambda **kwargs: sorted(events, key=lambda event: event.start_sec),
+    )
+    vlm = SimpleNamespace(generate_grounded_answer=lambda *args: None)
+    app.dependency_overrides[get_metadata_store] = lambda: store
+    app.dependency_overrides[get_retriever] = lambda: retriever
+    app.dependency_overrides[get_pipeline] = lambda: SimpleNamespace(vlm=vlm)
+    try:
+        response = client.post("/api/query", json={
+            "query": "Tell me the timeline of what happened",
+            "video_id": "video-1",
+        })
+    finally:
+        app.dependency_overrides.pop(get_metadata_store, None)
+        app.dependency_overrides.pop(get_retriever, None)
+        app.dependency_overrides.pop(get_pipeline, None)
+
+    assert response.status_code == 200
+    assert [event["start_sec"] for event in response.json()["matched_events"]] == [1.0, 4.0]
+
+
+def test_query_for_processing_video_returns_clear_status():
+    app.dependency_overrides[get_metadata_store] = lambda: SimpleNamespace(
+        get_video=lambda video_id: SimpleNamespace(status="processing")
+    )
+    try:
+        response = client.post("/api/query", json={
+            "query": "What happened?",
+            "video_id": "video-1",
+        })
+    finally:
+        app.dependency_overrides.pop(get_metadata_store, None)
+
+    assert response.status_code == 409
+    assert "still processing" in response.json()["detail"]
 
 
 def test_frontend_ui():

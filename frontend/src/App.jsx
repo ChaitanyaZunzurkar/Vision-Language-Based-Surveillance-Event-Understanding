@@ -181,6 +181,7 @@ export default function App() {
   async function askQuestion(value = query) {
     const text = value.trim();
     if (!text || working) return;
+    if (["pending", "processing"].includes(videos.find((video) => video.video_id === scope)?.status)) return;
     let chatId = conversationId;
     if (!chatId) {
       const next = newConversation();
@@ -387,6 +388,7 @@ export default function App() {
     !eventsPreview.sourceVideoIds.every((id) => [eventsTarget.video_id, eventsTarget.filename.replace(/\.[^.]+$/, "")].includes(id)));
 
   const selectedVideo = videos.find((video) => video.video_id === scope) || null;
+  const selectedVideoAwaitingAnalysis = ["pending", "processing"].includes(selectedVideo?.status);
   const selectedEvent = events.find((event) => event.event_id === selectedEventId) || null;
   const playerVideo = videos.find((video) => video.video_id === selectedEvent?.video_id) || null;
 
@@ -467,13 +469,13 @@ export default function App() {
           </div>
 
       <div className="composer-wrap">
-            {selectedVideo && <div className="scope-chip"><Video size={14} /><span>Searching in <strong>{selectedVideo.filename}</strong></span><button onClick={() => setScope("")} aria-label="Clear footage filter"><X size={13} /></button></div>}
+            {selectedVideo && <div className="scope-chip"><Video size={14} /><span>{selectedVideoAwaitingAnalysis ? <>{selectedVideo.status === "pending" ? "Analysis has not started for" : "Analysis in progress for"} <strong>{selectedVideo.filename}</strong> · chat will be available when complete</> : <>Searching in <strong>{selectedVideo.filename}</strong></>}</span><button onClick={() => setScope("")} aria-label="Clear footage filter"><X size={13} /></button></div>}
             {notice && <div className="notice-banner"><span>{notice}</span><button onClick={() => setNotice("")} aria-label="Dismiss"><X size={14} /></button></div>}
             {error && <div className="error-banner"><span>{error}</span><button onClick={() => setError("")} aria-label="Dismiss"><X size={14} /></button></div>}
             <form className="composer" onSubmit={(event) => { event.preventDefault(); askQuestion(); }}>
               <button type="button" className="composer-attach" onClick={() => videoInput.current?.click()} title="Add surveillance footage" disabled={uploading}><Paperclip size={19} /></button>
-              <textarea value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ask about activity, people, or what happened…" rows={1} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); askQuestion(); } }} />
-              <div className="composer-actions"><button className="send-button" type="submit" disabled={!query.trim() || working} aria-label="Send message">{working ? <LoaderCircle size={17} className="spin" /> : <ArrowUp size={18} />}</button></div>
+              <textarea value={query} onChange={(event) => setQuery(event.target.value)} placeholder={selectedVideoAwaitingAnalysis ? "Waiting for video analysis to finish…" : "Ask about activity, people, or what happened…"} rows={1} disabled={selectedVideoAwaitingAnalysis} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); askQuestion(); } }} />
+              <div className="composer-actions"><button className="send-button" type="submit" disabled={!query.trim() || working || selectedVideoAwaitingAnalysis} aria-label="Send message">{working ? <LoaderCircle size={17} className="spin" /> : <ArrowUp size={18} />}</button></div>
             </form>
           </div>
         </section>}
