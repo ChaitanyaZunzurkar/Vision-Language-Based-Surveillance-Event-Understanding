@@ -51,7 +51,9 @@ def _process_video_task(pipeline, video_id, *args):
             _active_video_pipelines.discard(video_id)
 
 
-def _load_staged_windows(video_path: Path, json_path: Path):
+def _load_staged_windows(
+    video_path: Path, json_path: Path, video_name: Optional[str] = None
+):
     """Read and validate a staged video's canonical temporal-window JSON."""
     if json_path.stat().st_size > 50 * 1024 * 1024:
         raise ValueError(f"Reference JSON exceeds the 50 MB limit: {json_path.name}")
@@ -60,8 +62,9 @@ def _load_staged_windows(video_path: Path, json_path: Path):
     payload = json.loads(source_json_bytes.decode("utf-8-sig"))
     video_info = get_video_info(video_path)
     payload = clip_event_times_to_video(payload, video_info["duration_sec"])
+    expected_video_name = video_name or video_path.stem
     windows = validate_windows_payload(
-        payload, {video_path.stem}, video_info["duration_sec"]
+        payload, {expected_video_name}, video_info["duration_sec"]
     )
     top_level_anomaly = SurveillancePipeline._uploaded_anomaly_category(payload)
     if top_level_anomaly:
@@ -362,9 +365,10 @@ def recover_staged_imports(
             continue
 
         video_path = Path(record.file_path)
-        json_path = output_json_dir / f"{video_path.stem}.json"
+        original_video_stem = Path(record.filename).stem
+        json_path = output_json_dir / f"{original_video_stem}.json"
         if not json_path.is_file():
-            json_path = video_path.with_suffix(".json")
+            json_path = video_path.parent / f"{original_video_stem}.json"
         if not json_path.is_file():
             continue
 
@@ -377,7 +381,9 @@ def recover_staged_imports(
             continue
 
         try:
-            windows, source_json_sha256 = _load_staged_windows(video_path, json_path)
+            windows, source_json_sha256 = _load_staged_windows(
+                video_path, json_path, original_video_stem
+            )
         except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
             error_message = f"Invalid staged pair {video_path.name} + {json_path.name}: {exc}"
             logger.exception(error_message)

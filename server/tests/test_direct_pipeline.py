@@ -473,11 +473,11 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
 
 def test_recover_staged_api_requeues_interrupted_processing_video(tmp_path, monkeypatch):
     repository_root = tmp_path / "project"
-    video_dir = repository_root / "notebooks" / "directjsonreference" / "video"
+    video_dir = tmp_path / "uploads"
+    video_dir.mkdir()
     output_dir = repository_root / "notebooks" / "directjsonreference" / "pipeline_outputs"
-    video_dir.mkdir(parents=True)
     output_dir.mkdir(parents=True)
-    video_path = video_dir / "sample.mp4"
+    video_path = video_dir / "vid_123456789abc_sample.mp4"
     _make_video(video_path)
     json_path = output_dir / "sample.json"
     json_path.write_text(
