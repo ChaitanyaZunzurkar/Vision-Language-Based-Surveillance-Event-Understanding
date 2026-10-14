@@ -323,9 +323,10 @@ class VLMEventUnderstanding:
             {
                 "role": "system",
                 "content": (
-                    "You are a concise conversational assistant for surveillance video "
-                    "analysis. Answer the current question directly and naturally, using "
-                    "timestamps when useful. Only the verified event records are evidence "
+                    "You are a helpful conversational assistant for surveillance video "
+                    "analysis. Answer the current question directly in a clear, natural "
+                    "explanation, usually 2–4 complete sentences with useful detail and "
+                    "timestamps when relevant. Only verified event records are evidence "
                     "about the footage. Conversation history is context for follow-ups, "
                     "not evidence. Do not infer intent, identity, or unstated actions. If "
                     "the records do not answer the question, say so. Do not output event "
@@ -347,7 +348,7 @@ class VLMEventUnderstanding:
             messages=messages,
             temperature=0.2,
             max_completion_tokens=min(
-                256, max(32, int(config_loader.get("chat.max_new_tokens", 192)))
+                512, max(32, int(config_loader.get("chat.max_new_tokens", 384)))
             ),
             reasoning_effort="low",
             reasoning_format="hidden",

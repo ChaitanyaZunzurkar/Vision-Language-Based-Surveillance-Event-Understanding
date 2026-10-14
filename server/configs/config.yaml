@@ -76,7 +76,7 @@ vlm:
   temperature: 0.2
 
 chat:
-  max_new_tokens: 192
+  max_new_tokens: 384
 
 anomaly:
   nn_model_weights: "models/anomaly/nn_models_fixed.pt"

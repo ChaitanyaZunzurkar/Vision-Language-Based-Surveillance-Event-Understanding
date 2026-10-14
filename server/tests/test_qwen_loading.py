@@ -175,7 +175,7 @@ def test_groq_client_uses_env_model_and_grounded_event_context(monkeypatch):
     assert calls["completion_options"]["model"] == "openai/gpt-oss-20b"
     assert calls["completion_options"]["reasoning_effort"] == "low"
     assert calls["completion_options"]["reasoning_format"] == "hidden"
-    assert calls["completion_options"]["max_completion_tokens"] == 192
+    assert calls["completion_options"]["max_completion_tokens"] == 384
     assert calls["completion_options"]["messages"][1] == {
         "role": "user",
         "content": "Earlier",
