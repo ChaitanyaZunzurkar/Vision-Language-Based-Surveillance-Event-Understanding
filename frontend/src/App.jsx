@@ -647,7 +647,21 @@ function Message({ message, videos, onProcess, onImport, activeClip, onPlay }) {
       {message.result && <>
         <div className="result-meta"><span className="grounded-pill"><Check size={12} /> MATCHING EVENTS</span><span>{message.result.total_matches} records</span></div>
         {message.result.matched_events?.length > 0 && <div className="event-results">
-          {message.result.matched_events.map((event) => <EventCard key={event.event_id} event={event} active={activeClip === event.event_id} onPlay={() => onPlay(activeClip === event.event_id ? null : event.event_id)} />)}
+          {message.result.matched_events.map((event) => {
+            const eventVideo = videos.find((item) => item.video_id === event.video_id);
+            const start = Math.max(0, Number(event.start_sec) || 0);
+            const end = Math.max(start, Number(event.end_sec) || start);
+            const playbackUrl = eventVideo?.stream_url
+              ? `${eventVideo.stream_url}#t=${start},${end}`
+              : event.clip_url;
+            return <EventCard
+              key={event.event_id}
+              event={event}
+              playbackUrl={playbackUrl}
+              active={activeClip === event.event_id}
+              onPlay={() => onPlay(activeClip === event.event_id ? null : event.event_id)}
+            />;
+          })}
         </div>}
       </>}
     </div>
@@ -668,13 +682,13 @@ function VideoWorkflow({ video, onProcess, onImport }) {
   </div>;
 }
 
-function EventCard({ event, active, onPlay }) {
+function EventCard({ event, playbackUrl, active, onPlay }) {
   return <article className="event-card">
     <div className="event-card-top"><span className="event-type"><span className="event-type-mark" />{(event.event_type || "event").replaceAll("_", " ")}</span><span className="event-confidence">{Math.round((event.confidence || 0) * 100)}% confidence</span></div>
     <p>{event.description}</p>
     <div className="event-card-footer"><span><Clock3 size={13} />{formatTime(event.start_sec)} – {formatTime(event.end_sec)}</span><span title="Anomaly classification"><Shield size={13} />{event.anomaly_category || "Unassessed"}{event.anomaly_confidence > 0 ? ` · ${Math.round(event.anomaly_confidence * 100)}%` : ""}</span>{event.entity_ids?.length > 0 && <span><Camera size={13} />Track {event.entity_ids.join(", ")}</span>}
-      {event.clip_url && <button className="evidence-link" onClick={onPlay}>{active ? "Close clip" : "Play evidence"}<ArrowUpRight size={13} /></button>}
+      {playbackUrl && <button className="evidence-link" onClick={onPlay}>{active ? "Close playback" : "Play event"}<ArrowUpRight size={13} /></button>}
     </div>
-    {active && event.clip_url && <video className="evidence-video" controls playsInline src={event.clip_url} />}
+    {active && playbackUrl && <video className="evidence-video" controls playsInline autoPlay src={playbackUrl} />}
   </article>;
 }
