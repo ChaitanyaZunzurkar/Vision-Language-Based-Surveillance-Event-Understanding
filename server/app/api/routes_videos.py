@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Optional
 import hashlib
 import shutil
+from threading import Lock
 import uuid
 import json
 import aiofiles
@@ -24,6 +25,22 @@ from server.src.storage.vector_store import VectorStore
 from server.app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
 
 router = APIRouter(prefix="/videos", tags=["Videos"])
+_active_staged_imports = set()
+_active_staged_imports_lock = Lock()
+
+
+def _process_staged_video(pipeline, video_id, windows, source_json_sha256):
+    """Run one staged import and release its in-process duplicate guard."""
+    try:
+        pipeline.process_video(
+            video_id,
+            windows,
+            "direct_json",
+            source_json_sha256,
+        )
+    finally:
+        with _active_staged_imports_lock:
+            _active_staged_imports.discard(video_id)
 
 
 class VideoResponse(BaseModel):
@@ -220,9 +237,9 @@ def import_demo_videos(
             }:
                 continue
 
-            json_path = video_path.with_suffix(".json")
+            json_path = output_json_dir / f"{video_path.stem}.json"
             if not json_path.is_file():
-                json_path = output_json_dir / f"{video_path.stem}.json"
+                json_path = video_path.with_suffix(".json")
             if not json_path.is_file():
                 logger.warning("Skipping video without matching JSON: %s", video_path.name)
                 continue
@@ -269,7 +286,7 @@ def import_demo_videos(
 
             analysis_path = paths.outputs_dir / f"{record.video_id}_analysis.json"
             processed_json_matches = False
-            if record.status == "completed" and analysis_path.is_file():
+            if analysis_path.is_file():
                 try:
                     analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
                     processed_json_matches = (
@@ -281,17 +298,28 @@ def import_demo_videos(
                         video_path.name,
                     )
 
-            if record.status != "processing" and not processed_json_matches:
-                store.update_video_status(record.video_id, "processing")
-                record.status = "processing"
-                record.error_message = None
-                background_tasks.add_task(
-                    pipeline.process_video,
-                    record.video_id,
-                    windows,
-                    "direct_json",
-                    source_json_sha256,
-                )
+            if processed_json_matches:
+                if record.status != "completed":
+                    store.update_video_status(record.video_id, "completed")
+                    record.status = "completed"
+                    record.error_message = None
+            else:
+                with _active_staged_imports_lock:
+                    already_queued = record.video_id in _active_staged_imports
+                    if not already_queued:
+                        _active_staged_imports.add(record.video_id)
+                if not already_queued:
+                    if record.status != "processing":
+                        store.update_video_status(record.video_id, "processing")
+                        record.status = "processing"
+                    record.error_message = None
+                    background_tasks.add_task(
+                        _process_staged_video,
+                        pipeline,
+                        record.video_id,
+                        windows,
+                        source_json_sha256,
+                    )
             imported.append(record)
 
     return [to_response(video) for video in imported]

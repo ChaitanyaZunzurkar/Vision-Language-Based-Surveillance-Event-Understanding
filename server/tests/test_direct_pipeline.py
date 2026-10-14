@@ -364,11 +364,17 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
     payload["windows"][0]["events"][0]["anomaly_confidence"] = 0.91
     payload["windows"][0]["events"][0]["end"] = 10.0
     payload["windows"][0]["events"][0]["abs_end"] = 10.0
+    stale_sidecar = {"windows": _windows("sample")}
+    stale_sidecar["windows"][0]["events"][0]["anomaly_class"] = "Normal"
+    (video_dir / "sample.json").write_text(
+        json.dumps(stale_sidecar), encoding="utf-8"
+    )
     (output_dir / "sample.json").write_text(
         json.dumps(payload), encoding="utf-8"
     )
     monkeypatch.setattr("server.app.api.routes_videos.paths.uploads_dir", uploads_dir)
     monkeypatch.setattr("server.app.api.routes_videos.paths.root_dir", repository_root)
+    monkeypatch.setattr("server.app.api.routes_videos.paths.outputs_dir", tmp_path / "outputs")
 
     class StoreStub:
         def __init__(self):
@@ -431,3 +437,31 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
     assert pipeline.calls[0][3] == hashlib.sha256(
         (output_dir / "sample.json").read_bytes()
     ).hexdigest()
+
+    app.dependency_overrides[get_metadata_store] = lambda: store
+    app.dependency_overrides[get_ingestor] = lambda: ingestor
+    app.dependency_overrides[get_pipeline] = lambda: pipeline
+    try:
+        store.videos["video-test"].status = "processing"
+        response = TestClient(app).post("/api/videos/import-demo")
+        assert response.status_code == 200
+        assert response.json()[0]["status"] == "processing"
+        assert len(pipeline.calls) == 2
+
+        analysis_path = tmp_path / "outputs" / "video-test_analysis.json"
+        analysis_path.parent.mkdir(parents=True, exist_ok=True)
+        analysis_path.write_text(
+            json.dumps({
+                "source_json_sha256": hashlib.sha256(
+                    (output_dir / "sample.json").read_bytes()
+                ).hexdigest()
+            }),
+            encoding="utf-8",
+        )
+        response = TestClient(app).post("/api/videos/import-demo")
+        assert response.status_code == 200
+        assert response.json()[0]["status"] == "completed"
+        assert store.videos["video-test"].status == "completed"
+        assert len(pipeline.calls) == 2
+    finally:
+        app.dependency_overrides.clear()

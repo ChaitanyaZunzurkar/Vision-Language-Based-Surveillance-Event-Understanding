@@ -126,10 +126,12 @@ loading; it may use substantial RAM/VRAM.
 
 On UI startup, the frontend asks the backend to import staged reference pairs
 from `server\data\uploads\demo` and
-`notebooks\directjsonreference\video` (also accepts `videos`). Each video is
-paired with a same-name JSON sidecar or the corresponding file in
-`notebooks\directjsonreference\pipeline_outputs`. Valid pairs are registered
-and processed through direct-JSON mode, then appear under **FOOTAGE**. Keep
-large local videos in one of these ignored/local data folders rather than
-committing them. Event timestamps beyond the source video duration are clipped
-to its end, and events starting after the video ends are discarded.
+`notebooks\directjsonreference\video` (also accepts `videos`). Each video uses
+the same-name JSON in `notebooks\directjsonreference\pipeline_outputs` as the
+canonical event and anomaly source when available; a same-name sidecar is only
+used when no canonical JSON exists. Imports compare source hashes, recover
+interrupted processing after a backend restart, and reconcile an already-current
+analysis to completed. Valid pairs appear under **FOOTAGE**. Keep large local
+videos in one of these ignored/local data folders rather than committing them.
+Event timestamps beyond the source video duration are clipped to its end, and
+events starting after the video ends are discarded.
