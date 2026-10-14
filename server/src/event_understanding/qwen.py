@@ -210,10 +210,10 @@ class VLMEventUnderstanding:
                     answer = self._generate_groq_answer(
                         question, facts, recent_history
                     )
-                    if self._is_valid_chat_answer(answer):
+                    if self._is_valid_groq_answer(answer):
                         return answer
                     logger.warning(
-                        "Groq returned an empty or invalid chat answer; falling back to Qwen"
+                        "Groq returned no final text answer; falling back to Qwen"
                     )
                 except Exception:
                     logger.exception("Groq chat answer failed; falling back to local Qwen")
@@ -298,6 +298,10 @@ class VLMEventUnderstanding:
         )
 
     @staticmethod
+    def _is_valid_groq_answer(answer: Optional[str]) -> bool:
+        return bool(answer and answer.strip())
+
+    @staticmethod
     def _generate_groq_answer(
         question: str,
         facts: List[Dict[str, Any]],
@@ -342,9 +346,11 @@ class VLMEventUnderstanding:
             model=model,
             messages=messages,
             temperature=0.2,
-            max_tokens=min(
+            max_completion_tokens=min(
                 256, max(32, int(config_loader.get("chat.max_new_tokens", 192)))
             ),
+            reasoning_effort="low",
+            reasoning_format="hidden",
         )
         if not response.choices:
             return ""

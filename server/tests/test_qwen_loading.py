@@ -112,7 +112,7 @@ def test_groq_chat_uses_configured_model_without_loading_qwen(monkeypatch):
 
     def groq_answer(question, facts, history):
         calls.append((question, facts, history))
-        return "A person walks across the hallway between 1 and 2 seconds."
+        return "A person walked across the hallway."
 
     monkeypatch.setattr(vlm, "_generate_groq_answer", groq_answer)
     monkeypatch.setattr(
@@ -125,7 +125,7 @@ def test_groq_chat_uses_configured_model_without_loading_qwen(monkeypatch):
         "What happened?", _chat_evidence(), [{"role": "user", "content": "Earlier"}]
     )
 
-    assert answer == "A person walks across the hallway between 1 and 2 seconds."
+    assert answer == "A person walked across the hallway."
     assert calls[0][0] == "What happened?"
     assert calls[0][1][0]["event_id"] == "event-1"
     assert calls[0][2] == [{"role": "user", "content": "Earlier"}]
@@ -173,6 +173,9 @@ def test_groq_client_uses_env_model_and_grounded_event_context(monkeypatch):
         "timeout": 12.0,
     }
     assert calls["completion_options"]["model"] == "openai/gpt-oss-20b"
+    assert calls["completion_options"]["reasoning_effort"] == "low"
+    assert calls["completion_options"]["reasoning_format"] == "hidden"
+    assert calls["completion_options"]["max_completion_tokens"] == 192
     assert calls["completion_options"]["messages"][1] == {
         "role": "user",
         "content": "Earlier",
@@ -200,3 +203,8 @@ def test_groq_chat_failure_falls_back_to_qwen(monkeypatch):
     )
 
     assert answer == "Qwen fallback answer based on the event records."
+
+
+def test_groq_short_final_answer_does_not_trigger_qwen_fallback():
+    assert VLMEventUnderstanding._is_valid_groq_answer("No relevant event.")
+    assert not VLMEventUnderstanding._is_valid_groq_answer("")
