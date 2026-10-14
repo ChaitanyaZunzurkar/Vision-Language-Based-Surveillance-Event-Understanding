@@ -25,22 +25,50 @@ from server.src.storage.vector_store import VectorStore
 from server.app.api.deps import get_metadata_store, get_ingestor, get_pipeline, get_vector_store
 
 router = APIRouter(prefix="/videos", tags=["Videos"])
-_active_staged_imports = set()
-_active_staged_imports_lock = Lock()
+_active_video_pipelines = set()
+_active_video_pipelines_lock = Lock()
 
 
-def _process_staged_video(pipeline, video_id, windows, source_json_sha256):
-    """Run one staged import and release its in-process duplicate guard."""
+def _mark_video_pipeline_active(video_id):
+    with _active_video_pipelines_lock:
+        if video_id in _active_video_pipelines:
+            return False
+        _active_video_pipelines.add(video_id)
+        return True
+
+
+def _is_video_pipeline_active(video_id):
+    with _active_video_pipelines_lock:
+        return video_id in _active_video_pipelines
+
+
+def _process_video_task(pipeline, video_id, *args):
+    """Run a video pipeline and release its in-process duplicate guard."""
     try:
-        pipeline.process_video(
-            video_id,
-            windows,
-            "direct_json",
-            source_json_sha256,
-        )
+        pipeline.process_video(video_id, *args)
     finally:
-        with _active_staged_imports_lock:
-            _active_staged_imports.discard(video_id)
+        with _active_video_pipelines_lock:
+            _active_video_pipelines.discard(video_id)
+
+
+def _load_staged_windows(video_path: Path, json_path: Path):
+    """Read and validate a staged video's canonical temporal-window JSON."""
+    if json_path.stat().st_size > 50 * 1024 * 1024:
+        raise ValueError(f"Reference JSON exceeds the 50 MB limit: {json_path.name}")
+    source_json_bytes = json_path.read_bytes()
+    source_json_sha256 = hashlib.sha256(source_json_bytes).hexdigest()
+    payload = json.loads(source_json_bytes.decode("utf-8-sig"))
+    video_info = get_video_info(video_path)
+    payload = clip_event_times_to_video(payload, video_info["duration_sec"])
+    windows = validate_windows_payload(
+        payload, {video_path.stem}, video_info["duration_sec"]
+    )
+    top_level_anomaly = SurveillancePipeline._uploaded_anomaly_category(payload)
+    if top_level_anomaly:
+        for window in windows:
+            if not SurveillancePipeline._uploaded_anomaly_category(window):
+                window["anomaly_category"] = top_level_anomaly
+    return windows, source_json_sha256
 
 
 class VideoResponse(BaseModel):
@@ -114,7 +142,10 @@ async def upload_video(
 
         # Optionally trigger background pipeline
         if auto_run:
-            background_tasks.add_task(pipeline.process_video, record.video_id)
+            if _mark_video_pipeline_active(record.video_id):
+                background_tasks.add_task(
+                    _process_video_task, pipeline, record.video_id
+                )
 
         return to_response(record)
 
@@ -182,10 +213,13 @@ async def upload_video_with_windows(
             temp_path.unlink()
         if record.status == "processing":
             raise HTTPException(status_code=409, detail="This video is already being processed")
+        if not _mark_video_pipeline_active(record.video_id):
+            raise HTTPException(status_code=409, detail="This video is already being processed")
         store.update_video_status(record.video_id, "processing")
         record.status = "processing"
         background_tasks.add_task(
-            pipeline.process_video,
+            _process_video_task,
+            pipeline,
             record.video_id,
             windows,
             "direct_json",
@@ -249,26 +283,14 @@ def import_demo_videos(
                     detail=f"Reference JSON exceeds the 50 MB limit: {json_path.name}",
                 )
             try:
-                source_json_bytes = json_path.read_bytes()
-                source_json_sha256 = hashlib.sha256(source_json_bytes).hexdigest()
-                payload = json.loads(source_json_bytes.decode("utf-8-sig"))
-                video_info = get_video_info(video_path)
-                payload = clip_event_times_to_video(
-                    payload, video_info["duration_sec"]
-                )
-                windows = validate_windows_payload(
-                    payload, {video_path.stem}, video_info["duration_sec"]
+                windows, source_json_sha256 = _load_staged_windows(
+                    video_path, json_path
                 )
             except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
                 raise HTTPException(
                     status_code=400,
                     detail=f"Invalid video/JSON pair {video_path.name} + {json_path.name}: {exc}",
                 ) from exc
-            top_level_anomaly = SurveillancePipeline._uploaded_anomaly_category(payload)
-            if top_level_anomaly:
-                for window in windows:
-                    if not SurveillancePipeline._uploaded_anomaly_category(window):
-                        window["anomaly_category"] = top_level_anomaly
 
             hasher = hashlib.md5()
             with video_path.open("rb") as video_file:
@@ -304,25 +326,93 @@ def import_demo_videos(
                     record.status = "completed"
                     record.error_message = None
             else:
-                with _active_staged_imports_lock:
-                    already_queued = record.video_id in _active_staged_imports
-                    if not already_queued:
-                        _active_staged_imports.add(record.video_id)
-                if not already_queued:
+                if _mark_video_pipeline_active(record.video_id):
                     if record.status != "processing":
                         store.update_video_status(record.video_id, "processing")
                         record.status = "processing"
                     record.error_message = None
                     background_tasks.add_task(
-                        _process_staged_video,
+                        _process_video_task,
                         pipeline,
                         record.video_id,
                         windows,
+                        "direct_json",
                         source_json_sha256,
                     )
             imported.append(record)
 
     return [to_response(video) for video in imported]
+
+
+@router.post("/recover-staged", response_model=List[VideoResponse])
+def recover_staged_imports(
+    background_tasks: BackgroundTasks,
+    store: MetadataStore = Depends(get_metadata_store),
+    pipeline: SurveillancePipeline = Depends(get_pipeline),
+):
+    """Resume staged imports orphaned by a backend restart."""
+    reference_dir = paths.root_dir / "notebooks" / "directjsonreference"
+    output_json_dir = reference_dir / "pipeline_outputs"
+    recovered = []
+
+    for record in store.list_videos():
+        if record.status != "processing":
+            continue
+        if _is_video_pipeline_active(record.video_id):
+            continue
+
+        video_path = Path(record.file_path)
+        json_path = output_json_dir / f"{video_path.stem}.json"
+        if not json_path.is_file():
+            json_path = video_path.with_suffix(".json")
+        if not json_path.is_file():
+            continue
+
+        if not video_path.is_file():
+            error_message = f"Staged video file is missing: {video_path}"
+            store.update_video_status(record.video_id, "failed", error_message)
+            record.status = "failed"
+            record.error_message = error_message
+            recovered.append(record)
+            continue
+
+        try:
+            windows, source_json_sha256 = _load_staged_windows(video_path, json_path)
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+            error_message = f"Invalid staged pair {video_path.name} + {json_path.name}: {exc}"
+            logger.exception(error_message)
+            store.update_video_status(record.video_id, "failed", error_message)
+            record.status = "failed"
+            record.error_message = error_message
+            recovered.append(record)
+            continue
+
+        analysis_path = paths.outputs_dir / f"{record.video_id}_analysis.json"
+        try:
+            analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+            analysis = {}
+        if analysis.get("source_json_sha256") == source_json_sha256:
+            if record.status != "completed":
+                store.update_video_status(record.video_id, "completed")
+                record.status = "completed"
+                record.error_message = None
+            recovered.append(record)
+            continue
+
+        if _mark_video_pipeline_active(record.video_id):
+            record.error_message = None
+            background_tasks.add_task(
+                _process_video_task,
+                pipeline,
+                record.video_id,
+                windows,
+                "direct_json",
+                source_json_sha256,
+            )
+        recovered.append(record)
+
+    return [to_response(video) for video in recovered]
 
 
 @router.get("/{video_id}", response_model=VideoResponse)

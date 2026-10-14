@@ -8,6 +8,11 @@ from fastapi.responses import FileResponse
 from server.src.storage.metadata_store import MetadataStore
 from server.src.pipeline.pipeline import SurveillancePipeline
 from server.app.api.deps import get_metadata_store, get_pipeline
+from server.app.api.routes_videos import (
+    _is_video_pipeline_active,
+    _mark_video_pipeline_active,
+    _process_video_task,
+)
 from server.src.utils.logger import logger
 from server.src.utils.paths import paths
 
@@ -33,7 +38,14 @@ def run_pipeline(
     if not video:
         raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
 
-    if video.status == "processing":
+    if video.status == "processing" and _is_video_pipeline_active(video_id):
+        return {
+            "video_id": video_id,
+            "status": "processing",
+            "message": "Pipeline is already running for this video.",
+        }
+
+    if not _mark_video_pipeline_active(video_id):
         return {
             "video_id": video_id,
             "status": "processing",
@@ -41,7 +53,7 @@ def run_pipeline(
         }
 
     if run_in_background:
-        background_tasks.add_task(pipeline.process_video, video_id)
+        background_tasks.add_task(_process_video_task, pipeline, video_id)
         return {
             "video_id": video_id,
             "status": "processing",
@@ -50,7 +62,7 @@ def run_pipeline(
     else:
         # Run synchronously
         try:
-            result = pipeline.process_video(video_id)
+            result = _process_video_task(pipeline, video_id)
             return result
         except Exception as e:
             raise HTTPException(

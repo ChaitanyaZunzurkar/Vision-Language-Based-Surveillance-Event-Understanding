@@ -469,3 +469,106 @@ def test_import_demo_api_registers_matching_sidecar_pairs(tmp_path, monkeypatch)
         assert len(pipeline.calls) == 2
     finally:
         app.dependency_overrides.clear()
+
+
+def test_recover_staged_api_requeues_interrupted_processing_video(tmp_path, monkeypatch):
+    repository_root = tmp_path / "project"
+    video_dir = repository_root / "notebooks" / "directjsonreference" / "video"
+    output_dir = repository_root / "notebooks" / "directjsonreference" / "pipeline_outputs"
+    video_dir.mkdir(parents=True)
+    output_dir.mkdir(parents=True)
+    video_path = video_dir / "sample.mp4"
+    _make_video(video_path)
+    json_path = output_dir / "sample.json"
+    json_path.write_text(
+        json.dumps({"windows": _windows("sample")}), encoding="utf-8"
+    )
+    monkeypatch.setattr("server.app.api.routes_videos.paths.root_dir", repository_root)
+    monkeypatch.setattr(
+        "server.app.api.routes_videos.paths.outputs_dir", tmp_path / "outputs"
+    )
+
+    video = VideoRecord(
+        video_id="video-test",
+        filename="sample.mp4",
+        file_path=str(video_path),
+        duration_sec=4.0,
+        fps=10.0,
+        frame_count=40,
+        resolution="96x64",
+        status="processing",
+    )
+
+    class StoreStub:
+        def __init__(self):
+            self.status_updates = []
+
+        def list_videos(self):
+            return [video]
+
+        def update_video_status(self, video_id, status, error_message=None):
+            self.status_updates.append((video_id, status, error_message))
+            video.status = status
+            video.error_message = error_message
+
+    class PipelineStub:
+        def __init__(self):
+            self.calls = []
+
+        def process_video(self, *args):
+            self.calls.append(args)
+
+    store = StoreStub()
+    pipeline = PipelineStub()
+    app.dependency_overrides[get_metadata_store] = lambda: store
+    app.dependency_overrides[get_pipeline] = lambda: pipeline
+    try:
+        response = TestClient(app).post("/api/videos/recover-staged")
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json()[0]["status"] == "processing"
+    assert len(pipeline.calls) == 1
+    assert pipeline.calls[0][0] == "video-test"
+    assert pipeline.calls[0][1][0]["video_id"] == "sample"
+    assert pipeline.calls[0][2] == "direct_json"
+    assert pipeline.calls[0][3] == hashlib.sha256(json_path.read_bytes()).hexdigest()
+
+
+def test_recover_staged_api_ignores_unpaired_video_processing(tmp_path, monkeypatch):
+    video_path = tmp_path / "ordinary-upload.mp4"
+    _make_video(video_path)
+    monkeypatch.setattr(
+        "server.app.api.routes_videos.paths.root_dir", tmp_path / "project"
+    )
+    monkeypatch.setattr(
+        "server.app.api.routes_videos.paths.outputs_dir", tmp_path / "outputs"
+    )
+    video = VideoRecord(
+        video_id="ordinary-video",
+        filename=video_path.name,
+        file_path=str(video_path),
+        duration_sec=4.0,
+        fps=10.0,
+        frame_count=40,
+        resolution="96x64",
+        status="processing",
+    )
+
+    class StoreStub:
+        def list_videos(self):
+            return [video]
+
+        def update_video_status(self, *args, **kwargs):
+            pytest.fail("Unpaired uploads must not be changed by staged recovery")
+
+    app.dependency_overrides[get_metadata_store] = lambda: StoreStub()
+    try:
+        response = TestClient(app).post("/api/videos/recover-staged")
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json() == []
+    assert video.status == "processing"

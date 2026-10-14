@@ -151,4 +151,6 @@ Event timestamps beyond the source video duration are clipped to its end, and
 events starting after the video ends are discarded. Because these JSONs already
 contain event timestamps and chat playback seeks the original video, direct-JSON
 processing skips redundant per-event clip encoding; video-only analysis still
-generates evidence clips.
+generates evidence clips. If the backend restarts while the frontend remains
+open, the frontend periodically asks the backend to resume staged videos left
+in `processing`; matching completed analysis files are reconciled automatically.

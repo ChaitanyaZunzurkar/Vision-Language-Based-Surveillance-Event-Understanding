@@ -74,6 +74,7 @@ export default function App() {
   const [notice, setNotice] = useState("");
   const videoInput = useRef(null);
   const bottomRef = useRef(null);
+  const lastStagedRecoveryAt = useRef(0);
 
   const current = conversations.find((item) => item.id === conversationId) || null;
   const messages = current?.messages || [];
@@ -104,6 +105,15 @@ export default function App() {
     const timer = setInterval(async () => {
       try {
         const currentVideos = await request("/api/videos");
+        const shouldRecoverStaged = currentVideos.some(
+          (video) => video.status === "processing",
+        ) && Date.now() - lastStagedRecoveryAt.current >= 10000;
+        if (shouldRecoverStaged) {
+          lastStagedRecoveryAt.current = Date.now();
+          await request("/api/videos/recover-staged", { method: "POST" });
+          setVideos(await request("/api/videos"));
+          return;
+        }
         setVideos(currentVideos);
       } catch { /* keep the last visible state while the server recovers */ }
     }, 2200);
