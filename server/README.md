@@ -134,4 +134,7 @@ interrupted processing after a backend restart, and reconcile an already-current
 analysis to completed. Valid pairs appear under **FOOTAGE**. Keep large local
 videos in one of these ignored/local data folders rather than committing them.
 Event timestamps beyond the source video duration are clipped to its end, and
-events starting after the video ends are discarded.
+events starting after the video ends are discarded. Because these JSONs already
+contain event timestamps and chat playback seeks the original video, direct-JSON
+processing skips redundant per-event clip encoding; video-only analysis still
+generates evidence clips.

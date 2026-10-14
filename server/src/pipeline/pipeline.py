@@ -427,9 +427,11 @@ class SurveillancePipeline:
                         } if anomaly and "anomaly_probability" in anomaly.metadata else {}),
                     }
                     event["event_id"] = event_id
-                    clip_path = self.clip_generator.cut_evidence_clip(
-                        video_path, start_sec, end_sec, event_id, video.duration_sec
-                    )
+                    clip_path = None
+                    if pipeline_mode != "direct_json":
+                        clip_path = self.clip_generator.cut_evidence_clip(
+                            video_path, start_sec, end_sec, event_id, video.duration_sec
+                        )
                     entity_ids = [
                         int(track_id)
                         for track_id in (

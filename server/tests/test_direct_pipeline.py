@@ -215,6 +215,9 @@ def test_direct_json_pipeline_skips_tracking_and_writes_analysis_json(tmp_path, 
 
     pipeline = SurveillancePipeline(store=store, vec_store=VectorStoreStub())
     pipeline.clip_generator.output_dir = tmp_path / "clips"
+    pipeline.clip_generator.cut_evidence_clip = lambda *args, **kwargs: (
+        pytest.fail("Direct JSON mode must not re-encode clips for timestamped events")
+    )
     windows = _windows("sample")
     windows[0]["events"][0]["anomaly_class"] = "Robbery"
     windows[0]["events"][0]["anomaly_confidence"] = 0.91
@@ -248,6 +251,7 @@ def test_direct_json_pipeline_skips_tracking_and_writes_analysis_json(tmp_path, 
     assert output["windows"][0]["events"][0]["anomaly_prediction"]["source"] == "uploaded_json"
     assert store.get_events(video_id="video-test")[0].start_sec == 1.0
     assert store.get_events(video_id="video-test")[0].anomaly_category == "Robbery"
+    assert store.get_events(video_id="video-test")[0].clip_path is None
 
 
 def test_direct_json_anomaly_labels_are_used_instead_of_running_prediction():
