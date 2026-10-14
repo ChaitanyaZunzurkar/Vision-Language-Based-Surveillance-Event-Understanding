@@ -31,6 +31,7 @@ server/*.sqlite3
 Thumbs.db
 .env
 .env.*
+!server/.env.example
 .vscode/
 .idea/
 

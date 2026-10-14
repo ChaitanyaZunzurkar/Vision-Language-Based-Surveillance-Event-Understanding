@@ -7,6 +7,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from server.src.utils.paths import paths
+from dotenv import load_dotenv
+
+load_dotenv(paths.server_dir / ".env", override=False)
+
 from server.src.utils.logger import logger
 from server.src.config.loader import config_loader
 from server.src.storage.metadata_store import metadata_store

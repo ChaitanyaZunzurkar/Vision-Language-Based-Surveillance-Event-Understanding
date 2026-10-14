@@ -57,6 +57,12 @@ At this point, the first-time installation is complete. Python packages live in
 sentence-transformer model files are downloaded separately from Hugging Face
 the first time their respective features need them.
 
+To enable faster Groq chat with local Qwen fallback, copy
+`server\.env.example` to `server\.env` and insert your key in `GROQ_API_KEY`.
+The file is ignored by Git and loaded by the backend at startup. Groq receives
+retrieved event records and recent chat turns; leave `CHAT_PROVIDER=qwen` (or
+unset it) to keep chat fully local.
+
 ## Normal startup (Windows)
 
 Each time you want to run the app, open **two PowerShell terminals**. In both,

@@ -2,6 +2,7 @@
 
 import json
 import math
+import os
 import re
 import sys
 from copy import deepcopy
@@ -168,8 +169,6 @@ class VLMEventUnderstanding:
         """Answer conversational follow-ups from retrieved event records only."""
         if not evidence:
             return None
-        if not self.model_available:
-            self._load_model()
 
         evidence_ids = {
             str(item["event_id"])
@@ -199,6 +198,26 @@ class VLMEventUnderstanding:
             if turn.get("role") in {"user", "assistant"}
             and isinstance(turn.get("content"), str)
         ]
+        if os.environ.get("CHAT_PROVIDER", "qwen").strip().casefold() == "groq":
+            api_key = os.environ.get("GROQ_API_KEY", "").strip()
+            if not api_key or api_key == "your_actual_api_key_here":
+                logger.warning(
+                    "CHAT_PROVIDER is groq but GROQ_API_KEY is not configured; "
+                    "falling back to local Qwen"
+                )
+            else:
+                try:
+                    answer = self._generate_groq_answer(
+                        question, facts, recent_history
+                    )
+                    if self._is_valid_chat_answer(answer):
+                        return answer
+                    logger.warning(
+                        "Groq returned an empty or invalid chat answer; falling back to Qwen"
+                    )
+                except Exception:
+                    logger.exception("Groq chat answer failed; falling back to local Qwen")
+
         messages = [
             {
                 "role": "system",
@@ -227,6 +246,15 @@ class VLMEventUnderstanding:
             },
         ]
 
+        return self._generate_qwen_answer(messages, evidence_ids)
+
+    def _generate_qwen_answer(
+        self,
+        messages: List[Dict[str, str]],
+        evidence_ids: set[str],
+    ) -> Optional[str]:
+        if not self.model_available:
+            self._load_model()
         with self._model_lock:
             import torch
 
@@ -252,16 +280,75 @@ class VLMEventUnderstanding:
 
         citations = set(re.findall(r"\[([^\]]+)\]", answer))
         answer_without_citations = re.sub(r"\[[^\]]+\]", "", answer).strip()
-        if (
-            len(answer_without_citations) < 24
-            or not re.search(r"[A-Za-z]{3}", answer_without_citations)
-            or (citations and not citations.issubset(evidence_ids))
+        if not self._is_valid_chat_answer(answer_without_citations) or (
+            citations and not citations.issubset(evidence_ids)
         ):
             logger.warning(
                 "Rejected local Qwen chat answer because it was not a grounded conversational response"
             )
             return None
         return answer
+
+    @staticmethod
+    def _is_valid_chat_answer(answer: Optional[str]) -> bool:
+        return bool(
+            answer
+            and len(answer.strip()) >= 24
+            and re.search(r"[A-Za-z]{3}", answer)
+        )
+
+    @staticmethod
+    def _generate_groq_answer(
+        question: str,
+        facts: List[Dict[str, Any]],
+        history: List[Dict[str, str]],
+    ) -> str:
+        """Generate a fast cloud response using only the retrieved event records."""
+        from groq import Groq
+
+        api_key = os.environ.get("GROQ_API_KEY", "").strip()
+        if not api_key or api_key == "your_actual_api_key_here":
+            raise ValueError(
+                "CHAT_PROVIDER is groq but GROQ_API_KEY is missing or still a placeholder"
+            )
+        model = os.environ.get("GROQ_MODEL", "llama-3.1-8b-instant").strip()
+        if not model:
+            raise ValueError("GROQ_MODEL must not be empty")
+
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a concise conversational assistant for surveillance video "
+                    "analysis. Answer the current question directly and naturally, using "
+                    "timestamps when useful. Only the verified event records are evidence "
+                    "about the footage. Conversation history is context for follow-ups, "
+                    "not evidence. Do not infer intent, identity, or unstated actions. If "
+                    "the records do not answer the question, say so. Do not output event "
+                    "IDs, JSON, or a list of raw records."
+                ),
+            },
+            *history,
+            {
+                "role": "user",
+                "content": (
+                    f"Verified event records:\n{json.dumps(facts, ensure_ascii=True)}\n\n"
+                    f"Current question: {question}"
+                ),
+            },
+        ]
+        client = Groq(api_key=api_key, max_retries=0, timeout=12.0)
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=0.2,
+            max_tokens=min(
+                256, max(32, int(config_loader.get("chat.max_new_tokens", 192)))
+            ),
+        )
+        if not response.choices:
+            return ""
+        return (response.choices[0].message.content or "").strip()
 
     @staticmethod
     def _extract_frames(

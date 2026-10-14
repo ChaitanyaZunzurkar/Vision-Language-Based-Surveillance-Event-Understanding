@@ -7,6 +7,20 @@ from server.src.event_understanding import qwen
 from server.src.event_understanding.qwen import VLMEventUnderstanding
 
 
+def _chat_evidence():
+    return [{
+        "event_id": "event-1",
+        "video_id": "video-1",
+        "event_type": "walking",
+        "start_sec": 1.0,
+        "end_sec": 2.0,
+        "description": "A person walks across the hallway.",
+        "confidence": 0.9,
+        "anomaly_category": "Normal",
+        "anomaly_confidence": 0.98,
+    }]
+
+
 def _install_model_modules(monkeypatch, model_class):
     torch = ModuleType("torch")
     torch.float16 = "float16"
@@ -87,3 +101,102 @@ def test_non_bitsandbytes_model_loading_errors_are_not_hidden(monkeypatch):
 
     with pytest.raises(RuntimeError, match="CUDA out of memory"):
         vlm._load_model_unlocked()
+
+
+def test_groq_chat_uses_configured_model_without_loading_qwen(monkeypatch):
+    monkeypatch.setenv("CHAT_PROVIDER", "groq")
+    monkeypatch.setenv("GROQ_API_KEY", "test-key")
+    monkeypatch.setenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    vlm = VLMEventUnderstanding()
+    calls = []
+
+    def groq_answer(question, facts, history):
+        calls.append((question, facts, history))
+        return "A person walks across the hallway between 1 and 2 seconds."
+
+    monkeypatch.setattr(vlm, "_generate_groq_answer", groq_answer)
+    monkeypatch.setattr(
+        vlm,
+        "_load_model",
+        lambda: pytest.fail("Successful Groq responses must not load Qwen"),
+    )
+
+    answer = vlm.generate_grounded_answer(
+        "What happened?", _chat_evidence(), [{"role": "user", "content": "Earlier"}]
+    )
+
+    assert answer == "A person walks across the hallway between 1 and 2 seconds."
+    assert calls[0][0] == "What happened?"
+    assert calls[0][1][0]["event_id"] == "event-1"
+    assert calls[0][2] == [{"role": "user", "content": "Earlier"}]
+
+
+def test_groq_client_uses_env_model_and_grounded_event_context(monkeypatch):
+    monkeypatch.setenv("GROQ_API_KEY", "test-key")
+    monkeypatch.setenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    calls = {}
+    groq = ModuleType("groq")
+
+    class Client:
+        def __init__(self, **options):
+            calls["client_options"] = options
+            self.chat = SimpleNamespace(
+                completions=SimpleNamespace(create=self.create_completion)
+            )
+
+        @staticmethod
+        def create_completion(**options):
+            calls["completion_options"] = options
+            return SimpleNamespace(
+                choices=[
+                    SimpleNamespace(
+                        message=SimpleNamespace(
+                            content="A person walks across the hallway from 1 to 2 seconds."
+                        )
+                    )
+                ]
+            )
+
+    groq.Groq = Client
+    monkeypatch.setitem(sys.modules, "groq", groq)
+
+    answer = VLMEventUnderstanding._generate_groq_answer(
+        "What happened?",
+        _chat_evidence(),
+        [{"role": "user", "content": "Earlier"}],
+    )
+
+    assert "person walks" in answer
+    assert calls["client_options"] == {
+        "api_key": "test-key",
+        "max_retries": 0,
+        "timeout": 12.0,
+    }
+    assert calls["completion_options"]["model"] == "llama-3.1-8b-instant"
+    assert calls["completion_options"]["messages"][1] == {
+        "role": "user",
+        "content": "Earlier",
+    }
+    assert "Verified event records" in calls["completion_options"]["messages"][2]["content"]
+
+
+def test_groq_chat_failure_falls_back_to_qwen(monkeypatch):
+    monkeypatch.setenv("CHAT_PROVIDER", "groq")
+    monkeypatch.setenv("GROQ_API_KEY", "test-key")
+    vlm = VLMEventUnderstanding()
+    monkeypatch.setattr(
+        vlm,
+        "_generate_groq_answer",
+        lambda *args: (_ for _ in ()).throw(RuntimeError("API unavailable")),
+    )
+    monkeypatch.setattr(
+        vlm,
+        "_generate_qwen_answer",
+        lambda messages, evidence_ids: "Qwen fallback answer based on the event records.",
+    )
+
+    answer = vlm.generate_grounded_answer(
+        "What happened?", _chat_evidence(), []
+    )
+
+    assert answer == "Qwen fallback answer based on the event records."

@@ -4,6 +4,18 @@ See the repository [README](../README.md) for setup. The service provides both a
 
 The API is started from the repository root with `python -m uvicorn server.app.main:app --host 127.0.0.1 --port 8080 --reload`. Interactive endpoint documentation is available at `/docs`.
 
+## Chat provider
+
+Chat uses local Qwen by default. To use Groq for faster text-only chat while
+retaining Qwen as the fallback, copy `server\.env.example` to `server\.env`,
+then add your Groq API key to `GROQ_API_KEY`. The backend loads this file at
+startup; do not put the key in frontend files or commit `server\.env`.
+`CHAT_PROVIDER=groq` enables Groq and `GROQ_MODEL` selects its model. Only
+retrieved event records and recent conversation turns are sent to Groq; this
+is optional cloud processing of surveillance-derived data. If the key is
+missing or a Groq request fails or times out, the backend falls back to Qwen.
+Install the updated dependencies and restart the backend after configuring it.
+
 ## Runtime device and benchmarking
 
 The backend selects a single runtime device from `server/configs/config.yaml`:
