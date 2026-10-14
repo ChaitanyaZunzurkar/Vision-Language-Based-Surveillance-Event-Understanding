@@ -10,7 +10,9 @@ Chat uses local Qwen by default. To use Groq for faster text-only chat while
 retaining Qwen as the fallback, copy `server\.env.example` to `server\.env`,
 then add your Groq API key to `GROQ_API_KEY`. The backend loads this file at
 startup; do not put the key in frontend files or commit `server\.env`.
-`CHAT_PROVIDER=groq` enables Groq and `GROQ_MODEL` selects its model. Only
+`CHAT_PROVIDER=groq` enables Groq; the default model is
+`openai/gpt-oss-20b` (`llama-3.1-8b-instant` is retired). `GROQ_MODEL` can
+override the model. Only
 retrieved event records and recent conversation turns are sent to Groq; this
 is optional cloud processing of surveillance-derived data. If the key is
 missing or a Groq request fails or times out, the backend falls back to Qwen.

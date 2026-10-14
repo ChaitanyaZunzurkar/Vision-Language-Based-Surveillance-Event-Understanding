@@ -106,7 +106,7 @@ def test_non_bitsandbytes_model_loading_errors_are_not_hidden(monkeypatch):
 def test_groq_chat_uses_configured_model_without_loading_qwen(monkeypatch):
     monkeypatch.setenv("CHAT_PROVIDER", "groq")
     monkeypatch.setenv("GROQ_API_KEY", "test-key")
-    monkeypatch.setenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    monkeypatch.setenv("GROQ_MODEL", "openai/gpt-oss-20b")
     vlm = VLMEventUnderstanding()
     calls = []
 
@@ -133,7 +133,7 @@ def test_groq_chat_uses_configured_model_without_loading_qwen(monkeypatch):
 
 def test_groq_client_uses_env_model_and_grounded_event_context(monkeypatch):
     monkeypatch.setenv("GROQ_API_KEY", "test-key")
-    monkeypatch.setenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    monkeypatch.setenv("GROQ_MODEL", "openai/gpt-oss-20b")
     calls = {}
     groq = ModuleType("groq")
 
@@ -172,7 +172,7 @@ def test_groq_client_uses_env_model_and_grounded_event_context(monkeypatch):
         "max_retries": 0,
         "timeout": 12.0,
     }
-    assert calls["completion_options"]["model"] == "llama-3.1-8b-instant"
+    assert calls["completion_options"]["model"] == "openai/gpt-oss-20b"
     assert calls["completion_options"]["messages"][1] == {
         "role": "user",
         "content": "Earlier",

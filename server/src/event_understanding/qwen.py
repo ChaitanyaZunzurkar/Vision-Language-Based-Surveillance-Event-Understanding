@@ -311,7 +311,7 @@ class VLMEventUnderstanding:
             raise ValueError(
                 "CHAT_PROVIDER is groq but GROQ_API_KEY is missing or still a placeholder"
             )
-        model = os.environ.get("GROQ_MODEL", "llama-3.1-8b-instant").strip()
+        model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-20b").strip()
         if not model:
             raise ValueError("GROQ_MODEL must not be empty")
 
