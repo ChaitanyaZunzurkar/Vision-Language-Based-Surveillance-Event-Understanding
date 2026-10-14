@@ -3,7 +3,9 @@
 import json
 import math
 import re
+import sys
 from copy import deepcopy
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from threading import RLock
 from typing import Any, Dict, List, Optional, Tuple
@@ -108,7 +110,7 @@ class VLMEventUnderstanding:
         load_options: Dict[str, Any] = {"device_map": "auto"}
         if self.execution_device.startswith("cuda"):
             load_options["torch_dtype"] = torch.float16
-            try:
+            if self._supports_4bit_quantization():
                 from transformers import BitsAndBytesConfig
 
                 load_options["quantization_config"] = BitsAndBytesConfig(
@@ -116,20 +118,46 @@ class VLMEventUnderstanding:
                     bnb_4bit_compute_dtype=torch.float16,
                     bnb_4bit_quant_type="nf4",
                 )
-            except ImportError:
+            else:
                 logger.warning(
-                    "bitsandbytes is unavailable; loading Qwen in half precision instead"
+                    "4-bit Qwen quantization requires bitsandbytes >= 0.46.1 on Linux; "
+                    "loading in CUDA FP16 instead"
                 )
         else:
             load_options["device_map"] = "cpu"
             load_options["torch_dtype"] = torch.float32
 
         logger.info("Loading %s for temporal event understanding", self.model_name)
-        self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-            self.model_name, **load_options
-        )
+        try:
+            self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+                self.model_name, **load_options
+            )
+        except (ImportError, RuntimeError) as exc:
+            message = str(exc).casefold()
+            if "quantization_config" not in load_options or "bitsandbytes" not in message:
+                raise
+            logger.warning(
+                "bitsandbytes could not initialize (%s); retrying Qwen in CUDA FP16",
+                exc,
+            )
+            load_options.pop("quantization_config")
+            self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+                self.model_name, **load_options
+            )
         self.model.eval()
         self.processor = AutoProcessor.from_pretrained(self.model_name)
+
+    @staticmethod
+    def _supports_4bit_quantization() -> bool:
+        """Use bitsandbytes only where its supported version is installed."""
+        if not sys.platform.startswith("linux"):
+            return False
+        try:
+            from packaging.version import Version
+
+            return Version(version("bitsandbytes")) >= Version("0.46.1")
+        except (ImportError, PackageNotFoundError, ValueError):
+            return False
 
     def generate_grounded_answer(
         self,

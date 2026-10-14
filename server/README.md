@@ -21,6 +21,9 @@ uses CUDA only when it is available; otherwise it uses CPU. YOLO and the
 Stage 1b tracker reuse their loaded model and use inference-only execution.
 FP16 is enabled only for CUDA. Qwen2.5-VL remains conservative on GPUs with
 less than 6 GB VRAM and uses CPU/offload behavior rather than risking an OOM.
+4-bit Qwen quantization is enabled only with `bitsandbytes>=0.46.1` on Linux.
+On Windows, or when that dependency is missing or fails to initialize, Qwen
+loads in CUDA FP16 instead.
 
 Run a reproducible benchmark with:
 
