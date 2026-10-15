@@ -1,4 +1,4 @@
-﻿# Surveillance Video Event Understanding Configuration
+# Surveillance Video Event Understanding Configuration
 
 server:
   host: "0.0.0.0"
@@ -40,11 +40,11 @@ detection:
 # Project-owned Stage 1b resources. Paths are relative to the repository root.
 stage1b:
   tracker_script: "server/src/tracking/surveillance_tracker.py"
-  weights_path: "models/stage1b/yolo11x_surv_v1.pt"
+  weights_path: "models/detection/yolo11x_surv_v1.pt"
   class_config: "server/configs/stage1_model.yaml"
   bytetrack_yaml: "server/configs/bytetrack_custom.yaml"
   frame_stride: 1
-  allow_detector_fallback: true
+  allow_detector_fallback: false
 
 tracking:
   track_high_thresh: 0.50
@@ -72,12 +72,12 @@ vlm:
   temperature: 0.2
 
 anomaly:
-  model_weights: "weights/best_model.pkl"
-  scaler_weights: "weights/scaler.pkl"
-  feature_extractor: "AnomalyCLIP"
+  model_weights: "models/anomaly/nn_models_fixed.pt"
+  feature_extractor: "ViT-B-16"
   clip_duration_sec: 4.0
   clip_stride_sec: 2.0
-  num_frames: 16
+  num_frames: 256
+  batch_size: 8
   anomaly_threshold: 0.50
 
 evidence:

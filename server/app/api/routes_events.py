@@ -138,13 +138,25 @@ async def import_stage4_events(
             detail=f"This file contains video ID(s) {sorted(source_video_ids)}; selected video is {video.filename}.",
         )
 
+    # Stage 3 scores are produced by the tracking run. Stage 4 JSON often has
+    # descriptions and timestamps but no anomaly label, so attach the stored
+    # model prediction whose interval overlaps each imported event.
+    anomaly_segments = store.get_anomalies(video_id=video_id)
     records = []
+    trimmed_events = 0
+    skipped_events = 0
     for event, window_index, event_index, window in raw_events:
         if not isinstance(event, dict):
             raise HTTPException(status_code=400, detail=f"Event {event_index} is not an object")
         event_type = event.get("event_type") or event.get("type")
-        start = event.get("start_sec", event.get("start"))
-        end = event.get("end_sec", event.get("end"))
+        # Stage 3 exports window-relative timestamps plus absolute timestamps.
+        # Prefer the absolute pair when present to avoid boundary ambiguity.
+        has_absolute_times = event.get("abs_start") is not None and event.get("abs_end") is not None
+        if has_absolute_times:
+            start, end = event.get("abs_start"), event.get("abs_end")
+        else:
+            start = event.get("start_sec", event.get("start"))
+            end = event.get("end_sec", event.get("end"))
         description = event.get("description")
         if not event_type or start is None or end is None or not description:
             raise HTTPException(status_code=400, detail=f"Event {event_index} is missing type, times, or description")
@@ -154,7 +166,7 @@ async def import_stage4_events(
         except (TypeError, ValueError) as exc:
             raise HTTPException(status_code=400, detail=f"Event {event_index} has invalid numeric fields") from exc
         window_range = window.get("window")
-        if isinstance(window_range, list) and len(window_range) == 2:
+        if not has_absolute_times and isinstance(window_range, list) and len(window_range) == 2:
             try:
                 window_start, window_end = float(window_range[0]), float(window_range[1])
             except (TypeError, ValueError) as exc:
@@ -163,10 +175,16 @@ async def import_stage4_events(
                 # Stage 4 may report seconds relative to the sampled window.
                 start += window_start
                 end += window_start
-        if start < 0 or end < start or end > video.duration_sec + 1:
-            raise HTTPException(status_code=400, detail=f"Event {event_index} has timestamps outside the selected video")
         if not math.isfinite(start) or not math.isfinite(end) or not math.isfinite(confidence):
             raise HTTPException(status_code=400, detail=f"Event {event_index} contains non-finite numeric fields")
+        if start < 0 or end < start:
+            raise HTTPException(status_code=400, detail=f"Event {event_index} has invalid timestamps")
+        if start >= video.duration_sec:
+            skipped_events += 1
+            continue
+        if end > video.duration_sec:
+            end = video.duration_sec
+            trimmed_events += 1
 
         subject = event.get("subject_track")
         object_track = event.get("object_track")
@@ -180,6 +198,45 @@ async def import_stage4_events(
 
         source_id = event.get("event_id") or f"{window_index}:{event_index}"
         safe_id = f"ev_{uuid.uuid5(uuid.NAMESPACE_URL, f'{video_id}:{source_id}').hex[:20]}"
+        anomaly_value = event.get("anomaly_category") or event.get("anomaly_label") or event.get("anomaly_class")
+        if isinstance(anomaly_value, dict):
+            anomaly_value = anomaly_value.get("category") or anomaly_value.get("label") or anomaly_value.get("class")
+        is_anomaly = event.get("is_anomaly")
+        try:
+            anomaly_confidence = float(event.get("anomaly_confidence", event.get("classification_confidence", 0.0)))
+        except (TypeError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=f"Event {event_index} has invalid anomaly confidence") from exc
+        if not math.isfinite(anomaly_confidence):
+            raise HTTPException(status_code=400, detail=f"Event {event_index} has non-finite anomaly confidence")
+        has_anomaly_label = bool(anomaly_value) and str(anomaly_value).strip().lower() not in {
+            "unassessed", "unknown", "none",
+        }
+        if has_anomaly_label:
+            anomaly_category = str(anomaly_value)
+        elif isinstance(is_anomaly, bool) and not anomaly_value:
+            anomaly_category = "Anomaly" if is_anomaly else "Normal"
+        else:
+            overlaps = [
+                segment for segment in anomaly_segments
+                if segment.end_sec >= start and segment.start_sec <= end
+            ]
+            flagged = [segment for segment in overlaps if segment.is_anomaly]
+            if flagged:
+                selected = max(
+                    flagged,
+                    key=lambda item: float(item.metadata.get("anomaly_probability", item.confidence)),
+                )
+            elif overlaps and all(item.metadata.get("model_available", True) for item in overlaps):
+                selected = max(overlaps, key=lambda item: item.confidence)
+            else:
+                selected = None
+            if selected:
+                anomaly_category = selected.category
+                anomaly_confidence = float(
+                    selected.metadata.get("anomaly_probability", selected.confidence)
+                )
+            else:
+                anomaly_category = "Unassessed"
         records.append(EventRecord(
             event_id=safe_id,
             video_id=video_id,
@@ -189,8 +246,8 @@ async def import_stage4_events(
             entity_ids=entity_ids,
             description=str(description),
             confidence=max(0.0, min(1.0, confidence)),
-            anomaly_category="Unassessed",
-            anomaly_confidence=0.0,
+            anomaly_category=anomaly_category,
+            anomaly_confidence=max(0.0, min(1.0, anomaly_confidence)),
             clip_path=None,
             metadata={
                 "source": "stage4_import",
@@ -211,5 +268,18 @@ async def import_stage4_events(
     vector_store.add_events(records)
     if records:
         store.update_video_status(video_id, "completed")
-    return {"video_id": video_id, "imported_events": len(records), "status": "completed" if records else video.status}
+    unassessed_events = sum(record.anomaly_category == "Unassessed" for record in records)
+    model_available = any(
+        segment.metadata.get("model_available", False) for segment in anomaly_segments
+    )
+    return {
+        "video_id": video_id,
+        "imported_events": len(records),
+        "assessed_events": len(records) - unassessed_events,
+        "unassessed_events": unassessed_events,
+        "anomaly_model_available": model_available,
+        "trimmed_events": trimmed_events,
+        "skipped_events": skipped_events,
+        "status": "completed" if records else video.status,
+    }
 

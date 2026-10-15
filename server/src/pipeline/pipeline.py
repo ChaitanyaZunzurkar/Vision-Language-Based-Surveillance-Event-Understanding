@@ -48,6 +48,7 @@ class SurveillancePipeline:
             clip_duration_sec=float(config_loader.get("anomaly.clip_duration_sec", 4.0)),
             clip_stride_sec=float(config_loader.get("anomaly.clip_stride_sec", 2.0)),
             anomaly_threshold=float(config_loader.get("anomaly.anomaly_threshold", 0.5)),
+            num_frames=int(config_loader.get("anomaly.num_frames", 256)),
         )
         self.vlm = VLMEventUnderstanding(
             model_name=config_loader.get("vlm.model_name", "Qwen/Qwen2.5-VL-7B-Instruct"),

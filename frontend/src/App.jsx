@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity, ArrowUp, ArrowUpRight, Camera,
-  Check, ChevronDown, Clapperboard, Clock3, FileJson2,
+  Check, ChevronDown, Clapperboard, Clock3, Download, FileJson2,
   Film, FolderOpen, LoaderCircle, Menu, MessageSquare, Paperclip,
   Plus, Search, Shield, Trash2, Upload, Video, X,
 } from "lucide-react";
@@ -291,11 +291,14 @@ export default function App() {
       }
       const invalidCount = entries.filter(({ event }) => {
         if (!event || typeof event !== "object") return true;
-        const start = Number(event.start_sec ?? event.start);
-        const end = Number(event.end_sec ?? event.end);
+        const start = Number(event.abs_start ?? event.start_sec ?? event.start);
+        const end = Number(event.abs_end ?? event.end_sec ?? event.end);
         return !(event.event_type || event.type) || !event.description ||
           !Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end < start;
       }).length;
+      const anomalyCount = entries.filter(({ event }) => event && typeof event === "object" && (
+        event.anomaly_category || event.anomaly_label || event.anomaly_class || typeof event.is_anomaly === "boolean"
+      )).length;
       const sourceVideoIds = format === "windows"
         ? [...new Set(payload.windows.map((window) => window?.video_id).filter((id) => id != null).map(String))]
         : [...new Set(payload.events.map((event) => event?.video_id).filter((id) => id != null).map(String))];
@@ -303,6 +306,7 @@ export default function App() {
         format,
         count: entries.length,
         invalidCount,
+        anomalyCount,
         sourceVideoIds,
         sample: entries.slice(0, 3).map(({ event }) => event),
       });
@@ -320,7 +324,12 @@ export default function App() {
     setEventsReviewError("");
     try {
       const result = await request("/api/events/import", { method: "POST", body });
-      const message = `Imported ${result.imported_events} event${result.imported_events === 1 ? "" : "s"} for ${videos.find((video) => video.video_id === eventsTargetVideoId)?.filename || "the selected video"}.`;
+      const adjustments = [
+        result.trimmed_events ? `${result.trimmed_events} trimmed to the video duration` : "",
+        result.skipped_events ? `${result.skipped_events} outside the video skipped` : "",
+      ].filter(Boolean);
+      const adjustmentNote = adjustments.length ? ` (${adjustments.join(", ")})` : "";
+      const message = `Imported ${result.imported_events} event${result.imported_events === 1 ? "" : "s"} for ${videos.find((video) => video.video_id === eventsTargetVideoId)?.filename || "the selected video"}${adjustmentNote}.`;
       setNotice(message);
       addMessage({ role: "assistant", text: message });
       setEventsReviewOpen(false);
@@ -480,7 +489,7 @@ function EventsLibrary({ events, videos, selectedEvent, playerVideo, loading, er
     </div>
     <div className="events-library-grid">
       <div className="events-player-pane">
-        {videoUrl ? <video key={`${selectedEvent.event_id}-${videoUrl}`} controls preload="metadata" src={videoUrl} /> : <div className="events-player-empty"><Film size={22} /><span>Select an event to view its video.</span></div>}
+        {videoUrl ? <TrackedVideoPlayer key={`${selectedEvent.event_id}-${videoUrl}`} videoUrl={videoUrl} videoId={playerVideo.video_id} event={selectedEvent} /> : <div className="events-player-empty"><Film size={22} /><span>Select an event to view its video.</span></div>}
         {selectedEvent && <div className="player-event-meta">
           <div><strong>{videos.find((video) => video.video_id === selectedEvent.video_id)?.filename || selectedEvent.video_id}</strong><span>{formatTime(selectedEvent.start_sec)} – {formatTime(selectedEvent.end_sec)}</span></div>
           <p>{selectedEvent.description}</p>
@@ -501,6 +510,108 @@ function EventsLibrary({ events, videos, selectedEvent, playerVideo, loading, er
       </aside>
     </div>
   </section>;
+}
+
+function TrackedVideoPlayer({ videoUrl, videoId, event }) {
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const [boxes, setBoxes] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setBoxes([]);
+    const params = new URLSearchParams({ start_sec: String(event.start_sec), end_sec: String(event.end_sec) });
+    if (event.entity_ids?.length) params.set("track_ids", event.entity_ids.join(","));
+    request(`/api/videos/${encodeURIComponent(videoId)}/tracks?${params}`).then((result) => {
+      if (cancelled) return;
+      setBoxes(result.tracks || []);
+    }).catch(() => { if (!cancelled) setBoxes([]); });
+    return () => { cancelled = true; };
+  }, [event.event_id, event.start_sec, event.end_sec, event.entity_ids, videoId]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+    if (!video || !canvas || !context) return undefined;
+    let animationFrame = 0;
+
+    const draw = () => {
+      const rect = video.getBoundingClientRect();
+      const pixelRatio = window.devicePixelRatio || 1;
+      const pixelWidth = Math.max(1, Math.round(rect.width * pixelRatio));
+      const pixelHeight = Math.max(1, Math.round(rect.height * pixelRatio));
+      if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {
+        canvas.width = pixelWidth;
+        canvas.height = pixelHeight;
+      }
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      context.clearRect(0, 0, rect.width, rect.height);
+      if (!video.videoWidth || !video.videoHeight || !boxes.length) return;
+
+      const mediaAspect = video.videoWidth / video.videoHeight;
+      const elementAspect = rect.width / rect.height;
+      const drawnWidth = mediaAspect > elementAspect ? rect.width : rect.height * mediaAspect;
+      const drawnHeight = mediaAspect > elementAspect ? rect.width / mediaAspect : rect.height;
+      const offsetX = (rect.width - drawnWidth) / 2;
+      const offsetY = (rect.height - drawnHeight) / 2;
+      const scaleX = drawnWidth / video.videoWidth;
+      const scaleY = drawnHeight / video.videoHeight;
+      const nearestByTrack = new Map();
+      for (const box of boxes) {
+        const delta = Math.abs(box.timestamp_sec - video.currentTime);
+        const previous = nearestByTrack.get(box.track_id);
+        if ((!previous || delta < previous.delta) && delta <= 0.2) nearestByTrack.set(box.track_id, { box, delta });
+      }
+
+      context.lineWidth = 2;
+      context.font = "600 12px Manrope, sans-serif";
+      for (const { box } of nearestByTrack.values()) {
+        const x = offsetX + box.x1 * scaleX;
+        const y = offsetY + box.y1 * scaleY;
+        const width = (box.x2 - box.x1) * scaleX;
+        const height = (box.y2 - box.y1) * scaleY;
+        const color = `hsl(${(box.track_id * 67) % 360} 85% 72%)`;
+        const label = `${box.class_name} #${box.track_id}`;
+        const labelWidth = context.measureText(label).width + 12;
+        const labelY = Math.max(offsetY, y - 21);
+        context.strokeStyle = color;
+        context.strokeRect(x, y, width, height);
+        context.fillStyle = "#111820e8";
+        context.fillRect(x, labelY, labelWidth, 20);
+        context.fillStyle = color;
+        context.fillText(label, x + 6, labelY + 14);
+      }
+    };
+    const animate = () => {
+      draw();
+      if (!video.paused && !video.ended) animationFrame = window.requestAnimationFrame(animate);
+    };
+    const onPlay = () => { window.cancelAnimationFrame(animationFrame); animate(); };
+    const onPause = () => { window.cancelAnimationFrame(animationFrame); draw(); };
+    const resizeObserver = new ResizeObserver(draw);
+    resizeObserver.observe(video);
+    video.addEventListener("loadedmetadata", draw);
+    video.addEventListener("timeupdate", draw);
+    video.addEventListener("seeked", draw);
+    video.addEventListener("play", onPlay);
+    video.addEventListener("pause", onPause);
+    draw();
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      video.removeEventListener("loadedmetadata", draw);
+      video.removeEventListener("timeupdate", draw);
+      video.removeEventListener("seeked", draw);
+      video.removeEventListener("play", onPlay);
+      video.removeEventListener("pause", onPause);
+    };
+  }, [boxes]);
+
+  return <div className="tracked-video-wrap">
+    <video ref={videoRef} controls playsInline preload="metadata" src={videoUrl} />
+    <canvas ref={canvasRef} className="track-overlay-canvas" aria-hidden="true" />
+  </div>;
 }
 
 function EventsReviewModal({ videos, file, preview, selectedVideoId, error, importing, mismatch, onFile, onSelectVideo, onClose, onImport }) {
@@ -525,11 +636,12 @@ function EventsReviewModal({ videos, file, preview, selectedVideoId, error, impo
           <div><strong>{preview.invalidCount === 0 ? "Valid" : `${preview.invalidCount} issues`}</strong><span>records</span></div>
         </div>
         {preview.sourceVideoIds.length > 0 && <div className="preview-source">Video ID in file: {preview.sourceVideoIds.join(", ")}</div>}
+        <div className="preview-source">Anomaly labels: {preview.anomalyCount ? `${preview.anomalyCount} of ${preview.count} events` : "not included; imported events will be Unassessed"}</div>
         {preview.invalidCount > 0 && <div className="review-error">Some records need an event type, description, and valid timestamps.</div>}
         {preview.count === 0 && <div className="preview-empty">No events found in this file.</div>}
         {preview.sample.length > 0 && <div className="preview-events">
           {preview.sample.map((event, index) => <article className="preview-event" key={event.event_id || index}>
-            <div><strong>{String(event.event_type || event.type || "Event").replaceAll("_", " ")}</strong><span>{formatTime(event.start_sec ?? event.start)}–{formatTime(event.end_sec ?? event.end)}</span></div>
+            <div><strong>{String(event.event_type || event.type || "Event").replaceAll("_", " ")}</strong><span>{formatTime(event.abs_start ?? event.start_sec ?? event.start)}–{formatTime(event.abs_end ?? event.end_sec ?? event.end)}</span></div>
             <p>{event.description || "No description"}</p>
           </article>)}
           {preview.count > preview.sample.length && <div className="preview-more">and {preview.count - preview.sample.length} more</div>}
@@ -578,7 +690,10 @@ function VideoWorkflow({ video, onProcess, onImport }) {
     {failed && <div className="workflow-error">{video.error_message || "Processing failed. You can try again."}</div>}
     <div className="workflow-footer">
       <span>{video.status === "completed" ? "Descriptions are imported and ready to search." : waiting ? "Tracking windows are ready. Import the final Stage 4 events.json." : processing ? "Tracking is running in the background. You can keep chatting." : "Run tracking, then import the final Stage 4 events.json."}</span>
-      {waiting ? <button className="workflow-primary" onClick={onImport}><FileJson2 size={14} />Import events.json</button> : !processing && video.status !== "completed" && <button className="workflow-primary" onClick={() => onProcess(video.video_id)}><Activity size={14} />{failed ? "Try again" : "Run tracking"}</button>}
+      <div className="workflow-footer-actions">
+        {video.windows_json_available && <a className="workflow-download" href={`/api/videos/${encodeURIComponent(video.video_id)}/windows`} download><Download size={14} />Download windows.json</a>}
+        {waiting ? <button className="workflow-primary" onClick={onImport}><FileJson2 size={14} />Import events.json</button> : !processing && video.status !== "completed" && <button className="workflow-primary" onClick={() => onProcess(video.video_id)}><Activity size={14} />{failed ? "Try again" : "Run tracking"}</button>}
+      </div>
     </div>
   </div>;
 }

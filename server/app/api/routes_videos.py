@@ -2,10 +2,12 @@
 
 from pathlib import Path
 from typing import List, Optional
+import csv
 import shutil
 import uuid
 import aiofiles
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks, Depends
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from server.src.storage.schemas import VideoRecord
 from server.src.storage.metadata_store import MetadataStore
@@ -30,11 +32,13 @@ class VideoResponse(BaseModel):
     error_message: Optional[str] = None
     created_at: str
     stream_url: str
+    windows_json_available: bool = False
 
 
 def to_response(v: VideoRecord) -> VideoResponse:
     # URL for streaming the video file
     stream_url = f"/api/media/video/{Path(v.file_path).name}"
+    windows_json = paths.windows_dir / f"{v.video_id}_windows.json"
     return VideoResponse(
         video_id=v.video_id,
         filename=v.filename,
@@ -46,6 +50,7 @@ def to_response(v: VideoRecord) -> VideoResponse:
         error_message=v.error_message,
         created_at=v.created_at,
         stream_url=stream_url,
+        windows_json_available=windows_json.is_file(),
     )
 
 
@@ -113,6 +118,73 @@ def get_video(video_id: str, store: MetadataStore = Depends(get_metadata_store))
     if not video:
         raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
     return to_response(video)
+
+
+@router.get("/{video_id}/tracks")
+def get_video_tracks(
+    video_id: str,
+    start_sec: float,
+    end_sec: float,
+    track_ids: Optional[str] = None,
+    store: MetadataStore = Depends(get_metadata_store),
+):
+    """Return per-frame box coordinates for an event's tracked entities."""
+    video = store.get_video(video_id)
+    if not video:
+        raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
+    if start_sec < 0 or end_sec < start_sec:
+        raise HTTPException(status_code=400, detail="Invalid track time range")
+
+    requested_ids = None
+    if track_ids:
+        try:
+            requested_ids = {int(value) for value in track_ids.split(",") if value.strip()}
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail="Track IDs must be comma-separated integers") from exc
+
+    csv_path = (paths.tracks_dir / f"{video.video_id}_tracks.csv").resolve()
+    if not csv_path.is_relative_to(paths.tracks_dir.resolve()) or not csv_path.is_file():
+        return {"available": False, "tracks": []}
+
+    rows = []
+    with csv_path.open("r", newline="", encoding="utf-8-sig") as source:
+        for row in csv.DictReader(source):
+            try:
+                timestamp = float(row["timestamp_sec"])
+                track_id = int(row["track_id"])
+                box = {key: float(row[key]) for key in ("x1", "y1", "x2", "y2")}
+            except (KeyError, TypeError, ValueError):
+                continue
+            if not start_sec - 0.25 <= timestamp <= end_sec + 0.25:
+                continue
+            if requested_ids is not None and track_id not in requested_ids:
+                continue
+            rows.append({
+                "timestamp_sec": timestamp,
+                "track_id": track_id,
+                "class_name": row.get("class_name") or row.get("class") or "Object",
+                "confidence": float(row.get("confidence") or 0.0),
+                **box,
+            })
+    return {"available": True, "tracks": rows}
+
+
+@router.get("/{video_id}/windows")
+def download_windows_json(video_id: str, store: MetadataStore = Depends(get_metadata_store)):
+    """Download the Stage 2 temporal windows generated for a video."""
+    video = store.get_video(video_id)
+    if not video:
+        raise HTTPException(status_code=404, detail=f"Video {video_id} not found")
+
+    windows_path = (paths.windows_dir / f"{video.video_id}_windows.json").resolve()
+    if not windows_path.is_relative_to(paths.windows_dir.resolve()) or not windows_path.is_file():
+        raise HTTPException(status_code=404, detail="Window JSON is not available for this video yet")
+
+    return FileResponse(
+        path=windows_path,
+        media_type="application/json",
+        filename=f"{video.video_id}_windows.json",
+    )
 
 
 @router.delete("/{video_id}")
